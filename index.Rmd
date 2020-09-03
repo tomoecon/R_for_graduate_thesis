@@ -1,0 +1,53 @@
+--- 
+title: "卒業論文のためのR入門"
+author: "森　知晴（立命館大学総合心理学部）"
+date: "Last Update: `r Sys.Date()`"
+site: bookdown::bookdown_site
+documentclass: book
+bibliography: [book.bib, packages.bib]
+biblio-style: apalike
+link-citations: yes
+description: "この文書は、卒業論文を書くためのRの使い方をできるだけコンパクトにまとめたものです。"
+---
+
+```{r setup, include = FALSE}
+knitr::opts_chunk$set(echo = TRUE, fig.width = 4, fig.height = 3, fig.align = "center")
+library(tidyverse)
+library(rmdformats)
+library(wooldridge)
+library(broom)
+library(summarytools)
+library(stargazer)
+```
+
+# はじめに {#Introduction}
+この文書は、卒業論文を書くためのRの使い方を**できるだけコンパクトに**まとめたものです。
+読者は立命館大学総合心理学部森ゼミの学生をピンポイントに想定しています。
+
+- Rを用いた演習として「心理学データ解析法」の履修を推奨していますが、履修していなくてもわかるように構成しています。
+- 卒業論文自体はWordで作成する想定で、Rで得られた結果をWordに貼り付ける（簡便な）方法を説明します。
+
+一般的なRの入門文書としても参照できます。
+説明の都合上、厳密さよりわかりやすさを重視した記述が多々あります。ご了承ください。
+
+具体的には、以下の項目を学習します。
+
+- R, RStudioをインストールし、基本的な操作ができるようになる
+- データをRStudioにインポートする
+- インポートしたデータを分析可能な形に前処理する
+- 記述統計を整理する
+- データを可視化する
+- t検定を行う
+- 重回帰分析を行い、論文に貼り付けられる形に整える
+
+文書は前から順番に読み、自分でコードを打って確かめてください。
+Chapter \@ref(InstallR)を読んでRとRStudioを準備し、登場するコードを自分で入力して練習してみてください。
+
+この文書で紹介している方法はあくまで一例です。
+Rには様々な機能やパッケージがあり、日々進化しています。
+この文書の内容を理解したら、ぜひ自分で様々な機能を調べて使ってみてください。
+
+★参考文献
+
+- 浅野正彦・中村公亮（2018）はじめてのRStudio エラーメッセージなんてこわくない、オーム社
+- 松村優哉・湯谷啓明・紀ノ定保礼・前田和寛（2018）RユーザのためのRStudio[実践]入門 −tidyverseによるモダンな分析フローの世界−

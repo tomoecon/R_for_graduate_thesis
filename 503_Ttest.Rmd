@@ -1,0 +1,51 @@
+```{r library Ttest, echo = FALSE}
+library(tidyverse)
+library(wooldridge)
+data("saving")
+```
+
+# t検定 {#Ttest}
+2群の平均値の差についての検定であるt検定を実施してみましょう。
+t検定を行うコマンドは`t.test()`です。`t.test()`は以下のように記述します。
+
+```{r t.test intro, eval = FALSE}
+t.test(従属変数 ~ 独立変数, data = データフレーム名)
+```
+
+ここでは、`black`を用いて、黒人とそれ以外で年間収入`inc`に違いがあるかどうかを確認してみましょう。
+
+```{r t.test}
+t.test(inc ~ black, data = saving)
+```
+これでt検定を行うことができます。p値は`0.103`なので、今回は有意ではありませんでした。（差があるようには見えますが、黒人のサンプルが少ないことが影響していると思われます）
+
+なお、`t.test()`はデフォルトで2群の分散が等しいと仮定しない「Welchのt検定」を実施します。
+オプションで`var.equal = TRUE`とすれば分散が等しいと仮定した「スチューデントのt検定」が実施できますが、通常分散は異なることが多いため、デフォルトのままWelchのt検定を使用するのが良いでしょう。
+
+t検定の結果はあまり見やすい形式にはなっていません。
+`broom`というパッケージの関数`tidy`を使うと、結果を表形式で見やすくすることができます。
+まずは`bloom`をインストールしておきましょう。
+
+```{r install bloom, eval = FALSE}
+install.packages("broom")
+```
+
+その上で、`tidy()`を使ってみましょう。`t.test`の結果をパイプでつないで`tidy()`に渡してみます。
+
+```{r t.test broom}
+library(broom)
+t.test(inc ~ black, data = saving) %>%
+  tidy()
+```
+
+表示されている数値は以下のとおりです。
+
+- `estimate`: 平均値の差
+- `estimate1`: グループ1の平均
+- `estimate2`: グループ2の平均
+- `statistic`: t値
+- `p.value`: p値
+- `parameter`: 自由度
+- `conf.low, conf.high`: 信頼区間の下限、上限
+- `method`: 使用した方法
+- `alternative`: 両側検定か片側検定か

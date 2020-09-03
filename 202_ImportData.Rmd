@@ -1,0 +1,70 @@
+# データのインポート {#ImportData}
+
+データ分析のためには、データをRStudioにインポート（読み込み）させなければなりません。インポートの方法は、持っているデータのファイル形式によって変わります。
+
+## インポートの準備
+
+インポートしたいファイルは、プロジェクトと同じフォルダに入れておきましょう。
+プロジェクトはChapter \@ref(RStudio)で学習しています。
+
+インポートしたいファイルの形式も確認しておきましょう。
+代表的な形式として、CSVファイル（.csv）、Excelファイル（.xlsx, .xls）があります。
+拡張子が表示されていない場合は[こちら](https://pc-karuma.net/windows-10-show-explorer-file-name-extension/)を参考に表示させるようにしましょう。
+
+インポートの前に、ファイルの1行目は変数名（英語）にしておきましょう。
+
+## ファイル形式別のインポート方法
+
+### CSVファイルの場合（.csv）
+
+CSVファイルの場合は、`read_csv`を用います。ファイルの名前が`sotsuron.csv`の場合、以下のように実行します。
+
+```{r import_csv, eval = FALSE}
+data_original <- read_csv("sotsuron.csv")
+```
+
+これは、csvファイルの内容を`data_original`というオブジェクトに収納しています。
+オブジェクト名は自由につけることができますが、わかりやすいものにしましょう。
+ここでは、インポートした元データであることを明示するため、`data_original`という名前にしています。
+
+### Excelファイルの場合（.xlsx）
+
+Excelファイルの場合は、新しいパッケージ`readxl`をインストールする必要があります。
+
+```{r install readxl, eval = FALSE}
+install.packages("readxl")
+library(readxl)
+```
+
+`read_excel`を使ってデータをインポートします。
+
+```{r import_excel, eval = FALSE}
+data_original <- read_excel("sotsuron.xlsx")
+```
+
+### Qualtricsのデータの場合
+
+Qualtricsのデータの場合、`qualtRics`という専用のパッケージが便利です。
+
+```{r install qualtRics, eval = FALSE}
+install.packages("qualtRics")
+library(qualtRics)
+```
+
+QualtricsからはCSV形式でデータをエクスポートしてください。エクスポートしたCSVファイルを`read_survey`を使ってデータをインポートします。
+
+```{r import_qualtrics, eval = FALSE}
+data_original <- read_survey("sotsuron.csv")
+```
+
+エクスポート前に、Qualtrics上で変数にわかりやすい名前をつけておくようにすると良いです。
+また、エクスポートの際には「数値を使用」を選択しておきましょう。
+
+## インポートしたデータの確認
+
+データがきちんとインポートされたかどうか、確認しておきましょう。
+
+- 右上のペーンの"Data"に新しいオブジェクトができているか確認（上の例では`data_original`）
+    - クリックして左上のペーンに出てくるか確認
+- `head(data_original)`で先頭のデータを確認
+- `str(data_original)`で各変数の「型」（後で説明）を確認

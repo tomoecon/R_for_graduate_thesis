@@ -1,0 +1,29 @@
+```{r library Packages, echo = FALSE}
+library(tidyverse)
+```
+
+# パッケージのインストール {#Packages}
+
+Rの機能を拡張するため、必要なパッケージをインストールします。
+まずは、重要なパッケージがまとめられている`tidyverse`（読み：タイディバース）をインストールしましょう。
+その他のパッケージは必要になる度に紹介します。
+
+```{r install packages, eval = FALSE}
+install.packages("tidyverse")
+library(tidyverse)
+```
+
+`install.packages()`は各パソコンで一度実行すればOKです。
+`library()`はRStudioを起動するたびに実行する必要があります。
+Rスクリプトの冒頭に使用する`library()`を並べておき、起動するたびに実行するようにしましょう。
+
+確認のため、以下のコードを打って、動作するかどうか確認してみてください。
+（データセット`mtcars`の変数`mpg`の平均を計算するコードです）
+
+```{r test}
+mtcars %>% summarize(mean_mpg = mean(mpg))
+```
+
+ここでエラーが起きた場合、R(Studio)のインストールがうまくいっていない可能性があります。
+Chapter \@ref(InstallR)に戻って確認しましょう。
+

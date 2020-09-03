@@ -1,0 +1,328 @@
+```{r library DataHandling}
+library(tidyverse)
+library(wooldridge)
+data("saving")
+```
+
+
+# データ前処理 {#DataHandling}
+データをインポートしたら、いざ分析だ！…と分析してみたくなります。
+しかし、収集したデータはそのまま分析に進むことはできず、分析のために「前処理」する必要があります。
+「データ分析は前処理が8割」とも言われます。
+前処理の方法を学んでいきましょう。
+
+データ前処理には`dplyr`（読み：ディープライアール）というパッケージの関数を主に用います。
+`dplyr`は`tidyverse`の一部なので、`tidyverse`がインストールされていればOKです。
+
+## パイプ（%>%）による処理
+
+最近はパイプ`%>%`を用いてデータの受け渡しを行うのが主流となっています。
+パイプは`magrittr`パッケージの機能ですが、`tidyverse`と同時にインストールされています。
+
+まずは例を見てみましょう。
+
+```{r pipe example}
+saving %>% head()
+```
+
+この結果は、前のChapterで見た`head(saving)`と同じ結果です。
+パイプを用いると、パイプの前のオブジェクトをパイプの後の関数の引数としてくれます。
+
+パイプを用いた書き方は以下のとおりです。
+
+- 使用するオブジェクトを示す: `saving`
+- パイプでつなぐ: `%>%`
+- 使用する関数を書く: `head()`
+
+別の例を見てみましょう。
+
+```{r pipe example 2}
+saving$sav %>% mean()
+```
+
+まずデータフレーム`saving`内の変数`sav`（貯蓄）を示すオブジェクト`saving$sav`を書きます。
+これを平均を求める関数`mean()`にパイプ`%>%`でつなぎます。
+すると、貯蓄の平均を求めることができます。
+
+ここまででは何が便利なのかわからないかもしれませんが、パイプを用いたほうがコードをわかりやすく書くことができます。
+
+★練習問題
+
+- パイプを使って100の平方根を求めてください。
+- パイプを使って`saving`の変数`inc`の中央値を求めてください。
+
+## 変数の作成（及び置換）
+
+分析の際には、収集したデータを分析しやすいように作成・置換することはよくあります。
+
+- 新しい変数を作成したい
+- 質問紙に逆転項目を設けていたので、変数を逆にしたい
+- 変数を標準化したい
+- 数値で入力された変数をカテゴリ変数として扱いたい
+- 連続変数をカテゴリ変数に変換したい
+
+変数を追加・置換する`dplyr`の関数が`mutate()`です。
+
+### 変数の新規作成
+
+`mutate()`を用いて、貯蓄`sav`を収入`inc`で割った新しい変数「貯蓄率」`saving_rate`を作ってみましょう。
+
+```{r mutate saving_rate}
+saving_with_rate <-
+  saving %>%
+    mutate(saving_rate = sav / inc)
+
+head(saving_with_rate)
+```
+
+1行目は2行目以降の結果を新たなデータフレーム`saving_with_rate`に代入するコードです。
+2行目はデータフレームの指定とパイプです。`saving`を`mutate()`に入れるコードです。
+3行目で`mutate`を使っています。割り算`/`を使って、新しい変数`saving_rate`を作成しました。
+
+`head(saving_with_rate)`でどのようなデータフレームになったか、先頭6行を確認しています。
+
+なお、1行目を`saving`とすると、`saving`が上書きされます。
+
+★練習問題
+
+- `saving`に年齢`age`を二乗した値`age_squared`を加えたデータフレームを作成してください。
+- `saving`に収入`inc`を円換算した値`inc_yen`を加えたデータフレームを作成してください。
+    - 当時の為替レートは1ドル=140円程度でした。
+
+### 逆転項目の処理
+
+`mutate`を利用して、「逆転項目」の前処理をしてみましょう。
+逆転項目とは、質問紙では1, 2, 3, 4, 5として聞いた数値を、データでは5, 4, 3, 2, 1として扱うものです（5件法の場合）。
+以下の操作をイメージしましょう。
+
+- 全体にマイナスをかける→(1, 2, 3, 4, 5)が(-1, -2, -3, -4, -5)になる
+- 全体に6を足す→(-1, -2, -3, -4, -5)が(5, 4, 3, 2, 1)になる
+
+つまり、元の変数にマイナスをかけ、6を足せば逆転項目が作成できます。
+
+`saving`には逆転項目がないので、架空の数値を作成して確認してみましょう。
+
+```{r gyakuten}
+data <- data.frame(Q1 = c(3, 2, 4, 1, 5)) #逆転項目Q1が入ったデータフレームを作成
+
+data_gyakuten <- 
+  data %>%
+    mutate(Q1_gyakuten = - Q1 + 6)
+
+data_gyakuten
+```
+
+★練習問題
+
+- 7件法（1〜7）で収集した架空のデータフレームを作成し、逆転項目として処理してみてください。
+
+### 変数の標準化
+
+変数を平均0、標準偏差1の変数に変換する標準化は、変数の解釈を容易にしたり、以降の分析をしやすくするために必要です。
+標準化を行う関数は`scale()`です。`mutate()`と組み合わせて、教育年数`educ`を標準化した変数`educ_standardized`を作ってみましょう。
+
+```{r scaling}
+saving_standardized_educ <-
+  saving %>%
+    mutate(educ_standardized = scale(educ))
+
+head(saving_standardized_educ)
+```
+
+★練習問題
+
+- 年収`inc`を標準化した値`inc_standardized`を加えたデータフレームを作成してください。
+
+## カテゴリ変数の処理
+
+### 変数の型
+
+Rで扱う変数には「型」と呼ばれる区別があります。
+型の違いによって、今後の分析方法も変わってきます。
+型を確認する方法として、オブジェクトの構造を確認する関数`str()`を使ってみましょう。
+
+```{r class}
+str(saving)
+```
+
+$の右が変数名、`int`と書かれているのが型です。
+ここではすべて`int`となっていますが、これは整数(integer)を表します。
+以下の型はすべて数値として扱われます。
+
+- int: integer, 整数
+- dbl: double, 実数
+- num: numeric, 数値
+
+### カテゴリ変数への変換
+
+カテゴリ変数を表す型はfct (factor)です。`saving`にはカテゴリ変数がないので、カテゴリ変数を作成してみましょう。
+型を変換する関数が`as_xxx()`です。xxxは変換したい型の名前を入れてください。
+ここでは、カテゴリ変数に変換したいので、`as_factor()`を用います。
+今はinteger型となっている`black`をカテゴリ変数にしてみましょう。
+
+```{r int to fct}
+saving_with_factor <-
+  saving %>%
+    mutate(black_factor = as_factor(black))
+
+str(saving_with_factor)
+```
+
+ここでは、`mutate`を使って、新たな変数`black_factor`を作成してみました。
+`str()`を使って、型がFactorになったことが確認できます。
+
+カテゴリ変数として扱いたい変数はすべて`as_factor`を使ってカテゴリ変数にしておきましょう。
+
+また、文字列型(chr, character)の変数はこのままでは分析に使用できないので、必ず`as_factor`を実行しておきましょう。
+
+★練習問題
+
+- 家族人数`size`をカテゴリ変数に変換したデータフレームを作成してください。
+
+### ダミー変数の作成
+
+ある変数から、別のダミー変数を作成したいことはよくあります。
+ここでは、教育年数のデータを12年を基準に「高卒以上」「高卒未満」の2つに区分してみましょう。
+2つの場合分けの際には、`if_else`関数を使うと便利です。
+`if_else()`は`if_else(条件, 条件が成りたつ場合の値, 条件が成り立たない場合の値)`と書いて使用します。
+
+```{r ifelse}
+table(saving$educ) #教育年数の度数分布
+
+saving_with_hsdummy <-
+  saving %>%
+    mutate(highschool = if_else(educ >= 12, 1, 0))
+
+head(saving_with_hsdummy)
+
+table(saving_with_hsdummy$highschool) #作成したダミー変数の度数分布
+```
+
+`highschool`という教育年数が12年以上であれば1、教育年数が12年未満であれば0を示すダミー変数を作成することができました。
+なお、ここで作成した変数は連続変数として扱われているので、必要に応じて`as_factor()`も行っておきましょう。
+
+```{r ifelse as_factor}
+saving_with_hsdummy <-
+  saving %>%
+    mutate(highschool = if_else(educ >= 12, 1, 0),
+           highschool = as_factor(highschool)) #highschoolをfactor型として上書き
+
+head(saving_with_hsdummy)
+```
+
+★練習問題
+
+- 「年齢が40代以上」を表すダミー変数`over40`を加えたデータフレームを作成してください。
+
+### カテゴリ変数の作成
+
+2つのカテゴリにしたい場合は上記の`if_else`が良いですが、3つ以上にしたい場合は`case_when`が便利です。
+例えば年齢`age`を年代別のカテゴリ変数にしてみましょう。
+`case_when`は`case_when(条件A ~ 条件が成り立つ場合の値, 条件B ~ 条件が成り立つ場合の値...`と書いていきます。
+
+```{r case_when}
+summary(saving$age) #年齢の記述統計の確認
+saving_with_age_category <-
+  saving %>%
+    mutate(age_category = case_when(age < 30 ~ "20s",
+                                    age >= 30 & age < 40 ~ "30s",
+                                    age >= 40 & age < 50 ~ "40s",
+                                    age >= 50 ~ "50s"
+                                    )
+          )
+
+head(saving_with_age_category)
+```
+
+少し長くなってしまいましたが、年齢の条件別に年代別の文字列を割り当てました。
+ここで生成した変数はchr(character)型になっているので、分析に使う場合は`as_factor`を行っておきましょう。
+
+★練習問題
+
+- 年収6000ドル未満を"poor"、年収6000ドル以上12000ドル未満を"middle"、 年収12000ドル以上を"rich"、とするカテゴリ変数`inc_category`を追加したデータフレームを作成しなさい。
+
+## 変数の選択
+
+インポートしたデータの中に不要な変数が含まれていたり、前処理の結果不要になった変数が出てくることはよくあります。
+`dplyr`の関数`select()`を用いると、データフレームの変数を選択したり、削除したりすることができます。
+まずは`saving`から収入`inc`と年齢`age`を取り出してみましょう。
+
+```{r select}
+saving_selected <-
+  saving %>%
+    select(inc, age)
+
+head(saving_selected)
+```
+
+2つの変数のみのデータフレームになりました。
+
+ハイフン`-`を使うと、該当する変数を削除し、残りの変数はそのままとすることができます。
+`saving`から消費`cons`を取り除いてみましょう。
+
+```{r remove}
+saving_deleted <-
+  saving %>%
+    select(-cons)
+
+head(saving_deleted)
+```
+
+★練習問題
+
+- 貯蓄`sav`、家族の人数`size`、黒人ダミー`black`の3変数のデータフレームを作成してください。
+- 教育年数`educ`、年齢`age`を取り除いたデータを作成してください。
+
+## 変数の並び替え
+
+データを確認する際に、ある変数をもとに並べ替えたい場合があります。
+データを並べ替える`dplyr`の関数が`arrange()`です。
+ここでは、`saving`を収入`inc`で並び替えてみましょう。
+
+```{r arrange}
+saving_arranged <-
+  saving %>%
+    arrange(inc)
+
+head(saving_arranged)
+```
+値が小さいものが上、値が大きいものが下となる昇順で並び替えられます。
+逆に降順にしたい場合は、`desc()`を利用します。
+
+```{r arrange desc}
+saving_arranged_desc <-
+  saving %>%
+    arrange(desc(inc))
+
+head(saving_arranged_desc)
+```
+
+## すべての作業をパイプでつなげる
+
+これまで行ってきた一連の作業は、すべてパイプ`%>%`でつなげることができます。
+パイプでつなげることで作業の流れがわかりやすくなり、不要なオブジェクトを生成する必要もなくなります。
+ここでは、以下の作業をまとめて行ってみましょう。
+
+- 貯蓄率`saving_rate`の作成
+- 家族人数`size`の削除
+- 収入`inc`で並び替え（降順）
+
+```{r pipe}
+saving_handled <-
+  saving %>%
+    mutate(saving_rate = sav / inc) %>%
+    select(-size) %>%
+    arrange(desc(inc))
+
+head(saving_handled)
+```
+
+コードが長くなるため、適宜`#`を使ってコメントを加えておくと良いでしょう。
+
+```{r pipe with comment, eval = FALSE}
+saving_handled
+  saving %>%
+    mutate(saving_rate = sav / inc) %>% #貯蓄率の作成
+    select(-size) %>% #家族人数の削除
+    arrange(desc(inc)) #収入で並び替え（高いものが上）
+```

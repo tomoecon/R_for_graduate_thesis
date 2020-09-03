@@ -1,0 +1,86 @@
+```{r library SummaryStat, echo = FALSE}
+library(tidyverse)
+library(summarytools)
+library(wooldridge)
+data("saving")
+```
+
+
+# 記述統計表の作成 {#SummaryStat}
+分析に入る前に、使用する変数の代表値や散布度を示すのは論文では必須です。
+
+ここでは、`summarytools`パッケージを用いた方法を紹介します。まずはパッケージを準備しておきましょう。
+
+```{r install summarytools, eval = FALSE}
+install.packages("summarytools")
+library(summarytools)
+```
+
+なお、このChapterでは表の作成方法を紹介します。
+表をWordに貼り付ける方法については、Chapter \ref(Word)を確認してください。
+
+## 数値の記述統計表の作成
+数値の記述統計表を作成するには、`summarytools`の`descr()`を用います。
+早速`saving`で使ってみましょう。
+
+```{r descr}
+saving %>% 
+  descr()
+```
+
+簡単に記述統計表が作成できました。しかし、この表は情報量が多く見づらいので、オプションを加えて編集していきましょう。
+
+- `stats`オプションで表示する値を選択
+    - ここでは平均mean・標準偏差sd・最小値min・最大値max・観測値n.validを表示させます
+- `transpose`オプションを`TRUE`にして行列を入れ替える
+- `heading`オプションを`FALSE`にしてヘッダーを消す
+
+```{r descr options}
+saving %>% 
+  descr(stats = c("mean", "sd", "min", "max", "n.valid"), transpose = TRUE, headings = FALSE)
+```
+
+## カテゴリ変数の記述統計表の作成
+
+カテゴリ変数の記述統計については、以下の2つの方法が考えられます。
+
+- ダミー変数を作成し、前節で説明した`descr()`をそのまま用いる
+    - 黒人ダミー`black`がそのように処理されています
+- `summarytools`の`freq()`を用いて度数分布表を作成する
+
+ここでは後者の方法を説明します。
+
+例として、Chapter \ref(DataHandling)で説明した年齢のカテゴリ変数`age_category`を作成し、オブジェクトとして保存しておきます。
+
+```{r age category}
+age_category <-
+  saving %>%
+    mutate(age_category = case_when(age < 30 ~ "20s",
+                                    age >= 30 & age < 40 ~ "30s",
+                                    age >= 40 & age < 50 ~ "40s",
+                                    age >= 50 ~ "50s"
+                                    )
+          ) %>%
+    select(age_category)
+```
+
+作成した年齢のカテゴリ変数`age_category`を`freq()`に入れます。
+
+```{r freq age category}
+age_category %>%
+  freq()
+```
+
+度数分布表が作成できました。しかし、情報量が多いので、不要な情報をオプションで消しておきます。
+
+```{r freq age category options}
+age_category %>%
+  freq(report.nas = FALSE, totals = FALSE, cumul = FALSE, headings = FALSE)
+```
+
+シンプルな表ができました。オプションの説明は以下のとおりです。
+
+- `report.nas = FALSE`: 欠損値（NA）を表示しないようにする
+- `totals = FALSE`: 合計を表示しないようにする
+- `cumul = FALSE`: 累積値を表示しないようにする
+- `headings = FALSE`: ヘッダーを表示しないようにする

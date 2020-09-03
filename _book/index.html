@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>卒業論文のためのR入門</title>
+  <meta name="description" content="この文書は、卒業論文を書くためのRの使い方をできるだけコンパクトにまとめたものです。" />
+  <meta name="generator" content="bookdown 0.20 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="卒業論文のためのR入門" />
+  <meta property="og:type" content="book" />
+  
+  
+  <meta property="og:description" content="この文書は、卒業論文を書くためのRの使い方をできるだけコンパクトにまとめたものです。" />
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="卒業論文のためのR入門" />
+  
+  <meta name="twitter:description" content="この文書は、卒業論文を書くためのRの使い方をできるだけコンパクトにまとめたものです。" />
+  
+
+<meta name="author" content="森　知晴（立命館大学総合心理学部）" />
+
+
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+
+<link rel="next" href="InstallR.html"/>
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+
+
+<style type="text/css">
+div.sourceCode { overflow-x: auto; }
+table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
+  margin: 0; padding: 0; vertical-align: baseline; border: none; }
+table.sourceCode { width: 100%; line-height: 100%; }
+td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; color: #aaaaaa; border-right: 1px solid #aaaaaa; }
+td.sourceCode { padding-left: 5px; }
+code > span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code > span.dt { color: #902000; } /* DataType */
+code > span.dv { color: #40a070; } /* DecVal */
+code > span.bn { color: #40a070; } /* BaseN */
+code > span.fl { color: #40a070; } /* Float */
+code > span.ch { color: #4070a0; } /* Char */
+code > span.st { color: #4070a0; } /* String */
+code > span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code > span.ot { color: #007020; } /* Other */
+code > span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code > span.fu { color: #06287e; } /* Function */
+code > span.er { color: #ff0000; font-weight: bold; } /* Error */
+code > span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+code > span.cn { color: #880000; } /* Constant */
+code > span.sc { color: #4070a0; } /* SpecialChar */
+code > span.vs { color: #4070a0; } /* VerbatimString */
+code > span.ss { color: #bb6688; } /* SpecialString */
+code > span.im { } /* Import */
+code > span.va { color: #19177c; } /* Variable */
+code > span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code > span.op { color: #666666; } /* Operator */
+code > span.bu { } /* BuiltIn */
+code > span.ex { } /* Extension */
+code > span.pp { color: #bc7a00; } /* Preprocessor */
+code > span.at { color: #7d9029; } /* Attribute */
+code > span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code > span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code > span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">卒業論文のためのR入門</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> はじめに</a></li>
+<li class="chapter" data-level="2" data-path="InstallR.html"><a href="InstallR.html"><i class="fa fa-check"></i><b>2</b> R(Studio)のインストール</a></li>
+<li class="chapter" data-level="3" data-path="RStudio.html"><a href="RStudio.html"><i class="fa fa-check"></i><b>3</b> RStudioの使い方</a><ul>
+<li class="chapter" data-level="3.1" data-path="RStudio.html"><a href="RStudio.html#rstudioの起動"><i class="fa fa-check"></i><b>3.1</b> RStudioの起動</a></li>
+<li class="chapter" data-level="3.2" data-path="RStudio.html"><a href="RStudio.html#rstudioの画面"><i class="fa fa-check"></i><b>3.2</b> RStudioの画面</a></li>
+<li class="chapter" data-level="3.3" data-path="RStudio.html"><a href="RStudio.html#rstudioの操作"><i class="fa fa-check"></i><b>3.3</b> RStudioの操作</a></li>
+<li class="chapter" data-level="3.4" data-path="RStudio.html"><a href="RStudio.html#スクリプトの保存"><i class="fa fa-check"></i><b>3.4</b> スクリプトの保存</a></li>
+<li class="chapter" data-level="3.5" data-path="RStudio.html"><a href="RStudio.html#プロジェクトの作成"><i class="fa fa-check"></i><b>3.5</b> プロジェクトの作成</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="Packages.html"><a href="Packages.html"><i class="fa fa-check"></i><b>4</b> パッケージのインストール</a></li>
+<li class="chapter" data-level="5" data-path="Rbasics.html"><a href="Rbasics.html"><i class="fa fa-check"></i><b>5</b> Rの基本操作</a><ul>
+<li class="chapter" data-level="5.1" data-path="Rbasics.html"><a href="Rbasics.html#オブジェクト"><i class="fa fa-check"></i><b>5.1</b> オブジェクト</a></li>
+<li class="chapter" data-level="5.2" data-path="Rbasics.html"><a href="Rbasics.html#簡単な計算"><i class="fa fa-check"></i><b>5.2</b> 簡単な計算</a></li>
+<li class="chapter" data-level="5.3" data-path="Rbasics.html"><a href="Rbasics.html#関数"><i class="fa fa-check"></i><b>5.3</b> 関数</a><ul>
+<li class="chapter" data-level="5.3.1" data-path="Rbasics.html"><a href="Rbasics.html#数値に対する関数"><i class="fa fa-check"></i><b>5.3.1</b> 数値に対する関数</a></li>
+<li class="chapter" data-level="5.3.2" data-path="Rbasics.html"><a href="Rbasics.html#ベクトルに対する関数"><i class="fa fa-check"></i><b>5.3.2</b> ベクトルに対する関数</a></li>
+</ul></li>
+<li class="chapter" data-level="5.4" data-path="Rbasics.html"><a href="Rbasics.html#データフレーム"><i class="fa fa-check"></i><b>5.4</b> データフレーム</a></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="ImportData.html"><a href="ImportData.html"><i class="fa fa-check"></i><b>6</b> データのインポート</a><ul>
+<li class="chapter" data-level="6.1" data-path="ImportData.html"><a href="ImportData.html#インポートの準備"><i class="fa fa-check"></i><b>6.1</b> インポートの準備</a></li>
+<li class="chapter" data-level="6.2" data-path="ImportData.html"><a href="ImportData.html#ファイル形式別のインポート方法"><i class="fa fa-check"></i><b>6.2</b> ファイル形式別のインポート方法</a><ul>
+<li class="chapter" data-level="6.2.1" data-path="ImportData.html"><a href="ImportData.html#csvファイルの場合.csv"><i class="fa fa-check"></i><b>6.2.1</b> CSVファイルの場合（.csv）</a></li>
+<li class="chapter" data-level="6.2.2" data-path="ImportData.html"><a href="ImportData.html#excelファイルの場合.xlsx"><i class="fa fa-check"></i><b>6.2.2</b> Excelファイルの場合（.xlsx）</a></li>
+<li class="chapter" data-level="6.2.3" data-path="ImportData.html"><a href="ImportData.html#qualtricsのデータの場合"><i class="fa fa-check"></i><b>6.2.3</b> Qualtricsのデータの場合</a></li>
+</ul></li>
+<li class="chapter" data-level="6.3" data-path="ImportData.html"><a href="ImportData.html#インポートしたデータの確認"><i class="fa fa-check"></i><b>6.3</b> インポートしたデータの確認</a></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="Hypotheses.html"><a href="Hypotheses.html"><i class="fa fa-check"></i><b>7</b> 仮説とデータの具体例</a><ul>
+<li class="chapter" data-level="7.1" data-path="Hypotheses.html"><a href="Hypotheses.html#仮説の確認"><i class="fa fa-check"></i><b>7.1</b> 仮説の確認</a></li>
+<li class="chapter" data-level="7.2" data-path="Hypotheses.html"><a href="Hypotheses.html#変数の確認"><i class="fa fa-check"></i><b>7.2</b> 変数の確認</a></li>
+<li class="chapter" data-level="7.3" data-path="Hypotheses.html"><a href="Hypotheses.html#データの具体例"><i class="fa fa-check"></i><b>7.3</b> データの具体例</a></li>
+</ul></li>
+<li class="chapter" data-level="8" data-path="DataHandling.html"><a href="DataHandling.html"><i class="fa fa-check"></i><b>8</b> データ前処理</a><ul>
+<li class="chapter" data-level="8.1" data-path="DataHandling.html"><a href="DataHandling.html#パイプによる処理"><i class="fa fa-check"></i><b>8.1</b> パイプ（%&gt;%）による処理</a></li>
+<li class="chapter" data-level="8.2" data-path="DataHandling.html"><a href="DataHandling.html#変数の作成及び置換"><i class="fa fa-check"></i><b>8.2</b> 変数の作成（及び置換）</a><ul>
+<li class="chapter" data-level="8.2.1" data-path="DataHandling.html"><a href="DataHandling.html#変数の新規作成"><i class="fa fa-check"></i><b>8.2.1</b> 変数の新規作成</a></li>
+<li class="chapter" data-level="8.2.2" data-path="DataHandling.html"><a href="DataHandling.html#逆転項目の処理"><i class="fa fa-check"></i><b>8.2.2</b> 逆転項目の処理</a></li>
+<li class="chapter" data-level="8.2.3" data-path="DataHandling.html"><a href="DataHandling.html#変数の標準化"><i class="fa fa-check"></i><b>8.2.3</b> 変数の標準化</a></li>
+</ul></li>
+<li class="chapter" data-level="8.3" data-path="DataHandling.html"><a href="DataHandling.html#カテゴリ変数の処理"><i class="fa fa-check"></i><b>8.3</b> カテゴリ変数の処理</a><ul>
+<li class="chapter" data-level="8.3.1" data-path="DataHandling.html"><a href="DataHandling.html#変数の型"><i class="fa fa-check"></i><b>8.3.1</b> 変数の型</a></li>
+<li class="chapter" data-level="8.3.2" data-path="DataHandling.html"><a href="DataHandling.html#カテゴリ変数への変換"><i class="fa fa-check"></i><b>8.3.2</b> カテゴリ変数への変換</a></li>
+<li class="chapter" data-level="8.3.3" data-path="DataHandling.html"><a href="DataHandling.html#ダミー変数の作成"><i class="fa fa-check"></i><b>8.3.3</b> ダミー変数の作成</a></li>
+<li class="chapter" data-level="8.3.4" data-path="DataHandling.html"><a href="DataHandling.html#カテゴリ変数の作成"><i class="fa fa-check"></i><b>8.3.4</b> カテゴリ変数の作成</a></li>
+</ul></li>
+<li class="chapter" data-level="8.4" data-path="DataHandling.html"><a href="DataHandling.html#変数の選択"><i class="fa fa-check"></i><b>8.4</b> 変数の選択</a></li>
+<li class="chapter" data-level="8.5" data-path="DataHandling.html"><a href="DataHandling.html#変数の並び替え"><i class="fa fa-check"></i><b>8.5</b> 変数の並び替え</a></li>
+<li class="chapter" data-level="8.6" data-path="DataHandling.html"><a href="DataHandling.html#すべての作業をパイプでつなげる"><i class="fa fa-check"></i><b>8.6</b> すべての作業をパイプでつなげる</a></li>
+</ul></li>
+<li class="chapter" data-level="9" data-path="SummaryStat.html"><a href="SummaryStat.html"><i class="fa fa-check"></i><b>9</b> 記述統計表の作成</a><ul>
+<li class="chapter" data-level="9.1" data-path="SummaryStat.html"><a href="SummaryStat.html#数値の記述統計表の作成"><i class="fa fa-check"></i><b>9.1</b> 数値の記述統計表の作成</a></li>
+<li class="chapter" data-level="9.2" data-path="SummaryStat.html"><a href="SummaryStat.html#カテゴリ変数の記述統計表の作成"><i class="fa fa-check"></i><b>9.2</b> カテゴリ変数の記述統計表の作成</a></li>
+</ul></li>
+<li class="chapter" data-level="10" data-path="Visualization.html"><a href="Visualization.html"><i class="fa fa-check"></i><b>10</b> データの可視化</a><ul>
+<li class="chapter" data-level="10.1" data-path="Visualization.html"><a href="Visualization.html#変数の可視化"><i class="fa fa-check"></i><b>10.1</b> 1変数の可視化</a><ul>
+<li class="chapter" data-level="10.1.1" data-path="Visualization.html"><a href="Visualization.html#棒グラフ"><i class="fa fa-check"></i><b>10.1.1</b> 棒グラフ</a></li>
+<li class="chapter" data-level="10.1.2" data-path="Visualization.html"><a href="Visualization.html#ヒストグラム"><i class="fa fa-check"></i><b>10.1.2</b> ヒストグラム</a></li>
+</ul></li>
+<li class="chapter" data-level="10.2" data-path="Visualization.html"><a href="Visualization.html#変数の可視化-1"><i class="fa fa-check"></i><b>10.2</b> 2変数の可視化</a><ul>
+<li class="chapter" data-level="10.2.1" data-path="Visualization.html"><a href="Visualization.html#散布図"><i class="fa fa-check"></i><b>10.2.1</b> 散布図</a></li>
+<li class="chapter" data-level="10.2.2" data-path="Visualization.html"><a href="Visualization.html#棒グラフ-1"><i class="fa fa-check"></i><b>10.2.2</b> 棒グラフ</a></li>
+<li class="chapter" data-level="10.2.3" data-path="Visualization.html"><a href="Visualization.html#箱ひげ図"><i class="fa fa-check"></i><b>10.2.3</b> 箱ひげ図</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="11" data-path="Ttest.html"><a href="Ttest.html"><i class="fa fa-check"></i><b>11</b> t検定</a></li>
+<li class="chapter" data-level="12" data-path="Regression.html"><a href="Regression.html"><i class="fa fa-check"></i><b>12</b> 回帰分析</a><ul>
+<li class="chapter" data-level="12.1" data-path="Regression.html"><a href="Regression.html#線形回帰とは"><i class="fa fa-check"></i><b>12.1</b> 線形回帰とは</a></li>
+<li class="chapter" data-level="12.2" data-path="Regression.html"><a href="Regression.html#rでの線形回帰"><i class="fa fa-check"></i><b>12.2</b> Rでの線形回帰</a></li>
+<li class="chapter" data-level="12.3" data-path="Regression.html"><a href="Regression.html#重回帰分析"><i class="fa fa-check"></i><b>12.3</b> 重回帰分析</a></li>
+<li class="chapter" data-level="12.4" data-path="Regression.html"><a href="Regression.html#ダミー変数の利用"><i class="fa fa-check"></i><b>12.4</b> ダミー変数の利用</a></li>
+<li class="chapter" data-level="12.5" data-path="Regression.html"><a href="Regression.html#カテゴリ変数の利用"><i class="fa fa-check"></i><b>12.5</b> カテゴリ変数の利用</a></li>
+<li class="chapter" data-level="12.6" data-path="Regression.html"><a href="Regression.html#交互作用の導入"><i class="fa fa-check"></i><b>12.6</b> 交互作用の導入</a></li>
+<li class="chapter" data-level="12.7" data-path="Regression.html"><a href="Regression.html#回帰分析の表をまとめる"><i class="fa fa-check"></i><b>12.7</b> 回帰分析の表をまとめる</a></li>
+</ul></li>
+<li class="chapter" data-level="13" data-path="Word.html"><a href="Word.html"><i class="fa fa-check"></i><b>13</b> Wordファイルへの貼り付け</a><ul>
+<li class="chapter" data-level="13.1" data-path="Word.html"><a href="Word.html#表の貼り付け"><i class="fa fa-check"></i><b>13.1</b> 表の貼り付け</a></li>
+</ul></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">卒業論文のためのR入門</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="header">
+<h1 class="title">卒業論文のためのR入門</h1>
+<p class="author"><em>森　知晴（立命館大学総合心理学部）</em></p>
+<p class="date"><em>Last Update: 2020-09-03</em></p>
+</div>
+<div id="Introduction" class="section level1">
+<h1><span class="header-section-number">Chapter 1</span> はじめに</h1>
+<p>この文書は、卒業論文を書くためのRの使い方を<strong>できるだけコンパクトに</strong>まとめたものです。 読者は立命館大学総合心理学部森ゼミの学生をピンポイントに想定しています。</p>
+<ul>
+<li>Rを用いた演習として「心理学データ解析法」の履修を推奨していますが、履修していなくてもわかるように構成しています。</li>
+<li>卒業論文自体はWordで作成する想定で、Rで得られた結果をWordに貼り付ける（簡便な）方法を説明します。</li>
+</ul>
+<p>一般的なRの入門文書としても参照できます。 説明の都合上、厳密さよりわかりやすさを重視した記述が多々あります。ご了承ください。</p>
+<p>具体的には、以下の項目を学習します。</p>
+<ul>
+<li>R, RStudioをインストールし、基本的な操作ができるようになる</li>
+<li>データをRStudioにインポートする</li>
+<li>インポートしたデータを分析可能な形に前処理する</li>
+<li>記述統計を整理する</li>
+<li>データを可視化する</li>
+<li>t検定を行う</li>
+<li>重回帰分析を行い、論文に貼り付けられる形に整える</li>
+</ul>
+<p>文書は前から順番に読み、自分でコードを打って確かめてください。 Chapter <a href="InstallR.html#InstallR">2</a>を読んでRとRStudioを準備し、登場するコードを自分で入力して練習してみてください。</p>
+<p>この文書で紹介している方法はあくまで一例です。 Rには様々な機能やパッケージがあり、日々進化しています。 この文書の内容を理解したら、ぜひ自分で様々な機能を調べて使ってみてください。</p>
+<p>★参考文献</p>
+<ul>
+<li>浅野正彦・中村公亮（2018）はじめてのRStudio エラーメッセージなんてこわくない、オーム社</li>
+<li>松村優哉・湯谷啓明・紀ノ定保礼・前田和寛（2018）RユーザのためのRStudio[実践]入門 −tidyverseによるモダンな分析フローの世界−</li>
+</ul>
+
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+
+<a href="InstallR.html" class="navigation navigation-next navigation-unique" aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": null,
+"text": null
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": ["RforGradThesis.pdf", "RforGradThesis.epub"],
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>

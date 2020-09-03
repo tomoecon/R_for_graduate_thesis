@@ -1,0 +1,21 @@
+
+<table style="text-align:center"><tr><td colspan="3" style="border-bottom: 1px solid black"></td></tr><tr><td style="text-align:left"></td><td colspan="2"><em>Dependent variable:</em></td></tr>
+<tr><td></td><td colspan="2" style="border-bottom: 1px solid black"></td></tr>
+<tr><td style="text-align:left"></td><td colspan="2">inc</td></tr>
+<tr><td style="text-align:left"></td><td>(1)</td><td>(2)</td></tr>
+<tr><td colspan="3" style="border-bottom: 1px solid black"></td></tr><tr><td style="text-align:left">educ</td><td>742.530<sup>***</sup></td><td>869.852<sup>***</sup></td></tr>
+<tr><td style="text-align:left"></td><td>(146.062)</td><td>(137.566)</td></tr>
+<tr><td style="text-align:left"></td><td></td><td></td></tr>
+<tr><td style="text-align:left">age</td><td></td><td>276.677<sup>***</sup></td></tr>
+<tr><td style="text-align:left"></td><td></td><td>(63.872)</td></tr>
+<tr><td style="text-align:left"></td><td></td><td></td></tr>
+<tr><td style="text-align:left">Constant</td><td>1,342.745</td><td>-10,858.410<sup>***</sup></td></tr>
+<tr><td style="text-align:left"></td><td>(1,763.546)</td><td>(3,250.631)</td></tr>
+<tr><td style="text-align:left"></td><td></td><td></td></tr>
+<tr><td colspan="3" style="border-bottom: 1px solid black"></td></tr><tr><td style="text-align:left">Observations</td><td>100</td><td>100</td></tr>
+<tr><td style="text-align:left">R<sup>2</sup></td><td>0.209</td><td>0.337</td></tr>
+<tr><td style="text-align:left">Adjusted R<sup>2</sup></td><td>0.201</td><td>0.323</td></tr>
+<tr><td style="text-align:left">Residual Std. Error</td><td>4,992.593 (df = 98)</td><td>4,593.594 (df = 97)</td></tr>
+<tr><td style="text-align:left">F Statistic</td><td>25.844<sup>***</sup> (df = 1; 98)</td><td>24.646<sup>***</sup> (df = 2; 97)</td></tr>
+<tr><td colspan="3" style="border-bottom: 1px solid black"></td></tr><tr><td style="text-align:left"><em>Note:</em></td><td colspan="2" style="text-align:right"><sup>*</sup>p<0.1; <sup>**</sup>p<0.05; <sup>***</sup>p<0.01</td></tr>
+</table>
