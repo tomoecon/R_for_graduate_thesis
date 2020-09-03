@@ -1,1 +1,1 @@
-This is a minimal example of a book based on R Markdown and **bookdown** (https://github.com/rstudio/bookdown). Please see the page "Get Started" at https://bookdown.org/home/about/ for how to compile this example.
+この文書は、卒業論文を書くためのRの使い方をまとめたものです。詳しくは、文書本体をご覧ください。
