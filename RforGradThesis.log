@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.14159265-2.6-0.99996 (TeX Live 2016) (preloaded format=xelatex 2016.9.29)  3 SEP 2020 14:23
+This is XeTeX, Version 3.14159265-2.6-0.99996 (TeX Live 2016) (preloaded format=xelatex 2016.9.29)  3 SEP 2020 21:37
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -885,6 +885,30 @@ Missing character: There is no は in font [lmroman10-bold]:mapping=tex-text!
 Missing character: There is no じ in font [lmroman10-bold]:mapping=tex-text!
 Missing character: There is no め in font [lmroman10-bold]:mapping=tex-text!
 Missing character: There is no に in font [lmroman10-bold]:mapping=tex-text!
+Missing character: There is no こ in font [lmroman10-regular]:mapping=tex-text!
+Missing character: There is no の in font [lmroman10-regular]:mapping=tex-text!
+Missing character: There is no 文 in font [lmroman10-regular]:mapping=tex-text!
+Missing character: There is no 書 in font [lmroman10-regular]:mapping=tex-text!
+Missing character: There is no で in font [lmroman10-regular]:mapping=tex-text!
+Missing character: There is no 学 in font [lmroman10-regular]:mapping=tex-text!
+Missing character: There is no ぶ in font [lmroman10-regular]:mapping=tex-text!
+Missing character: There is no こ in font [lmroman10-regular]:mapping=tex-text!
+Missing character: There is no と in font [lmroman10-regular]:mapping=tex-text!
+LaTeX Font Info:    External font `lmex10' loaded for size
+(Font)              <10> on input line 2.
+LaTeX Font Info:    External font `lmex10' loaded for size
+(Font)              <7> on input line 2.
+LaTeX Font Info:    External font `lmex10' loaded for size
+(Font)              <5> on input line 2.
+Missing character: There is no こ in font [lmroman10-regular]:mapping=tex-text!
+Missing character: There is no の in font [lmroman10-regular]:mapping=tex-text!
+Missing character: There is no 文 in font [lmroman10-regular]:mapping=tex-text!
+Missing character: There is no 書 in font [lmroman10-regular]:mapping=tex-text!
+Missing character: There is no の in font [lmroman10-regular]:mapping=tex-text!
+Missing character: There is no 作 in font [lmroman10-regular]:mapping=tex-text!
+Missing character: There is no 成 in font [lmroman10-regular]:mapping=tex-text!
+Missing character: There is no 目 in font [lmroman10-regular]:mapping=tex-text!
+Missing character: There is no 的 in font [lmroman10-regular]:mapping=tex-text!
 Missing character: There is no の in font [lmroman10-bold]:mapping=tex-text!
 Missing character: There is no イ in font [lmroman10-bold]:mapping=tex-text!
 Missing character: There is no ン in font [lmroman10-bold]:mapping=tex-text!
@@ -899,12 +923,6 @@ Missing character: There is no 方 in font [lmroman10-bold]:mapping=tex-text!
 Missing character: There is no の in font [lmroman10-regular]:mapping=tex-text!
 Missing character: There is no 起 in font [lmroman10-regular]:mapping=tex-text!
 Missing character: There is no 動 in font [lmroman10-regular]:mapping=tex-text!
-LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <10> on input line 4.
-LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <7> on input line 4.
-LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <5> on input line 4.
 Missing character: There is no の in font [lmroman10-regular]:mapping=tex-text!
 Missing character: There is no 画 in font [lmroman10-regular]:mapping=tex-text!
 Missing character: There is no 面 in font [lmroman10-regular]:mapping=tex-text!
@@ -1073,6 +1091,7 @@ Missing character: There is no 数 in font [lmroman10-regular]:mapping=tex-text!
 Missing character: There is no の in font [lmroman10-regular]:mapping=tex-text!
 Missing character: There is no 処 in font [lmroman10-regular]:mapping=tex-text!
 Missing character: There is no 理 in font [lmroman10-regular]:mapping=tex-text!
+[3]
 Missing character: There is no 変 in font [lmroman10-regular]:mapping=tex-text!
 Missing character: There is no 数 in font [lmroman10-regular]:mapping=tex-text!
 Missing character: There is no の in font [lmroman10-regular]:mapping=tex-text!
@@ -1085,7 +1104,6 @@ Missing character: There is no 並 in font [lmroman10-regular]:mapping=tex-text!
 Missing character: There is no び in font [lmroman10-regular]:mapping=tex-text!
 Missing character: There is no 替 in font [lmroman10-regular]:mapping=tex-text!
 Missing character: There is no え in font [lmroman10-regular]:mapping=tex-text!
-[3]
 Missing character: There is no す in font [lmroman10-regular]:mapping=tex-text!
 Missing character: There is no べ in font [lmroman10-regular]:mapping=tex-text!
 Missing character: There is no て in font [lmroman10-regular]:mapping=tex-text!
@@ -1476,6 +1494,15 @@ Missing character: There is no だ in font [lmroman10-regular]:mapping=tex-text!
 Missing character: There is no さ in font [lmroman10-regular]:mapping=tex-text!
 Missing character: There is no い in font [lmroman10-regular]:mapping=tex-text!
 Missing character: There is no 。 in font [lmroman10-regular]:mapping=tex-text!
+Missing character: There is no こ in font [lmroman12-bold]:mapping=tex-text!
+Missing character: There is no の in font [lmroman12-bold]:mapping=tex-text!
+Missing character: There is no 文 in font [lmroman12-bold]:mapping=tex-text!
+Missing character: There is no 書 in font [lmroman12-bold]:mapping=tex-text!
+Missing character: There is no で in font [lmroman12-bold]:mapping=tex-text!
+Missing character: There is no 学 in font [lmroman12-bold]:mapping=tex-text!
+Missing character: There is no ぶ in font [lmroman12-bold]:mapping=tex-text!
+Missing character: There is no こ in font [lmroman12-bold]:mapping=tex-text!
+Missing character: There is no と in font [lmroman12-bold]:mapping=tex-text!
 Missing character: There is no 具 in font [lmroman10-regular]:mapping=tex-text!
 Missing character: There is no 体 in font [lmroman10-regular]:mapping=tex-text!
 Missing character: There is no 的 in font [lmroman10-regular]:mapping=tex-text!
@@ -1845,9 +1872,230 @@ Missing character: There is no ー in font [lmroman10-regular]:mapping=tex-text!
 Missing character: There is no の in font [lmroman10-regular]:mapping=tex-text!
 Missing character: There is no 世 in font [lmroman10-regular]:mapping=tex-text!
 Missing character: There is no 界 in font [lmroman10-regular]:mapping=tex-text!
+Missing character: There is no こ in font [lmroman12-bold]:mapping=tex-text!
+Missing character: There is no の in font [lmroman12-bold]:mapping=tex-text!
+Missing character: There is no 文 in font [lmroman12-bold]:mapping=tex-text!
+Missing character: There is no 書 in font [lmroman12-bold]:mapping=tex-text!
+Missing character: There is no の in font [lmroman12-bold]:mapping=tex-text!
+Missing character: There is no 作 in font [lmroman12-bold]:mapping=tex-text!
+Missing character: There is no 成 in font [lmroman12-bold]:mapping=tex-text!
+Missing character: There is no 目 in font [lmroman12-bold]:mapping=tex-text!
+Missing character: There is no 的 in font [lmroman12-bold]:mapping=tex-text!
+Missing character: There is no こ in font [lmroman10-italic]:mapping=tex-text!
+Missing character: There is no の in font [lmroman10-italic]:mapping=tex-text!
+Missing character: There is no 節 in font [lmroman10-italic]:mapping=tex-text!
+Missing character: There is no は in font [lmroman10-italic]:mapping=tex-text!
+Missing character: There is no 余 in font [lmroman10-italic]:mapping=tex-text!
+Missing character: There is no 談 in font [lmroman10-italic]:mapping=tex-text!
+Missing character: There is no な in font [lmroman10-italic]:mapping=tex-text!
+Missing character: There is no の in font [lmroman10-italic]:mapping=tex-text!
+Missing character: There is no で in font [lmroman10-italic]:mapping=tex-text!
+Missing character: There is no 、 in font [lmroman10-italic]:mapping=tex-text!
+Missing character: There is no 読 in font [lmroman10-italic]:mapping=tex-text!
+Missing character: There is no み in font [lmroman10-italic]:mapping=tex-text!
+Missing character: There is no 飛 in font [lmroman10-italic]:mapping=tex-text!
+Missing character: There is no ば in font [lmroman10-italic]:mapping=tex-text!
+Missing character: There is no し in font [lmroman10-italic]:mapping=tex-text!
+Missing character: There is no て in font [lmroman10-italic]:mapping=tex-text!
+Missing character: There is no も in font [lmroman10-italic]:mapping=tex-text!
+Missing character: There is no 問 in font [lmroman10-italic]:mapping=tex-text!
+Missing character: There is no 題 in font [lmroman10-italic]:mapping=tex-text!
+Missing character: There is no あ in font [lmroman10-italic]:mapping=tex-text!
+Missing character: There is no り in font [lmroman10-italic]:mapping=tex-text!
+Missing character: There is no ま in font [lmroman10-italic]:mapping=tex-text!
+Missing character: There is no せ in font [lmroman10-italic]:mapping=tex-text!
+Missing character: There is no ん in font [lmroman10-italic]:mapping=tex-text!
+Missing character: There is no 。 in font [lmroman10-italic]:mapping=tex-text!
 [5
 
 ]
+Missing character: There is no こ in font [lmroman10-regular]:mapping=tex-text!
+Missing character: There is no の in font [lmroman10-regular]:mapping=tex-text!
+Missing character: There is no 文 in font [lmroman10-regular]:mapping=tex-text!
+Missing character: There is no 書 in font [lmroman10-regular]:mapping=tex-text!
+Missing character: There is no は in font [lmroman10-regular]:mapping=tex-text!
+Missing character: There is no ゼ in font [lmroman10-regular]:mapping=tex-text!
+Missing character: There is no ミ in font [lmroman10-regular]:mapping=tex-text!
+Missing character: There is no 生 in font [lmroman10-regular]:mapping=tex-text!
+Missing character: There is no の in font [lmroman10-regular]:mapping=tex-text!
+Missing character: There is no 卒 in font [lmroman10-regular]:mapping=tex-text!
+Missing character: There is no 業 in font [lmroman10-regular]:mapping=tex-text!
+Missing character: There is no 論 in font [lmroman10-regular]:mapping=tex-text!
+Missing character: There is no 文 in font [lmroman10-regular]:mapping=tex-text!
+Missing character: There is no 執 in font [lmroman10-regular]:mapping=tex-text!
+Missing character: There is no 筆 in font [lmroman10-regular]:mapping=tex-text!
+Missing character: There is no に in font [lmroman10-regular]:mapping=tex-text!
+Missing character: There is no あ in font [lmroman10-regular]:mapping=tex-text!
+Missing character: There is no た in font [lmroman10-regular]:mapping=tex-text!
+Missing character: There is no り in font [lmroman10-regular]:mapping=tex-text!
+Missing character: There is no マ in font [lmroman10-regular]:mapping=tex-text!
+Missing character: There is no ニ in font [lmroman10-regular]:mapping=tex-text!
+Missing character: There is no ュ in font [lmroman10-regular]:mapping=tex-text!
+Missing character: There is no ア in font [lmroman10-regular]:mapping=tex-text!
+Missing character: There is no ル in font [lmroman10-regular]:mapping=tex-text!
+Missing character: There is no が in font [lmroman10-regular]:mapping=tex-text!
+Missing character: There is no 必 in font [lmroman10-regular]:mapping=tex-text!
+Missing character: There is no 要 in font [lmroman10-regular]:mapping=tex-text!
+Missing character: There is no だ in font [lmroman10-regular]:mapping=tex-text!
+Missing character: There is no と in font [lmroman10-regular]:mapping=tex-text!
+Missing character: There is no 考 in font [lmroman10-regular]:mapping=tex-text!
+Missing character: There is no え in font [lmroman10-regular]:mapping=tex-text!
+Missing character: There is no 作 in font [lmroman10-regular]:mapping=tex-text!
+Missing character: There is no 成 in font [lmroman10-regular]:mapping=tex-text!
+Missing character: There is no し in font [lmroman10-regular]:mapping=tex-text!
+Missing character: There is no ま in font [lmroman10-regular]:mapping=tex-text!
+Missing character: There is no し in font [lmroman10-regular]:mapping=tex-text!
+Missing character: There is no た in font [lmroman10-regular]:mapping=tex-text!
+Missing character: There is no 。 in font [lmroman10-regular]:mapping=tex-text!
+Missing character: There is no 以 in font [lmroman10-regular]:mapping=tex-text!
+Missing character: There is no 下 in font [lmroman10-regular]:mapping=tex-text!
+Missing character: There is no の in font [lmroman10-regular]:mapping=tex-text!
+Missing character: There is no こ in font [lmroman10-regular]:mapping=tex-text!
+Missing character: There is no と in font [lmroman10-regular]:mapping=tex-text!
+Missing character: There is no を in font [lmroman10-regular]:mapping=tex-text!
+Missing character: There is no 意 in font [lmroman10-regular]:mapping=tex-text!
+Missing character: There is no 識 in font [lmroman10-regular]:mapping=tex-text!
+Missing character: There is no し in font [lmroman10-regular]:mapping=tex-text!
+Missing character: There is no て in font [lmroman10-regular]:mapping=tex-text!
+Missing character: There is no 説 in font [lmroman10-regular]:mapping=tex-text!
+Missing character: There is no 明 in font [lmroman10-regular]:mapping=tex-text!
+Missing character: There is no し in font [lmroman10-regular]:mapping=tex-text!
+Missing character: There is no ま in font [lmroman10-regular]:mapping=tex-text!
+Missing character: There is no し in font [lmroman10-regular]:mapping=tex-text!
+Missing character: There is no た in font [lmroman10-regular]:mapping=tex-text!
+Missing character: There is no 。 in font [lmroman10-regular]:mapping=tex-text!
+Missing character: There is no 統 in font [lmroman10-regular]:mapping=tex-text!
+Missing character: There is no 計 in font [lmroman10-regular]:mapping=tex-text!
+Missing character: There is no や in font [lmroman10-regular]:mapping=tex-text!
+Missing character: There is no コ in font [lmroman10-regular]:mapping=tex-text!
+Missing character: There is no ン in font [lmroman10-regular]:mapping=tex-text!
+Missing character: There is no ピ in font [lmroman10-regular]:mapping=tex-text!
+Missing character: There is no ュ in font [lmroman10-regular]:mapping=tex-text!
+Missing character: There is no ー in font [lmroman10-regular]:mapping=tex-text!
+Missing character: There is no タ in font [lmroman10-regular]:mapping=tex-text!
+Missing character: There is no が in font [lmroman10-regular]:mapping=tex-text!
+Missing character: There is no 苦 in font [lmroman10-regular]:mapping=tex-text!
+Missing character: There is no 手 in font [lmroman10-regular]:mapping=tex-text!
+Missing character: There is no が in font [lmroman10-regular]:mapping=tex-text!
+Missing character: There is no 学 in font [lmroman10-regular]:mapping=tex-text!
+Missing character: There is no 生 in font [lmroman10-regular]:mapping=tex-text!
+Missing character: There is no を in font [lmroman10-regular]:mapping=tex-text!
+Missing character: There is no 念 in font [lmroman10-regular]:mapping=tex-text!
+Missing character: There is no 頭 in font [lmroman10-regular]:mapping=tex-text!
+Missing character: There is no に in font [lmroman10-regular]:mapping=tex-text!
+Missing character: There is no お in font [lmroman10-regular]:mapping=tex-text!
+Missing character: There is no く in font [lmroman10-regular]:mapping=tex-text!
+Missing character: There is no 最 in font [lmroman10-regular]:mapping=tex-text!
+Missing character: There is no 小 in font [lmroman10-regular]:mapping=tex-text!
+Missing character: There is no 限 in font [lmroman10-regular]:mapping=tex-text!
+Missing character: There is no の in font [lmroman10-regular]:mapping=tex-text!
+Missing character: There is no 説 in font [lmroman10-regular]:mapping=tex-text!
+Missing character: There is no 明 in font [lmroman10-regular]:mapping=tex-text!
+Missing character: There is no を in font [lmroman10-regular]:mapping=tex-text!
+Missing character: There is no 心 in font [lmroman10-regular]:mapping=tex-text!
+Missing character: There is no が in font [lmroman10-regular]:mapping=tex-text!
+Missing character: There is no け in font [lmroman10-regular]:mapping=tex-text!
+Missing character: There is no る in font [lmroman10-regular]:mapping=tex-text!
+Missing character: There is no つ in font [lmroman10-regular]:mapping=tex-text!
+Missing character: There is no い in font [lmroman10-regular]:mapping=tex-text!
+Missing character: There is no つ in font [lmroman10-regular]:mapping=tex-text!
+Missing character: There is no い in font [lmroman10-regular]:mapping=tex-text!
+Missing character: There is no 教 in font [lmroman10-regular]:mapping=tex-text!
+Missing character: There is no え in font [lmroman10-regular]:mapping=tex-text!
+Missing character: There is no た in font [lmroman10-regular]:mapping=tex-text!
+Missing character: There is no く in font [lmroman10-regular]:mapping=tex-text!
+Missing character: There is no な in font [lmroman10-regular]:mapping=tex-text!
+Missing character: There is no っ in font [lmroman10-regular]:mapping=tex-text!
+Missing character: There is no て in font [lmroman10-regular]:mapping=tex-text!
+Missing character: There is no し in font [lmroman10-regular]:mapping=tex-text!
+Missing character: There is no ま in font [lmroman10-regular]:mapping=tex-text!
+Missing character: There is no う in font [lmroman10-regular]:mapping=tex-text!
+Missing character: There is no の in font [lmroman10-regular]:mapping=tex-text!
+Missing character: There is no が in font [lmroman10-regular]:mapping=tex-text!
+Missing character: There is no 教 in font [lmroman10-regular]:mapping=tex-text!
+Missing character: There is no 員 in font [lmroman10-regular]:mapping=tex-text!
+Missing character: There is no の in font [lmroman10-regular]:mapping=tex-text!
+Missing character: There is no 性 in font [lmroman10-regular]:mapping=tex-text!
+Missing character: There is no 分 in font [lmroman10-regular]:mapping=tex-text!
+Missing character: There is no で in font [lmroman10-regular]:mapping=tex-text!
+Missing character: There is no す in font [lmroman10-regular]:mapping=tex-text!
+Missing character: There is no が in font [lmroman10-regular]:mapping=tex-text!
+Missing character: There is no 、 in font [lmroman10-regular]:mapping=tex-text!
+Missing character: There is no ぐ in font [lmroman10-regular]:mapping=tex-text!
+Missing character: There is no っ in font [lmroman10-regular]:mapping=tex-text!
+Missing character: There is no と in font [lmroman10-regular]:mapping=tex-text!
+Missing character: There is no こ in font [lmroman10-regular]:mapping=tex-text!
+Missing character: There is no ら in font [lmroman10-regular]:mapping=tex-text!
+Missing character: There is no え in font [lmroman10-regular]:mapping=tex-text!
+Missing character: There is no て in font [lmroman10-regular]:mapping=tex-text!
+Missing character: There is no 最 in font [lmroman10-regular]:mapping=tex-text!
+Missing character: There is no 小 in font [lmroman10-regular]:mapping=tex-text!
+Missing character: There is no 限 in font [lmroman10-regular]:mapping=tex-text!
+Missing character: There is no を in font [lmroman10-regular]:mapping=tex-text!
+Missing character: There is no 目 in font [lmroman10-regular]:mapping=tex-text!
+Missing character: There is no 指 in font [lmroman10-regular]:mapping=tex-text!
+Missing character: There is no し in font [lmroman10-regular]:mapping=tex-text!
+Missing character: There is no ま in font [lmroman10-regular]:mapping=tex-text!
+Missing character: There is no し in font [lmroman10-regular]:mapping=tex-text!
+Missing character: There is no た in font [lmroman10-regular]:mapping=tex-text!
+Missing character: There is no 。 in font [lmroman10-regular]:mapping=tex-text!
+LaTeX Font Info:    Try loading font information for EU1+lmtt on input line 201
+.
+(/usr/local/texlive/2016/texmf-dist/tex/latex/euenc/eu1lmtt.fd
+File: eu1lmtt.fd 2009/10/30 v1.6 Font defs for Latin Modern
+)
+Missing character: There is no 及 in font [lmroman10-regular]:mapping=tex-text!
+Missing character: There is no び in font [lmroman10-regular]:mapping=tex-text!
+Missing character: There is no パ in font [lmroman10-regular]:mapping=tex-text!
+Missing character: There is no イ in font [lmroman10-regular]:mapping=tex-text!
+Missing character: There is no プ in font [lmroman10-regular]:mapping=tex-text!
+Missing character: There is no を in font [lmroman10-regular]:mapping=tex-text!
+Missing character: There is no 活 in font [lmroman10-regular]:mapping=tex-text!
+Missing character: There is no 用 in font [lmroman10-regular]:mapping=tex-text!
+Missing character: There is no す in font [lmroman10-regular]:mapping=tex-text!
+Missing character: There is no る in font [lmroman10-regular]:mapping=tex-text!
+Missing character: There is no は in font [lmroman10-regular]:mapping=tex-text!
+Missing character: There is no と in font [lmroman10-regular]:mapping=tex-text!
+Missing character: There is no て in font [lmroman10-regular]:mapping=tex-text!
+Missing character: There is no も in font [lmroman10-regular]:mapping=tex-text!
+Missing character: There is no 便 in font [lmroman10-regular]:mapping=tex-text!
+Missing character: There is no 利 in font [lmroman10-regular]:mapping=tex-text!
+Missing character: There is no で in font [lmroman10-regular]:mapping=tex-text!
+Missing character: There is no コ in font [lmroman10-regular]:mapping=tex-text!
+Missing character: There is no ー in font [lmroman10-regular]:mapping=tex-text!
+Missing character: There is no ド in font [lmroman10-regular]:mapping=tex-text!
+Missing character: There is no が in font [lmroman10-regular]:mapping=tex-text!
+Missing character: There is no わ in font [lmroman10-regular]:mapping=tex-text!
+Missing character: There is no か in font [lmroman10-regular]:mapping=tex-text!
+Missing character: There is no り in font [lmroman10-regular]:mapping=tex-text!
+Missing character: There is no や in font [lmroman10-regular]:mapping=tex-text!
+Missing character: There is no す in font [lmroman10-regular]:mapping=tex-text!
+Missing character: There is no く in font [lmroman10-regular]:mapping=tex-text!
+Missing character: There is no な in font [lmroman10-regular]:mapping=tex-text!
+Missing character: There is no る in font [lmroman10-regular]:mapping=tex-text!
+Missing character: There is no の in font [lmroman10-regular]:mapping=tex-text!
+Missing character: There is no で in font [lmroman10-regular]:mapping=tex-text!
+Missing character: There is no 、 in font [lmroman10-regular]:mapping=tex-text!
+Missing character: There is no 最 in font [lmroman10-regular]:mapping=tex-text!
+Missing character: There is no 初 in font [lmroman10-regular]:mapping=tex-text!
+Missing character: There is no か in font [lmroman10-regular]:mapping=tex-text!
+Missing character: There is no ら in font [lmroman10-regular]:mapping=tex-text!
+Missing character: There is no そ in font [lmroman10-regular]:mapping=tex-text!
+Missing character: There is no れ in font [lmroman10-regular]:mapping=tex-text!
+Missing character: There is no を in font [lmroman10-regular]:mapping=tex-text!
+Missing character: There is no 前 in font [lmroman10-regular]:mapping=tex-text!
+Missing character: There is no 提 in font [lmroman10-regular]:mapping=tex-text!
+Missing character: There is no と in font [lmroman10-regular]:mapping=tex-text!
+Missing character: There is no し in font [lmroman10-regular]:mapping=tex-text!
+Missing character: There is no た in font [lmroman10-regular]:mapping=tex-text!
+Missing character: There is no 文 in font [lmroman10-regular]:mapping=tex-text!
+Missing character: There is no 書 in font [lmroman10-regular]:mapping=tex-text!
+Missing character: There is no に in font [lmroman10-regular]:mapping=tex-text!
+Missing character: There is no し in font [lmroman10-regular]:mapping=tex-text!
+Missing character: There is no ま in font [lmroman10-regular]:mapping=tex-text!
+Missing character: There is no し in font [lmroman10-regular]:mapping=tex-text!
+Missing character: There is no た in font [lmroman10-regular]:mapping=tex-text!
+Missing character: There is no 。 in font [lmroman10-regular]:mapping=tex-text!
 Missing character: There is no は in font [lmromanslant10-regular]:mapping=tex-t
 ext!
 Missing character: There is no じ in font [lmromanslant10-regular]:mapping=tex-t
@@ -1856,9 +2104,7 @@ Missing character: There is no め in font [lmromanslant10-regular]:mapping=tex-
 ext!
 Missing character: There is no に in font [lmromanslant10-regular]:mapping=tex-t
 ext!
-[6
-
-]
+[6]
 Chapter 2.
 Missing character: There is no の in font [lmroman12-bold]:mapping=tex-text!
 Missing character: There is no イ in font [lmroman12-bold]:mapping=tex-text!
@@ -2276,7 +2522,9 @@ Missing character: There is no だ in font [lmroman10-regular]:mapping=tex-text!
 Missing character: There is no さ in font [lmroman10-regular]:mapping=tex-text!
 Missing character: There is no い in font [lmroman10-regular]:mapping=tex-text!
 Missing character: There is no 。 in font [lmroman10-regular]:mapping=tex-text!
-[7]
+[7
+
+]
 Missing character: There is no の in font [lmromanslant10-regular]:mapping=tex-t
 ext!
 Missing character: There is no イ in font [lmromanslant10-regular]:mapping=tex-t
@@ -2413,7 +2661,7 @@ Missing character: There is no せ in font [lmroman10-regular]:mapping=tex-text!
 Missing character: There is no ん in font [lmroman10-regular]:mapping=tex-text!
 Missing character: There is no 。 in font [lmroman10-regular]:mapping=tex-text!
 
-Underfull \hbox (badness 10000) in paragraph at lines 232--235
+Underfull \hbox (badness 10000) in paragraph at lines 263--266
 \EU1/lmr/m/n/10 それでは、RStudioを起動してみましょう。 正しくインストールされていれば、Windowsはスタートメニュー、Macの場合
 はアプリケーションのアイコンをクリックして起動できるはずです。
  []
@@ -2771,11 +3019,6 @@ Missing character: There is no リ in font [lmroman10-regular]:mapping=tex-text!
 Missing character: There is no プ in font [lmroman10-regular]:mapping=tex-text!
 Missing character: There is no ト in font [lmroman10-regular]:mapping=tex-text!
 Missing character: There is no に in font [lmroman10-regular]:mapping=tex-text!
-LaTeX Font Info:    Try loading font information for EU1+lmtt on input line 262
-.
-(/usr/local/texlive/2016/texmf-dist/tex/latex/euenc/eu1lmtt.fd
-File: eu1lmtt.fd 2009/10/30 v1.6 Font defs for Latin Modern
-)
 Missing character: There is no と in font [lmroman10-regular]:mapping=tex-text!
 Missing character: There is no 打 in font [lmroman10-regular]:mapping=tex-text!
 Missing character: There is no っ in font [lmroman10-regular]:mapping=tex-text!
@@ -2854,7 +3097,7 @@ Missing character: There is no で in font [lmroman10-regular]:mapping=tex-text!
 Missing character: There is no す in font [lmroman10-regular]:mapping=tex-text!
 Missing character: There is no ） in font [lmroman10-regular]:mapping=tex-text!
 
-Underfull \hbox (badness 1132) in paragraph at lines 266--269
+Underfull \hbox (badness 1132) in paragraph at lines 297--300
 []\EU1/lmr/m/n/10 これが1行のコードになります。この行にカーソルを合わせた状態で、WindowsではCtrl + Enter、MacではCo
 mmand + Enterを押してください。
  []
@@ -3147,7 +3390,7 @@ Missing character: There is no ょ in font [lmroman10-regular]:mapping=tex-text!
 Missing character: There is no う in font [lmroman10-regular]:mapping=tex-text!
 Missing character: There is no 。 in font [lmroman10-regular]:mapping=tex-text!
 
-Underfull \hbox (badness 7168) in paragraph at lines 291--295
+Underfull \hbox (badness 7168) in paragraph at lines 322--326
 \EU1/lmr/m/n/10 スクリプトはWindowsはCtrl + S、MacはCommand + Sで保存することができます。 スクリプトを保存してお
 けば、次回に書き直す必要はありません。
  []
@@ -3913,7 +4156,7 @@ Missing character: There is no ま in font [lmroman10-regular]:mapping=tex-text!
 Missing character: There is no す in font [lmroman10-regular]:mapping=tex-text!
 Missing character: There is no 。 in font [lmroman10-regular]:mapping=tex-text!
 LaTeX Font Info:    Font shape `EU1/lmtt/bx/n' in size <10> not available
-(Font)              Font shape `EU1/lmtt/b/n' tried instead on input line 350.
+(Font)              Font shape `EU1/lmtt/b/n' tried instead on input line 381.
 Missing character: There is no は in font [lmroman10-regular]:mapping=tex-text!
 Missing character: There is no 各 in font [lmroman10-regular]:mapping=tex-text!
 Missing character: There is no パ in font [lmroman10-regular]:mapping=tex-text!
@@ -3993,7 +4236,7 @@ Missing character: There is no ょ in font [lmroman10-regular]:mapping=tex-text!
 Missing character: There is no う in font [lmroman10-regular]:mapping=tex-text!
 Missing character: There is no 。 in font [lmroman10-regular]:mapping=tex-text!
 
-Overfull \hbox (125.47002pt too wide) in paragraph at lines 355--358
+Overfull \hbox (125.47002pt too wide) in paragraph at lines 386--389
 []\EU1/lmtt/m/n/10 install.packages()\EU1/lmr/m/n/10 は各パソコンで一度実行すればOKです。 \EU1/l
 mtt/m/n/10 library()\EU1/lmr/m/n/10 はRStudioを起動するたびに実行する必要があります。 Rスクリプトの冒頭に使用する
 \EU1/lmtt/m/n/10 library()\EU1/lmr/m/n/10 を並べておき、起動するたびに実行するようにしましょう。 
@@ -4370,7 +4613,7 @@ Missing character: There is no で in font [lmroman10-regular]:mapping=tex-text!
 Missing character: There is no す in font [lmroman10-regular]:mapping=tex-text!
 Missing character: There is no 。 in font [lmroman10-regular]:mapping=tex-text!
 
-Overfull \hbox (48.74pt too wide) in paragraph at lines 395--399
+Overfull \hbox (48.74pt too wide) in paragraph at lines 426--430
 []\EU1/lmr/m/n/10 オブジェクトは「名前」と「中身」で構成されます。 このコマンドでは、\EU1/lmtt/m/n/10 first_obje
 ct\EU1/lmr/m/n/10 という名前のオブジェクトに「1」という数値を入れています。 \EU1/lmtt/m/n/10 <-\EU1/lmr/m/n
 /10 （不等号・ハイフン）は矢印を表していて、左側の名前のオブジェクトに右側の「モノ」を代入する命令です。
@@ -5236,7 +5479,7 @@ Missing character: There is no ま in font [lmroman10-regular]:mapping=tex-text!
 Missing character: There is no す in font [lmroman10-regular]:mapping=tex-text!
 Missing character: There is no 。 in font [lmroman10-regular]:mapping=tex-text!
 
-Overfull \hbox (11.59001pt too wide) in paragraph at lines 572--576
+Overfull \hbox (11.59001pt too wide) in paragraph at lines 603--607
 \EU1/lmr/m/n/10 Rではオブジェクトから別のオブジェクトを生成するために「関数（function）」を用います。 関数の使い方に慣れていきましょ
 う。 関数は\EU1/lmtt/m/n/10 関数名(引数)\EU1/lmr/m/n/10 という構造で使います。 引数（argument）は「ひきすう」と読
 みます。 
@@ -5901,7 +6144,7 @@ Missing character: There is no で in font [lmroman10-regular]:mapping=tex-text!
 Missing character: There is no す in font [lmroman10-regular]:mapping=tex-text!
 Missing character: There is no 。 in font [lmroman10-regular]:mapping=tex-text!
 
-Overfull \hbox (11.77pt too wide) in paragraph at lines 679--681
+Overfull \hbox (11.77pt too wide) in paragraph at lines 710--712
 []\EU1/lmr/m/n/10 例として、年齢のベクトル\EU1/lmtt/m/n/10 age_vector\EU1/lmr/m/n/10 と性別のベク
 トル\EU1/lmtt/m/n/10 gender_vector\EU1/lmr/m/n/10 を合わせてデータフレームを作成してみましょう。 データフレーム
 を作成する関数は\EU1/lmtt/m/n/10 data.frame()\EU1/lmr/m/n/10 です。 
@@ -6021,7 +6264,7 @@ Missing character: There is no ま in font [lmroman10-regular]:mapping=tex-text!
 Missing character: There is no す in font [lmroman10-regular]:mapping=tex-text!
 Missing character: There is no 。 in font [lmroman10-regular]:mapping=tex-text!
 
-Overfull \hbox (110.16998pt too wide) in paragraph at lines 700--703
+Overfull \hbox (110.16998pt too wide) in paragraph at lines 731--734
 []\EU1/lmr/m/n/10 1人目が18歳の女性、2人目が21歳の男性…を表すデータフレームが作成できました。 Chapter @ref(#Impor
 tData)ではExcelファイルなどからデータのRにインポートする方法を学びますが、その際は自動的にデータフレームとしてインポートされます。 
  []
@@ -6138,7 +6381,7 @@ Missing character: There is no ょ in font [lmroman10-regular]:mapping=tex-text!
 Missing character: There is no う in font [lmroman10-regular]:mapping=tex-text!
 Missing character: There is no 。 in font [lmroman10-regular]:mapping=tex-text!
 
-Overfull \hbox (54.24002pt too wide) in paragraph at lines 704--707
+Overfull \hbox (54.24002pt too wide) in paragraph at lines 735--738
 []\EU1/lmr/m/n/10 データ分析の際に、データフレームのうち特定の変数だけを使いたい場合がよくあります。 その際は、\EU1/lmtt/m/n/
 10 データフレーム名$変数名\EU1/lmr/m/n/10 と表記することで、特定の変数を使うことができます。 例えば、先ほど作成した\EU1/lmtt/m
 /n/10 first_dataframe\EU1/lmr/m/n/10 から性別の変数のみを見てみましょう。 
@@ -6569,7 +6812,7 @@ Missing character: There is no ょ in font [lmroman10-regular]:mapping=tex-text!
 Missing character: There is no う in font [lmroman10-regular]:mapping=tex-text!
 Missing character: There is no 。 in font [lmroman10-regular]:mapping=tex-text!
 
-Overfull \hbox (17.57202pt too wide) in paragraph at lines 755--759
+Overfull \hbox (17.57202pt too wide) in paragraph at lines 786--790
 []\EU1/lmr/m/n/10 インポートしたいファイルの形式も確認しておきましょう。 代表的な形式として、CSVファイル（.csv）、Excelファイル
 （.xlsx, .xls）があります。 拡張子が表示されていない場合は[]こちら[]を参考に表示させるようにしましょう。 
  []
@@ -6781,7 +7024,7 @@ Missing character: There is no ま in font [lmroman10-regular]:mapping=tex-text!
 Missing character: There is no す in font [lmroman10-regular]:mapping=tex-text!
 Missing character: There is no 。 in font [lmroman10-regular]:mapping=tex-text!
 
-Overfull \hbox (114.80002pt too wide) in paragraph at lines 774--777
+Overfull \hbox (114.80002pt too wide) in paragraph at lines 805--808
 []\EU1/lmr/m/n/10 これは、csvファイルの内容を\EU1/lmtt/m/n/10 data_original\EU1/lmr/m/n/10 
 というオブジェクトに収納しています。 オブジェクト名は自由につけることができますが、わかりやすいものにしましょう。 ここでは、インポートした元データであること
 を明示するため、\EU1/lmtt/m/n/10 data_original\EU1/lmr/m/n/10 という名前にしています。 
@@ -8383,7 +8626,7 @@ Missing character: There is no ょ in font [lmroman10-regular]:mapping=tex-text!
 Missing character: There is no う in font [lmroman10-regular]:mapping=tex-text!
 Missing character: There is no 。 in font [lmroman10-regular]:mapping=tex-text!
 
-Underfull \hbox (badness 10000) in paragraph at lines 980--984
+Underfull \hbox (badness 10000) in paragraph at lines 1011--1015
 \EU1/lmr/m/n/10 データをインポートしたら、いざ分析だ！…と分析してみたくなります。 しかし、収集したデータはそのまま分析に進むことはできず、分
 析のために「前処理」する必要があります。 「データ分析は前処理が8割」とも言われます。
  []
@@ -8454,7 +8697,7 @@ Missing character: There is no で in font [lmroman10-regular]:mapping=tex-text!
 Missing character: There is no す in font [lmroman10-regular]:mapping=tex-text!
 Missing character: There is no 。 in font [lmroman10-regular]:mapping=tex-text!
 
-Overfull \hbox (1.78001pt too wide) in paragraph at lines 985--987
+Overfull \hbox (1.78001pt too wide) in paragraph at lines 1016--1018
 []\EU1/lmr/m/n/10 データ前処理には\EU1/lmtt/m/n/10 dplyr\EU1/lmr/m/n/10 （読み：ディープライアール）と
 いうパッケージの関数を主に用います。 \EU1/lmtt/m/n/10 dplyr\EU1/lmr/m/n/10 は\EU1/lmtt/m/n/10 tidy
 verse\EU1/lmr/m/n/10 の一部なので、\EU1/lmtt/m/n/10 tidyverse\EU1/lmr/m/n/10 がインストールされ
@@ -8750,7 +8993,7 @@ Missing character: There is no ま in font [lmroman10-regular]:mapping=tex-text!
 Missing character: There is no す in font [lmroman10-regular]:mapping=tex-text!
 Missing character: There is no 。 in font [lmroman10-regular]:mapping=tex-text!
 
-Overfull \hbox (16.44002pt too wide) in paragraph at lines 1038--1041
+Overfull \hbox (16.44002pt too wide) in paragraph at lines 1069--1072
 []\EU1/lmr/m/n/10 まずデータフレーム\EU1/lmtt/m/n/10 saving\EU1/lmr/m/n/10 内の変数\EU1/lmtt
 /m/n/10 sav\EU1/lmr/m/n/10 （貯蓄）を示すオブジェクト\EU1/lmtt/m/n/10 saving$sav\EU1/lmr/m/n
 /10 を書きます。 これを平均を求める関数\EU1/lmtt/m/n/10 mean()\EU1/lmr/m/n/10 にパイプ\EU1/lmtt/m/n/
@@ -9154,7 +9397,7 @@ Missing character: There is no し in font [lmroman10-regular]:mapping=tex-text!
 Missing character: There is no た in font [lmroman10-regular]:mapping=tex-text!
 Missing character: There is no 。 in font [lmroman10-regular]:mapping=tex-text!
 
-Overfull \hbox (5.62001pt too wide) in paragraph at lines 1098--1101
+Overfull \hbox (5.62001pt too wide) in paragraph at lines 1129--1132
 []\EU1/lmr/m/n/10 1行目は2行目以降の結果を新たなデータフレーム\EU1/lmtt/m/n/10 saving_with_rate\EU1/
 lmr/m/n/10 に代入するコードです。 2行目はデータフレームの指定とパイプです。\EU1/lmtt/m/n/10 saving\EU1/lmr/m/n
 /10 を\EU1/lmtt/m/n/10 mutate()\EU1/lmr/m/n/10 に入れるコードです。
@@ -9661,7 +9904,7 @@ Missing character: There is no ょ in font [lmroman10-regular]:mapping=tex-text!
 Missing character: There is no う in font [lmroman10-regular]:mapping=tex-text!
 Missing character: There is no 。 in font [lmroman10-regular]:mapping=tex-text!
 
-Overfull \hbox (130.62pt too wide) in paragraph at lines 1172--1174
+Overfull \hbox (130.62pt too wide) in paragraph at lines 1203--1205
 \EU1/lmr/m/n/10 変数を平均0、標準偏差1の変数に変換する標準化は、変数の解釈を容易にしたり、以降の分析をしやすくするために必要です。 標準化を
 行う関数は\EU1/lmtt/m/n/10 scale()\EU1/lmr/m/n/10 です。\EU1/lmtt/m/n/10 mutate()\EU1/l
 mr/m/n/10 と組み合わせて、教育年数\EU1/lmtt/m/n/10 educ\EU1/lmr/m/n/10 を標準化した変数\EU1/lmtt/m/
@@ -9826,13 +10069,13 @@ Missing character: There is no ょ in font [lmroman10-regular]:mapping=tex-text!
 Missing character: There is no う in font [lmroman10-regular]:mapping=tex-text!
 Missing character: There is no 。 in font [lmroman10-regular]:mapping=tex-text!
 
-Overfull \hbox (17.25pt too wide) in paragraph at lines 1227--1227
+Overfull \hbox (17.25pt too wide) in paragraph at lines 1258--1258
 []\EU1/lmtt/m/n/10 ##  $ inc  : int  1920 12403 6396 7005 6990 6500 26007 15363
  14999 9185 ...[] 
  []
 
 
-Overfull \hbox (19.0pt too wide) in paragraph at lines 1227--1227
+Overfull \hbox (19.0pt too wide) in paragraph at lines 1258--1258
 []\EU1/lmtt/m/n/10 ##  $ cons : int  1890 11529 6026 5805 6715 5100 22848 13597
  11015 8168 ...[] 
  []
@@ -10047,7 +10290,7 @@ Missing character: There is no ょ in font [lmroman10-regular]:mapping=tex-text!
 Missing character: There is no う in font [lmroman10-regular]:mapping=tex-text!
 Missing character: There is no 。 in font [lmroman10-regular]:mapping=tex-text!
 
-Overfull \hbox (6.06001pt too wide) in paragraph at lines 1245--1250
+Overfull \hbox (6.06001pt too wide) in paragraph at lines 1276--1281
 \EU1/lmr/m/n/10 カテゴリ変数を表す型はfct (factor)です。\EU1/lmtt/m/n/10 saving\EU1/lmr/m/n/1
 0 にはカテゴリ変数がないので、カテゴリ変数を作成してみましょう。 型を変換する関数が\EU1/lmtt/m/n/10 as_xxx()\EU1/lmr/m/
 n/10 です。xxxは変換したい型の名前を入れてください。
@@ -10066,13 +10309,13 @@ ext!
 Missing character: There is no 理 in font [lmromanslant10-regular]:mapping=tex-t
 ext!
 [28]
-Overfull \hbox (41.75pt too wide) in paragraph at lines 1271--1271
+Overfull \hbox (41.75pt too wide) in paragraph at lines 1302--1302
 []\EU1/lmtt/m/n/10 ##  $ inc         : int  1920 12403 6396 7005 6990 6500 2600
 7 15363 14999 9185 ...[] 
  []
 
 
-Overfull \hbox (43.5pt too wide) in paragraph at lines 1271--1271
+Overfull \hbox (43.5pt too wide) in paragraph at lines 1302--1302
 []\EU1/lmtt/m/n/10 ##  $ cons        : int  1890 11529 6026 5805 6715 5100 2284
 8 13597 11015 8168 ...[] 
  []
@@ -10385,7 +10628,7 @@ Missing character: There is no ま in font [lmroman10-regular]:mapping=tex-text!
 Missing character: There is no す in font [lmroman10-regular]:mapping=tex-text!
 Missing character: There is no 。 in font [lmroman10-regular]:mapping=tex-text!
 
-Underfull \hbox (badness 5652) in paragraph at lines 1291--1295
+Underfull \hbox (badness 5652) in paragraph at lines 1322--1326
 \EU1/lmr/m/n/10 ある変数から、別のダミー変数を作成したいことはよくあります。 ここでは、教育年数のデータを12年を基準に「高卒以上」「高卒未満
 」の2つに区分してみましょう。 2つの場合分けの際には、\EU1/lmtt/m/n/10 if_else\EU1/lmr/m/n/10 関数を使うと便利です。
 
@@ -10530,7 +10773,7 @@ Missing character: There is no ょ in font [lmroman10-regular]:mapping=tex-text!
 Missing character: There is no う in font [lmroman10-regular]:mapping=tex-text!
 Missing character: There is no 。 in font [lmroman10-regular]:mapping=tex-text!
 
-Overfull \hbox (66.27pt too wide) in paragraph at lines 1340--1342
+Overfull \hbox (66.27pt too wide) in paragraph at lines 1371--1373
 []\EU1/lmtt/m/n/10 highschool\EU1/lmr/m/n/10 という教育年数が12年以上であれば1、教育年数が12年未満であれば0
 を示すダミー変数を作成することができました。 なお、ここで作成した変数は連続変数として扱われているので、必要に応じて\EU1/lmtt/m/n/10 as_f
 actor()\EU1/lmr/m/n/10 も行っておきましょう。 
@@ -10696,7 +10939,7 @@ Missing character: There is no ま in font [lmroman10-regular]:mapping=tex-text!
 Missing character: There is no す in font [lmroman10-regular]:mapping=tex-text!
 Missing character: There is no 。 in font [lmroman10-regular]:mapping=tex-text!
 
-Overfull \hbox (61.54002pt too wide) in paragraph at lines 1374--1377
+Overfull \hbox (61.54002pt too wide) in paragraph at lines 1405--1408
 \EU1/lmr/m/n/10 2つのカテゴリにしたい場合は上記の\EU1/lmtt/m/n/10 if_else\EU1/lmr/m/n/10 が良いですが
 、3つ以上にしたい場合は\EU1/lmtt/m/n/10 case_when\EU1/lmr/m/n/10 が便利です。 例えば年齢\EU1/lmtt/m/n
 /10 age\EU1/lmr/m/n/10 を年代別のカテゴリ変数にしてみましょう。 \EU1/lmtt/m/n/10 case_when\EU1/lmr/
@@ -10866,7 +11109,7 @@ Missing character: There is no さ in font [lmroman10-regular]:mapping=tex-text!
 Missing character: There is no い in font [lmroman10-regular]:mapping=tex-text!
 Missing character: There is no 。 in font [lmroman10-regular]:mapping=tex-text!
 
-Overfull \hbox (89.05003pt too wide) in paragraph at lines 1422--1424
+Overfull \hbox (89.05003pt too wide) in paragraph at lines 1453--1455
 []\EU1/lmr/m/n/10 年収6000ドル未満を“poor”、年収6000ドル以上12000ドル未満を“middle”、 年収12000ドル以上を“
 rich”、とするカテゴリ変数\EU1/lmtt/m/n/10 inc_category\EU1/lmr/m/n/10 を追加したデータフレームを作成しなさい
 。 
@@ -11675,7 +11918,7 @@ Missing character: There is no て in font [lmroman10-regular]:mapping=tex-text!
 Missing character: There is no は in font [lmroman10-regular]:mapping=tex-text!
 Missing character: There is no 、 in font [lmroman10-regular]:mapping=tex-text!
 
-LaTeX Warning: Reference `(' on page 35 undefined on input line 1601.
+LaTeX Warning: Reference `(' on page 35 undefined on input line 1632.
 
 Missing character: There is no を in font [lmroman10-regular]:mapping=tex-text!
 Missing character: There is no 確 in font [lmroman10-regular]:mapping=tex-text!
@@ -11734,103 +11977,103 @@ Missing character: There is no ょ in font [lmroman10-regular]:mapping=tex-text!
 Missing character: There is no う in font [lmroman10-regular]:mapping=tex-text!
 Missing character: There is no 。 in font [lmroman10-regular]:mapping=tex-text!
 
-Overfull \hbox (19.0pt too wide) in paragraph at lines 1637--1637
+Overfull \hbox (19.0pt too wide) in paragraph at lines 1668--1668
 []\EU1/lmtt/m/n/10 ##                        age    black        cons     educ 
        inc        sav     size[] 
  []
 
 
-Overfull \hbox (113.5pt too wide) in paragraph at lines 1637--1637
+Overfull \hbox (113.5pt too wide) in paragraph at lines 1668--1668
 []\EU1/lmtt/m/n/10 ## ----------------- -------- -------- ----------- -------- 
 ---------- ---------- --------[] 
  []
 
 
-Overfull \hbox (48.75pt too wide) in paragraph at lines 1637--1637
+Overfull \hbox (48.75pt too wide) in paragraph at lines 1668--1668
 []\EU1/lmtt/m/n/10 ##              Mean    38.77     0.07     8358.73    11.58 
    9941.24    1582.51     4.35[] 
  []
 
 
-Overfull \hbox (50.5pt too wide) in paragraph at lines 1637--1637
+Overfull \hbox (50.5pt too wide) in paragraph at lines 1668--1668
 []\EU1/lmtt/m/n/10 ##           Std.Dev     7.40     0.26     5729.53     3.44 
    5584.00    3284.90     1.49[] 
  []
 
 
-Overfull \hbox (48.75pt too wide) in paragraph at lines 1637--1637
+Overfull \hbox (48.75pt too wide) in paragraph at lines 1668--1668
 []\EU1/lmtt/m/n/10 ##               Min    26.00     0.00   -13055.00     2.00 
     750.00   -5577.00     2.00[] 
  []
 
 
-Overfull \hbox (41.75pt too wide) in paragraph at lines 1637--1637
+Overfull \hbox (41.75pt too wide) in paragraph at lines 1668--1668
 []\EU1/lmtt/m/n/10 ##                Q1    33.00     0.00     5726.00     9.00 
    6508.00     189.00     3.00[] 
  []
 
 
-Overfull \hbox (50.5pt too wide) in paragraph at lines 1637--1637
+Overfull \hbox (50.5pt too wide) in paragraph at lines 1668--1668
 []\EU1/lmtt/m/n/10 ##            Median    38.50     0.00     7561.50    12.00 
    8776.50     982.00     4.00[] 
  []
 
 
-Overfull \hbox (47.0pt too wide) in paragraph at lines 1637--1637
+Overfull \hbox (47.0pt too wide) in paragraph at lines 1668--1668
 []\EU1/lmtt/m/n/10 ##                Q3    44.00     0.00     9987.00    13.00 
   11965.00    1838.50     5.00[] 
  []
 
 
-Overfull \hbox (54.0pt too wide) in paragraph at lines 1637--1637
+Overfull \hbox (54.0pt too wide) in paragraph at lines 1668--1668
 []\EU1/lmtt/m/n/10 ##               Max    54.00     1.00    30280.00    20.00 
   32080.00   25405.00    10.00[] 
  []
 
 
-Overfull \hbox (43.5pt too wide) in paragraph at lines 1637--1637
+Overfull \hbox (43.5pt too wide) in paragraph at lines 1668--1668
 []\EU1/lmtt/m/n/10 ##               MAD     8.15     0.00     3092.70     2.97 
    3463.35    1235.75     1.48[] 
  []
 
 
-Overfull \hbox (45.25pt too wide) in paragraph at lines 1637--1637
+Overfull \hbox (45.25pt too wide) in paragraph at lines 1668--1668
 []\EU1/lmtt/m/n/10 ##               IQR    11.00     0.00     4131.50     4.00 
    5393.00    1640.25     2.00[] 
  []
 
 [35]
-Overfull \hbox (26.0pt too wide) in paragraph at lines 1637--1637
+Overfull \hbox (26.0pt too wide) in paragraph at lines 1668--1668
 []\EU1/lmtt/m/n/10 ##                CV     0.19     3.66        0.69     0.30 
       0.56       2.08     0.34[] 
  []
 
 
-Overfull \hbox (36.5pt too wide) in paragraph at lines 1637--1637
+Overfull \hbox (36.5pt too wide) in paragraph at lines 1668--1668
 []\EU1/lmtt/m/n/10 ##          Skewness     0.24     3.32        0.91     0.05 
       1.98       4.15     0.84[] 
  []
 
 
-Overfull \hbox (41.75pt too wide) in paragraph at lines 1637--1637
+Overfull \hbox (41.75pt too wide) in paragraph at lines 1668--1668
 []\EU1/lmtt/m/n/10 ##       SE.Skewness     0.24     0.24        0.24     0.24 
       0.24       0.24     0.24[] 
  []
 
 
-Overfull \hbox (40.0pt too wide) in paragraph at lines 1637--1637
+Overfull \hbox (40.0pt too wide) in paragraph at lines 1668--1668
 []\EU1/lmtt/m/n/10 ##          Kurtosis    -0.96     9.11        4.31     0.05 
       4.96      26.31     1.57[] 
  []
 
 
-Overfull \hbox (59.25pt too wide) in paragraph at lines 1637--1637
+Overfull \hbox (59.25pt too wide) in paragraph at lines 1668--1668
 []\EU1/lmtt/m/n/10 ##           N.Valid   100.00   100.00      100.00   100.00 
     100.00     100.00   100.00[] 
  []
 
 
-Overfull \hbox (62.75pt too wide) in paragraph at lines 1637--1637
+Overfull \hbox (62.75pt too wide) in paragraph at lines 1668--1668
 []\EU1/lmtt/m/n/10 ##         Pct.Valid   100.00   100.00      100.00   100.00 
     100.00     100.00   100.00[] 
  []
@@ -12098,7 +12341,7 @@ Missing character: There is no し in font [lmroman10-regular]:mapping=tex-text!
 Missing character: There is no て in font [lmroman10-regular]:mapping=tex-text!
 Missing character: There is no 、 in font [lmroman10-regular]:mapping=tex-text!
 
-LaTeX Warning: Reference `(' on page 36 undefined on input line 1698.
+LaTeX Warning: Reference `(' on page 36 undefined on input line 1729.
 
 Missing character: There is no で in font [lmroman10-regular]:mapping=tex-text!
 Missing character: There is no 説 in font [lmroman10-regular]:mapping=tex-text!
@@ -12175,7 +12418,7 @@ Missing character: There is no ま in font [lmroman10-regular]:mapping=tex-text!
 Missing character: There is no す in font [lmroman10-regular]:mapping=tex-text!
 Missing character: There is no 。 in font [lmroman10-regular]:mapping=tex-text!
 
-Overfull \hbox (17.25pt too wide) in paragraph at lines 1736--1736
+Overfull \hbox (17.25pt too wide) in paragraph at lines 1767--1767
 []\EU1/lmtt/m/n/10 ## ----------- ------ --------- -------------- --------- ---
 -----------[] 
  []
@@ -12980,7 +13223,7 @@ Missing character: There is no ま in font [lmroman10-regular]:mapping=tex-text!
 Missing character: There is no す in font [lmroman10-regular]:mapping=tex-text!
 Missing character: There is no 。 in font [lmroman10-regular]:mapping=tex-text!
 
-Overfull \hbox (33.21002pt too wide) in paragraph at lines 1841--1844
+Overfull \hbox (33.21002pt too wide) in paragraph at lines 1872--1875
 []\EU1/lmr/m/n/10 1変数の分布を示す関数は\EU1/lmtt/m/n/10 x\EU1/lmr/m/n/10 のみを指定すれば良いです（\E
 U1/lmtt/m/n/10 y\EU1/lmr/m/n/10 は不要です）。 \EU1/lmtt/m/n/10 geom_bar()\EU1/lmr/m/n
 /10 は何も指定しなければ縦軸を観測数（count）にしてくれます。 ここでは家族の人数が4人が最も多く、以下5人、3人…の順に多いことがわかります。 
@@ -13193,7 +13436,7 @@ Missing character: There is no ま in font [lmroman10-regular]:mapping=tex-text!
 Missing character: There is no す in font [lmroman10-regular]:mapping=tex-text!
 Missing character: There is no 。 in font [lmroman10-regular]:mapping=tex-text!
 
-Overfull \hbox (46.39pt too wide) in paragraph at lines 1860--1864
+Overfull \hbox (46.39pt too wide) in paragraph at lines 1891--1895
 []\EU1/lmr/m/n/10 棒グラフと同じく\EU1/lmtt/m/n/10 x\EU1/lmr/m/n/10 のみを指定すれば良く、縦軸は観測数にな
 っています。 ヒストグラムで重要なのは、ビン（棒のことです）の数や幅です。 \EU1/lmtt/m/n/10 geom_histogram\EU1/lmr/m
 /n/10 はデフォルトでビンの数\EU1/lmtt/m/n/10 bins\EU1/lmr/m/n/10 を30としていますが、見づらい場合は変えてみましょ
@@ -13803,14 +14046,14 @@ Missing character: There is no ま in font [lmroman10-regular]:mapping=tex-text!
 Missing character: There is no す in font [lmroman10-regular]:mapping=tex-text!
 Missing character: There is no 。 in font [lmroman10-regular]:mapping=tex-text!
 
-Underfull \hbox (badness 10000) in paragraph at lines 1927--1931
+Underfull \hbox (badness 10000) in paragraph at lines 1958--1962
 []\EU1/lmr/m/n/10 ggplotはグラフを+でつなげて重ねることができます。ここでは、\EU1/lmtt/m/n/10 geom_point(
 )\EU1/lmr/m/n/10 で散布図を描き、その上に\EU1/lmtt/m/n/10 geom_smooth()\EU1/lmr/m/n/10 で回帰直
 線を重ねています。
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 1927--1931
+Underfull \hbox (badness 10000) in paragraph at lines 1958--1962
 \EU1/lmtt/m/n/10 geom_smooth()\EU1/lmr/m/n/10 の引数\EU1/lmtt/m/n/10 method\EU1/lm
 r/m/n/10 では、どのような線を描くのかを指定します。lmは線形モデル（linear model）を指定しています。（指定しないと別の線になります）
  []
@@ -14171,7 +14414,7 @@ Missing character: There is no ま in font [lmroman10-regular]:mapping=tex-text!
 Missing character: There is no す in font [lmroman10-regular]:mapping=tex-text!
 Missing character: There is no 。 in font [lmroman10-regular]:mapping=tex-text!
 
-Overfull \hbox (150.25002pt too wide) in paragraph at lines 1976--1978
+Overfull \hbox (150.25002pt too wide) in paragraph at lines 2007--2009
 \EU1/lmr/m/n/10 棒グラフでカテゴリごとの代表値を示したい場合は、\EU1/lmtt/m/n/10 geom_bar()\EU1/lmr/m/n
 /10 ではなく\EU1/lmtt/m/n/10 stat_summary()\EU1/lmr/m/n/10 を使います。 \EU1/lmtt/m/n/10 
 stat_summary()\EU1/lmr/m/n/10 の\EU1/lmtt/m/n/10 fun.y\EU1/lmr/m/n/10 で使用したい代表値を
@@ -14469,7 +14712,7 @@ Missing character: There is no ま in font [lmroman10-regular]:mapping=tex-text!
 Missing character: There is no す in font [lmroman10-regular]:mapping=tex-text!
 Missing character: There is no 。 in font [lmroman10-regular]:mapping=tex-text!
 
-Overfull \hbox (49.07pt too wide) in paragraph at lines 2026--2029
+Overfull \hbox (49.07pt too wide) in paragraph at lines 2057--2060
 []\EU1/lmr/m/n/10 なお、図を組み合わせることによりわかりやすくなるかもしれません。 \EU1/lmtt/m/n/10 geom_jitter
 ()\EU1/lmr/m/n/10 による散布図と箱ひげ図を組み合わせてみましょう。 \EU1/lmtt/m/n/10 ggplot2\EU1/lmr/m/n
 /10 では、\EU1/lmtt/m/n/10 geom_xxxx\EU1/lmr/m/n/10 を+でつなげることで、図を重ねることができます。 
@@ -14887,7 +15130,7 @@ Missing character: There is no ょ in font [lmroman10-regular]:mapping=tex-text!
 Missing character: There is no う in font [lmroman10-regular]:mapping=tex-text!
 Missing character: There is no 。 in font [lmroman10-regular]:mapping=tex-text!
 
-Overfull \hbox (182.37001pt too wide) in paragraph at lines 2080--2082
+Overfull \hbox (182.37001pt too wide) in paragraph at lines 2111--2113
 []\EU1/lmr/m/n/10 なお、\EU1/lmtt/m/n/10 t.test()\EU1/lmr/m/n/10 はデフォルトで2群の分散が等しいと
 仮定しない「Welchのt検定」を実施します。 オプションで\EU1/lmtt/m/n/10 var.equal = TRUE\EU1/lmr/m/n/10 
 とすれば分散が等しいと仮定した「スチューデントのt検定」が実施できますが、通常分散は異なることが多いため、デフォルトのままWelchのt検定を使用するのが良い
@@ -15011,19 +15254,19 @@ Missing character: There is no ま in font [lmroman10-regular]:mapping=tex-text!
 Missing character: There is no す in font [lmroman10-regular]:mapping=tex-text!
 Missing character: There is no 。 in font [lmroman10-regular]:mapping=tex-text!
 [49]
-Overfull \hbox (57.5pt too wide) in paragraph at lines 2109--2109
+Overfull \hbox (57.5pt too wide) in paragraph at lines 2140--2140
 []\EU1/lmtt/m/n/10 ##   estimate estimate1 estimate2 statistic p.value paramete
 r conf.low conf.high[] 
  []
 
 
-Overfull \hbox (8.5pt too wide) in paragraph at lines 2109--2109
+Overfull \hbox (8.5pt too wide) in paragraph at lines 2140--2140
 []\EU1/lmtt/m/n/10 ##      <dbl>     <dbl>     <dbl>     <dbl>   <dbl>     <dbl
 >    <dbl>     <dbl>[] 
  []
 
 
-Overfull \hbox (8.5pt too wide) in paragraph at lines 2109--2109
+Overfull \hbox (8.5pt too wide) in paragraph at lines 2140--2140
 []\EU1/lmtt/m/n/10 ## 1    3418.    10181.     6762.      1.86   0.104      7.3
 9    -890.     7727.[] 
  []
@@ -15412,7 +15655,7 @@ Missing character: There is no ょ in font [lmroman10-bold]:mapping=tex-text!
 Missing character: There is no う in font [lmroman10-bold]:mapping=tex-text!
 Missing character: There is no 。 in font [lmroman10-bold]:mapping=tex-text!
 
-Overfull \hbox (0.10493pt too wide) in paragraph at lines 2148--2156
+Overfull \hbox (0.10493pt too wide) in paragraph at lines 2179--2187
 \EU1/lmr/m/n/10 に正の関係があることになりますし、マイナスであれば負の関係、0であれば関係がないことになります。 $\OML/lmm/m/it
 /10 ^^L$ \EU1/lmr/m/n/10 は $\OML/lmm/m/it/10 x$ \EU1/lmr/m/n/10 が1単位高いとき、$\OML/
 lmm/m/it/10 y$ \EU1/lmr/m/n/10 が $\OML/lmm/m/it/10 ^^L$ \EU1/lmr/m/n/10 単位高い、とい
@@ -16099,7 +16342,7 @@ Missing character: There is no ま in font [lmroman10-regular]:mapping=tex-text!
 Missing character: There is no す in font [lmroman10-regular]:mapping=tex-text!
 Missing character: There is no 。 in font [lmroman10-regular]:mapping=tex-text!
 
-Underfull \hbox (badness 10000) in paragraph at lines 2279--2282
+Underfull \hbox (badness 10000) in paragraph at lines 2310--2313
 \EU1/lmr/m/n/10 回帰分析には複数の説明変数を含め、それぞれの説明変数と被説明変数との変数を検証することができます。 複数の説明変数がある回帰分
 析を重回帰分析、一方上で説明した１つの説明変数がある回帰分析を単回帰分析と呼びます。 回帰式は説明変数を
  []
@@ -16294,7 +16537,7 @@ Missing character: There is no ま in font [lmroman10-regular]:mapping=tex-text!
 Missing character: There is no す in font [lmroman10-regular]:mapping=tex-text!
 Missing character: There is no 。 in font [lmroman10-regular]:mapping=tex-text!
 
-Overfull \hbox (59.98001pt too wide) in paragraph at lines 2307--2309
+Overfull \hbox (59.98001pt too wide) in paragraph at lines 2338--2340
 []\EU1/lmr/m/n/10 説明変数はさらに3つ、4つ…と増やすことができ、Rでは\EU1/lmtt/m/n/10 y ~ x1 + x2 + x3 
 + x4 + ...\EU1/lmr/m/n/10 と\EU1/lmtt/m/n/10 +\EU1/lmr/m/n/10 でつなげていきます。 説明変数が多く
 回帰式が長くなる場合は、回帰式を一旦オブジェクトとして保存しておくとコードが読みやすくなります。 
@@ -16580,7 +16823,7 @@ Missing character: There is no ま in font [lmroman10-regular]:mapping=tex-text!
 Missing character: There is no す in font [lmroman10-regular]:mapping=tex-text!
 Missing character: There is no 。 in font [lmroman10-regular]:mapping=tex-text!
 
-Overfull \hbox (36.24pt too wide) in paragraph at lines 2343--2346
+Overfull \hbox (36.24pt too wide) in paragraph at lines 2374--2377
 \EU1/lmr/m/n/10 条件を満たすグループに1、条件を満たさないグループに0をとるダミー変数は、そのまま回帰分析に組み込むことができます。 ただし、
 解釈には注意が必要です。 ダミー変数の係数の解釈は、「条件を満たすグループは満たさないグループと比べて、被説明変数が（係数）大きい」となります。 
  []
@@ -17415,7 +17658,7 @@ Missing character: There is no ょ in font [lmroman10-regular]:mapping=tex-text!
 Missing character: There is no う in font [lmroman10-regular]:mapping=tex-text!
 Missing character: There is no 。 in font [lmroman10-regular]:mapping=tex-text!
 
-Overfull \hbox (24.25002pt too wide) in paragraph at lines 2441--2445
+Overfull \hbox (24.25002pt too wide) in paragraph at lines 2472--2476
 \EU1/lmr/m/n/10 ある説明変数と被説明変数のとの関係が別の説明変数によって変化するような状況のことを交互作用がある、と言います。 例えば、収入と
 教育年数の関係が黒人ダミーによって異なる、といった場合です。 Rの回帰式では、交互作用は2つの変数を\EU1/lmtt/m/n/10 :\EU1/lmr/m/
 n/10 でつなげることで表現できます。
@@ -17663,7 +17906,7 @@ Missing character: There is no せ in font [lmroman10-regular]:mapping=tex-text!
 Missing character: There is no ん in font [lmroman10-regular]:mapping=tex-text!
 Missing character: There is no 。 in font [lmroman10-regular]:mapping=tex-text!
 
-Overfull \hbox (1.36pt too wide) in paragraph at lines 2467--2471
+Overfull \hbox (1.36pt too wide) in paragraph at lines 2498--2502
 []\EU1/lmr/m/n/10 交互作用\EU1/lmtt/m/n/10 educ:black\EU1/lmr/m/n/10 は-63ですが、これは黒人で
 の教育年数と収入の係数が727-63=664であることを意味します。 なので、黒人では教育年数が1年高いと収入が664ドル高いということになります。
  []
@@ -18335,7 +18578,7 @@ Missing character: There is no ょ in font [lmroman10-regular]:mapping=tex-text!
 Missing character: There is no う in font [lmroman10-regular]:mapping=tex-text!
 Missing character: There is no 。 in font [lmroman10-regular]:mapping=tex-text!
 
-Overfull \hbox (76.55002pt too wide) in paragraph at lines 2599--2604
+Overfull \hbox (76.55002pt too wide) in paragraph at lines 2630--2635
 []\EU1/lmr/m/n/10 1・2行目では、\EU1/lmtt/m/n/10 lm()\EU1/lmr/m/n/10 で回帰分析を行い、結果をオブジェ
 クトとして\EU1/lmtt/m/n/10 regression1\EU1/lmr/m/n/10 ,\EU1/lmtt/m/n/10 regression2\
 EU1/lmr/m/n/10 にそれぞれ入力しています。 \EU1/lmtt/m/n/10 stargazer()\EU1/lmr/m/n/10 では、表に含
@@ -18343,7 +18586,7 @@ EU1/lmr/m/n/10 にそれぞれ入力しています。 \EU1/lmtt/m/n/10 stargaze
  []
 
 
-Overfull \hbox (63.91pt too wide) in paragraph at lines 2599--2604
+Overfull \hbox (63.91pt too wide) in paragraph at lines 2630--2635
 \EU1/lmtt/m/n/10 type\EU1/lmr/m/n/10 はデフォルトではLaTeXになっており多くの方は使えないと思いますので、ここではHT
 MLを指定して表形式に整えます。 \EU1/lmtt/m/n/10 out\EU1/lmr/m/n/10 を指定すると、結果をファイルとして保存できます。 こ
 のファイルの表を卒業論文に貼り付け、必要に応じて加工すると良いでしょう。 
@@ -18474,7 +18717,7 @@ Missing character: There is no ま in font [lmroman10-regular]:mapping=tex-text!
 Missing character: There is no す in font [lmroman10-regular]:mapping=tex-text!
 Missing character: There is no 。 in font [lmroman10-regular]:mapping=tex-text!
 
-Overfull \hbox (88.85pt too wide) in paragraph at lines 2605--2609
+Overfull \hbox (88.85pt too wide) in paragraph at lines 2636--2640
 []\EU1/lmr/m/n/10 表は列ごとに回帰分析の結果を示しています。 各行は説明変数を表し、かっこの無い上側が係数、かっこのある下側が標準誤差を表し
 ています。 また、アスタリスク*で有意水準を表しています。 ***が有意水準1%で有意、**が有意水準5%で有意、*が有意水準10%で有意であることを示します
 。 
@@ -18910,21 +19153,21 @@ Missing character: There is no で in font [lmroman10-regular]:mapping=tex-text!
 Missing character: There is no す in font [lmroman10-regular]:mapping=tex-text!
 Missing character: There is no ） in font [lmroman10-regular]:mapping=tex-text!
 No file RforGradThesis.bbl.
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 2657.
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 2688.
 [59]
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 2657.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 2688.
 (./RforGradThesis.aux)
-Package atveryend Info: Empty hook `AtVeryEndDocument' on input line 2657.
-Package atveryend Info: Empty hook `AtEndAfterFileList' on input line 2657.
+Package atveryend Info: Empty hook `AtVeryEndDocument' on input line 2688.
+Package atveryend Info: Empty hook `AtEndAfterFileList' on input line 2688.
 
 LaTeX Warning: There were undefined references.
 
  ) 
 Here is how much of TeX's memory you used:
- 24969 strings out of 493589
- 443615 string characters out of 6143512
- 495252 words of memory out of 5000000
- 28089 multiletter control sequences out of 15000+600000
+ 24972 strings out of 493589
+ 443738 string characters out of 6143512
+ 495603 words of memory out of 5000000
+ 28092 multiletter control sequences out of 15000+600000
  28459 words of font info for 67 fonts, out of 8000000 for 9000
  1347 hyphenation exceptions out of 8191
  52i,8n,54p,10412b,452s stack positions out of 5000i,500n,10000p,200000b,80000s

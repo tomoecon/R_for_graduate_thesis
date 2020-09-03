@@ -105,7 +105,10 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li><a href="./">卒業論文のためのR入門</a></li>
 
 <li class="divider"></li>
-<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> はじめに</a></li>
+<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> はじめに</a><ul>
+<li class="chapter" data-level="1.1" data-path="index.html"><a href="index.html#この文書で学ぶこと"><i class="fa fa-check"></i><b>1.1</b> この文書で学ぶこと</a></li>
+<li class="chapter" data-level="1.2" data-path="index.html"><a href="index.html#この文書の作成目的"><i class="fa fa-check"></i><b>1.2</b> この文書の作成目的</a></li>
+</ul></li>
 <li class="chapter" data-level="2" data-path="InstallR.html"><a href="InstallR.html"><i class="fa fa-check"></i><b>2</b> R(Studio)のインストール</a></li>
 <li class="chapter" data-level="3" data-path="RStudio.html"><a href="RStudio.html"><i class="fa fa-check"></i><b>3</b> RStudioの使い方</a><ul>
 <li class="chapter" data-level="3.1" data-path="RStudio.html"><a href="RStudio.html#rstudioの起動"><i class="fa fa-check"></i><b>3.1</b> RStudioの起動</a></li>
@@ -216,6 +219,8 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li>卒業論文自体はWordで作成する想定で、Rで得られた結果をWordに貼り付ける（簡便な）方法を説明します。</li>
 </ul>
 <p>一般的なRの入門文書としても参照できます。 説明の都合上、厳密さよりわかりやすさを重視した記述が多々あります。ご了承ください。</p>
+<div id="この文書で学ぶこと" class="section level2">
+<h2><span class="header-section-number">1.1</span> この文書で学ぶこと</h2>
 <p>具体的には、以下の項目を学習します。</p>
 <ul>
 <li>R, RStudioをインストールし、基本的な操作ができるようになる</li>
@@ -233,7 +238,24 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li>浅野正彦・中村公亮（2018）はじめてのRStudio エラーメッセージなんてこわくない、オーム社</li>
 <li>松村優哉・湯谷啓明・紀ノ定保礼・前田和寛（2018）RユーザのためのRStudio[実践]入門 −tidyverseによるモダンな分析フローの世界−</li>
 </ul>
+</div>
+<div id="この文書の作成目的" class="section level2">
+<h2><span class="header-section-number">1.2</span> この文書の作成目的</h2>
+<p><em>この節は余談なので、読み飛ばしても問題ありません。</em></p>
+<p>この文書はゼミ生の卒業論文執筆にあたりマニュアルが必要だと考え作成しました。 以下のことを意識して説明しました。</p>
+<ul>
+<li>統計やコンピュータが苦手が学生を念頭におく</li>
+<li>最小限の説明を心がける
+<ul>
+<li>ついつい教えたくなってしまうのが教員の性分ですが、ぐっとこらえて最小限を目指しました。</li>
+</ul></li>
+<li><code>tidyverse</code>及びパイプ<code>%&gt;%</code>を活用する
+<ul>
+<li><code>tidyverse</code>はとても便利でコードがわかりやすくなるので、最初からそれを前提とした文書にしました。</li>
+</ul></li>
+</ul>
 
+</div>
 </div>
             </section>
 
