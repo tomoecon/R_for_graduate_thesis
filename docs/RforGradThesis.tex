@@ -1,36 +1,46 @@
-\documentclass[]{book}
+% Options for packages loaded elsewhere
+\PassOptionsToPackage{unicode}{hyperref}
+\PassOptionsToPackage{hyphens}{url}
+%
+\documentclass[
+]{book}
+\usepackage{amsmath,amssymb}
 \usepackage{lmodern}
-\usepackage{amssymb,amsmath}
 \usepackage{ifxetex,ifluatex}
-\usepackage{fixltx2e} % provides \textsubscript
 \ifnum 0\ifxetex 1\fi\ifluatex 1\fi=0 % if pdftex
   \usepackage[T1]{fontenc}
   \usepackage[utf8]{inputenc}
-\else % if luatex or xelatex
-  \ifxetex
-    \usepackage{mathspec}
-  \else
-    \usepackage{fontspec}
-  \fi
-  \defaultfontfeatures{Ligatures=TeX,Scale=MatchLowercase}
+  \usepackage{textcomp} % provide euro and other symbols
+\else % if luatex or xetex
+  \usepackage{unicode-math}
+  \defaultfontfeatures{Scale=MatchLowercase}
+  \defaultfontfeatures[\rmfamily]{Ligatures=TeX,Scale=1}
 \fi
-% use upquote if available, for straight quotes in verbatim environments
+% Use upquote if available, for straight quotes in verbatim environments
 \IfFileExists{upquote.sty}{\usepackage{upquote}}{}
-% use microtype if available
-\IfFileExists{microtype.sty}{%
-\usepackage[]{microtype}
-\UseMicrotypeSet[protrusion]{basicmath} % disable protrusion for tt fonts
+\IfFileExists{microtype.sty}{% use microtype if available
+  \usepackage[]{microtype}
+  \UseMicrotypeSet[protrusion]{basicmath} % disable protrusion for tt fonts
 }{}
-\PassOptionsToPackage{hyphens}{url} % url is loaded by hyperref
-\usepackage[unicode=true]{hyperref}
+\makeatletter
+\@ifundefined{KOMAClassName}{% if non-KOMA class
+  \IfFileExists{parskip.sty}{%
+    \usepackage{parskip}
+  }{% else
+    \setlength{\parindent}{0pt}
+    \setlength{\parskip}{6pt plus 2pt minus 1pt}}
+}{% if KOMA class
+  \KOMAoptions{parskip=half}}
+\makeatother
+\usepackage{xcolor}
+\IfFileExists{xurl.sty}{\usepackage{xurl}}{} % add URL line breaks if available
+\IfFileExists{bookmark.sty}{\usepackage{bookmark}}{\usepackage{hyperref}}
 \hypersetup{
-            pdftitle={卒業論文のためのR入門},
-            pdfauthor={森　知晴（立命館大学総合心理学部）},
-            pdfborder={0 0 0},
-            breaklinks=true}
-\urlstyle{same}  % don't use monospace font for urls
-\usepackage{natbib}
-\bibliographystyle{apalike}
+  pdftitle={卒業論文のためのR入門},
+  pdfauthor={森　知晴（立命館大学総合心理学部）},
+  hidelinks,
+  pdfcreator={LaTeX via pandoc}}
+\urlstyle{same} % disable monospaced font for URLs
 \usepackage{color}
 \usepackage{fancyvrb}
 \newcommand{\VerbBar}{|}
@@ -40,41 +50,48 @@
 \usepackage{framed}
 \definecolor{shadecolor}{RGB}{248,248,248}
 \newenvironment{Shaded}{\begin{snugshade}}{\end{snugshade}}
-\newcommand{\KeywordTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{#1}}}
+\newcommand{\AlertTok}[1]{\textcolor[rgb]{0.94,0.16,0.16}{#1}}
+\newcommand{\AnnotationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\AttributeTok}[1]{\textcolor[rgb]{0.77,0.63,0.00}{#1}}
+\newcommand{\BaseNTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\BuiltInTok}[1]{#1}
+\newcommand{\CharTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\CommentTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textit{#1}}}
+\newcommand{\CommentVarTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\ConstantTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\ControlFlowTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{#1}}}
 \newcommand{\DataTypeTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{#1}}
 \newcommand{\DecValTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
-\newcommand{\BaseNTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
-\newcommand{\FloatTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
-\newcommand{\ConstantTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
-\newcommand{\CharTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
-\newcommand{\SpecialCharTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
-\newcommand{\StringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
-\newcommand{\VerbatimStringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
-\newcommand{\SpecialStringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
-\newcommand{\ImportTok}[1]{#1}
-\newcommand{\CommentTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textit{#1}}}
 \newcommand{\DocumentationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
-\newcommand{\AnnotationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
-\newcommand{\CommentVarTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
-\newcommand{\OtherTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{#1}}
-\newcommand{\FunctionTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
-\newcommand{\VariableTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
-\newcommand{\ControlFlowTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{#1}}}
-\newcommand{\OperatorTok}[1]{\textcolor[rgb]{0.81,0.36,0.00}{\textbf{#1}}}
-\newcommand{\BuiltInTok}[1]{#1}
-\newcommand{\ExtensionTok}[1]{#1}
-\newcommand{\PreprocessorTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textit{#1}}}
-\newcommand{\AttributeTok}[1]{\textcolor[rgb]{0.77,0.63,0.00}{#1}}
-\newcommand{\RegionMarkerTok}[1]{#1}
-\newcommand{\InformationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
-\newcommand{\WarningTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
-\newcommand{\AlertTok}[1]{\textcolor[rgb]{0.94,0.16,0.16}{#1}}
 \newcommand{\ErrorTok}[1]{\textcolor[rgb]{0.64,0.00,0.00}{\textbf{#1}}}
+\newcommand{\ExtensionTok}[1]{#1}
+\newcommand{\FloatTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\FunctionTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\ImportTok}[1]{#1}
+\newcommand{\InformationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\KeywordTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{#1}}}
 \newcommand{\NormalTok}[1]{#1}
-\usepackage{longtable,booktabs}
-% Fix footnotes in tables (requires footnote package)
-\IfFileExists{footnote.sty}{\usepackage{footnote}\makesavenoteenv{long table}}{}
-\usepackage{graphicx,grffile}
+\newcommand{\OperatorTok}[1]{\textcolor[rgb]{0.81,0.36,0.00}{\textbf{#1}}}
+\newcommand{\OtherTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{#1}}
+\newcommand{\PreprocessorTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textit{#1}}}
+\newcommand{\RegionMarkerTok}[1]{#1}
+\newcommand{\SpecialCharTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\SpecialStringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\StringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\VariableTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\VerbatimStringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\WarningTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\usepackage{longtable,booktabs,array}
+\usepackage{calc} % for calculating minipage widths
+% Correct order of tables after \paragraph or \subparagraph
+\usepackage{etoolbox}
+\makeatletter
+\patchcmd\longtable{\par}{\if@noskipsec\mbox{}\fi\par}{}{}
+\makeatother
+% Allow footnotes in longtable head/foot
+\IfFileExists{footnotehyper.sty}{\usepackage{footnotehyper}}{\usepackage{footnote}}
+\makesavenoteenv{longtable}
+\usepackage{graphicx}
 \makeatletter
 \def\maxwidth{\ifdim\Gin@nat@width>\linewidth\linewidth\else\Gin@nat@width\fi}
 \def\maxheight{\ifdim\Gin@nat@height>\textheight\textheight\else\Gin@nat@height\fi}
@@ -83,36 +100,24 @@
 % margins by default, and it is still possible to overwrite the defaults
 % using explicit options in \includegraphics[width, height, ...]{}
 \setkeys{Gin}{width=\maxwidth,height=\maxheight,keepaspectratio}
-\IfFileExists{parskip.sty}{%
-\usepackage{parskip}
-}{% else
-\setlength{\parindent}{0pt}
-\setlength{\parskip}{6pt plus 2pt minus 1pt}
-}
-\setlength{\emergencystretch}{3em}  % prevent overfull lines
-\providecommand{\tightlist}{%
-  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
-\setcounter{secnumdepth}{5}
-% Redefines (sub)paragraphs to behave more like sections
-\ifx\paragraph\undefined\else
-\let\oldparagraph\paragraph
-\renewcommand{\paragraph}[1]{\oldparagraph{#1}\mbox{}}
-\fi
-\ifx\subparagraph\undefined\else
-\let\oldsubparagraph\subparagraph
-\renewcommand{\subparagraph}[1]{\oldsubparagraph{#1}\mbox{}}
-\fi
-
-% set default figure placement to htbp
+% Set default figure placement to htbp
 \makeatletter
 \def\fps@figure{htbp}
 \makeatother
-
+\setlength{\emergencystretch}{3em} % prevent overfull lines
+\providecommand{\tightlist}{%
+  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+\setcounter{secnumdepth}{5}
 \usepackage{booktabs}
+\ifluatex
+  \usepackage{selnolig}  % disable illegal ligatures
+\fi
+\usepackage[]{natbib}
+\bibliographystyle{apalike}
 
 \title{卒業論文のためのR入門}
 \author{森　知晴（立命館大学総合心理学部）}
-\date{Last Update: 2020-09-03}
+\date{Last Update: 2021-10-19}
 
 \begin{document}
 \maketitle
@@ -121,7 +126,8 @@
 \setcounter{tocdepth}{1}
 \tableofcontents
 }
-\chapter{はじめに}\label{Introduction}
+\hypertarget{Introduction}{%
+\chapter{はじめに}\label{Introduction}}
 
 この文書は、卒業論文を書くためのRの使い方を\textbf{できるだけコンパクトに}まとめたものです。
 読者は立命館大学総合心理学部森ゼミの学生をピンポイントに想定しています。
@@ -137,7 +143,8 @@
 一般的なRの入門文書としても参照できます。
 説明の都合上、厳密さよりわかりやすさを重視した記述が多々あります。ご了承ください。
 
-\section{この文書で学ぶこと}\label{ux3053ux306eux6587ux66f8ux3067ux5b66ux3076ux3053ux3068}
+\hypertarget{ux3053ux306eux6587ux66f8ux3067ux5b66ux3076ux3053ux3068}{%
+\section{この文書で学ぶこと}\label{ux3053ux306eux6587ux66f8ux3067ux5b66ux3076ux3053ux3068}}
 
 具体的には、以下の項目を学習します。
 
@@ -159,8 +166,8 @@
   重回帰分析を行い、論文に貼り付けられる形に整える
 \end{itemize}
 
-文書は前から順番に読み、自分でコードを打って確かめてください。 Chapter
-\ref{InstallR}を読んでRとRStudioを準備し、登場するコードを自分で入力して練習してみてください。
+文書は前から順番に読み、自分でコードを打って確かめてください。
+Chapter \ref{InstallR}を読んでRとRStudioを準備し、登場するコードを自分で入力して練習してみてください。
 
 この文書で紹介している方法はあくまで一例です。
 Rには様々な機能やパッケージがあり、日々進化しています。
@@ -171,14 +178,24 @@ Rには様々な機能やパッケージがあり、日々進化しています�
 \begin{itemize}
 \tightlist
 \item
-  浅野正彦・中村公亮（2018）はじめてのRStudio
-  エラーメッセージなんてこわくない、オーム社
+  浅野正彦・中村公亮（2018）はじめてのRStudio エラーメッセージなんてこわくない、オーム社
 \item
-  松村優哉・湯谷啓明・紀ノ定保礼・前田和寛（2018）RユーザのためのRStudio{[}実践{]}入門
-  −tidyverseによるモダンな分析フローの世界−
+  松村優哉・湯谷啓明・紀ノ定保礼・前田和寛（2018）RユーザのためのRStudio{[}実践{]}入門 −tidyverseによるモダンな分析フローの世界−
 \end{itemize}
 
-\section{この文書の作成目的}\label{ux3053ux306eux6587ux66f8ux306eux4f5cux6210ux76eeux7684}
+\hypertarget{ux66f4ux65b0ux5c65ux6b74}{%
+\section{更新履歴}\label{ux66f4ux65b0ux5c65ux6b74}}
+
+\begin{itemize}
+\tightlist
+\item
+  2021/10/19　YouTube動画へのリンクを作成
+\item
+  2020/09/03　公開
+\end{itemize}
+
+\hypertarget{ux3053ux306eux6587ux66f8ux306eux4f5cux6210ux76eeux7684}{%
+\section{この文書の作成目的}\label{ux3053ux306eux6587ux66f8ux306eux4f5cux6210ux76eeux7684}}
 
 \emph{この節は余談なので、読み飛ばしても問題ありません。}
 
@@ -207,7 +224,8 @@ Rには様々な機能やパッケージがあり、日々進化しています�
   \end{itemize}
 \end{itemize}
 
-\chapter{R(Studio)のインストール}\label{InstallR}
+\hypertarget{InstallR}{%
+\chapter{R(Studio)のインストール}\label{InstallR}}
 
 R(Studio)のインストールは最大の難関となる可能性があります（特にWindowsの場合）。
 紹介するマニュアルを丁寧に読んでインストールしてください。
@@ -233,11 +251,9 @@ R(Studio)のインストールは最大の難関となる可能性がありま�
     RStudioのカスタマイズはスキップする
   \end{itemize}
 \item
-  ディレクトリ（フォルダ）の名前に日本語（中国語・韓国語）が含まれている場合、大きな問題となり得る
-  → 対処法をよく読む
+  ディレクトリ（フォルダ）の名前に日本語（中国語・韓国語）が含まれている場合、大きな問題となり得る → 対処法をよく読む
 \item
-  OneDriveでのバックアップ機能が使われている場合、大きな問題となり得る →
-  対処法をよく読む
+  OneDriveでのバックアップ機能が使われている場合、大きな問題となり得る → 対処法をよく読む
 \end{itemize}
 
 インストールのポイント（macOS）
@@ -256,9 +272,11 @@ R(Studio)のインストールは最大の難関となる可能性がありま�
 
 資料を読んで操作してもよくわからなかった場合、森の授業・ゼミの受講生は連絡してください。
 
-\chapter{RStudioの使い方}\label{RStudio}
+\hypertarget{RStudio}{%
+\chapter{RStudioの使い方}\label{RStudio}}
 
-\section{RStudioの起動}\label{rstudioux306eux8d77ux52d5}
+\hypertarget{rstudioux306eux8d77ux52d5}{%
+\section{RStudioの起動}\label{rstudioux306eux8d77ux52d5}}
 
 それでは、RStudioを起動してみましょう。
 正しくインストールされていれば、Windowsはスタートメニュー、Macの場合はアプリケーションのアイコンをクリックして起動できるはずです。
@@ -266,7 +284,8 @@ R本体はインストールされていればOKです。自分で起動する�
 
 RStudioは今後何度も起動するので、ショートカットを作ってデスクトップから起動できるようにしておくと便利です。
 
-\section{RStudioの画面}\label{rstudioux306eux753bux9762}
+\hypertarget{rstudioux306eux753bux9762}{%
+\section{RStudioの画面}\label{rstudioux306eux753bux9762}}
 
 人によって多少異なりますが、RStudioを起動した画面は以下のようになっています。
 
@@ -278,8 +297,7 @@ RStudioは通常4つのウィンドウ（ペーンと呼びます）に分割さ
 \begin{itemize}
 \tightlist
 \item
-  左上のペーンはRStudioを動かすためのコードを書く場所です。表示されていなければ、左上の緑の＋をクリックし、「R
-  Script」を選択してください。
+  左上のペーンはRStudioを動かすためのコードを書く場所です。表示されていなければ、左上の緑の＋をクリックし、「R Script」を選択してください。
 \item
   左下のペーンはコンソールと呼ばれる、コードの実行結果を表示する場所です。ここに直接コードを書くこともできますが、コードは保存されません。
 \item
@@ -288,24 +306,22 @@ RStudioは通常4つのウィンドウ（ペーンと呼びます）に分割さ
   右下のペーンはファイルやパッケージなどが表示される場所です。
 \end{itemize}
 
-\section{RStudioの操作}\label{rstudioux306eux64cdux4f5c}
+\hypertarget{rstudioux306eux64cdux4f5c}{%
+\section{RStudioの操作}\label{rstudioux306eux64cdux4f5c}}
 
 それでは、実際に操作してみましょう。Rスクリプトに\texttt{1\ +\ 1}と打ってみてください。
 
 \begin{center}\includegraphics[width=0.4\linewidth]{image/basic1} \end{center}
 
-これが1行のコードになります。この行にカーソルを合わせた状態で、WindowsではCtrl
-+ Enter、MacではCommand + Enterを押してください。
+これが1行のコードになります。この行にカーソルを合わせた状態で、WindowsではCtrl + Enter、MacではCommand + Enterを押してください。
 （スクリプト右上のRunを押しても良いです）
 
 \begin{center}\includegraphics[width=0.2\linewidth]{image/basic2} \end{center}
 
-すると、コンソールに結果が表示されました。\textgreater{} 1 +
-1は実行したコードを表しています。
+すると、コンソールに結果が表示されました。\textgreater{} 1 + 1は実行したコードを表しています。
 {[}1{]}は行番号を表します。その右側が結果です。
 
-もう少しコードを書いてみましょう。\texttt{3\ -\ 1} \texttt{2\ *\ 3}
-\texttt{6\ /\ 2}と3行のコードを書いてください。
+もう少しコードを書いてみましょう。\texttt{3\ -\ 1} \texttt{2\ *\ 3} \texttt{6\ /\ 2}と3行のコードを書いてください。
 
 \begin{center}\includegraphics[width=0.4\linewidth]{image/basic3} \end{center}
 
@@ -317,14 +333,15 @@ RStudioは通常4つのウィンドウ（ペーンと呼びます）に分割さ
 
 スクリプトにコードを書く→実行してコンソールで結果を確認、という一連の作業を繰り返して慣れていきましょう。
 
-\section{スクリプトの保存}\label{ux30b9ux30afux30eaux30d7ux30c8ux306eux4fddux5b58}
+\hypertarget{ux30b9ux30afux30eaux30d7ux30c8ux306eux4fddux5b58}{%
+\section{スクリプトの保存}\label{ux30b9ux30afux30eaux30d7ux30c8ux306eux4fddux5b58}}
 
-スクリプトはWindowsはCtrl + S、MacはCommand +
-Sで保存することができます。
+スクリプトはWindowsはCtrl + S、MacはCommand + Sで保存することができます。
 スクリプトを保存しておけば、次回に書き直す必要はありません。
 卒業論文では、何度もスクリプトを書き直すので、きちんと保存しておきましょう。
 
-\section{プロジェクトの作成}\label{ux30d7ux30edux30b8ux30a7ux30afux30c8ux306eux4f5cux6210}
+\hypertarget{ux30d7ux30edux30b8ux30a7ux30afux30c8ux306eux4f5cux6210}{%
+\section{プロジェクトの作成}\label{ux30d7ux30edux30b8ux30a7ux30afux30c8ux306eux4f5cux6210}}
 
 RStudioには「プロジェクト」という機能があり、これを使うとファイル管理がしやすくなります。
 プロジェクトはコンピュータ内にフォルダを作成し（または既存のフォルダを指定し）、そのフォルダの中で作業を行います。
@@ -370,7 +387,8 @@ RStudioを使う際は、プロジェクトをベースに作業するように�
 試しに、新しいRスクリプトを作成（左上の緑の＋を押す）し、保存して見てください。
 フォルダ内にRスクリプト（.Rで終わるファイル）ができていれば成功です。
 
-\chapter{パッケージのインストール}\label{Packages}
+\hypertarget{Packages}{%
+\chapter{パッケージのインストール}\label{Packages}}
 
 Rの機能を拡張するため、必要なパッケージをインストールします。
 まずは、重要なパッケージがまとめられている\texttt{tidyverse}（読み：タイディバース）をインストールしましょう。
@@ -378,8 +396,8 @@ Rの機能を拡張するため、必要なパッケージをインストール�
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\KeywordTok{install.packages}\NormalTok{(}\StringTok{"tidyverse"}\NormalTok{)}
-\KeywordTok{library}\NormalTok{(tidyverse)}
+\FunctionTok{install.packages}\NormalTok{(}\StringTok{"tidyverse"}\NormalTok{)}
+\FunctionTok{library}\NormalTok{(tidyverse)}
 \end{Highlighting}
 \end{Shaded}
 
@@ -392,7 +410,7 @@ Rスクリプトの冒頭に使用する\texttt{library()}を並べておき、�
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\NormalTok{mtcars }\OperatorTok{%>%}\StringTok{ }\KeywordTok{summarize}\NormalTok{(}\DataTypeTok{mean_mpg =} \KeywordTok{mean}\NormalTok{(mpg))}
+\NormalTok{mtcars }\SpecialCharTok{\%\textgreater{}\%} \FunctionTok{summarize}\NormalTok{(}\AttributeTok{mean\_mpg =} \FunctionTok{mean}\NormalTok{(mpg))}
 \end{Highlighting}
 \end{Shaded}
 
@@ -406,20 +424,22 @@ Chapter \ref{InstallR}に戻って確認しましょう。
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\KeywordTok{library}\NormalTok{(tidyverse)}
+\FunctionTok{library}\NormalTok{(tidyverse)}
 \end{Highlighting}
 \end{Shaded}
 
-\chapter{Rの基本操作}\label{Rbasics}
+\hypertarget{Rbasics}{%
+\chapter{Rの基本操作}\label{Rbasics}}
 
-\section{オブジェクト}\label{ux30aaux30d6ux30b8ux30a7ux30afux30c8}
+\hypertarget{ux30aaux30d6ux30b8ux30a7ux30afux30c8}{%
+\section{オブジェクト}\label{ux30aaux30d6ux30b8ux30a7ux30afux30c8}}
 
 Rで使用するあらゆる「モノ」はオブジェクト（object）と呼ばれ管理されます。
 オブジェクトの準備からRの分析はスタートします。まずは、オブジェクトを準備してみましょう。
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\NormalTok{first_object <-}\StringTok{ }\DecValTok{1} 
+\NormalTok{first\_object }\OtherTok{\textless{}{-}} \DecValTok{1} 
 \end{Highlighting}
 \end{Shaded}
 
@@ -432,7 +452,7 @@ Rで使用するあらゆる「モノ」はオブジェクト（object）と呼�
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\NormalTok{first_object}
+\NormalTok{first\_object}
 \end{Highlighting}
 \end{Shaded}
 
@@ -447,7 +467,7 @@ Rで使用するあらゆる「モノ」はオブジェクト（object）と呼�
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\NormalTok{(second_object <-}\StringTok{ }\DecValTok{2}\NormalTok{)}
+\NormalTok{(second\_object }\OtherTok{\textless{}{-}} \DecValTok{2}\NormalTok{)}
 \end{Highlighting}
 \end{Shaded}
 
@@ -456,12 +476,12 @@ Rで使用するあらゆる「モノ」はオブジェクト（object）と呼�
 \end{verbatim}
 
 文字列をオブジェクトに入れることもできます。
-この場合、文字列を``''（引用符）でくくります。
+この場合、文字列を""（引用符）でくくります。
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\NormalTok{first_string_object <-}\StringTok{ "Ritsumeikan University"}
-\NormalTok{first_string_object}
+\NormalTok{first\_string\_object }\OtherTok{\textless{}{-}} \StringTok{"Ritsumeikan University"}
+\NormalTok{first\_string\_object}
 \end{Highlighting}
 \end{Shaded}
 
@@ -477,8 +497,8 @@ Rで使用するあらゆる「モノ」はオブジェクト（object）と呼�
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\NormalTok{first_vector_object <-}\StringTok{ }\KeywordTok{c}\NormalTok{(}\DecValTok{1}\NormalTok{, }\DecValTok{2}\NormalTok{, }\DecValTok{3}\NormalTok{, }\DecValTok{4}\NormalTok{, }\DecValTok{5}\NormalTok{)}
-\NormalTok{first_vector_object}
+\NormalTok{first\_vector\_object }\OtherTok{\textless{}{-}} \FunctionTok{c}\NormalTok{(}\DecValTok{1}\NormalTok{, }\DecValTok{2}\NormalTok{, }\DecValTok{3}\NormalTok{, }\DecValTok{4}\NormalTok{, }\DecValTok{5}\NormalTok{)}
+\NormalTok{first\_vector\_object}
 \end{Highlighting}
 \end{Shaded}
 
@@ -501,14 +521,14 @@ Rで使用するあらゆる「モノ」はオブジェクト（object）と呼�
   \texttt{second\_vector\_object}という名前のオブジェクトに数値のベクトル\texttt{1,\ 1,\ 2,\ 3,\ 5,\ 8}を代入し、確認してください。
 \end{itemize}
 
-\section{簡単な計算}\label{ux7c21ux5358ux306aux8a08ux7b97}
+\hypertarget{ux7c21ux5358ux306aux8a08ux7b97}{%
+\section{簡単な計算}\label{ux7c21ux5358ux306aux8a08ux7b97}}
 
-Rでの簡単な計算をしてみましょう。足し算・引き算は日常用語と同じく\texttt{+},
-\texttt{-}を用います。
+Rでの簡単な計算をしてみましょう。足し算・引き算は日常用語と同じく\texttt{+}, \texttt{-}を用います。
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\DecValTok{1} \OperatorTok{+}\StringTok{ }\DecValTok{1}
+\DecValTok{1} \SpecialCharTok{+} \DecValTok{1}
 \end{Highlighting}
 \end{Shaded}
 
@@ -518,7 +538,7 @@ Rでの簡単な計算をしてみましょう。足し算・引き算は日常�
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\DecValTok{5} \OperatorTok{-}\StringTok{ }\DecValTok{2}
+\DecValTok{5} \SpecialCharTok{{-}} \DecValTok{2}
 \end{Highlighting}
 \end{Shaded}
 
@@ -530,7 +550,7 @@ Rでの簡単な計算をしてみましょう。足し算・引き算は日常�
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\DecValTok{2} \OperatorTok{*}\StringTok{ }\DecValTok{3}
+\DecValTok{2} \SpecialCharTok{*} \DecValTok{3}
 \end{Highlighting}
 \end{Shaded}
 
@@ -540,7 +560,7 @@ Rでの簡単な計算をしてみましょう。足し算・引き算は日常�
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\DecValTok{10} \OperatorTok{/}\StringTok{ }\DecValTok{2}
+\DecValTok{10} \SpecialCharTok{/} \DecValTok{2}
 \end{Highlighting}
 \end{Shaded}
 
@@ -550,7 +570,7 @@ Rでの簡単な計算をしてみましょう。足し算・引き算は日常�
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\DecValTok{4} \OperatorTok{^}\StringTok{ }\DecValTok{2}
+\DecValTok{4} \SpecialCharTok{\^{}} \DecValTok{2}
 \end{Highlighting}
 \end{Shaded}
 
@@ -562,8 +582,8 @@ Rでの簡単な計算をしてみましょう。足し算・引き算は日常�
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\NormalTok{age <-}\StringTok{ }\DecValTok{20}
-\NormalTok{age }\OperatorTok{+}\StringTok{ }\DecValTok{10}
+\NormalTok{age }\OtherTok{\textless{}{-}} \DecValTok{20}
+\NormalTok{age }\SpecialCharTok{+} \DecValTok{10}
 \end{Highlighting}
 \end{Shaded}
 
@@ -576,8 +596,8 @@ Rでの簡単な計算をしてみましょう。足し算・引き算は日常�
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\NormalTok{one_plus_one <-}\StringTok{ }\DecValTok{1} \OperatorTok{+}\StringTok{ }\DecValTok{1}
-\NormalTok{one_plus_one}
+\NormalTok{one\_plus\_one }\OtherTok{\textless{}{-}} \DecValTok{1} \SpecialCharTok{+} \DecValTok{1}
+\NormalTok{one\_plus\_one}
 \end{Highlighting}
 \end{Shaded}
 
@@ -594,11 +614,11 @@ Rでの簡単な計算をしてみましょう。足し算・引き算は日常�
 \item
   オブジェクト\texttt{a}に3を、オブジェクト\texttt{b}に4を代入してください。
 \item
-  \texttt{a},
-  \texttt{b}それぞれを2乗したものの和をとり、結果が\texttt{25}となることを確認してください。
+  \texttt{a}, \texttt{b}それぞれを2乗したものの和をとり、結果が\texttt{25}となることを確認してください。
 \end{itemize}
 
-\section{関数}\label{ux95a2ux6570}
+\hypertarget{ux95a2ux6570}{%
+\section{関数}\label{ux95a2ux6570}}
 
 Rではオブジェクトから別のオブジェクトを生成するために「関数（function）」を用います。
 関数の使い方に慣れていきましょう。
@@ -608,13 +628,14 @@ Rではオブジェクトから別のオブジェクトを生成するために�
 ここでは、簡単な関数の例を紹介します。
 その他の関数はその都度紹介します。
 
-\subsection{数値に対する関数}\label{ux6570ux5024ux306bux5bfeux3059ux308bux95a2ux6570}
+\hypertarget{ux6570ux5024ux306bux5bfeux3059ux308bux95a2ux6570}{%
+\subsection{数値に対する関数}\label{ux6570ux5024ux306bux5bfeux3059ux308bux95a2ux6570}}
 
 皆さんが数学で勉強してきた関数をRの関数として使うことができます。例えば平方根をとる関数\texttt{sqrt()}を使ってみましょう。
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\KeywordTok{sqrt}\NormalTok{(}\DecValTok{4}\NormalTok{)}
+\FunctionTok{sqrt}\NormalTok{(}\DecValTok{4}\NormalTok{)}
 \end{Highlighting}
 \end{Shaded}
 
@@ -631,8 +652,7 @@ Rではオブジェクトから別のオブジェクトを生成するために�
 \item
   オブジェクト\texttt{a}に3を、オブジェクト\texttt{b}に4を代入してください。（前の問題と同様）
 \item
-  \texttt{a},
-  \texttt{b}それぞれの2乗して和をとったものの平方根をとり、結果が\texttt{5}となることを確認してください。
+  \texttt{a}, \texttt{b}それぞれの2乗して和をとったものの平方根をとり、結果が\texttt{5}となることを確認してください。
 
   \begin{itemize}
   \tightlist
@@ -641,7 +661,8 @@ Rではオブジェクトから別のオブジェクトを生成するために�
   \end{itemize}
 \end{itemize}
 
-\subsection{ベクトルに対する関数}\label{ux30d9ux30afux30c8ux30ebux306bux5bfeux3059ux308bux95a2ux6570}
+\hypertarget{ux30d9ux30afux30c8ux30ebux306bux5bfeux3059ux308bux95a2ux6570}{%
+\subsection{ベクトルに対する関数}\label{ux30d9ux30afux30c8ux30ebux306bux5bfeux3059ux308bux95a2ux6570}}
 
 関数の引数は数値だけでなく、ベクトルをとることもできます。統計分析ではこちらをよく使います。例えば、年齢のデータが入ったベクトル\texttt{age\_vector\ \textless{}-\ c(18,\ 21,\ 22,\ 23,\ 34)}を考えます。
 
@@ -649,8 +670,8 @@ Rではオブジェクトから別のオブジェクトを生成するために�
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\NormalTok{age_vector <-}\StringTok{ }\KeywordTok{c}\NormalTok{(}\DecValTok{18}\NormalTok{, }\DecValTok{21}\NormalTok{, }\DecValTok{22}\NormalTok{, }\DecValTok{23}\NormalTok{, }\DecValTok{34}\NormalTok{)}
-\KeywordTok{min}\NormalTok{(age_vector)}
+\NormalTok{age\_vector }\OtherTok{\textless{}{-}} \FunctionTok{c}\NormalTok{(}\DecValTok{18}\NormalTok{, }\DecValTok{21}\NormalTok{, }\DecValTok{22}\NormalTok{, }\DecValTok{23}\NormalTok{, }\DecValTok{34}\NormalTok{)}
+\FunctionTok{min}\NormalTok{(age\_vector)}
 \end{Highlighting}
 \end{Shaded}
 
@@ -664,7 +685,7 @@ Rではオブジェクトから別のオブジェクトを生成するために�
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\KeywordTok{mean}\NormalTok{(age_vector)}
+\FunctionTok{mean}\NormalTok{(age\_vector)}
 \end{Highlighting}
 \end{Shaded}
 
@@ -674,7 +695,7 @@ Rではオブジェクトから別のオブジェクトを生成するために�
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\KeywordTok{median}\NormalTok{(age_vector)}
+\FunctionTok{median}\NormalTok{(age\_vector)}
 \end{Highlighting}
 \end{Shaded}
 
@@ -684,7 +705,7 @@ Rではオブジェクトから別のオブジェクトを生成するために�
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\KeywordTok{sd}\NormalTok{(age_vector)}
+\FunctionTok{sd}\NormalTok{(age\_vector)}
 \end{Highlighting}
 \end{Shaded}
 
@@ -702,7 +723,8 @@ Rではオブジェクトから別のオブジェクトを生成するために�
   \texttt{income\_vector}の平均・中央値・標準偏差をそれぞれ求めてください。
 \end{itemize}
 
-\section{データフレーム}\label{ux30c7ux30fcux30bfux30d5ux30ecux30fcux30e0}
+\hypertarget{ux30c7ux30fcux30bfux30d5ux30ecux30fcux30e0}{%
+\section{データフレーム}\label{ux30c7ux30fcux30bfux30d5ux30ecux30fcux30e0}}
 
 多くのデータは、表形式でまとめられます。
 縦方向に観測値を、横方向に変数を並べたデータのことをRではデータフレームと呼びます。
@@ -712,10 +734,10 @@ Rではオブジェクトから別のオブジェクトを生成するために�
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\NormalTok{age <-}\StringTok{ }\KeywordTok{c}\NormalTok{(}\DecValTok{18}\NormalTok{, }\DecValTok{21}\NormalTok{, }\DecValTok{22}\NormalTok{, }\DecValTok{23}\NormalTok{, }\DecValTok{34}\NormalTok{) }\CommentTok{#年齢のベクトルの作成}
-\NormalTok{gender <-}\StringTok{ }\KeywordTok{c}\NormalTok{(}\StringTok{"female"}\NormalTok{, }\StringTok{"male"}\NormalTok{, }\StringTok{"male"}\NormalTok{, }\StringTok{"female"}\NormalTok{, }\StringTok{"female"}\NormalTok{) }\CommentTok{#性別のベクトルの作成}
-\NormalTok{first_dataframe <-}\StringTok{ }\KeywordTok{data.frame}\NormalTok{(age, gender)}
-\NormalTok{first_dataframe}
+\NormalTok{age }\OtherTok{\textless{}{-}} \FunctionTok{c}\NormalTok{(}\DecValTok{18}\NormalTok{, }\DecValTok{21}\NormalTok{, }\DecValTok{22}\NormalTok{, }\DecValTok{23}\NormalTok{, }\DecValTok{34}\NormalTok{) }\CommentTok{\#年齢のベクトルの作成}
+\NormalTok{gender }\OtherTok{\textless{}{-}} \FunctionTok{c}\NormalTok{(}\StringTok{"female"}\NormalTok{, }\StringTok{"male"}\NormalTok{, }\StringTok{"male"}\NormalTok{, }\StringTok{"female"}\NormalTok{, }\StringTok{"female"}\NormalTok{) }\CommentTok{\#性別のベクトルの作成}
+\NormalTok{first\_dataframe }\OtherTok{\textless{}{-}} \FunctionTok{data.frame}\NormalTok{(age, gender)}
+\NormalTok{first\_dataframe}
 \end{Highlighting}
 \end{Shaded}
 
@@ -728,9 +750,8 @@ Rではオブジェクトから別のオブジェクトを生成するために�
 ## 5  34 female
 \end{verbatim}
 
-1人目が18歳の女性、2人目が21歳の男性\ldots{}を表すデータフレームが作成できました。
-Chapter
-@ref(\#ImportData)ではExcelファイルなどからデータのRにインポートする方法を学びますが、その際は自動的にデータフレームとしてインポートされます。
+1人目が18歳の女性、2人目が21歳の男性\ldots を表すデータフレームが作成できました。
+Chapter @ref(\#ImportData)ではExcelファイルなどからデータのRにインポートする方法を学びますが、その際は自動的にデータフレームとしてインポートされます。
 
 データ分析の際に、データフレームのうち特定の変数だけを使いたい場合がよくあります。
 その際は、\texttt{データフレーム名\$変数名}と表記することで、特定の変数を使うことができます。
@@ -738,13 +759,12 @@ Chapter
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\NormalTok{first_dataframe}\OperatorTok{$}\NormalTok{gender}
+\NormalTok{first\_dataframe}\SpecialCharTok{$}\NormalTok{gender}
 \end{Highlighting}
 \end{Shaded}
 
 \begin{verbatim}
-## [1] female male   male   female female
-## Levels: female male
+## [1] "female" "male"   "male"   "female" "female"
 \end{verbatim}
 
 性別のベクトルを取り出すことができました。
@@ -752,7 +772,7 @@ Chapter
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\KeywordTok{mean}\NormalTok{(first_dataframe}\OperatorTok{$}\NormalTok{age)}
+\FunctionTok{mean}\NormalTok{(first\_dataframe}\SpecialCharTok{$}\NormalTok{age)}
 \end{Highlighting}
 \end{Shaded}
 
@@ -774,31 +794,34 @@ Chapter
   \texttt{income\_data}を用いて、\texttt{income}の中央値を求めてください。
 \end{itemize}
 
-\chapter{データのインポート}\label{ImportData}
+\hypertarget{ImportData}{%
+\chapter{データのインポート}\label{ImportData}}
 
 データ分析のためには、データをRStudioにインポート（読み込み）させなければなりません。インポートの方法は、持っているデータのファイル形式によって変わります。
 
-\section{インポートの準備}\label{ux30a4ux30f3ux30ddux30fcux30c8ux306eux6e96ux5099}
+\hypertarget{ux30a4ux30f3ux30ddux30fcux30c8ux306eux6e96ux5099}{%
+\section{インポートの準備}\label{ux30a4ux30f3ux30ddux30fcux30c8ux306eux6e96ux5099}}
 
 インポートしたいファイルは、プロジェクトと同じフォルダに入れておきましょう。
 プロジェクトはChapter \ref{RStudio}で学習しています。
 
 インポートしたいファイルの形式も確認しておきましょう。
-代表的な形式として、CSVファイル（.csv）、Excelファイル（.xlsx,
-.xls）があります。
+代表的な形式として、CSVファイル（.csv）、Excelファイル（.xlsx, .xls）があります。
 拡張子が表示されていない場合は\href{https://pc-karuma.net/windows-10-show-explorer-file-name-extension/}{こちら}を参考に表示させるようにしましょう。
 
 インポートの前に、ファイルの1行目は変数名（英語）にしておきましょう。
 
-\section{ファイル形式別のインポート方法}\label{ux30d5ux30a1ux30a4ux30ebux5f62ux5f0fux5225ux306eux30a4ux30f3ux30ddux30fcux30c8ux65b9ux6cd5}
+\hypertarget{ux30d5ux30a1ux30a4ux30ebux5f62ux5f0fux5225ux306eux30a4ux30f3ux30ddux30fcux30c8ux65b9ux6cd5}{%
+\section{ファイル形式別のインポート方法}\label{ux30d5ux30a1ux30a4ux30ebux5f62ux5f0fux5225ux306eux30a4ux30f3ux30ddux30fcux30c8ux65b9ux6cd5}}
 
-\subsection{CSVファイルの場合（.csv）}\label{csvux30d5ux30a1ux30a4ux30ebux306eux5834ux5408.csv}
+\hypertarget{csvux30d5ux30a1ux30a4ux30ebux306eux5834ux5408.csv}{%
+\subsection{CSVファイルの場合（.csv）}\label{csvux30d5ux30a1ux30a4ux30ebux306eux5834ux5408.csv}}
 
 CSVファイルの場合は、\texttt{read\_csv}を用います。ファイルの名前が\texttt{sotsuron.csv}の場合、以下のように実行します。
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\NormalTok{data_original <-}\StringTok{ }\KeywordTok{read_csv}\NormalTok{(}\StringTok{"sotsuron.csv"}\NormalTok{)}
+\NormalTok{data\_original }\OtherTok{\textless{}{-}} \FunctionTok{read\_csv}\NormalTok{(}\StringTok{"sotsuron.csv"}\NormalTok{)}
 \end{Highlighting}
 \end{Shaded}
 
@@ -806,14 +829,15 @@ CSVファイルの場合は、\texttt{read\_csv}を用います。ファイル�
 オブジェクト名は自由につけることができますが、わかりやすいものにしましょう。
 ここでは、インポートした元データであることを明示するため、\texttt{data\_original}という名前にしています。
 
-\subsection{Excelファイルの場合（.xlsx）}\label{excelux30d5ux30a1ux30a4ux30ebux306eux5834ux5408.xlsx}
+\hypertarget{excelux30d5ux30a1ux30a4ux30ebux306eux5834ux5408.xlsx}{%
+\subsection{Excelファイルの場合（.xlsx）}\label{excelux30d5ux30a1ux30a4ux30ebux306eux5834ux5408.xlsx}}
 
 Excelファイルの場合は、新しいパッケージ\texttt{readxl}をインストールする必要があります。
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\KeywordTok{install.packages}\NormalTok{(}\StringTok{"readxl"}\NormalTok{)}
-\KeywordTok{library}\NormalTok{(readxl)}
+\FunctionTok{install.packages}\NormalTok{(}\StringTok{"readxl"}\NormalTok{)}
+\FunctionTok{library}\NormalTok{(readxl)}
 \end{Highlighting}
 \end{Shaded}
 
@@ -821,18 +845,19 @@ Excelファイルの場合は、新しいパッケージ\texttt{readxl}をイン
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\NormalTok{data_original <-}\StringTok{ }\KeywordTok{read_excel}\NormalTok{(}\StringTok{"sotsuron.xlsx"}\NormalTok{)}
+\NormalTok{data\_original }\OtherTok{\textless{}{-}} \FunctionTok{read\_excel}\NormalTok{(}\StringTok{"sotsuron.xlsx"}\NormalTok{)}
 \end{Highlighting}
 \end{Shaded}
 
-\subsection{Qualtricsのデータの場合}\label{qualtricsux306eux30c7ux30fcux30bfux306eux5834ux5408}
+\hypertarget{qualtricsux306eux30c7ux30fcux30bfux306eux5834ux5408}{%
+\subsection{Qualtricsのデータの場合}\label{qualtricsux306eux30c7ux30fcux30bfux306eux5834ux5408}}
 
 Qualtricsのデータの場合、\texttt{qualtRics}という専用のパッケージが便利です。
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\KeywordTok{install.packages}\NormalTok{(}\StringTok{"qualtRics"}\NormalTok{)}
-\KeywordTok{library}\NormalTok{(qualtRics)}
+\FunctionTok{install.packages}\NormalTok{(}\StringTok{"qualtRics"}\NormalTok{)}
+\FunctionTok{library}\NormalTok{(qualtRics)}
 \end{Highlighting}
 \end{Shaded}
 
@@ -840,14 +865,15 @@ QualtricsからはCSV形式でデータをエクスポートしてください�
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\NormalTok{data_original <-}\StringTok{ }\KeywordTok{read_survey}\NormalTok{(}\StringTok{"sotsuron.csv"}\NormalTok{)}
+\NormalTok{data\_original }\OtherTok{\textless{}{-}} \FunctionTok{read\_survey}\NormalTok{(}\StringTok{"sotsuron.csv"}\NormalTok{)}
 \end{Highlighting}
 \end{Shaded}
 
 エクスポート前に、Qualtrics上で変数にわかりやすい名前をつけておくようにすると良いです。
 また、エクスポートの際には「数値を使用」を選択しておきましょう。
 
-\section{インポートしたデータの確認}\label{ux30a4ux30f3ux30ddux30fcux30c8ux3057ux305fux30c7ux30fcux30bfux306eux78baux8a8d}
+\hypertarget{ux30a4ux30f3ux30ddux30fcux30c8ux3057ux305fux30c7ux30fcux30bfux306eux78baux8a8d}{%
+\section{インポートしたデータの確認}\label{ux30a4ux30f3ux30ddux30fcux30c8ux3057ux305fux30c7ux30fcux30bfux306eux78baux8a8d}}
 
 データがきちんとインポートされたかどうか、確認しておきましょう。
 
@@ -869,13 +895,15 @@ QualtricsからはCSV形式でデータをエクスポートしてください�
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\KeywordTok{library}\NormalTok{(wooldridge)}
+\FunctionTok{library}\NormalTok{(wooldridge)}
 \end{Highlighting}
 \end{Shaded}
 
-\chapter{仮説とデータの具体例}\label{Hypotheses}
+\hypertarget{Hypotheses}{%
+\chapter{仮説とデータの具体例}\label{Hypotheses}}
 
-\section{仮説の確認}\label{ux4eeeux8aacux306eux78baux8a8d}
+\hypertarget{ux4eeeux8aacux306eux78baux8a8d}{%
+\section{仮説の確認}\label{ux4eeeux8aacux306eux78baux8a8d}}
 
 データ分析に入る前に、卒業研究で何を分析したいのかを整理しましょう。
 データ分析は何らかの目的・仮説を持っておこなうもので、やみくもにやろうとすると迷子になってしまいます。
@@ -891,7 +919,8 @@ QualtricsからはCSV形式でデータをエクスポートしてください�
 
 仮説は複数あっても良いですが、あまり多すぎると論文の主題がぼやけてしまいます。少数に絞りましょう。
 
-\section{変数の確認}\label{ux5909ux6570ux306eux78baux8a8d}
+\hypertarget{ux5909ux6570ux306eux78baux8a8d}{%
+\section{変数の確認}\label{ux5909ux6570ux306eux78baux8a8d}}
 
 仮説を考えたあとは、インポートしたデータのうちどの変数を使うのかを考えましょう。
 データにある変数をそのまま使える場合もあれば、自分で加工して作成する場合もあります。
@@ -919,21 +948,19 @@ QualtricsからはCSV形式でデータをエクスポートしてください�
 \item
   5段階のカテゴリ変数として使う
 \item
-  少数のカテゴリ変数として使う（1, 2を「低い」、3, 4,
-  5を「高い」と振り直す、など）
+  少数のカテゴリ変数として使う（1, 2を「低い」、3, 4, 5を「高い」と振り直す、など）
 \end{itemize}
 
-\section{データの具体例}\label{ux30c7ux30fcux30bfux306eux5177ux4f53ux4f8b}
+\hypertarget{ux30c7ux30fcux30bfux306eux5177ux4f53ux4f8b}{%
+\section{データの具体例}\label{ux30c7ux30fcux30bfux306eux5177ux4f53ux4f8b}}
 
-この文書では、\texttt{wooldridge}\footnote{Wooldridgeは計量経済学の有名な教科書
-  ``Introductory Econometrics: A Modern
-  Approach''の著者です。この教科書に掲載されているデータを使用します。}パッケージに入っているデータ\texttt{saving}を用いた分析例を説明していきます。
+この文書では、\texttt{wooldridge}\footnote{Wooldridgeは計量経済学の有名な教科書 ``Introductory Econometrics: A Modern Approach''の著者です。この教科書に掲載されているデータを使用します。}パッケージに入っているデータ\texttt{saving}を用いた分析例を説明していきます。
 パッケージをインストールして呼び出しましょう。
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\KeywordTok{install.packages}\NormalTok{(}\StringTok{"wooldridge"}\NormalTok{)}
-\KeywordTok{library}\NormalTok{(wooldridge)}
+\FunctionTok{install.packages}\NormalTok{(}\StringTok{"wooldridge"}\NormalTok{)}
+\FunctionTok{library}\NormalTok{(wooldridge)}
 \end{Highlighting}
 \end{Shaded}
 
@@ -941,7 +968,7 @@ QualtricsからはCSV形式でデータをエクスポートしてください�
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\KeywordTok{data}\NormalTok{(}\StringTok{"saving"}\NormalTok{)}
+\FunctionTok{data}\NormalTok{(}\StringTok{"saving"}\NormalTok{)}
 \end{Highlighting}
 \end{Shaded}
 
@@ -949,7 +976,7 @@ QualtricsからはCSV形式でデータをエクスポートしてください�
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\KeywordTok{head}\NormalTok{(saving)}
+\FunctionTok{head}\NormalTok{(saving)}
 \end{Highlighting}
 \end{Shaded}
 
@@ -1000,15 +1027,16 @@ QualtricsからはCSV形式でデータをエクスポートしてください�
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\KeywordTok{library}\NormalTok{(tidyverse)}
-\KeywordTok{library}\NormalTok{(wooldridge)}
-\KeywordTok{data}\NormalTok{(}\StringTok{"saving"}\NormalTok{)}
+\FunctionTok{library}\NormalTok{(tidyverse)}
+\FunctionTok{library}\NormalTok{(wooldridge)}
+\FunctionTok{data}\NormalTok{(}\StringTok{"saving"}\NormalTok{)}
 \end{Highlighting}
 \end{Shaded}
 
-\chapter{データ前処理}\label{DataHandling}
+\hypertarget{DataHandling}{%
+\chapter{データ前処理}\label{DataHandling}}
 
-データをインポートしたら、いざ分析だ！\ldots{}と分析してみたくなります。
+データをインポートしたら、いざ分析だ！\ldots と分析してみたくなります。
 しかし、収集したデータはそのまま分析に進むことはできず、分析のために「前処理」する必要があります。
 「データ分析は前処理が8割」とも言われます。
 前処理の方法を学んでいきましょう。
@@ -1016,7 +1044,8 @@ QualtricsからはCSV形式でデータをエクスポートしてください�
 データ前処理には\texttt{dplyr}（読み：ディープライアール）というパッケージの関数を主に用います。
 \texttt{dplyr}は\texttt{tidyverse}の一部なので、\texttt{tidyverse}がインストールされていればOKです。
 
-\section{パイプ（\%\textgreater{}\%）による処理}\label{ux30d1ux30a4ux30d7ux306bux3088ux308bux51e6ux7406}
+\hypertarget{ux30d1ux30a4ux30d7ux306bux3088ux308bux51e6ux7406}{%
+\section{パイプ（\%\textgreater\%）による処理}\label{ux30d1ux30a4ux30d7ux306bux3088ux308bux51e6ux7406}}
 
 最近はパイプ\texttt{\%\textgreater{}\%}を用いてデータの受け渡しを行うのが主流となっています。
 パイプは\texttt{magrittr}パッケージの機能ですが、\texttt{tidyverse}と同時にインストールされています。
@@ -1025,7 +1054,7 @@ QualtricsからはCSV形式でデータをエクスポートしてください�
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\NormalTok{saving }\OperatorTok{%>%}\StringTok{ }\KeywordTok{head}\NormalTok{()}
+\NormalTok{saving }\SpecialCharTok{\%\textgreater{}\%} \FunctionTok{head}\NormalTok{()}
 \end{Highlighting}
 \end{Shaded}
 
@@ -1058,7 +1087,7 @@ QualtricsからはCSV形式でデータをエクスポートしてください�
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\NormalTok{saving}\OperatorTok{$}\NormalTok{sav }\OperatorTok{%>%}\StringTok{ }\KeywordTok{mean}\NormalTok{()}
+\NormalTok{saving}\SpecialCharTok{$}\NormalTok{sav }\SpecialCharTok{\%\textgreater{}\%} \FunctionTok{mean}\NormalTok{()}
 \end{Highlighting}
 \end{Shaded}
 
@@ -1082,7 +1111,8 @@ QualtricsからはCSV形式でデータをエクスポートしてください�
   パイプを使って\texttt{saving}の変数\texttt{inc}の中央値を求めてください。
 \end{itemize}
 
-\section{変数の作成（及び置換）}\label{ux5909ux6570ux306eux4f5cux6210ux53caux3073ux7f6eux63db}
+\hypertarget{ux5909ux6570ux306eux4f5cux6210ux53caux3073ux7f6eux63db}{%
+\section{変数の作成（及び置換）}\label{ux5909ux6570ux306eux4f5cux6210ux53caux3073ux7f6eux63db}}
 
 分析の際には、収集したデータを分析しやすいように作成・置換することはよくあります。
 
@@ -1102,17 +1132,18 @@ QualtricsからはCSV形式でデータをエクスポートしてください�
 
 変数を追加・置換する\texttt{dplyr}の関数が\texttt{mutate()}です。
 
-\subsection{変数の新規作成}\label{ux5909ux6570ux306eux65b0ux898fux4f5cux6210}
+\hypertarget{ux5909ux6570ux306eux65b0ux898fux4f5cux6210}{%
+\subsection{変数の新規作成}\label{ux5909ux6570ux306eux65b0ux898fux4f5cux6210}}
 
 \texttt{mutate()}を用いて、貯蓄\texttt{sav}を収入\texttt{inc}で割った新しい変数「貯蓄率」\texttt{saving\_rate}を作ってみましょう。
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\NormalTok{saving_with_rate <-}
-\StringTok{  }\NormalTok{saving }\OperatorTok{%>%}
-\StringTok{    }\KeywordTok{mutate}\NormalTok{(}\DataTypeTok{saving_rate =}\NormalTok{ sav }\OperatorTok{/}\StringTok{ }\NormalTok{inc)}
+\NormalTok{saving\_with\_rate }\OtherTok{\textless{}{-}}
+\NormalTok{  saving }\SpecialCharTok{\%\textgreater{}\%}
+    \FunctionTok{mutate}\NormalTok{(}\AttributeTok{saving\_rate =}\NormalTok{ sav }\SpecialCharTok{/}\NormalTok{ inc)}
 
-\KeywordTok{head}\NormalTok{(saving_with_rate)}
+\FunctionTok{head}\NormalTok{(saving\_with\_rate)}
 \end{Highlighting}
 \end{Shaded}
 
@@ -1150,11 +1181,11 @@ QualtricsからはCSV形式でデータをエクスポートしてください�
   \end{itemize}
 \end{itemize}
 
-\subsection{逆転項目の処理}\label{ux9006ux8ee2ux9805ux76eeux306eux51e6ux7406}
+\hypertarget{ux9006ux8ee2ux9805ux76eeux306eux51e6ux7406}{%
+\subsection{逆転項目の処理}\label{ux9006ux8ee2ux9805ux76eeux306eux51e6ux7406}}
 
 \texttt{mutate}を利用して、「逆転項目」の前処理をしてみましょう。
-逆転項目とは、質問紙では1, 2, 3, 4, 5として聞いた数値を、データでは5, 4,
-3, 2, 1として扱うものです（5件法の場合）。
+逆転項目とは、質問紙では1, 2, 3, 4, 5として聞いた数値を、データでは5, 4, 3, 2, 1として扱うものです（5件法の場合）。
 以下の操作をイメージしましょう。
 
 \begin{itemize}
@@ -1171,13 +1202,13 @@ QualtricsからはCSV形式でデータをエクスポートしてください�
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\NormalTok{data <-}\StringTok{ }\KeywordTok{data.frame}\NormalTok{(}\DataTypeTok{Q1 =} \KeywordTok{c}\NormalTok{(}\DecValTok{3}\NormalTok{, }\DecValTok{2}\NormalTok{, }\DecValTok{4}\NormalTok{, }\DecValTok{1}\NormalTok{, }\DecValTok{5}\NormalTok{)) }\CommentTok{#逆転項目Q1が入ったデータフレームを作成}
+\NormalTok{data }\OtherTok{\textless{}{-}} \FunctionTok{data.frame}\NormalTok{(}\AttributeTok{Q1 =} \FunctionTok{c}\NormalTok{(}\DecValTok{3}\NormalTok{, }\DecValTok{2}\NormalTok{, }\DecValTok{4}\NormalTok{, }\DecValTok{1}\NormalTok{, }\DecValTok{5}\NormalTok{)) }\CommentTok{\#逆転項目Q1が入ったデータフレームを作成}
 
-\NormalTok{data_gyakuten <-}\StringTok{ }
-\StringTok{  }\NormalTok{data }\OperatorTok{%>%}
-\StringTok{    }\KeywordTok{mutate}\NormalTok{(}\DataTypeTok{Q1_gyakuten =} \OperatorTok{-}\StringTok{ }\NormalTok{Q1 }\OperatorTok{+}\StringTok{ }\DecValTok{6}\NormalTok{)}
+\NormalTok{data\_gyakuten }\OtherTok{\textless{}{-}} 
+\NormalTok{  data }\SpecialCharTok{\%\textgreater{}\%}
+    \FunctionTok{mutate}\NormalTok{(}\AttributeTok{Q1\_gyakuten =} \SpecialCharTok{{-}}\NormalTok{ Q1 }\SpecialCharTok{+} \DecValTok{6}\NormalTok{)}
 
-\NormalTok{data_gyakuten}
+\NormalTok{data\_gyakuten}
 \end{Highlighting}
 \end{Shaded}
 
@@ -1198,18 +1229,19 @@ QualtricsからはCSV形式でデータをエクスポートしてください�
   7件法（1〜7）で収集した架空のデータフレームを作成し、逆転項目として処理してみてください。
 \end{itemize}
 
-\subsection{変数の標準化}\label{ux5909ux6570ux306eux6a19ux6e96ux5316}
+\hypertarget{ux5909ux6570ux306eux6a19ux6e96ux5316}{%
+\subsection{変数の標準化}\label{ux5909ux6570ux306eux6a19ux6e96ux5316}}
 
 変数を平均0、標準偏差1の変数に変換する標準化は、変数の解釈を容易にしたり、以降の分析をしやすくするために必要です。
 標準化を行う関数は\texttt{scale()}です。\texttt{mutate()}と組み合わせて、教育年数\texttt{educ}を標準化した変数\texttt{educ\_standardized}を作ってみましょう。
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\NormalTok{saving_standardized_educ <-}
-\StringTok{  }\NormalTok{saving }\OperatorTok{%>%}
-\StringTok{    }\KeywordTok{mutate}\NormalTok{(}\DataTypeTok{educ_standardized =} \KeywordTok{scale}\NormalTok{(educ))}
+\NormalTok{saving\_standardized\_educ }\OtherTok{\textless{}{-}}
+\NormalTok{  saving }\SpecialCharTok{\%\textgreater{}\%}
+    \FunctionTok{mutate}\NormalTok{(}\AttributeTok{educ\_standardized =} \FunctionTok{scale}\NormalTok{(educ))}
 
-\KeywordTok{head}\NormalTok{(saving_standardized_educ)}
+\FunctionTok{head}\NormalTok{(saving\_standardized\_educ)}
 \end{Highlighting}
 \end{Shaded}
 
@@ -1231,9 +1263,11 @@ QualtricsからはCSV形式でデータをエクスポートしてください�
   年収\texttt{inc}を標準化した値\texttt{inc\_standardized}を加えたデータフレームを作成してください。
 \end{itemize}
 
-\section{カテゴリ変数の処理}\label{ux30abux30c6ux30b4ux30eaux5909ux6570ux306eux51e6ux7406}
+\hypertarget{ux30abux30c6ux30b4ux30eaux5909ux6570ux306eux51e6ux7406}{%
+\section{カテゴリ変数の処理}\label{ux30abux30c6ux30b4ux30eaux5909ux6570ux306eux51e6ux7406}}
 
-\subsection{変数の型}\label{ux5909ux6570ux306eux578b}
+\hypertarget{ux5909ux6570ux306eux578b}{%
+\subsection{変数の型}\label{ux5909ux6570ux306eux578b}}
 
 Rで扱う変数には「型」と呼ばれる区別があります。
 型の違いによって、今後の分析方法も変わってきます。
@@ -1241,7 +1275,7 @@ Rで扱う変数には「型」と呼ばれる区別があります。
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\KeywordTok{str}\NormalTok{(saving)}
+\FunctionTok{str}\NormalTok{(saving)}
 \end{Highlighting}
 \end{Shaded}
 
@@ -1271,21 +1305,21 @@ Rで扱う変数には「型」と呼ばれる区別があります。
   num: numeric, 数値
 \end{itemize}
 
-\subsection{カテゴリ変数への変換}\label{ux30abux30c6ux30b4ux30eaux5909ux6570ux3078ux306eux5909ux63db}
+\hypertarget{ux30abux30c6ux30b4ux30eaux5909ux6570ux3078ux306eux5909ux63db}{%
+\subsection{カテゴリ変数への変換}\label{ux30abux30c6ux30b4ux30eaux5909ux6570ux3078ux306eux5909ux63db}}
 
-カテゴリ変数を表す型はfct
-(factor)です。\texttt{saving}にはカテゴリ変数がないので、カテゴリ変数を作成してみましょう。
+カテゴリ変数を表す型はfct (factor)です。\texttt{saving}にはカテゴリ変数がないので、カテゴリ変数を作成してみましょう。
 型を変換する関数が\texttt{as\_xxx()}です。xxxは変換したい型の名前を入れてください。
 ここでは、カテゴリ変数に変換したいので、\texttt{as\_factor()}を用います。
 今はinteger型となっている\texttt{black}をカテゴリ変数にしてみましょう。
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\NormalTok{saving_with_factor <-}
-\StringTok{  }\NormalTok{saving }\OperatorTok{%>%}
-\StringTok{    }\KeywordTok{mutate}\NormalTok{(}\DataTypeTok{black_factor =} \KeywordTok{as_factor}\NormalTok{(black))}
+\NormalTok{saving\_with\_factor }\OtherTok{\textless{}{-}}
+\NormalTok{  saving }\SpecialCharTok{\%\textgreater{}\%}
+    \FunctionTok{mutate}\NormalTok{(}\AttributeTok{black\_factor =} \FunctionTok{as\_factor}\NormalTok{(black))}
 
-\KeywordTok{str}\NormalTok{(saving_with_factor)}
+\FunctionTok{str}\NormalTok{(saving\_with\_factor)}
 \end{Highlighting}
 \end{Shaded}
 
@@ -1299,6 +1333,7 @@ Rで扱う変数には「型」と呼ばれる区別があります。
 ##  $ black       : int  1 0 0 0 0 0 0 0 1 0 ...
 ##  $ cons        : int  1890 11529 6026 5805 6715 5100 22848 13597 11015 8168 ...
 ##  $ black_factor: Factor w/ 2 levels "0","1": 2 1 1 1 1 1 1 1 2 1 ...
+##  - attr(*, "time.stamp")= chr "25 Jun 2011 23:03"
 \end{verbatim}
 
 ここでは、\texttt{mutate}を使って、新たな変数\texttt{black\_factor}を作成してみました。
@@ -1306,8 +1341,7 @@ Rで扱う変数には「型」と呼ばれる区別があります。
 
 カテゴリ変数として扱いたい変数はすべて\texttt{as\_factor}を使ってカテゴリ変数にしておきましょう。
 
-また、文字列型(chr,
-character)の変数はこのままでは分析に使用できないので、必ず\texttt{as\_factor}を実行しておきましょう。
+また、文字列型(chr, character)の変数はこのままでは分析に使用できないので、必ず\texttt{as\_factor}を実行しておきましょう。
 
 ★練習問題
 
@@ -1317,7 +1351,8 @@ character)の変数はこのままでは分析に使用できないので、必�
   家族人数\texttt{size}をカテゴリ変数に変換したデータフレームを作成してください。
 \end{itemize}
 
-\subsection{ダミー変数の作成}\label{ux30c0ux30dfux30fcux5909ux6570ux306eux4f5cux6210}
+\hypertarget{ux30c0ux30dfux30fcux5909ux6570ux306eux4f5cux6210}{%
+\subsection{ダミー変数の作成}\label{ux30c0ux30dfux30fcux5909ux6570ux306eux4f5cux6210}}
 
 ある変数から、別のダミー変数を作成したいことはよくあります。
 ここでは、教育年数のデータを12年を基準に「高卒以上」「高卒未満」の2つに区分してみましょう。
@@ -1326,7 +1361,7 @@ character)の変数はこのままでは分析に使用できないので、必�
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\KeywordTok{table}\NormalTok{(saving}\OperatorTok{$}\NormalTok{educ) }\CommentTok{#教育年数の度数分布}
+\FunctionTok{table}\NormalTok{(saving}\SpecialCharTok{$}\NormalTok{educ) }\CommentTok{\#教育年数の度数分布}
 \end{Highlighting}
 \end{Shaded}
 
@@ -1338,11 +1373,11 @@ character)の変数はこのままでは分析に使用できないので、必�
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\NormalTok{saving_with_hsdummy <-}
-\StringTok{  }\NormalTok{saving }\OperatorTok{%>%}
-\StringTok{    }\KeywordTok{mutate}\NormalTok{(}\DataTypeTok{highschool =} \KeywordTok{if_else}\NormalTok{(educ }\OperatorTok{>=}\StringTok{ }\DecValTok{12}\NormalTok{, }\DecValTok{1}\NormalTok{, }\DecValTok{0}\NormalTok{))}
+\NormalTok{saving\_with\_hsdummy }\OtherTok{\textless{}{-}}
+\NormalTok{  saving }\SpecialCharTok{\%\textgreater{}\%}
+    \FunctionTok{mutate}\NormalTok{(}\AttributeTok{highschool =} \FunctionTok{if\_else}\NormalTok{(educ }\SpecialCharTok{\textgreater{}=} \DecValTok{12}\NormalTok{, }\DecValTok{1}\NormalTok{, }\DecValTok{0}\NormalTok{))}
 
-\KeywordTok{head}\NormalTok{(saving_with_hsdummy)}
+\FunctionTok{head}\NormalTok{(saving\_with\_hsdummy)}
 \end{Highlighting}
 \end{Shaded}
 
@@ -1358,7 +1393,7 @@ character)の変数はこのままでは分析に使用できないので、必�
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\KeywordTok{table}\NormalTok{(saving_with_hsdummy}\OperatorTok{$}\NormalTok{highschool) }\CommentTok{#作成したダミー変数の度数分布}
+\FunctionTok{table}\NormalTok{(saving\_with\_hsdummy}\SpecialCharTok{$}\NormalTok{highschool) }\CommentTok{\#作成したダミー変数の度数分布}
 \end{Highlighting}
 \end{Shaded}
 
@@ -1373,12 +1408,12 @@ character)の変数はこのままでは分析に使用できないので、必�
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\NormalTok{saving_with_hsdummy <-}
-\StringTok{  }\NormalTok{saving }\OperatorTok{%>%}
-\StringTok{    }\KeywordTok{mutate}\NormalTok{(}\DataTypeTok{highschool =} \KeywordTok{if_else}\NormalTok{(educ }\OperatorTok{>=}\StringTok{ }\DecValTok{12}\NormalTok{, }\DecValTok{1}\NormalTok{, }\DecValTok{0}\NormalTok{),}
-           \DataTypeTok{highschool =} \KeywordTok{as_factor}\NormalTok{(highschool)) }\CommentTok{#highschoolをfactor型として上書き}
+\NormalTok{saving\_with\_hsdummy }\OtherTok{\textless{}{-}}
+\NormalTok{  saving }\SpecialCharTok{\%\textgreater{}\%}
+    \FunctionTok{mutate}\NormalTok{(}\AttributeTok{highschool =} \FunctionTok{if\_else}\NormalTok{(educ }\SpecialCharTok{\textgreater{}=} \DecValTok{12}\NormalTok{, }\DecValTok{1}\NormalTok{, }\DecValTok{0}\NormalTok{),}
+           \AttributeTok{highschool =} \FunctionTok{as\_factor}\NormalTok{(highschool)) }\CommentTok{\#highschoolをfactor型として上書き}
 
-\KeywordTok{head}\NormalTok{(saving_with_hsdummy)}
+\FunctionTok{head}\NormalTok{(saving\_with\_hsdummy)}
 \end{Highlighting}
 \end{Shaded}
 
@@ -1400,7 +1435,8 @@ character)の変数はこのままでは分析に使用できないので、必�
   「年齢が40代以上」を表すダミー変数\texttt{over40}を加えたデータフレームを作成してください。
 \end{itemize}
 
-\subsection{カテゴリ変数の作成}\label{ux30abux30c6ux30b4ux30eaux5909ux6570ux306eux4f5cux6210}
+\hypertarget{ux30abux30c6ux30b4ux30eaux5909ux6570ux306eux4f5cux6210}{%
+\subsection{カテゴリ変数の作成}\label{ux30abux30c6ux30b4ux30eaux5909ux6570ux306eux4f5cux6210}}
 
 2つのカテゴリにしたい場合は上記の\texttt{if\_else}が良いですが、3つ以上にしたい場合は\texttt{case\_when}が便利です。
 例えば年齢\texttt{age}を年代別のカテゴリ変数にしてみましょう。
@@ -1408,7 +1444,7 @@ character)の変数はこのままでは分析に使用できないので、必�
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\KeywordTok{summary}\NormalTok{(saving}\OperatorTok{$}\NormalTok{age) }\CommentTok{#年齢の記述統計の確認}
+\FunctionTok{summary}\NormalTok{(saving}\SpecialCharTok{$}\NormalTok{age) }\CommentTok{\#年齢の記述統計の確認}
 \end{Highlighting}
 \end{Shaded}
 
@@ -1419,16 +1455,16 @@ character)の変数はこのままでは分析に使用できないので、必�
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\NormalTok{saving_with_age_category <-}
-\StringTok{  }\NormalTok{saving }\OperatorTok{%>%}
-\StringTok{    }\KeywordTok{mutate}\NormalTok{(}\DataTypeTok{age_category =} \KeywordTok{case_when}\NormalTok{(age }\OperatorTok{<}\StringTok{ }\DecValTok{30} \OperatorTok{~}\StringTok{ "20s"}\NormalTok{,}
-\NormalTok{                                    age }\OperatorTok{>=}\StringTok{ }\DecValTok{30} \OperatorTok{&}\StringTok{ }\NormalTok{age }\OperatorTok{<}\StringTok{ }\DecValTok{40} \OperatorTok{~}\StringTok{ "30s"}\NormalTok{,}
-\NormalTok{                                    age }\OperatorTok{>=}\StringTok{ }\DecValTok{40} \OperatorTok{&}\StringTok{ }\NormalTok{age }\OperatorTok{<}\StringTok{ }\DecValTok{50} \OperatorTok{~}\StringTok{ "40s"}\NormalTok{,}
-\NormalTok{                                    age }\OperatorTok{>=}\StringTok{ }\DecValTok{50} \OperatorTok{~}\StringTok{ "50s"}
+\NormalTok{saving\_with\_age\_category }\OtherTok{\textless{}{-}}
+\NormalTok{  saving }\SpecialCharTok{\%\textgreater{}\%}
+    \FunctionTok{mutate}\NormalTok{(}\AttributeTok{age\_category =} \FunctionTok{case\_when}\NormalTok{(age }\SpecialCharTok{\textless{}} \DecValTok{30} \SpecialCharTok{\textasciitilde{}} \StringTok{"20s"}\NormalTok{,}
+\NormalTok{                                    age }\SpecialCharTok{\textgreater{}=} \DecValTok{30} \SpecialCharTok{\&}\NormalTok{ age }\SpecialCharTok{\textless{}} \DecValTok{40} \SpecialCharTok{\textasciitilde{}} \StringTok{"30s"}\NormalTok{,}
+\NormalTok{                                    age }\SpecialCharTok{\textgreater{}=} \DecValTok{40} \SpecialCharTok{\&}\NormalTok{ age }\SpecialCharTok{\textless{}} \DecValTok{50} \SpecialCharTok{\textasciitilde{}} \StringTok{"40s"}\NormalTok{,}
+\NormalTok{                                    age }\SpecialCharTok{\textgreater{}=} \DecValTok{50} \SpecialCharTok{\textasciitilde{}} \StringTok{"50s"}
 \NormalTok{                                    )}
 \NormalTok{          )}
 
-\KeywordTok{head}\NormalTok{(saving_with_age_category)}
+\FunctionTok{head}\NormalTok{(saving\_with\_age\_category)}
 \end{Highlighting}
 \end{Shaded}
 
@@ -1450,11 +1486,11 @@ character)の変数はこのままでは分析に使用できないので、必�
 \begin{itemize}
 \tightlist
 \item
-  年収6000ドル未満を``poor''、年収6000ドル以上12000ドル未満を``middle''、
-  年収12000ドル以上を``rich''、とするカテゴリ変数\texttt{inc\_category}を追加したデータフレームを作成しなさい。
+  年収6000ドル未満を``poor''、年収6000ドル以上12000ドル未満を``middle''、 年収12000ドル以上を``rich''、とするカテゴリ変数\texttt{inc\_category}を追加したデータフレームを作成しなさい。
 \end{itemize}
 
-\section{変数の選択}\label{ux5909ux6570ux306eux9078ux629e}
+\hypertarget{ux5909ux6570ux306eux9078ux629e}{%
+\section{変数の選択}\label{ux5909ux6570ux306eux9078ux629e}}
 
 インポートしたデータの中に不要な変数が含まれていたり、前処理の結果不要になった変数が出てくることはよくあります。
 \texttt{dplyr}の関数\texttt{select()}を用いると、データフレームの変数を選択したり、削除したりすることができます。
@@ -1462,11 +1498,11 @@ character)の変数はこのままでは分析に使用できないので、必�
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\NormalTok{saving_selected <-}
-\StringTok{  }\NormalTok{saving }\OperatorTok{%>%}
-\StringTok{    }\KeywordTok{select}\NormalTok{(inc, age)}
+\NormalTok{saving\_selected }\OtherTok{\textless{}{-}}
+\NormalTok{  saving }\SpecialCharTok{\%\textgreater{}\%}
+    \FunctionTok{select}\NormalTok{(inc, age)}
 
-\KeywordTok{head}\NormalTok{(saving_selected)}
+\FunctionTok{head}\NormalTok{(saving\_selected)}
 \end{Highlighting}
 \end{Shaded}
 
@@ -1487,11 +1523,11 @@ character)の変数はこのままでは分析に使用できないので、必�
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\NormalTok{saving_deleted <-}
-\StringTok{  }\NormalTok{saving }\OperatorTok{%>%}
-\StringTok{    }\KeywordTok{select}\NormalTok{(}\OperatorTok{-}\NormalTok{cons)}
+\NormalTok{saving\_deleted }\OtherTok{\textless{}{-}}
+\NormalTok{  saving }\SpecialCharTok{\%\textgreater{}\%}
+    \FunctionTok{select}\NormalTok{(}\SpecialCharTok{{-}}\NormalTok{cons)}
 
-\KeywordTok{head}\NormalTok{(saving_deleted)}
+\FunctionTok{head}\NormalTok{(saving\_deleted)}
 \end{Highlighting}
 \end{Shaded}
 
@@ -1515,7 +1551,8 @@ character)の変数はこのままでは分析に使用できないので、必�
   教育年数\texttt{educ}、年齢\texttt{age}を取り除いたデータを作成してください。
 \end{itemize}
 
-\section{変数の並び替え}\label{ux5909ux6570ux306eux4e26ux3073ux66ffux3048}
+\hypertarget{ux5909ux6570ux306eux4e26ux3073ux66ffux3048}{%
+\section{変数の並び替え}\label{ux5909ux6570ux306eux4e26ux3073ux66ffux3048}}
 
 データを確認する際に、ある変数をもとに並べ替えたい場合があります。
 データを並べ替える\texttt{dplyr}の関数が\texttt{arrange()}です。
@@ -1523,11 +1560,11 @@ character)の変数はこのままでは分析に使用できないので、必�
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\NormalTok{saving_arranged <-}
-\StringTok{  }\NormalTok{saving }\OperatorTok{%>%}
-\StringTok{    }\KeywordTok{arrange}\NormalTok{(inc)}
+\NormalTok{saving\_arranged }\OtherTok{\textless{}{-}}
+\NormalTok{  saving }\SpecialCharTok{\%\textgreater{}\%}
+    \FunctionTok{arrange}\NormalTok{(inc)}
 
-\KeywordTok{head}\NormalTok{(saving_arranged)}
+\FunctionTok{head}\NormalTok{(saving\_arranged)}
 \end{Highlighting}
 \end{Shaded}
 
@@ -1546,11 +1583,11 @@ character)の変数はこのままでは分析に使用できないので、必�
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\NormalTok{saving_arranged_desc <-}
-\StringTok{  }\NormalTok{saving }\OperatorTok{%>%}
-\StringTok{    }\KeywordTok{arrange}\NormalTok{(}\KeywordTok{desc}\NormalTok{(inc))}
+\NormalTok{saving\_arranged\_desc }\OtherTok{\textless{}{-}}
+\NormalTok{  saving }\SpecialCharTok{\%\textgreater{}\%}
+    \FunctionTok{arrange}\NormalTok{(}\FunctionTok{desc}\NormalTok{(inc))}
 
-\KeywordTok{head}\NormalTok{(saving_arranged_desc)}
+\FunctionTok{head}\NormalTok{(saving\_arranged\_desc)}
 \end{Highlighting}
 \end{Shaded}
 
@@ -1564,7 +1601,8 @@ character)の変数はこのままでは分析に使用できないので、必�
 ## 6  5082 19362    3   11  48     0 14280
 \end{verbatim}
 
-\section{すべての作業をパイプでつなげる}\label{ux3059ux3079ux3066ux306eux4f5cux696dux3092ux30d1ux30a4ux30d7ux3067ux3064ux306aux3052ux308b}
+\hypertarget{ux3059ux3079ux3066ux306eux4f5cux696dux3092ux30d1ux30a4ux30d7ux3067ux3064ux306aux3052ux308b}{%
+\section{すべての作業をパイプでつなげる}\label{ux3059ux3079ux3066ux306eux4f5cux696dux3092ux30d1ux30a4ux30d7ux3067ux3064ux306aux3052ux308b}}
 
 これまで行ってきた一連の作業は、すべてパイプ\texttt{\%\textgreater{}\%}でつなげることができます。
 パイプでつなげることで作業の流れがわかりやすくなり、不要なオブジェクトを生成する必要もなくなります。
@@ -1582,13 +1620,13 @@ character)の変数はこのままでは分析に使用できないので、必�
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\NormalTok{saving_handled <-}
-\StringTok{  }\NormalTok{saving }\OperatorTok{%>%}
-\StringTok{    }\KeywordTok{mutate}\NormalTok{(}\DataTypeTok{saving_rate =}\NormalTok{ sav }\OperatorTok{/}\StringTok{ }\NormalTok{inc) }\OperatorTok{%>%}
-\StringTok{    }\KeywordTok{select}\NormalTok{(}\OperatorTok{-}\NormalTok{size) }\OperatorTok{%>%}
-\StringTok{    }\KeywordTok{arrange}\NormalTok{(}\KeywordTok{desc}\NormalTok{(inc))}
+\NormalTok{saving\_handled }\OtherTok{\textless{}{-}}
+\NormalTok{  saving }\SpecialCharTok{\%\textgreater{}\%}
+    \FunctionTok{mutate}\NormalTok{(}\AttributeTok{saving\_rate =}\NormalTok{ sav }\SpecialCharTok{/}\NormalTok{ inc) }\SpecialCharTok{\%\textgreater{}\%}
+    \FunctionTok{select}\NormalTok{(}\SpecialCharTok{{-}}\NormalTok{size) }\SpecialCharTok{\%\textgreater{}\%}
+    \FunctionTok{arrange}\NormalTok{(}\FunctionTok{desc}\NormalTok{(inc))}
 
-\KeywordTok{head}\NormalTok{(saving_handled)}
+\FunctionTok{head}\NormalTok{(saving\_handled)}
 \end{Highlighting}
 \end{Shaded}
 
@@ -1606,15 +1644,16 @@ character)の変数はこのままでは分析に使用できないので、必�
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\NormalTok{saving_handled}
-\NormalTok{  saving }\OperatorTok{%>%}
-\StringTok{    }\KeywordTok{mutate}\NormalTok{(}\DataTypeTok{saving_rate =}\NormalTok{ sav }\OperatorTok{/}\StringTok{ }\NormalTok{inc) }\OperatorTok{%>%}\StringTok{ }\CommentTok{#貯蓄率の作成}
-\StringTok{    }\KeywordTok{select}\NormalTok{(}\OperatorTok{-}\NormalTok{size) }\OperatorTok{%>%}\StringTok{ }\CommentTok{#家族人数の削除}
-\StringTok{    }\KeywordTok{arrange}\NormalTok{(}\KeywordTok{desc}\NormalTok{(inc)) }\CommentTok{#収入で並び替え（高いものが上）}
+\NormalTok{saving\_handled}
+\NormalTok{  saving }\SpecialCharTok{\%\textgreater{}\%}
+    \FunctionTok{mutate}\NormalTok{(}\AttributeTok{saving\_rate =}\NormalTok{ sav }\SpecialCharTok{/}\NormalTok{ inc) }\SpecialCharTok{\%\textgreater{}\%} \CommentTok{\#貯蓄率の作成}
+    \FunctionTok{select}\NormalTok{(}\SpecialCharTok{{-}}\NormalTok{size) }\SpecialCharTok{\%\textgreater{}\%} \CommentTok{\#家族人数の削除}
+    \FunctionTok{arrange}\NormalTok{(}\FunctionTok{desc}\NormalTok{(inc)) }\CommentTok{\#収入で並び替え（高いものが上）}
 \end{Highlighting}
 \end{Shaded}
 
-\chapter{記述統計表の作成}\label{SummaryStat}
+\hypertarget{SummaryStat}{%
+\chapter{記述統計表の作成}\label{SummaryStat}}
 
 分析に入る前に、使用する変数の代表値や散布度を示すのは論文では必須です。
 
@@ -1622,24 +1661,24 @@ character)の変数はこのままでは分析に使用できないので、必�
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\KeywordTok{install.packages}\NormalTok{(}\StringTok{"summarytools"}\NormalTok{)}
-\KeywordTok{library}\NormalTok{(summarytools)}
+\FunctionTok{install.packages}\NormalTok{(}\StringTok{"summarytools"}\NormalTok{)}
+\FunctionTok{library}\NormalTok{(summarytools)}
 \end{Highlighting}
 \end{Shaded}
 
 なお、このChapterでは表の作成方法を紹介します。
-表をWordに貼り付ける方法については、Chapter
-\ref(Word)を確認してください。
+表をWordに貼り付ける方法については、Chapter \ref(Word)を確認してください。
 
-\section{数値の記述統計表の作成}\label{ux6570ux5024ux306eux8a18ux8ff0ux7d71ux8a08ux8868ux306eux4f5cux6210}
+\hypertarget{ux6570ux5024ux306eux8a18ux8ff0ux7d71ux8a08ux8868ux306eux4f5cux6210}{%
+\section{数値の記述統計表の作成}\label{ux6570ux5024ux306eux8a18ux8ff0ux7d71ux8a08ux8868ux306eux4f5cux6210}}
 
 数値の記述統計表を作成するには、\texttt{summarytools}の\texttt{descr()}を用います。
 早速\texttt{saving}で使ってみましょう。
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\NormalTok{saving }\OperatorTok{%>%}\StringTok{ }
-\StringTok{  }\KeywordTok{descr}\NormalTok{()}
+\NormalTok{saving }\SpecialCharTok{\%\textgreater{}\%} 
+  \FunctionTok{descr}\NormalTok{()}
 \end{Highlighting}
 \end{Shaded}
 
@@ -1687,8 +1726,8 @@ character)の変数はこのままでは分析に使用できないので、必�
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\NormalTok{saving }\OperatorTok{%>%}\StringTok{ }
-\StringTok{  }\KeywordTok{descr}\NormalTok{(}\DataTypeTok{stats =} \KeywordTok{c}\NormalTok{(}\StringTok{"mean"}\NormalTok{, }\StringTok{"sd"}\NormalTok{, }\StringTok{"min"}\NormalTok{, }\StringTok{"max"}\NormalTok{, }\StringTok{"n.valid"}\NormalTok{), }\DataTypeTok{transpose =} \OtherTok{TRUE}\NormalTok{, }\DataTypeTok{headings =} \OtherTok{FALSE}\NormalTok{)}
+\NormalTok{saving }\SpecialCharTok{\%\textgreater{}\%} 
+  \FunctionTok{descr}\NormalTok{(}\AttributeTok{stats =} \FunctionTok{c}\NormalTok{(}\StringTok{"mean"}\NormalTok{, }\StringTok{"sd"}\NormalTok{, }\StringTok{"min"}\NormalTok{, }\StringTok{"max"}\NormalTok{, }\StringTok{"n.valid"}\NormalTok{), }\AttributeTok{transpose =} \ConstantTok{TRUE}\NormalTok{, }\AttributeTok{headings =} \ConstantTok{FALSE}\NormalTok{)}
 \end{Highlighting}
 \end{Shaded}
 
@@ -1705,7 +1744,8 @@ character)の変数はこのままでは分析に使用できないので、必�
 ##        size      4.35      1.49        2.00      10.00    100.00
 \end{verbatim}
 
-\section{カテゴリ変数の記述統計表の作成}\label{ux30abux30c6ux30b4ux30eaux5909ux6570ux306eux8a18ux8ff0ux7d71ux8a08ux8868ux306eux4f5cux6210}
+\hypertarget{ux30abux30c6ux30b4ux30eaux5909ux6570ux306eux8a18ux8ff0ux7d71ux8a08ux8868ux306eux4f5cux6210}{%
+\section{カテゴリ変数の記述統計表の作成}\label{ux30abux30c6ux30b4ux30eaux5909ux6570ux306eux8a18ux8ff0ux7d71ux8a08ux8868ux306eux4f5cux6210}}
 
 カテゴリ変数の記述統計については、以下の2つの方法が考えられます。
 
@@ -1725,20 +1765,19 @@ character)の変数はこのままでは分析に使用できないので、必�
 
 ここでは後者の方法を説明します。
 
-例として、Chapter
-\ref(DataHandling)で説明した年齢のカテゴリ変数\texttt{age\_category}を作成し、オブジェクトとして保存しておきます。
+例として、Chapter \ref(DataHandling)で説明した年齢のカテゴリ変数\texttt{age\_category}を作成し、オブジェクトとして保存しておきます。
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\NormalTok{age_category <-}
-\StringTok{  }\NormalTok{saving }\OperatorTok{%>%}
-\StringTok{    }\KeywordTok{mutate}\NormalTok{(}\DataTypeTok{age_category =} \KeywordTok{case_when}\NormalTok{(age }\OperatorTok{<}\StringTok{ }\DecValTok{30} \OperatorTok{~}\StringTok{ "20s"}\NormalTok{,}
-\NormalTok{                                    age }\OperatorTok{>=}\StringTok{ }\DecValTok{30} \OperatorTok{&}\StringTok{ }\NormalTok{age }\OperatorTok{<}\StringTok{ }\DecValTok{40} \OperatorTok{~}\StringTok{ "30s"}\NormalTok{,}
-\NormalTok{                                    age }\OperatorTok{>=}\StringTok{ }\DecValTok{40} \OperatorTok{&}\StringTok{ }\NormalTok{age }\OperatorTok{<}\StringTok{ }\DecValTok{50} \OperatorTok{~}\StringTok{ "40s"}\NormalTok{,}
-\NormalTok{                                    age }\OperatorTok{>=}\StringTok{ }\DecValTok{50} \OperatorTok{~}\StringTok{ "50s"}
+\NormalTok{age\_category }\OtherTok{\textless{}{-}}
+\NormalTok{  saving }\SpecialCharTok{\%\textgreater{}\%}
+    \FunctionTok{mutate}\NormalTok{(}\AttributeTok{age\_category =} \FunctionTok{case\_when}\NormalTok{(age }\SpecialCharTok{\textless{}} \DecValTok{30} \SpecialCharTok{\textasciitilde{}} \StringTok{"20s"}\NormalTok{,}
+\NormalTok{                                    age }\SpecialCharTok{\textgreater{}=} \DecValTok{30} \SpecialCharTok{\&}\NormalTok{ age }\SpecialCharTok{\textless{}} \DecValTok{40} \SpecialCharTok{\textasciitilde{}} \StringTok{"30s"}\NormalTok{,}
+\NormalTok{                                    age }\SpecialCharTok{\textgreater{}=} \DecValTok{40} \SpecialCharTok{\&}\NormalTok{ age }\SpecialCharTok{\textless{}} \DecValTok{50} \SpecialCharTok{\textasciitilde{}} \StringTok{"40s"}\NormalTok{,}
+\NormalTok{                                    age }\SpecialCharTok{\textgreater{}=} \DecValTok{50} \SpecialCharTok{\textasciitilde{}} \StringTok{"50s"}
 \NormalTok{                                    )}
-\NormalTok{          ) }\OperatorTok{%>%}
-\StringTok{    }\KeywordTok{select}\NormalTok{(age_category)}
+\NormalTok{          ) }\SpecialCharTok{\%\textgreater{}\%}
+    \FunctionTok{select}\NormalTok{(age\_category)}
 \end{Highlighting}
 \end{Shaded}
 
@@ -1746,8 +1785,8 @@ character)の変数はこのままでは分析に使用できないので、必�
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\NormalTok{age_category }\OperatorTok{%>%}
-\StringTok{  }\KeywordTok{freq}\NormalTok{()}
+\NormalTok{age\_category }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{freq}\NormalTok{()}
 \end{Highlighting}
 \end{Shaded}
 
@@ -1770,8 +1809,8 @@ character)の変数はこのままでは分析に使用できないので、必�
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\NormalTok{age_category }\OperatorTok{%>%}
-\StringTok{  }\KeywordTok{freq}\NormalTok{(}\DataTypeTok{report.nas =} \OtherTok{FALSE}\NormalTok{, }\DataTypeTok{totals =} \OtherTok{FALSE}\NormalTok{, }\DataTypeTok{cumul =} \OtherTok{FALSE}\NormalTok{, }\DataTypeTok{headings =} \OtherTok{FALSE}\NormalTok{)}
+\NormalTok{age\_category }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{freq}\NormalTok{(}\AttributeTok{report.nas =} \ConstantTok{FALSE}\NormalTok{, }\AttributeTok{totals =} \ConstantTok{FALSE}\NormalTok{, }\AttributeTok{cumul =} \ConstantTok{FALSE}\NormalTok{, }\AttributeTok{headings =} \ConstantTok{FALSE}\NormalTok{)}
 \end{Highlighting}
 \end{Shaded}
 
@@ -1799,7 +1838,8 @@ character)の変数はこのままでは分析に使用できないので、必�
   \texttt{headings\ =\ FALSE}: ヘッダーを表示しないようにする
 \end{itemize}
 
-\chapter{データの可視化}\label{Visualization}
+\hypertarget{Visualization}{%
+\chapter{データの可視化}\label{Visualization}}
 
 データをグラフによって目に見える形でわかりやすく整理する「可視化」は論文においてとても重要です。
 卒業論文では、データや結果を適切に伝えられるよう、グラフを作成していきましょう。
@@ -1811,9 +1851,9 @@ Rでは\texttt{ggplot2}というパッケージで見やすいグラフを作成
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\NormalTok{使用するデータフレーム }\OperatorTok{%>%}
-\StringTok{  }\KeywordTok{ggplot}\NormalTok{(}\KeywordTok{aes}\NormalTok{(}\DataTypeTok{x =}\NormalTok{ x軸の変数名, }\DataTypeTok{y =}\NormalTok{ y軸の変数名)) }\OperatorTok{+}
-\StringTok{  }\NormalTok{geom_グラフの名前()}
+\NormalTok{使用するデータフレーム }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{ggplot}\NormalTok{(}\FunctionTok{aes}\NormalTok{(}\AttributeTok{x =}\NormalTok{ x軸の変数名, }\AttributeTok{y =}\NormalTok{ y軸の変数名)) }\SpecialCharTok{+}
+\NormalTok{  geom\_グラフの名前()}
 \end{Highlighting}
 \end{Shaded}
 
@@ -1847,23 +1887,25 @@ Rでは\texttt{ggplot2}というパッケージで見やすいグラフを作成
   \end{itemize}
 \end{itemize}
 
-\section{1変数の可視化}\label{ux5909ux6570ux306eux53efux8996ux5316}
+\hypertarget{ux5909ux6570ux306eux53efux8996ux5316}{%
+\section{1変数の可視化}\label{ux5909ux6570ux306eux53efux8996ux5316}}
 
 まずは、主要な変数がどのように分布しているかを可視化してみましょう。
 1変数の可視化は、変数がどのような変数かによって使うグラフが異なります。
 ここでは、カテゴリ変数に対する棒グラフ、連続変数に対するヒストグラムを説明します。
 
-\subsection{棒グラフ}\label{ux68d2ux30b0ux30e9ux30d5}
+\hypertarget{ux68d2ux30b0ux30e9ux30d5}{%
+\subsection{棒グラフ}\label{ux68d2ux30b0ux30e9ux30d5}}
 
 ここでは、1つのカテゴリ変数の分布を示すための棒グラフについて説明します。
 例として、\texttt{saving}に含まれる世帯人数\texttt{size}がどのように分布しているかをみてみましょう。
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\NormalTok{saving }\OperatorTok{%>%}
-\StringTok{  }\KeywordTok{mutate}\NormalTok{(}\DataTypeTok{size =} \KeywordTok{as_factor}\NormalTok{(size)) }\OperatorTok{%>%}\StringTok{ }\CommentTok{#sizeをカテゴリ変数に変換して上書き}
-\StringTok{  }\KeywordTok{ggplot}\NormalTok{(}\KeywordTok{aes}\NormalTok{(}\DataTypeTok{x =}\NormalTok{ size)) }\OperatorTok{+}
-\StringTok{  }\KeywordTok{geom_bar}\NormalTok{()}
+\NormalTok{saving }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{mutate}\NormalTok{(}\AttributeTok{size =} \FunctionTok{as\_factor}\NormalTok{(size)) }\SpecialCharTok{\%\textgreater{}\%} \CommentTok{\#sizeをカテゴリ変数に変換して上書き}
+  \FunctionTok{ggplot}\NormalTok{(}\FunctionTok{aes}\NormalTok{(}\AttributeTok{x =}\NormalTok{ size)) }\SpecialCharTok{+}
+  \FunctionTok{geom\_bar}\NormalTok{()}
 \end{Highlighting}
 \end{Shaded}
 
@@ -1871,18 +1913,19 @@ Rでは\texttt{ggplot2}というパッケージで見やすいグラフを作成
 
 1変数の分布を示す関数は\texttt{x}のみを指定すれば良いです（\texttt{y}は不要です）。
 \texttt{geom\_bar()}は何も指定しなければ縦軸を観測数（count）にしてくれます。
-ここでは家族の人数が4人が最も多く、以下5人、3人\ldots{}の順に多いことがわかります。
+ここでは家族の人数が4人が最も多く、以下5人、3人\ldots の順に多いことがわかります。
 
-\subsection{ヒストグラム}\label{ux30d2ux30b9ux30c8ux30b0ux30e9ux30e0}
+\hypertarget{ux30d2ux30b9ux30c8ux30b0ux30e9ux30e0}{%
+\subsection{ヒストグラム}\label{ux30d2ux30b9ux30c8ux30b0ux30e9ux30e0}}
 
 ここでは、1つの連続変数の分布を示すヒストグラムについて説明します。
 例として、\texttt{saving}に含まれる年間収入\texttt{inc}をヒストグラムにしてみましょう。
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\NormalTok{saving }\OperatorTok{%>%}
-\StringTok{  }\KeywordTok{ggplot}\NormalTok{(}\KeywordTok{aes}\NormalTok{(}\DataTypeTok{x =}\NormalTok{ inc)) }\OperatorTok{+}
-\StringTok{  }\KeywordTok{geom_histogram}\NormalTok{()}
+\NormalTok{saving }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{ggplot}\NormalTok{(}\FunctionTok{aes}\NormalTok{(}\AttributeTok{x =}\NormalTok{ inc)) }\SpecialCharTok{+}
+  \FunctionTok{geom\_histogram}\NormalTok{()}
 \end{Highlighting}
 \end{Shaded}
 
@@ -1895,9 +1938,9 @@ Rでは\texttt{ggplot2}というパッケージで見やすいグラフを作成
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\NormalTok{saving }\OperatorTok{%>%}
-\StringTok{  }\KeywordTok{ggplot}\NormalTok{(}\KeywordTok{aes}\NormalTok{(}\DataTypeTok{x =}\NormalTok{ inc)) }\OperatorTok{+}
-\StringTok{  }\KeywordTok{geom_histogram}\NormalTok{(}\DataTypeTok{bins =} \DecValTok{15}\NormalTok{) }\CommentTok{#ビンの数を15に指定}
+\NormalTok{saving }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{ggplot}\NormalTok{(}\FunctionTok{aes}\NormalTok{(}\AttributeTok{x =}\NormalTok{ inc)) }\SpecialCharTok{+}
+  \FunctionTok{geom\_histogram}\NormalTok{(}\AttributeTok{bins =} \DecValTok{15}\NormalTok{) }\CommentTok{\#ビンの数を15に指定}
 \end{Highlighting}
 \end{Shaded}
 
@@ -1906,7 +1949,8 @@ Rでは\texttt{ggplot2}というパッケージで見やすいグラフを作成
 ビンの数が少なくなり分布が滑らかになりましたが、細かい情報が見えづらくなり一長一短です。
 工夫したい方は、ビンの幅を定める\texttt{binwidth}や位置を定める\texttt{center}や\texttt{boundary}も活用してください。
 
-\section{2変数の可視化}\label{ux5909ux6570ux306eux53efux8996ux5316-1}
+\hypertarget{ux5909ux6570ux306eux53efux8996ux5316-1}{%
+\section{2変数の可視化}\label{ux5909ux6570ux306eux53efux8996ux5316-1}}
 
 変数と変数の関係の可視化は、研究結果を示すのに重要です。
 2変数の場合、それぞれの変数の種類によって適切な図が異なります。
@@ -1921,7 +1965,8 @@ Rでは\texttt{ggplot2}というパッケージで見やすいグラフを作成
   カテゴリ変数とカテゴリ変数：棒グラフ
 \end{itemize}
 
-\subsection{散布図}\label{ux6563ux5e03ux56f3}
+\hypertarget{ux6563ux5e03ux56f3}{%
+\subsection{散布図}\label{ux6563ux5e03ux56f3}}
 
 連続変数と連続変数の関係を示すには、散布図が良いです。
 散布図を描く関数が\texttt{geom\_point()}です。
@@ -1929,9 +1974,9 @@ Rでは\texttt{ggplot2}というパッケージで見やすいグラフを作成
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\NormalTok{saving }\OperatorTok{%>%}
-\StringTok{  }\KeywordTok{ggplot}\NormalTok{(}\KeywordTok{aes}\NormalTok{(}\DataTypeTok{x =}\NormalTok{ age, }\DataTypeTok{y =}\NormalTok{ inc)) }\OperatorTok{+}
-\StringTok{  }\KeywordTok{geom_point}\NormalTok{()}
+\NormalTok{saving }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{ggplot}\NormalTok{(}\FunctionTok{aes}\NormalTok{(}\AttributeTok{x =}\NormalTok{ age, }\AttributeTok{y =}\NormalTok{ inc)) }\SpecialCharTok{+}
+  \FunctionTok{geom\_point}\NormalTok{()}
 \end{Highlighting}
 \end{Shaded}
 
@@ -1946,18 +1991,21 @@ Rでは\texttt{ggplot2}というパッケージで見やすいグラフを作成
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\NormalTok{saving }\OperatorTok{%>%}
-\StringTok{  }\KeywordTok{ggplot}\NormalTok{(}\KeywordTok{aes}\NormalTok{(}\DataTypeTok{x =}\NormalTok{ age, }\DataTypeTok{y =}\NormalTok{ inc)) }\OperatorTok{+}
-\StringTok{  }\KeywordTok{geom_point}\NormalTok{() }\OperatorTok{+}
-\StringTok{  }\KeywordTok{geom_smooth}\NormalTok{(}\DataTypeTok{method =} \StringTok{"lm"}\NormalTok{, }\DataTypeTok{se =} \OtherTok{FALSE}\NormalTok{)}
+\NormalTok{saving }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{ggplot}\NormalTok{(}\FunctionTok{aes}\NormalTok{(}\AttributeTok{x =}\NormalTok{ age, }\AttributeTok{y =}\NormalTok{ inc)) }\SpecialCharTok{+}
+  \FunctionTok{geom\_point}\NormalTok{() }\SpecialCharTok{+}
+  \FunctionTok{geom\_smooth}\NormalTok{(}\AttributeTok{method =} \StringTok{"lm"}\NormalTok{, }\AttributeTok{se =} \ConstantTok{FALSE}\NormalTok{)}
 \end{Highlighting}
 \end{Shaded}
+
+\begin{verbatim}
+## `geom_smooth()` using formula 'y ~ x'
+\end{verbatim}
 
 \begin{center}\includegraphics{RforGradThesis_files/figure-latex/add geom_smooth-1} \end{center}
 
 ggplotはグラフを+でつなげて重ねることができます。ここでは、\texttt{geom\_point()}で散布図を描き、その上に\texttt{geom\_smooth()}で回帰直線を重ねています。
-\texttt{geom\_smooth()}の引数\texttt{method}では、どのような線を描くのかを指定します。lmは線形モデル（linear
-model）を指定しています。（指定しないと別の線になります）
+\texttt{geom\_smooth()}の引数\texttt{method}では、どのような線を描くのかを指定します。lmは線形モデル（linear model）を指定しています。（指定しないと別の線になります）
 \texttt{se}は標準偏差を見せる引数ですが、これをFALSEにして見せないようにしています。
 
 カテゴリ変数と連続変数の関係を示すのにも、散布図を使うことができますが、弱点があります。
@@ -1965,11 +2013,11 @@ model）を指定しています。（指定しないと別の線になります
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\NormalTok{saving }\OperatorTok{%>%}
-\StringTok{  }\KeywordTok{mutate}\NormalTok{(}\DataTypeTok{highschool =} \KeywordTok{if_else}\NormalTok{(educ }\OperatorTok{>=}\StringTok{ }\DecValTok{12}\NormalTok{, }\DecValTok{1}\NormalTok{, }\DecValTok{0}\NormalTok{),}
-         \DataTypeTok{highschool =} \KeywordTok{as_factor}\NormalTok{(highschool)) }\OperatorTok{%>%}
-\StringTok{  }\KeywordTok{ggplot}\NormalTok{(}\KeywordTok{aes}\NormalTok{(}\DataTypeTok{x =}\NormalTok{ highschool, }\DataTypeTok{y =}\NormalTok{ inc)) }\OperatorTok{+}
-\StringTok{  }\KeywordTok{geom_point}\NormalTok{()}
+\NormalTok{saving }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{mutate}\NormalTok{(}\AttributeTok{highschool =} \FunctionTok{if\_else}\NormalTok{(educ }\SpecialCharTok{\textgreater{}=} \DecValTok{12}\NormalTok{, }\DecValTok{1}\NormalTok{, }\DecValTok{0}\NormalTok{),}
+         \AttributeTok{highschool =} \FunctionTok{as\_factor}\NormalTok{(highschool)) }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{ggplot}\NormalTok{(}\FunctionTok{aes}\NormalTok{(}\AttributeTok{x =}\NormalTok{ highschool, }\AttributeTok{y =}\NormalTok{ inc)) }\SpecialCharTok{+}
+  \FunctionTok{geom\_point}\NormalTok{()}
 \end{Highlighting}
 \end{Shaded}
 
@@ -1990,11 +2038,11 @@ model）を指定しています。（指定しないと別の線になります
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\NormalTok{saving }\OperatorTok{%>%}
-\StringTok{  }\KeywordTok{mutate}\NormalTok{(}\DataTypeTok{highschool =} \KeywordTok{if_else}\NormalTok{(educ }\OperatorTok{>=}\StringTok{ }\DecValTok{12}\NormalTok{, }\DecValTok{1}\NormalTok{, }\DecValTok{0}\NormalTok{),}
-         \DataTypeTok{highschool =} \KeywordTok{as_factor}\NormalTok{(highschool)) }\OperatorTok{%>%}
-\StringTok{  }\KeywordTok{ggplot}\NormalTok{(}\KeywordTok{aes}\NormalTok{(}\DataTypeTok{x =}\NormalTok{ highschool, }\DataTypeTok{y =}\NormalTok{ inc)) }\OperatorTok{+}
-\StringTok{  }\KeywordTok{geom_jitter}\NormalTok{(}\DataTypeTok{width =} \FloatTok{0.2}\NormalTok{)}
+\NormalTok{saving }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{mutate}\NormalTok{(}\AttributeTok{highschool =} \FunctionTok{if\_else}\NormalTok{(educ }\SpecialCharTok{\textgreater{}=} \DecValTok{12}\NormalTok{, }\DecValTok{1}\NormalTok{, }\DecValTok{0}\NormalTok{),}
+         \AttributeTok{highschool =} \FunctionTok{as\_factor}\NormalTok{(highschool)) }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{ggplot}\NormalTok{(}\FunctionTok{aes}\NormalTok{(}\AttributeTok{x =}\NormalTok{ highschool, }\AttributeTok{y =}\NormalTok{ inc)) }\SpecialCharTok{+}
+  \FunctionTok{geom\_jitter}\NormalTok{(}\AttributeTok{width =} \FloatTok{0.2}\NormalTok{)}
 \end{Highlighting}
 \end{Shaded}
 
@@ -2002,37 +2050,43 @@ model）を指定しています。（指定しないと別の線になります
 
 これで多少見やすくなりました。\texttt{width\ =\ 0.2}では、散らす幅を指定しています。
 
-\subsection{棒グラフ}\label{ux68d2ux30b0ux30e9ux30d5-1}
+\hypertarget{ux68d2ux30b0ux30e9ux30d5-1}{%
+\subsection{棒グラフ}\label{ux68d2ux30b0ux30e9ux30d5-1}}
 
 棒グラフでカテゴリごとの代表値を示したい場合は、\texttt{geom\_bar()}ではなく\texttt{stat\_summary()}を使います。
 \texttt{stat\_summary()}の\texttt{fun.y}で使用したい代表値を（ここでは平均mean）、\texttt{geom}で表示方法ここでは棒グラフ\texttt{bar}を指定します。
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\NormalTok{saving }\OperatorTok{%>%}
-\StringTok{  }\KeywordTok{mutate}\NormalTok{(}\DataTypeTok{highschool =} \KeywordTok{if_else}\NormalTok{(educ }\OperatorTok{>=}\StringTok{ }\DecValTok{12}\NormalTok{, }\DecValTok{1}\NormalTok{, }\DecValTok{0}\NormalTok{),}
-         \DataTypeTok{highschool =} \KeywordTok{as_factor}\NormalTok{(highschool)) }\OperatorTok{%>%}
-\StringTok{  }\KeywordTok{ggplot}\NormalTok{(}\KeywordTok{aes}\NormalTok{(}\DataTypeTok{x =}\NormalTok{ highschool, }\DataTypeTok{y =}\NormalTok{ inc)) }\OperatorTok{+}
-\StringTok{  }\KeywordTok{stat_summary}\NormalTok{(}\DataTypeTok{fun.y =} \StringTok{"mean"}\NormalTok{, }\DataTypeTok{geom =} \StringTok{"bar"}\NormalTok{)}
+\NormalTok{saving }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{mutate}\NormalTok{(}\AttributeTok{highschool =} \FunctionTok{if\_else}\NormalTok{(educ }\SpecialCharTok{\textgreater{}=} \DecValTok{12}\NormalTok{, }\DecValTok{1}\NormalTok{, }\DecValTok{0}\NormalTok{),}
+         \AttributeTok{highschool =} \FunctionTok{as\_factor}\NormalTok{(highschool)) }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{ggplot}\NormalTok{(}\FunctionTok{aes}\NormalTok{(}\AttributeTok{x =}\NormalTok{ highschool, }\AttributeTok{y =}\NormalTok{ inc)) }\SpecialCharTok{+}
+  \FunctionTok{stat\_summary}\NormalTok{(}\AttributeTok{fun.y =} \StringTok{"mean"}\NormalTok{, }\AttributeTok{geom =} \StringTok{"bar"}\NormalTok{)}
 \end{Highlighting}
 \end{Shaded}
+
+\begin{verbatim}
+## Warning: `fun.y` is deprecated. Use `fun` instead.
+\end{verbatim}
 
 \begin{center}\includegraphics{RforGradThesis_files/figure-latex/stat_summary-1} \end{center}
 
 これでカテゴリ別の平均値を棒グラフで示すことができました。
 
-\subsection{箱ひげ図}\label{ux7bb1ux3072ux3052ux56f3}
+\hypertarget{ux7bb1ux3072ux3052ux56f3}{%
+\subsection{箱ひげ図}\label{ux7bb1ux3072ux3052ux56f3}}
 
 箱ひげ図でカテゴリごとの代表値を示すこともできます。
 箱ひげ図を描くには\texttt{geom\_boxplot}を用います。
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\NormalTok{saving }\OperatorTok{%>%}
-\StringTok{  }\KeywordTok{mutate}\NormalTok{(}\DataTypeTok{highschool =} \KeywordTok{if_else}\NormalTok{(educ }\OperatorTok{>=}\StringTok{ }\DecValTok{12}\NormalTok{, }\DecValTok{1}\NormalTok{, }\DecValTok{0}\NormalTok{),}
-         \DataTypeTok{highschool =} \KeywordTok{as_factor}\NormalTok{(highschool)) }\OperatorTok{%>%}
-\StringTok{  }\KeywordTok{ggplot}\NormalTok{(}\KeywordTok{aes}\NormalTok{(}\DataTypeTok{x =}\NormalTok{ highschool, }\DataTypeTok{y =}\NormalTok{ inc)) }\OperatorTok{+}
-\StringTok{  }\KeywordTok{geom_boxplot}\NormalTok{()}
+\NormalTok{saving }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{mutate}\NormalTok{(}\AttributeTok{highschool =} \FunctionTok{if\_else}\NormalTok{(educ }\SpecialCharTok{\textgreater{}=} \DecValTok{12}\NormalTok{, }\DecValTok{1}\NormalTok{, }\DecValTok{0}\NormalTok{),}
+         \AttributeTok{highschool =} \FunctionTok{as\_factor}\NormalTok{(highschool)) }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{ggplot}\NormalTok{(}\FunctionTok{aes}\NormalTok{(}\AttributeTok{x =}\NormalTok{ highschool, }\AttributeTok{y =}\NormalTok{ inc)) }\SpecialCharTok{+}
+  \FunctionTok{geom\_boxplot}\NormalTok{()}
 \end{Highlighting}
 \end{Shaded}
 
@@ -2060,12 +2114,12 @@ model）を指定しています。（指定しないと別の線になります
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\NormalTok{saving }\OperatorTok{%>%}
-\StringTok{  }\KeywordTok{mutate}\NormalTok{(}\DataTypeTok{highschool =} \KeywordTok{if_else}\NormalTok{(educ }\OperatorTok{>=}\StringTok{ }\DecValTok{12}\NormalTok{, }\DecValTok{1}\NormalTok{, }\DecValTok{0}\NormalTok{),}
-         \DataTypeTok{highschool =} \KeywordTok{as_factor}\NormalTok{(highschool)) }\OperatorTok{%>%}
-\StringTok{  }\KeywordTok{ggplot}\NormalTok{(}\KeywordTok{aes}\NormalTok{(}\DataTypeTok{x =}\NormalTok{ highschool, }\DataTypeTok{y =}\NormalTok{ inc)) }\OperatorTok{+}
-\StringTok{  }\KeywordTok{geom_boxplot}\NormalTok{(}\DataTypeTok{outlier.shape =} \OtherTok{NA}\NormalTok{) }\OperatorTok{+}\StringTok{ }\CommentTok{#外れ値を表示しないようオプションを設定}
-\StringTok{  }\KeywordTok{geom_jitter}\NormalTok{(}\DataTypeTok{width =} \FloatTok{0.2}\NormalTok{)}
+\NormalTok{saving }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{mutate}\NormalTok{(}\AttributeTok{highschool =} \FunctionTok{if\_else}\NormalTok{(educ }\SpecialCharTok{\textgreater{}=} \DecValTok{12}\NormalTok{, }\DecValTok{1}\NormalTok{, }\DecValTok{0}\NormalTok{),}
+         \AttributeTok{highschool =} \FunctionTok{as\_factor}\NormalTok{(highschool)) }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{ggplot}\NormalTok{(}\FunctionTok{aes}\NormalTok{(}\AttributeTok{x =}\NormalTok{ highschool, }\AttributeTok{y =}\NormalTok{ inc)) }\SpecialCharTok{+}
+  \FunctionTok{geom\_boxplot}\NormalTok{(}\AttributeTok{outlier.shape =} \ConstantTok{NA}\NormalTok{) }\SpecialCharTok{+} \CommentTok{\#外れ値を表示しないようオプションを設定}
+  \FunctionTok{geom\_jitter}\NormalTok{(}\AttributeTok{width =} \FloatTok{0.2}\NormalTok{)}
 \end{Highlighting}
 \end{Shaded}
 
@@ -2073,14 +2127,15 @@ model）を指定しています。（指定しないと別の線になります
 
 これでデータの全貌がわかりやすくなったでしょうか？
 
-\chapter{t検定}\label{Ttest}
+\hypertarget{Ttest}{%
+\chapter{t検定}\label{Ttest}}
 
 2群の平均値の差についての検定であるt検定を実施してみましょう。
 t検定を行うコマンドは\texttt{t.test()}です。\texttt{t.test()}は以下のように記述します。
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\KeywordTok{t.test}\NormalTok{(従属変数 }\OperatorTok{~}\StringTok{ }\NormalTok{独立変数, }\DataTypeTok{data =}\NormalTok{ データフレーム名)}
+\FunctionTok{t.test}\NormalTok{(従属変数 }\SpecialCharTok{\textasciitilde{}}\NormalTok{ 独立変数, }\AttributeTok{data =}\NormalTok{ データフレーム名)}
 \end{Highlighting}
 \end{Shaded}
 
@@ -2088,7 +2143,7 @@ t検定を行うコマンドは\texttt{t.test()}です。\texttt{t.test()}は以
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\KeywordTok{t.test}\NormalTok{(inc }\OperatorTok{~}\StringTok{ }\NormalTok{black, }\DataTypeTok{data =}\NormalTok{ saving)}
+\FunctionTok{t.test}\NormalTok{(inc }\SpecialCharTok{\textasciitilde{}}\NormalTok{ black, }\AttributeTok{data =}\NormalTok{ saving)}
 \end{Highlighting}
 \end{Shaded}
 
@@ -2098,7 +2153,7 @@ t検定を行うコマンドは\texttt{t.test()}です。\texttt{t.test()}は以
 ## 
 ## data:  inc by black
 ## t = 1.8562, df = 7.3906, p-value = 0.1036
-## alternative hypothesis: true difference in means is not equal to 0
+## alternative hypothesis: true difference in means between group 0 and group 1 is not equal to 0
 ## 95 percent confidence interval:
 ##  -890.170 7726.938
 ## sample estimates:
@@ -2117,7 +2172,7 @@ t検定の結果はあまり見やすい形式にはなっていません。
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\KeywordTok{install.packages}\NormalTok{(}\StringTok{"broom"}\NormalTok{)}
+\FunctionTok{install.packages}\NormalTok{(}\StringTok{"broom"}\NormalTok{)}
 \end{Highlighting}
 \end{Shaded}
 
@@ -2125,9 +2180,9 @@ t検定の結果はあまり見やすい形式にはなっていません。
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\KeywordTok{library}\NormalTok{(broom)}
-\KeywordTok{t.test}\NormalTok{(inc }\OperatorTok{~}\StringTok{ }\NormalTok{black, }\DataTypeTok{data =}\NormalTok{ saving) }\OperatorTok{%>%}
-\StringTok{  }\KeywordTok{tidy}\NormalTok{()}
+\FunctionTok{library}\NormalTok{(broom)}
+\FunctionTok{t.test}\NormalTok{(inc }\SpecialCharTok{\textasciitilde{}}\NormalTok{ black, }\AttributeTok{data =}\NormalTok{ saving) }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{tidy}\NormalTok{()}
 \end{Highlighting}
 \end{Shaded}
 
@@ -2163,41 +2218,37 @@ t検定の結果はあまり見やすい形式にはなっていません。
   \texttt{alternative}: 両側検定か片側検定か
 \end{itemize}
 
-\chapter{回帰分析}\label{Regression}
+\hypertarget{Regression}{%
+\chapter{回帰分析}\label{Regression}}
 
 回帰分析とは、従属変数と独立変数の関係を数式（モデル）で表し、そのパラメータを推定する分析方法です。
-ここでは、もっとも基本的な回帰分析である線形回帰（Linear
-Regression）を扱います。
+ここでは、もっとも基本的な回帰分析である線形回帰（Linear Regression）を扱います。
 
-\section{線形回帰とは}\label{ux7ddaux5f62ux56deux5e30ux3068ux306f}
+\hypertarget{ux7ddaux5f62ux56deux5e30ux3068ux306f}{%
+\section{線形回帰とは}\label{ux7ddaux5f62ux56deux5e30ux3068ux306f}}
 
-線形回帰では、従属変数 \(y\) と説明変数 \(x\) があるとき、\(y\) と \(x\)
-の関係の以下の式（回帰式）で表します。
+線形回帰では、従属変数 \(y\) と説明変数 \(x\) があるとき、\(y\) と \(x\) の関係の以下の式（回帰式）で表します。
 
 \(y = \alpha + \beta x\)
 
 別の言い方をすると、 \(y\) を \(x\) の１次関数で表すと言うことです。
-傾きを示す \(\beta\) は \(x\) と \(y\)
-の関係を示す重要な数値で、係数（Coefficient）と呼ばれます。
-これがプラスであれば \(x\) と \(y\)
-に正の関係があることになりますし、マイナスであれば負の関係、0であれば関係がないことになります。
-\(\beta\) は \(x\) が1単位高いとき、\(y\) が \(\beta\)
-単位高い、という意味になります。
+傾きを示す \(\beta\) は \(x\) と \(y\) の関係を示す重要な数値で、係数（Coefficient）と呼ばれます。
+これがプラスであれば \(x\) と \(y\) に正の関係があることになりますし、マイナスであれば負の関係、0であれば関係がないことになります。
+\(\beta\) は \(x\) が1単位高いとき、\(y\) が \(\beta\) 単位高い、という意味になります。
 \textbf{回帰分析では変数の単位を常に把握して分析するよう心がけましょう。}
 
 \(\alpha\) や \(\beta\) は最小二乗法（OLS）という方法で推定します。
 この文書ではRでの操作方法に特化して説明するので、詳しくは各自調べてください。
 
-\section{Rでの線形回帰}\label{rux3067ux306eux7ddaux5f62ux56deux5e30}
+\hypertarget{rux3067ux306eux7ddaux5f62ux56deux5e30}{%
+\section{Rでの線形回帰}\label{rux3067ux306eux7ddaux5f62ux56deux5e30}}
 
-Rでは回帰式を\texttt{y\ \textasciitilde{}\ x}と表記します。（ここはChapter
-\ref{Ttest}で学んだとt検定同じ表記です）
-線形回帰を行う関数が\texttt{lm()}で（lmはlinear
-modelの略）、以下のように表記します。
+Rでは回帰式を\texttt{y\ \textasciitilde{}\ x}と表記します。（ここはChapter \ref{Ttest}で学んだとt検定同じ表記です）
+線形回帰を行う関数が\texttt{lm()}で（lmはlinear modelの略）、以下のように表記します。
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\KeywordTok{lm}\NormalTok{(回帰式, }\DataTypeTok{data =}\NormalTok{ データフレーム)}
+\FunctionTok{lm}\NormalTok{(回帰式, }\AttributeTok{data =}\NormalTok{ データフレーム)}
 \end{Highlighting}
 \end{Shaded}
 
@@ -2206,7 +2257,7 @@ modelの略）、以下のように表記します。
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\KeywordTok{lm}\NormalTok{(inc }\OperatorTok{~}\StringTok{ }\NormalTok{educ, }\DataTypeTok{data =}\NormalTok{ saving)}
+\FunctionTok{lm}\NormalTok{(inc }\SpecialCharTok{\textasciitilde{}}\NormalTok{ educ, }\AttributeTok{data =}\NormalTok{ saving)}
 \end{Highlighting}
 \end{Shaded}
 
@@ -2228,8 +2279,8 @@ Coefficientsのinterceptが\(\alpha\)、educが\(\beta\)を表します。
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\KeywordTok{lm}\NormalTok{(inc }\OperatorTok{~}\StringTok{ }\NormalTok{educ, }\DataTypeTok{data =}\NormalTok{ saving) }\OperatorTok{%>%}
-\StringTok{  }\KeywordTok{summary}\NormalTok{()}
+\FunctionTok{lm}\NormalTok{(inc }\SpecialCharTok{\textasciitilde{}}\NormalTok{ educ, }\AttributeTok{data =}\NormalTok{ saving) }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{summary}\NormalTok{()}
 \end{Highlighting}
 \end{Shaded}
 
@@ -2271,19 +2322,17 @@ Coefficientsで以下の数値が表示されるようになりました。
 
 \texttt{educ}のp値は1.78e-06と表記されています。
 これは、\(1.78 \times 10^{-6} = 1.78 \times 0.000001 = 0.00000178\)を表します。
-とても小さい値なので、\texttt{educ}の係数 \(\beta\)
-は有意に負と言えます。
+とても小さい値なので、\texttt{educ}の係数 \(\beta\) は有意に負と言えます。
 
 他にも、決定係数 \(R^2\) などの数値も記載されています。
 
 \texttt{summary()}で詳細を見ることができますが、やや見づらい印象があります。
-表形式にするため、Chapter
-\ref{Ttest}と同じく\texttt{broom}パッケージの関数\texttt{tidy()}を使ってみましょう。
+表形式にするため、Chapter \ref{Ttest}と同じく\texttt{broom}パッケージの関数\texttt{tidy()}を使ってみましょう。
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\KeywordTok{lm}\NormalTok{(inc }\OperatorTok{~}\StringTok{ }\NormalTok{educ, }\DataTypeTok{data =}\NormalTok{ saving) }\OperatorTok{%>%}
-\StringTok{  }\KeywordTok{tidy}\NormalTok{()}
+\FunctionTok{lm}\NormalTok{(inc }\SpecialCharTok{\textasciitilde{}}\NormalTok{ educ, }\AttributeTok{data =}\NormalTok{ saving) }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{tidy}\NormalTok{()}
 \end{Highlighting}
 \end{Shaded}
 
@@ -2305,7 +2354,8 @@ Coefficientsで以下の数値が表示されるようになりました。
   収入\texttt{inc}を世帯人数\texttt{size}に回帰し、係数の意味を解釈してください。
 \end{itemize}
 
-\section{重回帰分析}\label{ux91cdux56deux5e30ux5206ux6790}
+\hypertarget{ux91cdux56deux5e30ux5206ux6790}{%
+\section{重回帰分析}\label{ux91cdux56deux5e30ux5206ux6790}}
 
 回帰分析には複数の説明変数を含め、それぞれの説明変数と被説明変数との変数を検証することができます。
 複数の説明変数がある回帰分析を重回帰分析、一方上で説明した１つの説明変数がある回帰分析を単回帰分析と呼びます。
@@ -2318,8 +2368,8 @@ Rでの回帰式の表記は、\texttt{y\ \textasciitilde{}\ x1\ +\ x2}と、説
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\KeywordTok{lm}\NormalTok{(inc }\OperatorTok{~}\StringTok{ }\NormalTok{educ }\OperatorTok{+}\StringTok{ }\NormalTok{size, }\DataTypeTok{data =}\NormalTok{ saving) }\OperatorTok{%>%}
-\StringTok{  }\KeywordTok{tidy}\NormalTok{()}
+\FunctionTok{lm}\NormalTok{(inc }\SpecialCharTok{\textasciitilde{}}\NormalTok{ educ }\SpecialCharTok{+}\NormalTok{ size, }\AttributeTok{data =}\NormalTok{ saving) }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{tidy}\NormalTok{()}
 \end{Highlighting}
 \end{Shaded}
 
@@ -2335,16 +2385,16 @@ Rでの回帰式の表記は、\texttt{y\ \textasciitilde{}\ x1\ +\ x2}と、説
 回帰式の解釈は単回帰分析と同様です。
 ここでは、教育年数の結果は先ほどと大きく変わりませんでした。
 
-説明変数はさらに3つ、4つ\ldots{}と増やすことができ、Rでは\texttt{y\ \textasciitilde{}\ x1\ +\ x2\ +\ x3\ +\ x4\ +\ ...}と\texttt{+}でつなげていきます。
+説明変数はさらに3つ、4つ\ldots と増やすことができ、Rでは\texttt{y\ \textasciitilde{}\ x1\ +\ x2\ +\ x3\ +\ x4\ +\ ...}と\texttt{+}でつなげていきます。
 説明変数が多く回帰式が長くなる場合は、回帰式を一旦オブジェクトとして保存しておくとコードが読みやすくなります。
 
 例えば、上記の回帰分析にさらに年齢\texttt{age}、黒人ダミー\texttt{black}を加えてみましょう。
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\NormalTok{equation <-}\StringTok{ }\NormalTok{inc }\OperatorTok{~}\StringTok{ }\NormalTok{educ }\OperatorTok{+}\StringTok{ }\NormalTok{size }\OperatorTok{+}\StringTok{ }\NormalTok{age }\OperatorTok{+}\StringTok{ }\NormalTok{black}
-\KeywordTok{lm}\NormalTok{(equation, }\DataTypeTok{data =}\NormalTok{ saving) }\OperatorTok{%>%}
-\StringTok{  }\KeywordTok{tidy}\NormalTok{()}
+\NormalTok{equation }\OtherTok{\textless{}{-}}\NormalTok{ inc }\SpecialCharTok{\textasciitilde{}}\NormalTok{ educ }\SpecialCharTok{+}\NormalTok{ size }\SpecialCharTok{+}\NormalTok{ age }\SpecialCharTok{+}\NormalTok{ black}
+\FunctionTok{lm}\NormalTok{(equation, }\AttributeTok{data =}\NormalTok{ saving) }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{tidy}\NormalTok{()}
 \end{Highlighting}
 \end{Shaded}
 
@@ -2369,7 +2419,8 @@ Rでの回帰式の表記は、\texttt{y\ \textasciitilde{}\ x1\ +\ x2}と、説
   貯蓄額\texttt{sav}を被説明変数、教育年数\texttt{educ}、世帯人数\texttt{size}、年齢\texttt{age}を説明変数とする回帰分析を行い、それぞれの係数を解釈しなさい。
 \end{itemize}
 
-\section{ダミー変数の利用}\label{ux30c0ux30dfux30fcux5909ux6570ux306eux5229ux7528}
+\hypertarget{ux30c0ux30dfux30fcux5909ux6570ux306eux5229ux7528}{%
+\section{ダミー変数の利用}\label{ux30c0ux30dfux30fcux5909ux6570ux306eux5229ux7528}}
 
 条件を満たすグループに1、条件を満たさないグループに0をとるダミー変数は、そのまま回帰分析に組み込むことができます。
 ただし、解釈には注意が必要です。
@@ -2379,7 +2430,7 @@ Rでの回帰式の表記は、\texttt{y\ \textasciitilde{}\ x1\ +\ x2}と、説
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\KeywordTok{lm}\NormalTok{(inc }\OperatorTok{~}\StringTok{ }\NormalTok{black, }\DataTypeTok{data =}\NormalTok{ saving)}
+\FunctionTok{lm}\NormalTok{(inc }\SpecialCharTok{\textasciitilde{}}\NormalTok{ black, }\AttributeTok{data =}\NormalTok{ saving)}
 \end{Highlighting}
 \end{Shaded}
 
@@ -2395,7 +2446,8 @@ Rでの回帰式の表記は、\texttt{y\ \textasciitilde{}\ x1\ +\ x2}と、説
 
 黒人ダミーの係数は-3418です。これは、「黒人はそれ以外と比べて、年収が3418ドル低い」ことを意味します。
 
-\section{カテゴリ変数の利用}\label{ux30abux30c6ux30b4ux30eaux5909ux6570ux306eux5229ux7528}
+\hypertarget{ux30abux30c6ux30b4ux30eaux5909ux6570ux306eux5229ux7528}{%
+\section{カテゴリ変数の利用}\label{ux30abux30c6ux30b4ux30eaux5909ux6570ux306eux5229ux7528}}
 
 カテゴリ変数はそのまま回帰分析に組み込むことができません。
 代わりにカテゴリの数-1個のダミー変数を作成し、回帰分析に組み込みます。
@@ -2428,16 +2480,16 @@ Rではカテゴリ変数がfactor型になっていれば、\textbf{自動的�
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\NormalTok{saving_with_age_category <-}
-\StringTok{  }\NormalTok{saving }\OperatorTok{%>%}
-\StringTok{    }\KeywordTok{mutate}\NormalTok{(}\DataTypeTok{age_category =} \KeywordTok{case_when}\NormalTok{(age }\OperatorTok{<}\StringTok{ }\DecValTok{30} \OperatorTok{~}\StringTok{ "20s"}\NormalTok{,}
-\NormalTok{                                    age }\OperatorTok{>=}\StringTok{ }\DecValTok{30} \OperatorTok{&}\StringTok{ }\NormalTok{age }\OperatorTok{<}\StringTok{ }\DecValTok{40} \OperatorTok{~}\StringTok{ "30s"}\NormalTok{,}
-\NormalTok{                                    age }\OperatorTok{>=}\StringTok{ }\DecValTok{40} \OperatorTok{&}\StringTok{ }\NormalTok{age }\OperatorTok{<}\StringTok{ }\DecValTok{50} \OperatorTok{~}\StringTok{ "40s"}\NormalTok{,}
-\NormalTok{                                    age }\OperatorTok{>=}\StringTok{ }\DecValTok{50} \OperatorTok{~}\StringTok{ "50s"}
+\NormalTok{saving\_with\_age\_category }\OtherTok{\textless{}{-}}
+\NormalTok{  saving }\SpecialCharTok{\%\textgreater{}\%}
+    \FunctionTok{mutate}\NormalTok{(}\AttributeTok{age\_category =} \FunctionTok{case\_when}\NormalTok{(age }\SpecialCharTok{\textless{}} \DecValTok{30} \SpecialCharTok{\textasciitilde{}} \StringTok{"20s"}\NormalTok{,}
+\NormalTok{                                    age }\SpecialCharTok{\textgreater{}=} \DecValTok{30} \SpecialCharTok{\&}\NormalTok{ age }\SpecialCharTok{\textless{}} \DecValTok{40} \SpecialCharTok{\textasciitilde{}} \StringTok{"30s"}\NormalTok{,}
+\NormalTok{                                    age }\SpecialCharTok{\textgreater{}=} \DecValTok{40} \SpecialCharTok{\&}\NormalTok{ age }\SpecialCharTok{\textless{}} \DecValTok{50} \SpecialCharTok{\textasciitilde{}} \StringTok{"40s"}\NormalTok{,}
+\NormalTok{                                    age }\SpecialCharTok{\textgreater{}=} \DecValTok{50} \SpecialCharTok{\textasciitilde{}} \StringTok{"50s"}
 \NormalTok{                                    )}
 \NormalTok{          )}
 
-\KeywordTok{lm}\NormalTok{(inc }\OperatorTok{~}\StringTok{ }\NormalTok{age_category, }\DataTypeTok{data =}\NormalTok{ saving_with_age_category)}
+\FunctionTok{lm}\NormalTok{(inc }\SpecialCharTok{\textasciitilde{}}\NormalTok{ age\_category, }\AttributeTok{data =}\NormalTok{ saving\_with\_age\_category)}
 \end{Highlighting}
 \end{Shaded}
 
@@ -2464,10 +2516,11 @@ Rではカテゴリ変数がfactor型になっていれば、\textbf{自動的�
   50代は20代より年収が3885ドル高い
 \end{itemize}
 
-それぞれ比較すると、年収は20代\textless{}30代\textless{}40代\textless{}50代と年齢が上がるにつれ高くなることがわかります。
+それぞれ比較すると、年収は20代\textless30代\textless40代\textless50代と年齢が上がるにつれ高くなることがわかります。
 しかし、40代と50代では差はほぼありません。
 
-\section{交互作用の導入}\label{ux4ea4ux4e92ux4f5cux7528ux306eux5c0eux5165}
+\hypertarget{ux4ea4ux4e92ux4f5cux7528ux306eux5c0eux5165}{%
+\section{交互作用の導入}\label{ux4ea4ux4e92ux4f5cux7528ux306eux5c0eux5165}}
 
 ある説明変数と被説明変数のとの関係が別の説明変数によって変化するような状況のことを交互作用がある、と言います。
 例えば、収入と教育年数の関係が黒人ダミーによって異なる、といった場合です。
@@ -2476,8 +2529,8 @@ Rの回帰式では、交互作用は2つの変数を\texttt{:}でつなげる�
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\KeywordTok{lm}\NormalTok{(inc }\OperatorTok{~}\StringTok{ }\NormalTok{educ }\OperatorTok{+}\StringTok{ }\NormalTok{black }\OperatorTok{+}\StringTok{ }\NormalTok{educ}\OperatorTok{:}\NormalTok{black, }\DataTypeTok{data =}\NormalTok{ saving) }\OperatorTok{%>%}
-\StringTok{  }\KeywordTok{tidy}\NormalTok{()}
+\FunctionTok{lm}\NormalTok{(inc }\SpecialCharTok{\textasciitilde{}}\NormalTok{ educ }\SpecialCharTok{+}\NormalTok{ black }\SpecialCharTok{+}\NormalTok{ educ}\SpecialCharTok{:}\NormalTok{black, }\AttributeTok{data =}\NormalTok{ saving) }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{tidy}\NormalTok{()}
 \end{Highlighting}
 \end{Shaded}
 
@@ -2505,8 +2558,8 @@ Rの回帰式では、交互作用は2つの変数を\texttt{:}でつなげる�
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\KeywordTok{lm}\NormalTok{(inc }\OperatorTok{~}\StringTok{ }\NormalTok{educ}\OperatorTok{*}\NormalTok{black, }\DataTypeTok{data =}\NormalTok{ saving) }\OperatorTok{%>%}
-\StringTok{  }\KeywordTok{tidy}\NormalTok{()}
+\FunctionTok{lm}\NormalTok{(inc }\SpecialCharTok{\textasciitilde{}}\NormalTok{ educ}\SpecialCharTok{*}\NormalTok{black, }\AttributeTok{data =}\NormalTok{ saving) }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{tidy}\NormalTok{()}
 \end{Highlighting}
 \end{Shaded}
 
@@ -2530,7 +2583,8 @@ Rの回帰式では、交互作用は2つの変数を\texttt{:}でつなげる�
   収入\texttt{inc}と年齢\texttt{age}の関係が黒人ダミーによって異なるかどうか、交互作用を含めた回帰分析を行い、その結果を解釈しなさい。
 \end{itemize}
 
-\section{回帰分析の表をまとめる}\label{ux56deux5e30ux5206ux6790ux306eux8868ux3092ux307eux3068ux3081ux308b}
+\hypertarget{ux56deux5e30ux5206ux6790ux306eux8868ux3092ux307eux3068ux3081ux308b}{%
+\section{回帰分析の表をまとめる}\label{ux56deux5e30ux5206ux6790ux306eux8868ux3092ux307eux3068ux3081ux308b}}
 
 ここまでは、回帰分析の結果は\texttt{tidy()}を用いて整理し、卒業論文に貼り付ける想定で話を進めてきました。
 回帰分析の数が少ない場合は、この方法でも十分でしょう。
@@ -2553,9 +2607,9 @@ Rの回帰式では、交互作用は2つの変数を\texttt{:}でつなげる�
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\NormalTok{regression1 <-}\StringTok{ }\KeywordTok{lm}\NormalTok{(inc }\OperatorTok{~}\StringTok{ }\NormalTok{educ, }\DataTypeTok{data =}\NormalTok{ saving) }\CommentTok{#単回帰分析の結果をオブジェクトに保存}
-\NormalTok{regression2 <-}\StringTok{ }\KeywordTok{lm}\NormalTok{(inc }\OperatorTok{~}\StringTok{ }\NormalTok{educ }\OperatorTok{+}\StringTok{ }\NormalTok{age, }\DataTypeTok{data =}\NormalTok{ saving) }\CommentTok{#重回帰分析の結果をオブジェクトに保存}
-\KeywordTok{stargazer}\NormalTok{(regression1, regression2, }\DataTypeTok{type =} \StringTok{"html"}\NormalTok{, }\DataTypeTok{out =} \StringTok{"test.doc"}\NormalTok{)}
+\NormalTok{regression1 }\OtherTok{\textless{}{-}} \FunctionTok{lm}\NormalTok{(inc }\SpecialCharTok{\textasciitilde{}}\NormalTok{ educ, }\AttributeTok{data =}\NormalTok{ saving) }\CommentTok{\#単回帰分析の結果をオブジェクトに保存}
+\NormalTok{regression2 }\OtherTok{\textless{}{-}} \FunctionTok{lm}\NormalTok{(inc }\SpecialCharTok{\textasciitilde{}}\NormalTok{ educ }\SpecialCharTok{+}\NormalTok{ age, }\AttributeTok{data =}\NormalTok{ saving) }\CommentTok{\#重回帰分析の結果をオブジェクトに保存}
+\FunctionTok{stargazer}\NormalTok{(regression1, regression2, }\AttributeTok{type =} \StringTok{"html"}\NormalTok{, }\AttributeTok{out =} \StringTok{"test.doc"}\NormalTok{)}
 \end{Highlighting}
 \end{Shaded}
 
@@ -2625,7 +2679,7 @@ F Statistic
 
 Note:
 
-\emph{p\textless{}0.1; \textbf{p\textless{}0.05; }}p\textless{}0.01
+\emph{p\textless0.1; \textbf{p\textless0.05; }}p\textless0.01
 
 1・2行目では、\texttt{lm()}で回帰分析を行い、結果をオブジェクトとして\texttt{regression1},\texttt{regression2}にそれぞれ入力しています。
 \texttt{stargazer()}では、表に含める回帰分析の結果を引数とし、さらにオプションを指定します。
@@ -2654,12 +2708,14 @@ Note:
   \texttt{F\ Statistic}: F値（F検定の結果も合わせて表示）
 \end{itemize}
 
-\chapter{Wordファイルへの貼り付け}\label{Word}
+\hypertarget{Word}{%
+\chapter{Wordファイルへの貼り付け}\label{Word}}
 
 多くの学生がWordで卒業論文を作成すると思われるので、Wordへ貼り付ける方法を説明します。
 \textbf{Rで出た結果を目で見てWordに打ち込む方法は、タイプミスの危険がありおすすめしません。}
 
-\section{表の貼り付け}\label{ux8868ux306eux8cbcux308aux4ed8ux3051}
+\hypertarget{ux8868ux306eux8cbcux308aux4ed8ux3051}{%
+\section{表の貼り付け}\label{ux8868ux306eux8cbcux308aux4ed8ux3051}}
 
 Wordへ表を貼り付けるには様々な方法がありますが、ここではExcelを経由する方法を説明します。
 
@@ -2683,6 +2739,6 @@ Wordへ表を貼り付けるには様々な方法がありますが、ここで�
 
 RでWordの表を作成する方法としては、\texttt{flextable}パッケージなどを参照してください。（森もまだよくわかっておりません、情報募集中です）
 
-\bibliography{book.bib,packages.bib}
+  \bibliography{book.bib,packages.bib}
 
 \end{document}

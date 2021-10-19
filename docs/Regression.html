@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>Chapter 12 回帰分析 | 卒業論文のためのR入門</title>
   <meta name="description" content="この文書は、卒業論文を書くためのRの使い方をできるだけコンパクトにまとめたものです。" />
-  <meta name="generator" content="bookdown 0.20 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.24 and GitBook 2.6.7" />
 
   <meta property="og:title" content="Chapter 12 回帰分析 | 卒業論文のためのR入門" />
   <meta property="og:type" content="book" />
@@ -32,7 +32,9 @@
   
 <link rel="prev" href="Ttest.html"/>
 <link rel="next" href="Word.html"/>
-<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<script src="libs/header-attrs-2.10/header-attrs.js"></script>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
@@ -48,46 +50,75 @@
 
 
 
-
+<link href="libs/anchor-sections-1.0.1/anchor-sections.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.0.1/anchor-sections.js"></script>
 
 
 <style type="text/css">
-div.sourceCode { overflow-x: auto; }
-table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
-  margin: 0; padding: 0; vertical-align: baseline; border: none; }
-table.sourceCode { width: 100%; line-height: 100%; }
-td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; color: #aaaaaa; border-right: 1px solid #aaaaaa; }
-td.sourceCode { padding-left: 5px; }
-code > span.kw { color: #007020; font-weight: bold; } /* Keyword */
-code > span.dt { color: #902000; } /* DataType */
-code > span.dv { color: #40a070; } /* DecVal */
-code > span.bn { color: #40a070; } /* BaseN */
-code > span.fl { color: #40a070; } /* Float */
-code > span.ch { color: #4070a0; } /* Char */
-code > span.st { color: #4070a0; } /* String */
-code > span.co { color: #60a0b0; font-style: italic; } /* Comment */
-code > span.ot { color: #007020; } /* Other */
-code > span.al { color: #ff0000; font-weight: bold; } /* Alert */
-code > span.fu { color: #06287e; } /* Function */
-code > span.er { color: #ff0000; font-weight: bold; } /* Error */
-code > span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
-code > span.cn { color: #880000; } /* Constant */
-code > span.sc { color: #4070a0; } /* SpecialChar */
-code > span.vs { color: #4070a0; } /* VerbatimString */
-code > span.ss { color: #bb6688; } /* SpecialString */
-code > span.im { } /* Import */
-code > span.va { color: #19177c; } /* Variable */
-code > span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
-code > span.op { color: #666666; } /* Operator */
-code > span.bu { } /* BuiltIn */
-code > span.ex { } /* Extension */
-code > span.pp { color: #bc7a00; } /* Preprocessor */
-code > span.at { color: #7d9029; } /* Attribute */
-code > span.do { color: #ba2121; font-style: italic; } /* Documentation */
-code > span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
-code > span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
-code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
 </style>
+
 
 <link rel="stylesheet" href="style.css" type="text/css" />
 </head>
@@ -105,12 +136,15 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li><a href="./">卒業論文のためのR入門</a></li>
 
 <li class="divider"></li>
-<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> はじめに</a><ul>
+<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> はじめに</a>
+<ul>
 <li class="chapter" data-level="1.1" data-path="index.html"><a href="index.html#この文書で学ぶこと"><i class="fa fa-check"></i><b>1.1</b> この文書で学ぶこと</a></li>
-<li class="chapter" data-level="1.2" data-path="index.html"><a href="index.html#この文書の作成目的"><i class="fa fa-check"></i><b>1.2</b> この文書の作成目的</a></li>
+<li class="chapter" data-level="1.2" data-path="index.html"><a href="index.html#更新履歴"><i class="fa fa-check"></i><b>1.2</b> 更新履歴</a></li>
+<li class="chapter" data-level="1.3" data-path="index.html"><a href="index.html#この文書の作成目的"><i class="fa fa-check"></i><b>1.3</b> この文書の作成目的</a></li>
 </ul></li>
 <li class="chapter" data-level="2" data-path="InstallR.html"><a href="InstallR.html"><i class="fa fa-check"></i><b>2</b> R(Studio)のインストール</a></li>
-<li class="chapter" data-level="3" data-path="RStudio.html"><a href="RStudio.html"><i class="fa fa-check"></i><b>3</b> RStudioの使い方</a><ul>
+<li class="chapter" data-level="3" data-path="RStudio.html"><a href="RStudio.html"><i class="fa fa-check"></i><b>3</b> RStudioの使い方</a>
+<ul>
 <li class="chapter" data-level="3.1" data-path="RStudio.html"><a href="RStudio.html#rstudioの起動"><i class="fa fa-check"></i><b>3.1</b> RStudioの起動</a></li>
 <li class="chapter" data-level="3.2" data-path="RStudio.html"><a href="RStudio.html#rstudioの画面"><i class="fa fa-check"></i><b>3.2</b> RStudioの画面</a></li>
 <li class="chapter" data-level="3.3" data-path="RStudio.html"><a href="RStudio.html#rstudioの操作"><i class="fa fa-check"></i><b>3.3</b> RStudioの操作</a></li>
@@ -118,37 +152,45 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="3.5" data-path="RStudio.html"><a href="RStudio.html#プロジェクトの作成"><i class="fa fa-check"></i><b>3.5</b> プロジェクトの作成</a></li>
 </ul></li>
 <li class="chapter" data-level="4" data-path="Packages.html"><a href="Packages.html"><i class="fa fa-check"></i><b>4</b> パッケージのインストール</a></li>
-<li class="chapter" data-level="5" data-path="Rbasics.html"><a href="Rbasics.html"><i class="fa fa-check"></i><b>5</b> Rの基本操作</a><ul>
+<li class="chapter" data-level="5" data-path="Rbasics.html"><a href="Rbasics.html"><i class="fa fa-check"></i><b>5</b> Rの基本操作</a>
+<ul>
 <li class="chapter" data-level="5.1" data-path="Rbasics.html"><a href="Rbasics.html#オブジェクト"><i class="fa fa-check"></i><b>5.1</b> オブジェクト</a></li>
 <li class="chapter" data-level="5.2" data-path="Rbasics.html"><a href="Rbasics.html#簡単な計算"><i class="fa fa-check"></i><b>5.2</b> 簡単な計算</a></li>
-<li class="chapter" data-level="5.3" data-path="Rbasics.html"><a href="Rbasics.html#関数"><i class="fa fa-check"></i><b>5.3</b> 関数</a><ul>
+<li class="chapter" data-level="5.3" data-path="Rbasics.html"><a href="Rbasics.html#関数"><i class="fa fa-check"></i><b>5.3</b> 関数</a>
+<ul>
 <li class="chapter" data-level="5.3.1" data-path="Rbasics.html"><a href="Rbasics.html#数値に対する関数"><i class="fa fa-check"></i><b>5.3.1</b> 数値に対する関数</a></li>
 <li class="chapter" data-level="5.3.2" data-path="Rbasics.html"><a href="Rbasics.html#ベクトルに対する関数"><i class="fa fa-check"></i><b>5.3.2</b> ベクトルに対する関数</a></li>
 </ul></li>
 <li class="chapter" data-level="5.4" data-path="Rbasics.html"><a href="Rbasics.html#データフレーム"><i class="fa fa-check"></i><b>5.4</b> データフレーム</a></li>
 </ul></li>
-<li class="chapter" data-level="6" data-path="ImportData.html"><a href="ImportData.html"><i class="fa fa-check"></i><b>6</b> データのインポート</a><ul>
+<li class="chapter" data-level="6" data-path="ImportData.html"><a href="ImportData.html"><i class="fa fa-check"></i><b>6</b> データのインポート</a>
+<ul>
 <li class="chapter" data-level="6.1" data-path="ImportData.html"><a href="ImportData.html#インポートの準備"><i class="fa fa-check"></i><b>6.1</b> インポートの準備</a></li>
-<li class="chapter" data-level="6.2" data-path="ImportData.html"><a href="ImportData.html#ファイル形式別のインポート方法"><i class="fa fa-check"></i><b>6.2</b> ファイル形式別のインポート方法</a><ul>
+<li class="chapter" data-level="6.2" data-path="ImportData.html"><a href="ImportData.html#ファイル形式別のインポート方法"><i class="fa fa-check"></i><b>6.2</b> ファイル形式別のインポート方法</a>
+<ul>
 <li class="chapter" data-level="6.2.1" data-path="ImportData.html"><a href="ImportData.html#csvファイルの場合.csv"><i class="fa fa-check"></i><b>6.2.1</b> CSVファイルの場合（.csv）</a></li>
 <li class="chapter" data-level="6.2.2" data-path="ImportData.html"><a href="ImportData.html#excelファイルの場合.xlsx"><i class="fa fa-check"></i><b>6.2.2</b> Excelファイルの場合（.xlsx）</a></li>
 <li class="chapter" data-level="6.2.3" data-path="ImportData.html"><a href="ImportData.html#qualtricsのデータの場合"><i class="fa fa-check"></i><b>6.2.3</b> Qualtricsのデータの場合</a></li>
 </ul></li>
 <li class="chapter" data-level="6.3" data-path="ImportData.html"><a href="ImportData.html#インポートしたデータの確認"><i class="fa fa-check"></i><b>6.3</b> インポートしたデータの確認</a></li>
 </ul></li>
-<li class="chapter" data-level="7" data-path="Hypotheses.html"><a href="Hypotheses.html"><i class="fa fa-check"></i><b>7</b> 仮説とデータの具体例</a><ul>
+<li class="chapter" data-level="7" data-path="Hypotheses.html"><a href="Hypotheses.html"><i class="fa fa-check"></i><b>7</b> 仮説とデータの具体例</a>
+<ul>
 <li class="chapter" data-level="7.1" data-path="Hypotheses.html"><a href="Hypotheses.html#仮説の確認"><i class="fa fa-check"></i><b>7.1</b> 仮説の確認</a></li>
 <li class="chapter" data-level="7.2" data-path="Hypotheses.html"><a href="Hypotheses.html#変数の確認"><i class="fa fa-check"></i><b>7.2</b> 変数の確認</a></li>
 <li class="chapter" data-level="7.3" data-path="Hypotheses.html"><a href="Hypotheses.html#データの具体例"><i class="fa fa-check"></i><b>7.3</b> データの具体例</a></li>
 </ul></li>
-<li class="chapter" data-level="8" data-path="DataHandling.html"><a href="DataHandling.html"><i class="fa fa-check"></i><b>8</b> データ前処理</a><ul>
+<li class="chapter" data-level="8" data-path="DataHandling.html"><a href="DataHandling.html"><i class="fa fa-check"></i><b>8</b> データ前処理</a>
+<ul>
 <li class="chapter" data-level="8.1" data-path="DataHandling.html"><a href="DataHandling.html#パイプによる処理"><i class="fa fa-check"></i><b>8.1</b> パイプ（%&gt;%）による処理</a></li>
-<li class="chapter" data-level="8.2" data-path="DataHandling.html"><a href="DataHandling.html#変数の作成及び置換"><i class="fa fa-check"></i><b>8.2</b> 変数の作成（及び置換）</a><ul>
+<li class="chapter" data-level="8.2" data-path="DataHandling.html"><a href="DataHandling.html#変数の作成及び置換"><i class="fa fa-check"></i><b>8.2</b> 変数の作成（及び置換）</a>
+<ul>
 <li class="chapter" data-level="8.2.1" data-path="DataHandling.html"><a href="DataHandling.html#変数の新規作成"><i class="fa fa-check"></i><b>8.2.1</b> 変数の新規作成</a></li>
 <li class="chapter" data-level="8.2.2" data-path="DataHandling.html"><a href="DataHandling.html#逆転項目の処理"><i class="fa fa-check"></i><b>8.2.2</b> 逆転項目の処理</a></li>
 <li class="chapter" data-level="8.2.3" data-path="DataHandling.html"><a href="DataHandling.html#変数の標準化"><i class="fa fa-check"></i><b>8.2.3</b> 変数の標準化</a></li>
 </ul></li>
-<li class="chapter" data-level="8.3" data-path="DataHandling.html"><a href="DataHandling.html#カテゴリ変数の処理"><i class="fa fa-check"></i><b>8.3</b> カテゴリ変数の処理</a><ul>
+<li class="chapter" data-level="8.3" data-path="DataHandling.html"><a href="DataHandling.html#カテゴリ変数の処理"><i class="fa fa-check"></i><b>8.3</b> カテゴリ変数の処理</a>
+<ul>
 <li class="chapter" data-level="8.3.1" data-path="DataHandling.html"><a href="DataHandling.html#変数の型"><i class="fa fa-check"></i><b>8.3.1</b> 変数の型</a></li>
 <li class="chapter" data-level="8.3.2" data-path="DataHandling.html"><a href="DataHandling.html#カテゴリ変数への変換"><i class="fa fa-check"></i><b>8.3.2</b> カテゴリ変数への変換</a></li>
 <li class="chapter" data-level="8.3.3" data-path="DataHandling.html"><a href="DataHandling.html#ダミー変数の作成"><i class="fa fa-check"></i><b>8.3.3</b> ダミー変数の作成</a></li>
@@ -158,23 +200,28 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="8.5" data-path="DataHandling.html"><a href="DataHandling.html#変数の並び替え"><i class="fa fa-check"></i><b>8.5</b> 変数の並び替え</a></li>
 <li class="chapter" data-level="8.6" data-path="DataHandling.html"><a href="DataHandling.html#すべての作業をパイプでつなげる"><i class="fa fa-check"></i><b>8.6</b> すべての作業をパイプでつなげる</a></li>
 </ul></li>
-<li class="chapter" data-level="9" data-path="SummaryStat.html"><a href="SummaryStat.html"><i class="fa fa-check"></i><b>9</b> 記述統計表の作成</a><ul>
+<li class="chapter" data-level="9" data-path="SummaryStat.html"><a href="SummaryStat.html"><i class="fa fa-check"></i><b>9</b> 記述統計表の作成</a>
+<ul>
 <li class="chapter" data-level="9.1" data-path="SummaryStat.html"><a href="SummaryStat.html#数値の記述統計表の作成"><i class="fa fa-check"></i><b>9.1</b> 数値の記述統計表の作成</a></li>
 <li class="chapter" data-level="9.2" data-path="SummaryStat.html"><a href="SummaryStat.html#カテゴリ変数の記述統計表の作成"><i class="fa fa-check"></i><b>9.2</b> カテゴリ変数の記述統計表の作成</a></li>
 </ul></li>
-<li class="chapter" data-level="10" data-path="Visualization.html"><a href="Visualization.html"><i class="fa fa-check"></i><b>10</b> データの可視化</a><ul>
-<li class="chapter" data-level="10.1" data-path="Visualization.html"><a href="Visualization.html#変数の可視化"><i class="fa fa-check"></i><b>10.1</b> 1変数の可視化</a><ul>
+<li class="chapter" data-level="10" data-path="Visualization.html"><a href="Visualization.html"><i class="fa fa-check"></i><b>10</b> データの可視化</a>
+<ul>
+<li class="chapter" data-level="10.1" data-path="Visualization.html"><a href="Visualization.html#変数の可視化"><i class="fa fa-check"></i><b>10.1</b> 1変数の可視化</a>
+<ul>
 <li class="chapter" data-level="10.1.1" data-path="Visualization.html"><a href="Visualization.html#棒グラフ"><i class="fa fa-check"></i><b>10.1.1</b> 棒グラフ</a></li>
 <li class="chapter" data-level="10.1.2" data-path="Visualization.html"><a href="Visualization.html#ヒストグラム"><i class="fa fa-check"></i><b>10.1.2</b> ヒストグラム</a></li>
 </ul></li>
-<li class="chapter" data-level="10.2" data-path="Visualization.html"><a href="Visualization.html#変数の可視化-1"><i class="fa fa-check"></i><b>10.2</b> 2変数の可視化</a><ul>
+<li class="chapter" data-level="10.2" data-path="Visualization.html"><a href="Visualization.html#変数の可視化-1"><i class="fa fa-check"></i><b>10.2</b> 2変数の可視化</a>
+<ul>
 <li class="chapter" data-level="10.2.1" data-path="Visualization.html"><a href="Visualization.html#散布図"><i class="fa fa-check"></i><b>10.2.1</b> 散布図</a></li>
 <li class="chapter" data-level="10.2.2" data-path="Visualization.html"><a href="Visualization.html#棒グラフ-1"><i class="fa fa-check"></i><b>10.2.2</b> 棒グラフ</a></li>
 <li class="chapter" data-level="10.2.3" data-path="Visualization.html"><a href="Visualization.html#箱ひげ図"><i class="fa fa-check"></i><b>10.2.3</b> 箱ひげ図</a></li>
 </ul></li>
 </ul></li>
 <li class="chapter" data-level="11" data-path="Ttest.html"><a href="Ttest.html"><i class="fa fa-check"></i><b>11</b> t検定</a></li>
-<li class="chapter" data-level="12" data-path="Regression.html"><a href="Regression.html"><i class="fa fa-check"></i><b>12</b> 回帰分析</a><ul>
+<li class="chapter" data-level="12" data-path="Regression.html"><a href="Regression.html"><i class="fa fa-check"></i><b>12</b> 回帰分析</a>
+<ul>
 <li class="chapter" data-level="12.1" data-path="Regression.html"><a href="Regression.html#線形回帰とは"><i class="fa fa-check"></i><b>12.1</b> 線形回帰とは</a></li>
 <li class="chapter" data-level="12.2" data-path="Regression.html"><a href="Regression.html#rでの線形回帰"><i class="fa fa-check"></i><b>12.2</b> Rでの線形回帰</a></li>
 <li class="chapter" data-level="12.3" data-path="Regression.html"><a href="Regression.html#重回帰分析"><i class="fa fa-check"></i><b>12.3</b> 重回帰分析</a></li>
@@ -183,7 +230,8 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="12.6" data-path="Regression.html"><a href="Regression.html#交互作用の導入"><i class="fa fa-check"></i><b>12.6</b> 交互作用の導入</a></li>
 <li class="chapter" data-level="12.7" data-path="Regression.html"><a href="Regression.html#回帰分析の表をまとめる"><i class="fa fa-check"></i><b>12.7</b> 回帰分析の表をまとめる</a></li>
 </ul></li>
-<li class="chapter" data-level="13" data-path="Word.html"><a href="Word.html"><i class="fa fa-check"></i><b>13</b> Wordファイルへの貼り付け</a><ul>
+<li class="chapter" data-level="13" data-path="Word.html"><a href="Word.html"><i class="fa fa-check"></i><b>13</b> Wordファイルへの貼り付け</a>
+<ul>
 <li class="chapter" data-level="13.1" data-path="Word.html"><a href="Word.html#表の貼り付け"><i class="fa fa-check"></i><b>13.1</b> 表の貼り付け</a></li>
 </ul></li>
 <li class="divider"></li>
@@ -206,10 +254,11 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="Regression" class="section level1">
+<div id="Regression" class="section level1" number="12">
 <h1><span class="header-section-number">Chapter 12</span> 回帰分析</h1>
-<p>回帰分析とは、従属変数と独立変数の関係を数式（モデル）で表し、そのパラメータを推定する分析方法です。 ここでは、もっとも基本的な回帰分析である線形回帰（Linear Regression）を扱います。</p>
-<div id="線形回帰とは" class="section level2">
+<p>回帰分析とは、従属変数と独立変数の関係を数式（モデル）で表し、そのパラメータを推定する分析方法です。
+ここでは、もっとも基本的な回帰分析である線形回帰（Linear Regression）を扱います。</p>
+<div id="線形回帰とは" class="section level2" number="12.1">
 <h2><span class="header-section-number">12.1</span> 線形回帰とは</h2>
 <p>線形回帰では、従属変数 <span class="math inline">\(y\)</span> と説明変数 <span class="math inline">\(x\)</span> があるとき、<span class="math inline">\(y\)</span> と <span class="math inline">\(x\)</span> の関係の以下の式（回帰式）で表します。</p>
 <br>
@@ -217,15 +266,22 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <span class="math inline">\(y = \alpha + \beta x\)</span>
 </center>
 <p><br></p>
-<p>別の言い方をすると、 <span class="math inline">\(y\)</span> を <span class="math inline">\(x\)</span> の１次関数で表すと言うことです。 傾きを示す <span class="math inline">\(\beta\)</span> は <span class="math inline">\(x\)</span> と <span class="math inline">\(y\)</span> の関係を示す重要な数値で、係数（Coefficient）と呼ばれます。 これがプラスであれば <span class="math inline">\(x\)</span> と <span class="math inline">\(y\)</span> に正の関係があることになりますし、マイナスであれば負の関係、0であれば関係がないことになります。 <span class="math inline">\(\beta\)</span> は <span class="math inline">\(x\)</span> が1単位高いとき、<span class="math inline">\(y\)</span> が <span class="math inline">\(\beta\)</span> 単位高い、という意味になります。 <strong>回帰分析では変数の単位を常に把握して分析するよう心がけましょう。</strong></p>
-<p><span class="math inline">\(\alpha\)</span> や <span class="math inline">\(\beta\)</span> は最小二乗法（OLS）という方法で推定します。 この文書ではRでの操作方法に特化して説明するので、詳しくは各自調べてください。</p>
+<p>別の言い方をすると、 <span class="math inline">\(y\)</span> を <span class="math inline">\(x\)</span> の１次関数で表すと言うことです。
+傾きを示す <span class="math inline">\(\beta\)</span> は <span class="math inline">\(x\)</span> と <span class="math inline">\(y\)</span> の関係を示す重要な数値で、係数（Coefficient）と呼ばれます。
+これがプラスであれば <span class="math inline">\(x\)</span> と <span class="math inline">\(y\)</span> に正の関係があることになりますし、マイナスであれば負の関係、0であれば関係がないことになります。
+<span class="math inline">\(\beta\)</span> は <span class="math inline">\(x\)</span> が1単位高いとき、<span class="math inline">\(y\)</span> が <span class="math inline">\(\beta\)</span> 単位高い、という意味になります。
+<strong>回帰分析では変数の単位を常に把握して分析するよう心がけましょう。</strong></p>
+<p><span class="math inline">\(\alpha\)</span> や <span class="math inline">\(\beta\)</span> は最小二乗法（OLS）という方法で推定します。
+この文書ではRでの操作方法に特化して説明するので、詳しくは各自調べてください。</p>
 </div>
-<div id="rでの線形回帰" class="section level2">
+<div id="rでの線形回帰" class="section level2" number="12.2">
 <h2><span class="header-section-number">12.2</span> Rでの線形回帰</h2>
-<p>Rでは回帰式を<code>y ~ x</code>と表記します。（ここはChapter <a href="Ttest.html#Ttest">11</a>で学んだとt検定同じ表記です） 線形回帰を行う関数が<code>lm()</code>で（lmはlinear modelの略）、以下のように表記します。</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">lm</span>(回帰式, <span class="dt">data =</span> データフレーム)</code></pre></div>
-<p>例として、従属変数を年収<code>inc</code>、独立変数を教育年数<code>educ</code>とした線形回帰分析を行ってみましょう。 回帰式は <span class="math inline">\(inc = \alpha + \beta educ\)</span> です。</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">lm</span>(inc <span class="op">~</span><span class="st"> </span>educ, <span class="dt">data =</span> saving)</code></pre></div>
+<p>Rでは回帰式を<code>y ~ x</code>と表記します。（ここはChapter <a href="Ttest.html#Ttest">11</a>で学んだとt検定同じ表記です）
+線形回帰を行う関数が<code>lm()</code>で（lmはlinear modelの略）、以下のように表記します。</p>
+<div class="sourceCode" id="cb121"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb121-1"><a href="Regression.html#cb121-1" aria-hidden="true" tabindex="-1"></a><span class="fu">lm</span>(回帰式, <span class="at">data =</span> データフレーム)</span></code></pre></div>
+<p>例として、従属変数を年収<code>inc</code>、独立変数を教育年数<code>educ</code>とした線形回帰分析を行ってみましょう。
+回帰式は <span class="math inline">\(inc = \alpha + \beta educ\)</span> です。</p>
+<div class="sourceCode" id="cb122"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb122-1"><a href="Regression.html#cb122-1" aria-hidden="true" tabindex="-1"></a><span class="fu">lm</span>(inc <span class="sc">~</span> educ, <span class="at">data =</span> saving)</span></code></pre></div>
 <pre><code>## 
 ## Call:
 ## lm(formula = inc ~ educ, data = saving)
@@ -233,10 +289,12 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 ## Coefficients:
 ## (Intercept)         educ  
 ##      1342.7        742.5</code></pre>
-<p>Coefficientsのinterceptが<span class="math inline">\(\alpha\)</span>、educが<span class="math inline">\(\beta\)</span>を表します。 <span class="math inline">\(\beta\)</span>を見ると、教育年数が1年高いと年収が742.5ドル高くなっていることがわかります。</p>
-<p><code>lm()</code>を実施すると、以上のように係数の推定値を得ることができますが、統計的推測のための数値（t値、p値）がわかりません。 <code>lm()</code>の結果を<code>summary()</code>に渡すと、詳細を見ることができます。</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">lm</span>(inc <span class="op">~</span><span class="st"> </span>educ, <span class="dt">data =</span> saving) <span class="op">%&gt;%</span>
-<span class="st">  </span><span class="kw">summary</span>()</code></pre></div>
+<p>Coefficientsのinterceptが<span class="math inline">\(\alpha\)</span>、educが<span class="math inline">\(\beta\)</span>を表します。
+<span class="math inline">\(\beta\)</span>を見ると、教育年数が1年高いと年収が742.5ドル高くなっていることがわかります。</p>
+<p><code>lm()</code>を実施すると、以上のように係数の推定値を得ることができますが、統計的推測のための数値（t値、p値）がわかりません。
+<code>lm()</code>の結果を<code>summary()</code>に渡すと、詳細を見ることができます。</p>
+<div class="sourceCode" id="cb124"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb124-1"><a href="Regression.html#cb124-1" aria-hidden="true" tabindex="-1"></a><span class="fu">lm</span>(inc <span class="sc">~</span> educ, <span class="at">data =</span> saving) <span class="sc">%&gt;%</span></span>
+<span id="cb124-2"><a href="Regression.html#cb124-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summary</span>()</span></code></pre></div>
 <pre><code>## 
 ## Call:
 ## lm(formula = inc ~ educ, data = saving)
@@ -255,19 +313,23 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 ## Residual standard error: 4993 on 98 degrees of freedom
 ## Multiple R-squared:  0.2087, Adjusted R-squared:  0.2006 
 ## F-statistic: 25.84 on 1 and 98 DF,  p-value: 1.777e-06</code></pre>
-<p>Coefficientsで以下の数値が表示されるようになりました。 それぞれの意味は教科書を確認してください。</p>
+<p>Coefficientsで以下の数値が表示されるようになりました。
+それぞれの意味は教科書を確認してください。</p>
 <ul>
 <li><code>Estimate</code>: 係数</li>
 <li><code>Std. Error</code>: 標準誤差</li>
 <li><code>t value</code>: t値</li>
 <li><code>Pr(&gt;|t|)</code>: p値</li>
 </ul>
-<p><code>educ</code>のp値は1.78e-06と表記されています。 これは、<span class="math inline">\(1.78 \times 10^{-6} = 1.78 \times 0.000001 = 0.00000178\)</span>を表します。 とても小さい値なので、<code>educ</code>の係数 <span class="math inline">\(\beta\)</span> は有意に負と言えます。</p>
+<p><code>educ</code>のp値は1.78e-06と表記されています。
+これは、<span class="math inline">\(1.78 \times 10^{-6} = 1.78 \times 0.000001 = 0.00000178\)</span>を表します。
+とても小さい値なので、<code>educ</code>の係数 <span class="math inline">\(\beta\)</span> は有意に負と言えます。</p>
 <p>他にも、決定係数 <span class="math inline">\(R^2\)</span> などの数値も記載されています。</p>
-<p><code>summary()</code>で詳細を見ることができますが、やや見づらい印象があります。 表形式にするため、Chapter <a href="Ttest.html#Ttest">11</a>と同じく<code>broom</code>パッケージの関数<code>tidy()</code>を使ってみましょう。</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">lm</span>(inc <span class="op">~</span><span class="st"> </span>educ, <span class="dt">data =</span> saving) <span class="op">%&gt;%</span>
-<span class="st">  </span><span class="kw">tidy</span>()</code></pre></div>
-<pre><code>## # A tibble: 2 x 5
+<p><code>summary()</code>で詳細を見ることができますが、やや見づらい印象があります。
+表形式にするため、Chapter <a href="Ttest.html#Ttest">11</a>と同じく<code>broom</code>パッケージの関数<code>tidy()</code>を使ってみましょう。</p>
+<div class="sourceCode" id="cb126"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb126-1"><a href="Regression.html#cb126-1" aria-hidden="true" tabindex="-1"></a><span class="fu">lm</span>(inc <span class="sc">~</span> educ, <span class="at">data =</span> saving) <span class="sc">%&gt;%</span></span>
+<span id="cb126-2"><a href="Regression.html#cb126-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tidy</span>()</span></code></pre></div>
+<pre><code>## # A tibble: 2 × 5
 ##   term        estimate std.error statistic    p.value
 ##   &lt;chr&gt;          &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;      &lt;dbl&gt;
 ## 1 (Intercept)    1343.     1764.     0.761 0.448     
@@ -278,30 +340,35 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li>収入<code>inc</code>を世帯人数<code>size</code>に回帰し、係数の意味を解釈してください。</li>
 </ul>
 </div>
-<div id="重回帰分析" class="section level2">
+<div id="重回帰分析" class="section level2" number="12.3">
 <h2><span class="header-section-number">12.3</span> 重回帰分析</h2>
-<p>回帰分析には複数の説明変数を含め、それぞれの説明変数と被説明変数との変数を検証することができます。 複数の説明変数がある回帰分析を重回帰分析、一方上で説明した１つの説明変数がある回帰分析を単回帰分析と呼びます。 回帰式は説明変数を <span class="math inline">\(x_1, x_2\)</span> としたとき、以下のようになります。</p>
+<p>回帰分析には複数の説明変数を含め、それぞれの説明変数と被説明変数との変数を検証することができます。
+複数の説明変数がある回帰分析を重回帰分析、一方上で説明した１つの説明変数がある回帰分析を単回帰分析と呼びます。
+回帰式は説明変数を <span class="math inline">\(x_1, x_2\)</span> としたとき、以下のようになります。</p>
 <br>
 <center>
 <span class="math inline">\(y = \alpha + \beta_1 x_1 + \beta_2 x_2\)</span>
 </center>
 <p><br></p>
-<p>Rでの回帰式の表記は、<code>y ~ x1 + x2</code>と、説明変数を<code>+</code>でつなげます。 ここでは、収入<code>inc</code>を教育年数<code>educ</code>と世帯人数<code>size</code>に回帰してみましょう。</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">lm</span>(inc <span class="op">~</span><span class="st"> </span>educ <span class="op">+</span><span class="st"> </span>size, <span class="dt">data =</span> saving) <span class="op">%&gt;%</span>
-<span class="st">  </span><span class="kw">tidy</span>()</code></pre></div>
-<pre><code>## # A tibble: 3 x 5
+<p>Rでの回帰式の表記は、<code>y ~ x1 + x2</code>と、説明変数を<code>+</code>でつなげます。
+ここでは、収入<code>inc</code>を教育年数<code>educ</code>と世帯人数<code>size</code>に回帰してみましょう。</p>
+<div class="sourceCode" id="cb128"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb128-1"><a href="Regression.html#cb128-1" aria-hidden="true" tabindex="-1"></a><span class="fu">lm</span>(inc <span class="sc">~</span> educ <span class="sc">+</span> size, <span class="at">data =</span> saving) <span class="sc">%&gt;%</span></span>
+<span id="cb128-2"><a href="Regression.html#cb128-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tidy</span>()</span></code></pre></div>
+<pre><code>## # A tibble: 3 × 5
 ##   term        estimate std.error statistic    p.value
 ##   &lt;chr&gt;          &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;      &lt;dbl&gt;
 ## 1 (Intercept)    3027.     2283.      1.33 0.188     
 ## 2 educ            743.      146.      5.10 0.00000171
 ## 3 size           -389.      335.     -1.16 0.249</code></pre>
-<p>回帰式の解釈は単回帰分析と同様です。 ここでは、教育年数の結果は先ほどと大きく変わりませんでした。</p>
-<p>説明変数はさらに3つ、4つ…と増やすことができ、Rでは<code>y ~ x1 + x2 + x3 + x4 + ...</code>と<code>+</code>でつなげていきます。 説明変数が多く回帰式が長くなる場合は、回帰式を一旦オブジェクトとして保存しておくとコードが読みやすくなります。</p>
+<p>回帰式の解釈は単回帰分析と同様です。
+ここでは、教育年数の結果は先ほどと大きく変わりませんでした。</p>
+<p>説明変数はさらに3つ、4つ…と増やすことができ、Rでは<code>y ~ x1 + x2 + x3 + x4 + ...</code>と<code>+</code>でつなげていきます。
+説明変数が多く回帰式が長くなる場合は、回帰式を一旦オブジェクトとして保存しておくとコードが読みやすくなります。</p>
 <p>例えば、上記の回帰分析にさらに年齢<code>age</code>、黒人ダミー<code>black</code>を加えてみましょう。</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">equation &lt;-<span class="st"> </span>inc <span class="op">~</span><span class="st"> </span>educ <span class="op">+</span><span class="st"> </span>size <span class="op">+</span><span class="st"> </span>age <span class="op">+</span><span class="st"> </span>black
-<span class="kw">lm</span>(equation, <span class="dt">data =</span> saving) <span class="op">%&gt;%</span>
-<span class="st">  </span><span class="kw">tidy</span>()</code></pre></div>
-<pre><code>## # A tibble: 5 x 5
+<div class="sourceCode" id="cb130"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb130-1"><a href="Regression.html#cb130-1" aria-hidden="true" tabindex="-1"></a>equation <span class="ot">&lt;-</span> inc <span class="sc">~</span> educ <span class="sc">+</span> size <span class="sc">+</span> age <span class="sc">+</span> black</span>
+<span id="cb130-2"><a href="Regression.html#cb130-2" aria-hidden="true" tabindex="-1"></a><span class="fu">lm</span>(equation, <span class="at">data =</span> saving) <span class="sc">%&gt;%</span></span>
+<span id="cb130-3"><a href="Regression.html#cb130-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tidy</span>()</span></code></pre></div>
+<pre><code>## # A tibble: 5 × 5
 ##   term        estimate std.error statistic      p.value
 ##   &lt;chr&gt;          &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;        &lt;dbl&gt;
 ## 1 (Intercept)  -10005.    3934.     -2.54  0.0126      
@@ -315,11 +382,13 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li>貯蓄額<code>sav</code>を被説明変数、教育年数<code>educ</code>、世帯人数<code>size</code>、年齢<code>age</code>を説明変数とする回帰分析を行い、それぞれの係数を解釈しなさい。</li>
 </ul>
 </div>
-<div id="ダミー変数の利用" class="section level2">
+<div id="ダミー変数の利用" class="section level2" number="12.4">
 <h2><span class="header-section-number">12.4</span> ダミー変数の利用</h2>
-<p>条件を満たすグループに1、条件を満たさないグループに0をとるダミー変数は、そのまま回帰分析に組み込むことができます。 ただし、解釈には注意が必要です。 ダミー変数の係数の解釈は、「条件を満たすグループは満たさないグループと比べて、被説明変数が（係数）大きい」となります。</p>
+<p>条件を満たすグループに1、条件を満たさないグループに0をとるダミー変数は、そのまま回帰分析に組み込むことができます。
+ただし、解釈には注意が必要です。
+ダミー変数の係数の解釈は、「条件を満たすグループは満たさないグループと比べて、被説明変数が（係数）大きい」となります。</p>
 <p>ここでは、収入<code>inc</code>を黒人ダミー<code>black</code>に回帰してみましょう。</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">lm</span>(inc <span class="op">~</span><span class="st"> </span>black, <span class="dt">data =</span> saving)</code></pre></div>
+<div class="sourceCode" id="cb132"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb132-1"><a href="Regression.html#cb132-1" aria-hidden="true" tabindex="-1"></a><span class="fu">lm</span>(inc <span class="sc">~</span> black, <span class="at">data =</span> saving)</span></code></pre></div>
 <pre><code>## 
 ## Call:
 ## lm(formula = inc ~ black, data = saving)
@@ -329,14 +398,17 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 ##       10181        -3418</code></pre>
 <p>黒人ダミーの係数は-3418です。これは、「黒人はそれ以外と比べて、年収が3418ドル低い」ことを意味します。</p>
 </div>
-<div id="カテゴリ変数の利用" class="section level2">
+<div id="カテゴリ変数の利用" class="section level2" number="12.5">
 <h2><span class="header-section-number">12.5</span> カテゴリ変数の利用</h2>
-<p>カテゴリ変数はそのまま回帰分析に組み込むことができません。 代わりにカテゴリの数-1個のダミー変数を作成し、回帰分析に組み込みます。 例えば、A, B, Cという3つのカテゴリがある場合、</p>
+<p>カテゴリ変数はそのまま回帰分析に組み込むことができません。
+代わりにカテゴリの数-1個のダミー変数を作成し、回帰分析に組み込みます。
+例えば、A, B, Cという3つのカテゴリがある場合、</p>
 <ul>
 <li>Bであれば1、そうでなければ0をとる「Bダミー」</li>
 <li>Cであれば1、そうでなければ0をとる「Cダミー」</li>
 </ul>
-<p>を作成し、回帰分析の独立変数として両方入れます。 係数の解釈には注意が必要です。それぞれの係数の解釈は、ダミー変数として入っていない「参照レベル」との比較となります。</p>
+<p>を作成し、回帰分析の独立変数として両方入れます。
+係数の解釈には注意が必要です。それぞれの係数の解釈は、ダミー変数として入っていない「参照レベル」との比較となります。</p>
 <ul>
 <li>Bダミーの係数は「カテゴリBはカテゴリAと比べて被説明変数が（係数）大きい」</li>
 <li>Cダミーの係数は「カテゴリCはカテゴリAと比べて被説明変数が（係数）大きい」</li>
@@ -344,16 +416,16 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <p>カテゴリBとカテゴリCを比べたい場合は、双方の係数を比較してください。</p>
 <p>Rではカテゴリ変数がfactor型になっていれば、<strong>自動的にダミー変数を作成して</strong>回帰分析に入れてくれます。（もちろん、自分で作成しても構いませんし、そのほうが良い場合もあります）</p>
 <p>ここでは、年齢のカテゴリ変数<code>age_category</code>を作成し、年収<code>inc</code>に対する回帰分析に組み込んでみましょう。</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">saving_with_age_category &lt;-
-<span class="st">  </span>saving <span class="op">%&gt;%</span>
-<span class="st">    </span><span class="kw">mutate</span>(<span class="dt">age_category =</span> <span class="kw">case_when</span>(age <span class="op">&lt;</span><span class="st"> </span><span class="dv">30</span> <span class="op">~</span><span class="st"> &quot;20s&quot;</span>,
-                                    age <span class="op">&gt;=</span><span class="st"> </span><span class="dv">30</span> <span class="op">&amp;</span><span class="st"> </span>age <span class="op">&lt;</span><span class="st"> </span><span class="dv">40</span> <span class="op">~</span><span class="st"> &quot;30s&quot;</span>,
-                                    age <span class="op">&gt;=</span><span class="st"> </span><span class="dv">40</span> <span class="op">&amp;</span><span class="st"> </span>age <span class="op">&lt;</span><span class="st"> </span><span class="dv">50</span> <span class="op">~</span><span class="st"> &quot;40s&quot;</span>,
-                                    age <span class="op">&gt;=</span><span class="st"> </span><span class="dv">50</span> <span class="op">~</span><span class="st"> &quot;50s&quot;</span>
-                                    )
-          )
-
-<span class="kw">lm</span>(inc <span class="op">~</span><span class="st"> </span>age_category, <span class="dt">data =</span> saving_with_age_category)</code></pre></div>
+<div class="sourceCode" id="cb134"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb134-1"><a href="Regression.html#cb134-1" aria-hidden="true" tabindex="-1"></a>saving_with_age_category <span class="ot">&lt;-</span></span>
+<span id="cb134-2"><a href="Regression.html#cb134-2" aria-hidden="true" tabindex="-1"></a>  saving <span class="sc">%&gt;%</span></span>
+<span id="cb134-3"><a href="Regression.html#cb134-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">mutate</span>(<span class="at">age_category =</span> <span class="fu">case_when</span>(age <span class="sc">&lt;</span> <span class="dv">30</span> <span class="sc">~</span> <span class="st">&quot;20s&quot;</span>,</span>
+<span id="cb134-4"><a href="Regression.html#cb134-4" aria-hidden="true" tabindex="-1"></a>                                    age <span class="sc">&gt;=</span> <span class="dv">30</span> <span class="sc">&amp;</span> age <span class="sc">&lt;</span> <span class="dv">40</span> <span class="sc">~</span> <span class="st">&quot;30s&quot;</span>,</span>
+<span id="cb134-5"><a href="Regression.html#cb134-5" aria-hidden="true" tabindex="-1"></a>                                    age <span class="sc">&gt;=</span> <span class="dv">40</span> <span class="sc">&amp;</span> age <span class="sc">&lt;</span> <span class="dv">50</span> <span class="sc">~</span> <span class="st">&quot;40s&quot;</span>,</span>
+<span id="cb134-6"><a href="Regression.html#cb134-6" aria-hidden="true" tabindex="-1"></a>                                    age <span class="sc">&gt;=</span> <span class="dv">50</span> <span class="sc">~</span> <span class="st">&quot;50s&quot;</span></span>
+<span id="cb134-7"><a href="Regression.html#cb134-7" aria-hidden="true" tabindex="-1"></a>                                    )</span>
+<span id="cb134-8"><a href="Regression.html#cb134-8" aria-hidden="true" tabindex="-1"></a>          )</span>
+<span id="cb134-9"><a href="Regression.html#cb134-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb134-10"><a href="Regression.html#cb134-10" aria-hidden="true" tabindex="-1"></a><span class="fu">lm</span>(inc <span class="sc">~</span> age_category, <span class="at">data =</span> saving_with_age_category)</span></code></pre></div>
 <pre><code>## 
 ## Call:
 ## lm(formula = inc ~ age_category, data = saving_with_age_category)
@@ -361,32 +433,43 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 ## Coefficients:
 ##     (Intercept)  age_category30s  age_category40s  age_category50s  
 ##            7685             1330             3761             3885</code></pre>
-<p>ここでは自動的に&quot;20s&quot;が参照レベルとなり、回帰分析には含まれていません。 各係数は20代と比べて収入がどれくらい高いかを表します。</p>
+<p>ここでは自動的に“20s”が参照レベルとなり、回帰分析には含まれていません。
+各係数は20代と比べて収入がどれくらい高いかを表します。</p>
 <ul>
 <li>30代は20代より年収が1330ドル高い</li>
 <li>40代は20代より年収が3761ドル高い</li>
 <li>50代は20代より年収が3885ドル高い</li>
 </ul>
-<p>それぞれ比較すると、年収は20代&lt;30代&lt;40代&lt;50代と年齢が上がるにつれ高くなることがわかります。 しかし、40代と50代では差はほぼありません。</p>
+<p>それぞれ比較すると、年収は20代&lt;30代&lt;40代&lt;50代と年齢が上がるにつれ高くなることがわかります。
+しかし、40代と50代では差はほぼありません。</p>
 </div>
-<div id="交互作用の導入" class="section level2">
+<div id="交互作用の導入" class="section level2" number="12.6">
 <h2><span class="header-section-number">12.6</span> 交互作用の導入</h2>
-<p>ある説明変数と被説明変数のとの関係が別の説明変数によって変化するような状況のことを交互作用がある、と言います。 例えば、収入と教育年数の関係が黒人ダミーによって異なる、といった場合です。 Rの回帰式では、交互作用は2つの変数を<code>:</code>でつなげることで表現できます。 上記の例をRで実施してみましょう。</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">lm</span>(inc <span class="op">~</span><span class="st"> </span>educ <span class="op">+</span><span class="st"> </span>black <span class="op">+</span><span class="st"> </span>educ<span class="op">:</span>black, <span class="dt">data =</span> saving) <span class="op">%&gt;%</span>
-<span class="st">  </span><span class="kw">tidy</span>()</code></pre></div>
-<pre><code>## # A tibble: 4 x 5
+<p>ある説明変数と被説明変数のとの関係が別の説明変数によって変化するような状況のことを交互作用がある、と言います。
+例えば、収入と教育年数の関係が黒人ダミーによって異なる、といった場合です。
+Rの回帰式では、交互作用は2つの変数を<code>:</code>でつなげることで表現できます。
+上記の例をRで実施してみましょう。</p>
+<div class="sourceCode" id="cb136"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb136-1"><a href="Regression.html#cb136-1" aria-hidden="true" tabindex="-1"></a><span class="fu">lm</span>(inc <span class="sc">~</span> educ <span class="sc">+</span> black <span class="sc">+</span> educ<span class="sc">:</span>black, <span class="at">data =</span> saving) <span class="sc">%&gt;%</span></span>
+<span id="cb136-2"><a href="Regression.html#cb136-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tidy</span>()</span></code></pre></div>
+<pre><code>## # A tibble: 4 × 5
 ##   term        estimate std.error statistic   p.value
 ##   &lt;chr&gt;          &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;
 ## 1 (Intercept)   1595.      1926.    0.828  0.410    
 ## 2 educ           727.       157.    4.63   0.0000115
 ## 3 black         -525.      5773.   -0.0909 0.928    
 ## 4 educ:black     -63.1      615.   -0.103  0.918</code></pre>
-<p>交互作用の解釈は少し複雑になります。 まずここでは教育年数<code>educ</code>の係数が727なので、教育年数1年高いと収入が727ドル高いことになります。 これは参照レベルである「黒人以外」での教育年数と収入の関係になります。</p>
-<p>交互作用<code>educ:black</code>は-63ですが、これは黒人での教育年数と収入の係数が727-63=664であることを意味します。 なので、黒人では教育年数が1年高いと収入が664ドル高いということになります。 ただし、ここでは交互作用のp値が大きく有意ではありません。 すなわち、「黒人とそれ以外では教育年数と収入の関係が同じ」という仮説は棄却できていません。</p>
-<p>交互作用の分析の際は、交互作用に使用した変数単体も必ず回帰式に含めるようにしてください。 <code>*</code>を使用すると、単体・相互作用をすべて自動的に作成・分析してくれます。</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">lm</span>(inc <span class="op">~</span><span class="st"> </span>educ<span class="op">*</span>black, <span class="dt">data =</span> saving) <span class="op">%&gt;%</span>
-<span class="st">  </span><span class="kw">tidy</span>()</code></pre></div>
-<pre><code>## # A tibble: 4 x 5
+<p>交互作用の解釈は少し複雑になります。
+まずここでは教育年数<code>educ</code>の係数が727なので、教育年数1年高いと収入が727ドル高いことになります。
+これは参照レベルである「黒人以外」での教育年数と収入の関係になります。</p>
+<p>交互作用<code>educ:black</code>は-63ですが、これは黒人での教育年数と収入の係数が727-63=664であることを意味します。
+なので、黒人では教育年数が1年高いと収入が664ドル高いということになります。
+ただし、ここでは交互作用のp値が大きく有意ではありません。
+すなわち、「黒人とそれ以外では教育年数と収入の関係が同じ」という仮説は棄却できていません。</p>
+<p>交互作用の分析の際は、交互作用に使用した変数単体も必ず回帰式に含めるようにしてください。
+<code>*</code>を使用すると、単体・相互作用をすべて自動的に作成・分析してくれます。</p>
+<div class="sourceCode" id="cb138"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb138-1"><a href="Regression.html#cb138-1" aria-hidden="true" tabindex="-1"></a><span class="fu">lm</span>(inc <span class="sc">~</span> educ<span class="sc">*</span>black, <span class="at">data =</span> saving) <span class="sc">%&gt;%</span></span>
+<span id="cb138-2"><a href="Regression.html#cb138-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tidy</span>()</span></code></pre></div>
+<pre><code>## # A tibble: 4 × 5
 ##   term        estimate std.error statistic   p.value
 ##   &lt;chr&gt;          &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;
 ## 1 (Intercept)   1595.      1926.    0.828  0.410    
@@ -399,19 +482,21 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li>収入<code>inc</code>と年齢<code>age</code>の関係が黒人ダミーによって異なるかどうか、交互作用を含めた回帰分析を行い、その結果を解釈しなさい。</li>
 </ul>
 </div>
-<div id="回帰分析の表をまとめる" class="section level2">
+<div id="回帰分析の表をまとめる" class="section level2" number="12.7">
 <h2><span class="header-section-number">12.7</span> 回帰分析の表をまとめる</h2>
-<p>ここまでは、回帰分析の結果は<code>tidy()</code>を用いて整理し、卒業論文に貼り付ける想定で話を進めてきました。 回帰分析の数が少ない場合は、この方法でも十分でしょう。</p>
-<p>しかし、実施した回帰分析が多い場合、同じような表が続き冗長になります。 ここでは、<code>stargazer</code>パッケージを用いて、複数の回帰分析の結果をまとめた表を作成してみる方法を説明します。</p>
+<p>ここまでは、回帰分析の結果は<code>tidy()</code>を用いて整理し、卒業論文に貼り付ける想定で話を進めてきました。
+回帰分析の数が少ない場合は、この方法でも十分でしょう。</p>
+<p>しかし、実施した回帰分析が多い場合、同じような表が続き冗長になります。
+ここでは、<code>stargazer</code>パッケージを用いて、複数の回帰分析の結果をまとめた表を作成してみる方法を説明します。</p>
 <p>以下の2つの回帰分析をまとめて表にしてみましょう。</p>
 <ol style="list-style-type: decimal">
 <li>被説明変数を収入<code>inc</code>、説明変数を教育年数<code>educ</code>とする単回帰分析</li>
 <li>被説明変数を収入<code>inc</code>、説明変数を教育年数<code>educ</code>と年齢<code>age</code>とする重回帰分析</li>
 </ol>
 <p><code>stargazer()</code>では、回帰分析結果を保存したオブジェクト</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">regression1 &lt;-<span class="st"> </span><span class="kw">lm</span>(inc <span class="op">~</span><span class="st"> </span>educ, <span class="dt">data =</span> saving) <span class="co">#単回帰分析の結果をオブジェクトに保存</span>
-regression2 &lt;-<span class="st"> </span><span class="kw">lm</span>(inc <span class="op">~</span><span class="st"> </span>educ <span class="op">+</span><span class="st"> </span>age, <span class="dt">data =</span> saving) <span class="co">#重回帰分析の結果をオブジェクトに保存</span>
-<span class="kw">stargazer</span>(regression1, regression2, <span class="dt">type =</span> <span class="st">&quot;html&quot;</span>, <span class="dt">out =</span> <span class="st">&quot;test.doc&quot;</span>)</code></pre></div>
+<div class="sourceCode" id="cb140"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb140-1"><a href="Regression.html#cb140-1" aria-hidden="true" tabindex="-1"></a>regression1 <span class="ot">&lt;-</span> <span class="fu">lm</span>(inc <span class="sc">~</span> educ, <span class="at">data =</span> saving) <span class="co">#単回帰分析の結果をオブジェクトに保存</span></span>
+<span id="cb140-2"><a href="Regression.html#cb140-2" aria-hidden="true" tabindex="-1"></a>regression2 <span class="ot">&lt;-</span> <span class="fu">lm</span>(inc <span class="sc">~</span> educ <span class="sc">+</span> age, <span class="at">data =</span> saving) <span class="co">#重回帰分析の結果をオブジェクトに保存</span></span>
+<span id="cb140-3"><a href="Regression.html#cb140-3" aria-hidden="true" tabindex="-1"></a><span class="fu">stargazer</span>(regression1, regression2, <span class="at">type =</span> <span class="st">&quot;html&quot;</span>, <span class="at">out =</span> <span class="st">&quot;test.doc&quot;</span>)</span></code></pre></div>
 <table style="text-align:center">
 <tr>
 <td colspan="3" style="border-bottom: 1px solid black">
@@ -608,8 +693,15 @@ F Statistic
 </td>
 </tr>
 </table>
-<p>1・2行目では、<code>lm()</code>で回帰分析を行い、結果をオブジェクトとして<code>regression1</code>,<code>regression2</code>にそれぞれ入力しています。 <code>stargazer()</code>では、表に含める回帰分析の結果を引数とし、さらにオプションを指定します。 <code>type</code>はデフォルトではLaTeXになっており多くの方は使えないと思いますので、ここではHTMLを指定して表形式に整えます。 <code>out</code>を指定すると、結果をファイルとして保存できます。 このファイルの表を卒業論文に貼り付け、必要に応じて加工すると良いでしょう。</p>
-<p>表は列ごとに回帰分析の結果を示しています。 各行は説明変数を表し、かっこの無い上側が係数、かっこのある下側が標準誤差を表しています。 また、アスタリスク*で有意水準を表しています。 ***が有意水準1%で有意、**が有意水準5%で有意、*が有意水準10%で有意であることを示します。</p>
+<p>1・2行目では、<code>lm()</code>で回帰分析を行い、結果をオブジェクトとして<code>regression1</code>,<code>regression2</code>にそれぞれ入力しています。
+<code>stargazer()</code>では、表に含める回帰分析の結果を引数とし、さらにオプションを指定します。
+<code>type</code>はデフォルトではLaTeXになっており多くの方は使えないと思いますので、ここではHTMLを指定して表形式に整えます。
+<code>out</code>を指定すると、結果をファイルとして保存できます。
+このファイルの表を卒業論文に貼り付け、必要に応じて加工すると良いでしょう。</p>
+<p>表は列ごとに回帰分析の結果を示しています。
+各行は説明変数を表し、かっこの無い上側が係数、かっこのある下側が標準誤差を表しています。
+また、アスタリスク*で有意水準を表しています。
+***が有意水準1%で有意、**が有意水準5%で有意、*が有意水準10%で有意であることを示します。</p>
 <p>線の下は以下のものを表しています。重要な情報なので、そのまま残しておきましょう。</p>
 <ul>
 <li><code>Observation</code>: 観測数</li>
@@ -631,7 +723,6 @@ F Statistic
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
-<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
 <script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
 <script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
 <script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
@@ -650,6 +741,7 @@ gitbook.start({
 "weibo": false,
 "instapaper": false,
 "vk": false,
+"whatsapp": false,
 "all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
 },
 "fontsettings": {
@@ -670,6 +762,10 @@ gitbook.start({
 "text": null
 },
 "download": ["RforGradThesis.pdf", "RforGradThesis.epub"],
+"search": {
+"engine": "fuse",
+"options": null
+},
 "toc": {
 "collapse": "subsection"
 }
@@ -682,7 +778,7 @@ gitbook.start({
   (function () {
     var script = document.createElement("script");
     script.type = "text/javascript";
-    var src = "";
+    var src = "true";
     if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
     if (location.protocol !== "file:")
       if (/^https?:/.test(src))

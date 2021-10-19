@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>Chapter 8 データ前処理 | 卒業論文のためのR入門</title>
   <meta name="description" content="この文書は、卒業論文を書くためのRの使い方をできるだけコンパクトにまとめたものです。" />
-  <meta name="generator" content="bookdown 0.20 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.24 and GitBook 2.6.7" />
 
   <meta property="og:title" content="Chapter 8 データ前処理 | 卒業論文のためのR入門" />
   <meta property="og:type" content="book" />
@@ -32,7 +32,9 @@
   
 <link rel="prev" href="Hypotheses.html"/>
 <link rel="next" href="SummaryStat.html"/>
-<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<script src="libs/header-attrs-2.10/header-attrs.js"></script>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
@@ -48,46 +50,75 @@
 
 
 
-
+<link href="libs/anchor-sections-1.0.1/anchor-sections.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.0.1/anchor-sections.js"></script>
 
 
 <style type="text/css">
-div.sourceCode { overflow-x: auto; }
-table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
-  margin: 0; padding: 0; vertical-align: baseline; border: none; }
-table.sourceCode { width: 100%; line-height: 100%; }
-td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; color: #aaaaaa; border-right: 1px solid #aaaaaa; }
-td.sourceCode { padding-left: 5px; }
-code > span.kw { color: #007020; font-weight: bold; } /* Keyword */
-code > span.dt { color: #902000; } /* DataType */
-code > span.dv { color: #40a070; } /* DecVal */
-code > span.bn { color: #40a070; } /* BaseN */
-code > span.fl { color: #40a070; } /* Float */
-code > span.ch { color: #4070a0; } /* Char */
-code > span.st { color: #4070a0; } /* String */
-code > span.co { color: #60a0b0; font-style: italic; } /* Comment */
-code > span.ot { color: #007020; } /* Other */
-code > span.al { color: #ff0000; font-weight: bold; } /* Alert */
-code > span.fu { color: #06287e; } /* Function */
-code > span.er { color: #ff0000; font-weight: bold; } /* Error */
-code > span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
-code > span.cn { color: #880000; } /* Constant */
-code > span.sc { color: #4070a0; } /* SpecialChar */
-code > span.vs { color: #4070a0; } /* VerbatimString */
-code > span.ss { color: #bb6688; } /* SpecialString */
-code > span.im { } /* Import */
-code > span.va { color: #19177c; } /* Variable */
-code > span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
-code > span.op { color: #666666; } /* Operator */
-code > span.bu { } /* BuiltIn */
-code > span.ex { } /* Extension */
-code > span.pp { color: #bc7a00; } /* Preprocessor */
-code > span.at { color: #7d9029; } /* Attribute */
-code > span.do { color: #ba2121; font-style: italic; } /* Documentation */
-code > span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
-code > span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
-code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
 </style>
+
 
 <link rel="stylesheet" href="style.css" type="text/css" />
 </head>
@@ -105,12 +136,15 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li><a href="./">卒業論文のためのR入門</a></li>
 
 <li class="divider"></li>
-<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> はじめに</a><ul>
+<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> はじめに</a>
+<ul>
 <li class="chapter" data-level="1.1" data-path="index.html"><a href="index.html#この文書で学ぶこと"><i class="fa fa-check"></i><b>1.1</b> この文書で学ぶこと</a></li>
-<li class="chapter" data-level="1.2" data-path="index.html"><a href="index.html#この文書の作成目的"><i class="fa fa-check"></i><b>1.2</b> この文書の作成目的</a></li>
+<li class="chapter" data-level="1.2" data-path="index.html"><a href="index.html#更新履歴"><i class="fa fa-check"></i><b>1.2</b> 更新履歴</a></li>
+<li class="chapter" data-level="1.3" data-path="index.html"><a href="index.html#この文書の作成目的"><i class="fa fa-check"></i><b>1.3</b> この文書の作成目的</a></li>
 </ul></li>
 <li class="chapter" data-level="2" data-path="InstallR.html"><a href="InstallR.html"><i class="fa fa-check"></i><b>2</b> R(Studio)のインストール</a></li>
-<li class="chapter" data-level="3" data-path="RStudio.html"><a href="RStudio.html"><i class="fa fa-check"></i><b>3</b> RStudioの使い方</a><ul>
+<li class="chapter" data-level="3" data-path="RStudio.html"><a href="RStudio.html"><i class="fa fa-check"></i><b>3</b> RStudioの使い方</a>
+<ul>
 <li class="chapter" data-level="3.1" data-path="RStudio.html"><a href="RStudio.html#rstudioの起動"><i class="fa fa-check"></i><b>3.1</b> RStudioの起動</a></li>
 <li class="chapter" data-level="3.2" data-path="RStudio.html"><a href="RStudio.html#rstudioの画面"><i class="fa fa-check"></i><b>3.2</b> RStudioの画面</a></li>
 <li class="chapter" data-level="3.3" data-path="RStudio.html"><a href="RStudio.html#rstudioの操作"><i class="fa fa-check"></i><b>3.3</b> RStudioの操作</a></li>
@@ -118,37 +152,45 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="3.5" data-path="RStudio.html"><a href="RStudio.html#プロジェクトの作成"><i class="fa fa-check"></i><b>3.5</b> プロジェクトの作成</a></li>
 </ul></li>
 <li class="chapter" data-level="4" data-path="Packages.html"><a href="Packages.html"><i class="fa fa-check"></i><b>4</b> パッケージのインストール</a></li>
-<li class="chapter" data-level="5" data-path="Rbasics.html"><a href="Rbasics.html"><i class="fa fa-check"></i><b>5</b> Rの基本操作</a><ul>
+<li class="chapter" data-level="5" data-path="Rbasics.html"><a href="Rbasics.html"><i class="fa fa-check"></i><b>5</b> Rの基本操作</a>
+<ul>
 <li class="chapter" data-level="5.1" data-path="Rbasics.html"><a href="Rbasics.html#オブジェクト"><i class="fa fa-check"></i><b>5.1</b> オブジェクト</a></li>
 <li class="chapter" data-level="5.2" data-path="Rbasics.html"><a href="Rbasics.html#簡単な計算"><i class="fa fa-check"></i><b>5.2</b> 簡単な計算</a></li>
-<li class="chapter" data-level="5.3" data-path="Rbasics.html"><a href="Rbasics.html#関数"><i class="fa fa-check"></i><b>5.3</b> 関数</a><ul>
+<li class="chapter" data-level="5.3" data-path="Rbasics.html"><a href="Rbasics.html#関数"><i class="fa fa-check"></i><b>5.3</b> 関数</a>
+<ul>
 <li class="chapter" data-level="5.3.1" data-path="Rbasics.html"><a href="Rbasics.html#数値に対する関数"><i class="fa fa-check"></i><b>5.3.1</b> 数値に対する関数</a></li>
 <li class="chapter" data-level="5.3.2" data-path="Rbasics.html"><a href="Rbasics.html#ベクトルに対する関数"><i class="fa fa-check"></i><b>5.3.2</b> ベクトルに対する関数</a></li>
 </ul></li>
 <li class="chapter" data-level="5.4" data-path="Rbasics.html"><a href="Rbasics.html#データフレーム"><i class="fa fa-check"></i><b>5.4</b> データフレーム</a></li>
 </ul></li>
-<li class="chapter" data-level="6" data-path="ImportData.html"><a href="ImportData.html"><i class="fa fa-check"></i><b>6</b> データのインポート</a><ul>
+<li class="chapter" data-level="6" data-path="ImportData.html"><a href="ImportData.html"><i class="fa fa-check"></i><b>6</b> データのインポート</a>
+<ul>
 <li class="chapter" data-level="6.1" data-path="ImportData.html"><a href="ImportData.html#インポートの準備"><i class="fa fa-check"></i><b>6.1</b> インポートの準備</a></li>
-<li class="chapter" data-level="6.2" data-path="ImportData.html"><a href="ImportData.html#ファイル形式別のインポート方法"><i class="fa fa-check"></i><b>6.2</b> ファイル形式別のインポート方法</a><ul>
+<li class="chapter" data-level="6.2" data-path="ImportData.html"><a href="ImportData.html#ファイル形式別のインポート方法"><i class="fa fa-check"></i><b>6.2</b> ファイル形式別のインポート方法</a>
+<ul>
 <li class="chapter" data-level="6.2.1" data-path="ImportData.html"><a href="ImportData.html#csvファイルの場合.csv"><i class="fa fa-check"></i><b>6.2.1</b> CSVファイルの場合（.csv）</a></li>
 <li class="chapter" data-level="6.2.2" data-path="ImportData.html"><a href="ImportData.html#excelファイルの場合.xlsx"><i class="fa fa-check"></i><b>6.2.2</b> Excelファイルの場合（.xlsx）</a></li>
 <li class="chapter" data-level="6.2.3" data-path="ImportData.html"><a href="ImportData.html#qualtricsのデータの場合"><i class="fa fa-check"></i><b>6.2.3</b> Qualtricsのデータの場合</a></li>
 </ul></li>
 <li class="chapter" data-level="6.3" data-path="ImportData.html"><a href="ImportData.html#インポートしたデータの確認"><i class="fa fa-check"></i><b>6.3</b> インポートしたデータの確認</a></li>
 </ul></li>
-<li class="chapter" data-level="7" data-path="Hypotheses.html"><a href="Hypotheses.html"><i class="fa fa-check"></i><b>7</b> 仮説とデータの具体例</a><ul>
+<li class="chapter" data-level="7" data-path="Hypotheses.html"><a href="Hypotheses.html"><i class="fa fa-check"></i><b>7</b> 仮説とデータの具体例</a>
+<ul>
 <li class="chapter" data-level="7.1" data-path="Hypotheses.html"><a href="Hypotheses.html#仮説の確認"><i class="fa fa-check"></i><b>7.1</b> 仮説の確認</a></li>
 <li class="chapter" data-level="7.2" data-path="Hypotheses.html"><a href="Hypotheses.html#変数の確認"><i class="fa fa-check"></i><b>7.2</b> 変数の確認</a></li>
 <li class="chapter" data-level="7.3" data-path="Hypotheses.html"><a href="Hypotheses.html#データの具体例"><i class="fa fa-check"></i><b>7.3</b> データの具体例</a></li>
 </ul></li>
-<li class="chapter" data-level="8" data-path="DataHandling.html"><a href="DataHandling.html"><i class="fa fa-check"></i><b>8</b> データ前処理</a><ul>
+<li class="chapter" data-level="8" data-path="DataHandling.html"><a href="DataHandling.html"><i class="fa fa-check"></i><b>8</b> データ前処理</a>
+<ul>
 <li class="chapter" data-level="8.1" data-path="DataHandling.html"><a href="DataHandling.html#パイプによる処理"><i class="fa fa-check"></i><b>8.1</b> パイプ（%&gt;%）による処理</a></li>
-<li class="chapter" data-level="8.2" data-path="DataHandling.html"><a href="DataHandling.html#変数の作成及び置換"><i class="fa fa-check"></i><b>8.2</b> 変数の作成（及び置換）</a><ul>
+<li class="chapter" data-level="8.2" data-path="DataHandling.html"><a href="DataHandling.html#変数の作成及び置換"><i class="fa fa-check"></i><b>8.2</b> 変数の作成（及び置換）</a>
+<ul>
 <li class="chapter" data-level="8.2.1" data-path="DataHandling.html"><a href="DataHandling.html#変数の新規作成"><i class="fa fa-check"></i><b>8.2.1</b> 変数の新規作成</a></li>
 <li class="chapter" data-level="8.2.2" data-path="DataHandling.html"><a href="DataHandling.html#逆転項目の処理"><i class="fa fa-check"></i><b>8.2.2</b> 逆転項目の処理</a></li>
 <li class="chapter" data-level="8.2.3" data-path="DataHandling.html"><a href="DataHandling.html#変数の標準化"><i class="fa fa-check"></i><b>8.2.3</b> 変数の標準化</a></li>
 </ul></li>
-<li class="chapter" data-level="8.3" data-path="DataHandling.html"><a href="DataHandling.html#カテゴリ変数の処理"><i class="fa fa-check"></i><b>8.3</b> カテゴリ変数の処理</a><ul>
+<li class="chapter" data-level="8.3" data-path="DataHandling.html"><a href="DataHandling.html#カテゴリ変数の処理"><i class="fa fa-check"></i><b>8.3</b> カテゴリ変数の処理</a>
+<ul>
 <li class="chapter" data-level="8.3.1" data-path="DataHandling.html"><a href="DataHandling.html#変数の型"><i class="fa fa-check"></i><b>8.3.1</b> 変数の型</a></li>
 <li class="chapter" data-level="8.3.2" data-path="DataHandling.html"><a href="DataHandling.html#カテゴリ変数への変換"><i class="fa fa-check"></i><b>8.3.2</b> カテゴリ変数への変換</a></li>
 <li class="chapter" data-level="8.3.3" data-path="DataHandling.html"><a href="DataHandling.html#ダミー変数の作成"><i class="fa fa-check"></i><b>8.3.3</b> ダミー変数の作成</a></li>
@@ -158,23 +200,28 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="8.5" data-path="DataHandling.html"><a href="DataHandling.html#変数の並び替え"><i class="fa fa-check"></i><b>8.5</b> 変数の並び替え</a></li>
 <li class="chapter" data-level="8.6" data-path="DataHandling.html"><a href="DataHandling.html#すべての作業をパイプでつなげる"><i class="fa fa-check"></i><b>8.6</b> すべての作業をパイプでつなげる</a></li>
 </ul></li>
-<li class="chapter" data-level="9" data-path="SummaryStat.html"><a href="SummaryStat.html"><i class="fa fa-check"></i><b>9</b> 記述統計表の作成</a><ul>
+<li class="chapter" data-level="9" data-path="SummaryStat.html"><a href="SummaryStat.html"><i class="fa fa-check"></i><b>9</b> 記述統計表の作成</a>
+<ul>
 <li class="chapter" data-level="9.1" data-path="SummaryStat.html"><a href="SummaryStat.html#数値の記述統計表の作成"><i class="fa fa-check"></i><b>9.1</b> 数値の記述統計表の作成</a></li>
 <li class="chapter" data-level="9.2" data-path="SummaryStat.html"><a href="SummaryStat.html#カテゴリ変数の記述統計表の作成"><i class="fa fa-check"></i><b>9.2</b> カテゴリ変数の記述統計表の作成</a></li>
 </ul></li>
-<li class="chapter" data-level="10" data-path="Visualization.html"><a href="Visualization.html"><i class="fa fa-check"></i><b>10</b> データの可視化</a><ul>
-<li class="chapter" data-level="10.1" data-path="Visualization.html"><a href="Visualization.html#変数の可視化"><i class="fa fa-check"></i><b>10.1</b> 1変数の可視化</a><ul>
+<li class="chapter" data-level="10" data-path="Visualization.html"><a href="Visualization.html"><i class="fa fa-check"></i><b>10</b> データの可視化</a>
+<ul>
+<li class="chapter" data-level="10.1" data-path="Visualization.html"><a href="Visualization.html#変数の可視化"><i class="fa fa-check"></i><b>10.1</b> 1変数の可視化</a>
+<ul>
 <li class="chapter" data-level="10.1.1" data-path="Visualization.html"><a href="Visualization.html#棒グラフ"><i class="fa fa-check"></i><b>10.1.1</b> 棒グラフ</a></li>
 <li class="chapter" data-level="10.1.2" data-path="Visualization.html"><a href="Visualization.html#ヒストグラム"><i class="fa fa-check"></i><b>10.1.2</b> ヒストグラム</a></li>
 </ul></li>
-<li class="chapter" data-level="10.2" data-path="Visualization.html"><a href="Visualization.html#変数の可視化-1"><i class="fa fa-check"></i><b>10.2</b> 2変数の可視化</a><ul>
+<li class="chapter" data-level="10.2" data-path="Visualization.html"><a href="Visualization.html#変数の可視化-1"><i class="fa fa-check"></i><b>10.2</b> 2変数の可視化</a>
+<ul>
 <li class="chapter" data-level="10.2.1" data-path="Visualization.html"><a href="Visualization.html#散布図"><i class="fa fa-check"></i><b>10.2.1</b> 散布図</a></li>
 <li class="chapter" data-level="10.2.2" data-path="Visualization.html"><a href="Visualization.html#棒グラフ-1"><i class="fa fa-check"></i><b>10.2.2</b> 棒グラフ</a></li>
 <li class="chapter" data-level="10.2.3" data-path="Visualization.html"><a href="Visualization.html#箱ひげ図"><i class="fa fa-check"></i><b>10.2.3</b> 箱ひげ図</a></li>
 </ul></li>
 </ul></li>
 <li class="chapter" data-level="11" data-path="Ttest.html"><a href="Ttest.html"><i class="fa fa-check"></i><b>11</b> t検定</a></li>
-<li class="chapter" data-level="12" data-path="Regression.html"><a href="Regression.html"><i class="fa fa-check"></i><b>12</b> 回帰分析</a><ul>
+<li class="chapter" data-level="12" data-path="Regression.html"><a href="Regression.html"><i class="fa fa-check"></i><b>12</b> 回帰分析</a>
+<ul>
 <li class="chapter" data-level="12.1" data-path="Regression.html"><a href="Regression.html#線形回帰とは"><i class="fa fa-check"></i><b>12.1</b> 線形回帰とは</a></li>
 <li class="chapter" data-level="12.2" data-path="Regression.html"><a href="Regression.html#rでの線形回帰"><i class="fa fa-check"></i><b>12.2</b> Rでの線形回帰</a></li>
 <li class="chapter" data-level="12.3" data-path="Regression.html"><a href="Regression.html#重回帰分析"><i class="fa fa-check"></i><b>12.3</b> 重回帰分析</a></li>
@@ -183,7 +230,8 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="12.6" data-path="Regression.html"><a href="Regression.html#交互作用の導入"><i class="fa fa-check"></i><b>12.6</b> 交互作用の導入</a></li>
 <li class="chapter" data-level="12.7" data-path="Regression.html"><a href="Regression.html#回帰分析の表をまとめる"><i class="fa fa-check"></i><b>12.7</b> 回帰分析の表をまとめる</a></li>
 </ul></li>
-<li class="chapter" data-level="13" data-path="Word.html"><a href="Word.html"><i class="fa fa-check"></i><b>13</b> Wordファイルへの貼り付け</a><ul>
+<li class="chapter" data-level="13" data-path="Word.html"><a href="Word.html"><i class="fa fa-check"></i><b>13</b> Wordファイルへの貼り付け</a>
+<ul>
 <li class="chapter" data-level="13.1" data-path="Word.html"><a href="Word.html#表の貼り付け"><i class="fa fa-check"></i><b>13.1</b> 表の貼り付け</a></li>
 </ul></li>
 <li class="divider"></li>
@@ -206,15 +254,20 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="DataHandling" class="section level1">
+<div id="DataHandling" class="section level1" number="8">
 <h1><span class="header-section-number">Chapter 8</span> データ前処理</h1>
-<p>データをインポートしたら、いざ分析だ！…と分析してみたくなります。 しかし、収集したデータはそのまま分析に進むことはできず、分析のために「前処理」する必要があります。 「データ分析は前処理が8割」とも言われます。 前処理の方法を学んでいきましょう。</p>
-<p>データ前処理には<code>dplyr</code>（読み：ディープライアール）というパッケージの関数を主に用います。 <code>dplyr</code>は<code>tidyverse</code>の一部なので、<code>tidyverse</code>がインストールされていればOKです。</p>
-<div id="パイプによる処理" class="section level2">
+<p>データをインポートしたら、いざ分析だ！…と分析してみたくなります。
+しかし、収集したデータはそのまま分析に進むことはできず、分析のために「前処理」する必要があります。
+「データ分析は前処理が8割」とも言われます。
+前処理の方法を学んでいきましょう。</p>
+<p>データ前処理には<code>dplyr</code>（読み：ディープライアール）というパッケージの関数を主に用います。
+<code>dplyr</code>は<code>tidyverse</code>の一部なので、<code>tidyverse</code>がインストールされていればOKです。</p>
+<div id="パイプによる処理" class="section level2" number="8.1">
 <h2><span class="header-section-number">8.1</span> パイプ（%&gt;%）による処理</h2>
-<p>最近はパイプ<code>%&gt;%</code>を用いてデータの受け渡しを行うのが主流となっています。 パイプは<code>magrittr</code>パッケージの機能ですが、<code>tidyverse</code>と同時にインストールされています。</p>
+<p>最近はパイプ<code>%&gt;%</code>を用いてデータの受け渡しを行うのが主流となっています。
+パイプは<code>magrittr</code>パッケージの機能ですが、<code>tidyverse</code>と同時にインストールされています。</p>
 <p>まずは例を見てみましょう。</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">saving <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">head</span>()</code></pre></div>
+<div class="sourceCode" id="cb55"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb55-1"><a href="DataHandling.html#cb55-1" aria-hidden="true" tabindex="-1"></a>saving <span class="sc">%&gt;%</span> <span class="fu">head</span>()</span></code></pre></div>
 <pre><code>##    sav   inc size educ age black  cons
 ## 1   30  1920    4    2  40     1  1890
 ## 2  874 12403    4    9  33     0 11529
@@ -222,7 +275,8 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 ## 4 1200  7005    3    9  50     0  5805
 ## 5  275  6990    4   12  28     0  6715
 ## 6 1400  6500    4   13  33     0  5100</code></pre>
-<p>この結果は、前のChapterで見た<code>head(saving)</code>と同じ結果です。 パイプを用いると、パイプの前のオブジェクトをパイプの後の関数の引数としてくれます。</p>
+<p>この結果は、前のChapterで見た<code>head(saving)</code>と同じ結果です。
+パイプを用いると、パイプの前のオブジェクトをパイプの後の関数の引数としてくれます。</p>
 <p>パイプを用いた書き方は以下のとおりです。</p>
 <ul>
 <li>使用するオブジェクトを示す: <code>saving</code></li>
@@ -230,9 +284,11 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li>使用する関数を書く: <code>head()</code></li>
 </ul>
 <p>別の例を見てみましょう。</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">saving<span class="op">$</span>sav <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">mean</span>()</code></pre></div>
+<div class="sourceCode" id="cb57"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb57-1"><a href="DataHandling.html#cb57-1" aria-hidden="true" tabindex="-1"></a>saving<span class="sc">$</span>sav <span class="sc">%&gt;%</span> <span class="fu">mean</span>()</span></code></pre></div>
 <pre><code>## [1] 1582.51</code></pre>
-<p>まずデータフレーム<code>saving</code>内の変数<code>sav</code>（貯蓄）を示すオブジェクト<code>saving$sav</code>を書きます。 これを平均を求める関数<code>mean()</code>にパイプ<code>%&gt;%</code>でつなぎます。 すると、貯蓄の平均を求めることができます。</p>
+<p>まずデータフレーム<code>saving</code>内の変数<code>sav</code>（貯蓄）を示すオブジェクト<code>saving$sav</code>を書きます。
+これを平均を求める関数<code>mean()</code>にパイプ<code>%&gt;%</code>でつなぎます。
+すると、貯蓄の平均を求めることができます。</p>
 <p>ここまででは何が便利なのかわからないかもしれませんが、パイプを用いたほうがコードをわかりやすく書くことができます。</p>
 <p>★練習問題</p>
 <ul>
@@ -240,7 +296,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li>パイプを使って<code>saving</code>の変数<code>inc</code>の中央値を求めてください。</li>
 </ul>
 </div>
-<div id="変数の作成及び置換" class="section level2">
+<div id="変数の作成及び置換" class="section level2" number="8.2">
 <h2><span class="header-section-number">8.2</span> 変数の作成（及び置換）</h2>
 <p>分析の際には、収集したデータを分析しやすいように作成・置換することはよくあります。</p>
 <ul>
@@ -251,14 +307,14 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li>連続変数をカテゴリ変数に変換したい</li>
 </ul>
 <p>変数を追加・置換する<code>dplyr</code>の関数が<code>mutate()</code>です。</p>
-<div id="変数の新規作成" class="section level3">
+<div id="変数の新規作成" class="section level3" number="8.2.1">
 <h3><span class="header-section-number">8.2.1</span> 変数の新規作成</h3>
 <p><code>mutate()</code>を用いて、貯蓄<code>sav</code>を収入<code>inc</code>で割った新しい変数「貯蓄率」<code>saving_rate</code>を作ってみましょう。</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">saving_with_rate &lt;-
-<span class="st">  </span>saving <span class="op">%&gt;%</span>
-<span class="st">    </span><span class="kw">mutate</span>(<span class="dt">saving_rate =</span> sav <span class="op">/</span><span class="st"> </span>inc)
-
-<span class="kw">head</span>(saving_with_rate)</code></pre></div>
+<div class="sourceCode" id="cb59"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb59-1"><a href="DataHandling.html#cb59-1" aria-hidden="true" tabindex="-1"></a>saving_with_rate <span class="ot">&lt;-</span></span>
+<span id="cb59-2"><a href="DataHandling.html#cb59-2" aria-hidden="true" tabindex="-1"></a>  saving <span class="sc">%&gt;%</span></span>
+<span id="cb59-3"><a href="DataHandling.html#cb59-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">mutate</span>(<span class="at">saving_rate =</span> sav <span class="sc">/</span> inc)</span>
+<span id="cb59-4"><a href="DataHandling.html#cb59-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb59-5"><a href="DataHandling.html#cb59-5" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(saving_with_rate)</span></code></pre></div>
 <pre><code>##    sav   inc size educ age black  cons saving_rate
 ## 1   30  1920    4    2  40     1  1890  0.01562500
 ## 2  874 12403    4    9  33     0 11529  0.07046682
@@ -266,7 +322,9 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 ## 4 1200  7005    3    9  50     0  5805  0.17130621
 ## 5  275  6990    4   12  28     0  6715  0.03934192
 ## 6 1400  6500    4   13  33     0  5100  0.21538462</code></pre>
-<p>1行目は2行目以降の結果を新たなデータフレーム<code>saving_with_rate</code>に代入するコードです。 2行目はデータフレームの指定とパイプです。<code>saving</code>を<code>mutate()</code>に入れるコードです。 3行目で<code>mutate</code>を使っています。割り算<code>/</code>を使って、新しい変数<code>saving_rate</code>を作成しました。</p>
+<p>1行目は2行目以降の結果を新たなデータフレーム<code>saving_with_rate</code>に代入するコードです。
+2行目はデータフレームの指定とパイプです。<code>saving</code>を<code>mutate()</code>に入れるコードです。
+3行目で<code>mutate</code>を使っています。割り算<code>/</code>を使って、新しい変数<code>saving_rate</code>を作成しました。</p>
 <p><code>head(saving_with_rate)</code>でどのようなデータフレームになったか、先頭6行を確認しています。</p>
 <p>なお、1行目を<code>saving</code>とすると、<code>saving</code>が上書きされます。</p>
 <p>★練習問題</p>
@@ -278,22 +336,24 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 </ul></li>
 </ul>
 </div>
-<div id="逆転項目の処理" class="section level3">
+<div id="逆転項目の処理" class="section level3" number="8.2.2">
 <h3><span class="header-section-number">8.2.2</span> 逆転項目の処理</h3>
-<p><code>mutate</code>を利用して、「逆転項目」の前処理をしてみましょう。 逆転項目とは、質問紙では1, 2, 3, 4, 5として聞いた数値を、データでは5, 4, 3, 2, 1として扱うものです（5件法の場合）。 以下の操作をイメージしましょう。</p>
+<p><code>mutate</code>を利用して、「逆転項目」の前処理をしてみましょう。
+逆転項目とは、質問紙では1, 2, 3, 4, 5として聞いた数値を、データでは5, 4, 3, 2, 1として扱うものです（5件法の場合）。
+以下の操作をイメージしましょう。</p>
 <ul>
 <li>全体にマイナスをかける→(1, 2, 3, 4, 5)が(-1, -2, -3, -4, -5)になる</li>
 <li>全体に6を足す→(-1, -2, -3, -4, -5)が(5, 4, 3, 2, 1)になる</li>
 </ul>
 <p>つまり、元の変数にマイナスをかけ、6を足せば逆転項目が作成できます。</p>
 <p><code>saving</code>には逆転項目がないので、架空の数値を作成して確認してみましょう。</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">data &lt;-<span class="st"> </span><span class="kw">data.frame</span>(<span class="dt">Q1 =</span> <span class="kw">c</span>(<span class="dv">3</span>, <span class="dv">2</span>, <span class="dv">4</span>, <span class="dv">1</span>, <span class="dv">5</span>)) <span class="co">#逆転項目Q1が入ったデータフレームを作成</span>
-
-data_gyakuten &lt;-<span class="st"> </span>
-<span class="st">  </span>data <span class="op">%&gt;%</span>
-<span class="st">    </span><span class="kw">mutate</span>(<span class="dt">Q1_gyakuten =</span> <span class="op">-</span><span class="st"> </span>Q1 <span class="op">+</span><span class="st"> </span><span class="dv">6</span>)
-
-data_gyakuten</code></pre></div>
+<div class="sourceCode" id="cb61"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb61-1"><a href="DataHandling.html#cb61-1" aria-hidden="true" tabindex="-1"></a>data <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">Q1 =</span> <span class="fu">c</span>(<span class="dv">3</span>, <span class="dv">2</span>, <span class="dv">4</span>, <span class="dv">1</span>, <span class="dv">5</span>)) <span class="co">#逆転項目Q1が入ったデータフレームを作成</span></span>
+<span id="cb61-2"><a href="DataHandling.html#cb61-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb61-3"><a href="DataHandling.html#cb61-3" aria-hidden="true" tabindex="-1"></a>data_gyakuten <span class="ot">&lt;-</span> </span>
+<span id="cb61-4"><a href="DataHandling.html#cb61-4" aria-hidden="true" tabindex="-1"></a>  data <span class="sc">%&gt;%</span></span>
+<span id="cb61-5"><a href="DataHandling.html#cb61-5" aria-hidden="true" tabindex="-1"></a>    <span class="fu">mutate</span>(<span class="at">Q1_gyakuten =</span> <span class="sc">-</span> Q1 <span class="sc">+</span> <span class="dv">6</span>)</span>
+<span id="cb61-6"><a href="DataHandling.html#cb61-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb61-7"><a href="DataHandling.html#cb61-7" aria-hidden="true" tabindex="-1"></a>data_gyakuten</span></code></pre></div>
 <pre><code>##   Q1 Q1_gyakuten
 ## 1  3           3
 ## 2  2           4
@@ -305,14 +365,15 @@ data_gyakuten</code></pre></div>
 <li>7件法（1〜7）で収集した架空のデータフレームを作成し、逆転項目として処理してみてください。</li>
 </ul>
 </div>
-<div id="変数の標準化" class="section level3">
+<div id="変数の標準化" class="section level3" number="8.2.3">
 <h3><span class="header-section-number">8.2.3</span> 変数の標準化</h3>
-<p>変数を平均0、標準偏差1の変数に変換する標準化は、変数の解釈を容易にしたり、以降の分析をしやすくするために必要です。 標準化を行う関数は<code>scale()</code>です。<code>mutate()</code>と組み合わせて、教育年数<code>educ</code>を標準化した変数<code>educ_standardized</code>を作ってみましょう。</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">saving_standardized_educ &lt;-
-<span class="st">  </span>saving <span class="op">%&gt;%</span>
-<span class="st">    </span><span class="kw">mutate</span>(<span class="dt">educ_standardized =</span> <span class="kw">scale</span>(educ))
-
-<span class="kw">head</span>(saving_standardized_educ)</code></pre></div>
+<p>変数を平均0、標準偏差1の変数に変換する標準化は、変数の解釈を容易にしたり、以降の分析をしやすくするために必要です。
+標準化を行う関数は<code>scale()</code>です。<code>mutate()</code>と組み合わせて、教育年数<code>educ</code>を標準化した変数<code>educ_standardized</code>を作ってみましょう。</p>
+<div class="sourceCode" id="cb63"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb63-1"><a href="DataHandling.html#cb63-1" aria-hidden="true" tabindex="-1"></a>saving_standardized_educ <span class="ot">&lt;-</span></span>
+<span id="cb63-2"><a href="DataHandling.html#cb63-2" aria-hidden="true" tabindex="-1"></a>  saving <span class="sc">%&gt;%</span></span>
+<span id="cb63-3"><a href="DataHandling.html#cb63-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">mutate</span>(<span class="at">educ_standardized =</span> <span class="fu">scale</span>(educ))</span>
+<span id="cb63-4"><a href="DataHandling.html#cb63-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb63-5"><a href="DataHandling.html#cb63-5" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(saving_standardized_educ)</span></code></pre></div>
 <pre><code>##    sav   inc size educ age black  cons educ_standardized
 ## 1   30  1920    4    2  40     1  1890        -2.7886549
 ## 2  874 12403    4    9  33     0 11529        -0.7510156
@@ -326,12 +387,14 @@ data_gyakuten</code></pre></div>
 </ul>
 </div>
 </div>
-<div id="カテゴリ変数の処理" class="section level2">
+<div id="カテゴリ変数の処理" class="section level2" number="8.3">
 <h2><span class="header-section-number">8.3</span> カテゴリ変数の処理</h2>
-<div id="変数の型" class="section level3">
+<div id="変数の型" class="section level3" number="8.3.1">
 <h3><span class="header-section-number">8.3.1</span> 変数の型</h3>
-<p>Rで扱う変数には「型」と呼ばれる区別があります。 型の違いによって、今後の分析方法も変わってきます。 型を確認する方法として、オブジェクトの構造を確認する関数<code>str()</code>を使ってみましょう。</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">str</span>(saving)</code></pre></div>
+<p>Rで扱う変数には「型」と呼ばれる区別があります。
+型の違いによって、今後の分析方法も変わってきます。
+型を確認する方法として、オブジェクトの構造を確認する関数<code>str()</code>を使ってみましょう。</p>
+<div class="sourceCode" id="cb65"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb65-1"><a href="DataHandling.html#cb65-1" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(saving)</span></code></pre></div>
 <pre><code>## &#39;data.frame&#39;:    100 obs. of  7 variables:
 ##  $ sav  : int  30 874 370 1200 275 1400 3159 1766 3984 1017 ...
 ##  $ inc  : int  1920 12403 6396 7005 6990 6500 26007 15363 14999 9185 ...
@@ -341,21 +404,26 @@ data_gyakuten</code></pre></div>
 ##  $ black: int  1 0 0 0 0 0 0 0 1 0 ...
 ##  $ cons : int  1890 11529 6026 5805 6715 5100 22848 13597 11015 8168 ...
 ##  - attr(*, &quot;time.stamp&quot;)= chr &quot;25 Jun 2011 23:03&quot;</code></pre>
-<p>$の右が変数名、<code>int</code>と書かれているのが型です。 ここではすべて<code>int</code>となっていますが、これは整数(integer)を表します。 以下の型はすべて数値として扱われます。</p>
+<p>$の右が変数名、<code>int</code>と書かれているのが型です。
+ここではすべて<code>int</code>となっていますが、これは整数(integer)を表します。
+以下の型はすべて数値として扱われます。</p>
 <ul>
 <li>int: integer, 整数</li>
 <li>dbl: double, 実数</li>
 <li>num: numeric, 数値</li>
 </ul>
 </div>
-<div id="カテゴリ変数への変換" class="section level3">
+<div id="カテゴリ変数への変換" class="section level3" number="8.3.2">
 <h3><span class="header-section-number">8.3.2</span> カテゴリ変数への変換</h3>
-<p>カテゴリ変数を表す型はfct (factor)です。<code>saving</code>にはカテゴリ変数がないので、カテゴリ変数を作成してみましょう。 型を変換する関数が<code>as_xxx()</code>です。xxxは変換したい型の名前を入れてください。 ここでは、カテゴリ変数に変換したいので、<code>as_factor()</code>を用います。 今はinteger型となっている<code>black</code>をカテゴリ変数にしてみましょう。</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">saving_with_factor &lt;-
-<span class="st">  </span>saving <span class="op">%&gt;%</span>
-<span class="st">    </span><span class="kw">mutate</span>(<span class="dt">black_factor =</span> <span class="kw">as_factor</span>(black))
-
-<span class="kw">str</span>(saving_with_factor)</code></pre></div>
+<p>カテゴリ変数を表す型はfct (factor)です。<code>saving</code>にはカテゴリ変数がないので、カテゴリ変数を作成してみましょう。
+型を変換する関数が<code>as_xxx()</code>です。xxxは変換したい型の名前を入れてください。
+ここでは、カテゴリ変数に変換したいので、<code>as_factor()</code>を用います。
+今はinteger型となっている<code>black</code>をカテゴリ変数にしてみましょう。</p>
+<div class="sourceCode" id="cb67"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb67-1"><a href="DataHandling.html#cb67-1" aria-hidden="true" tabindex="-1"></a>saving_with_factor <span class="ot">&lt;-</span></span>
+<span id="cb67-2"><a href="DataHandling.html#cb67-2" aria-hidden="true" tabindex="-1"></a>  saving <span class="sc">%&gt;%</span></span>
+<span id="cb67-3"><a href="DataHandling.html#cb67-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">mutate</span>(<span class="at">black_factor =</span> <span class="fu">as_factor</span>(black))</span>
+<span id="cb67-4"><a href="DataHandling.html#cb67-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb67-5"><a href="DataHandling.html#cb67-5" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(saving_with_factor)</span></code></pre></div>
 <pre><code>## &#39;data.frame&#39;:    100 obs. of  8 variables:
 ##  $ sav         : int  30 874 370 1200 275 1400 3159 1766 3984 1017 ...
 ##  $ inc         : int  1920 12403 6396 7005 6990 6500 26007 15363 14999 9185 ...
@@ -364,8 +432,10 @@ data_gyakuten</code></pre></div>
 ##  $ age         : int  40 33 31 50 28 33 36 44 48 31 ...
 ##  $ black       : int  1 0 0 0 0 0 0 0 1 0 ...
 ##  $ cons        : int  1890 11529 6026 5805 6715 5100 22848 13597 11015 8168 ...
-##  $ black_factor: Factor w/ 2 levels &quot;0&quot;,&quot;1&quot;: 2 1 1 1 1 1 1 1 2 1 ...</code></pre>
-<p>ここでは、<code>mutate</code>を使って、新たな変数<code>black_factor</code>を作成してみました。 <code>str()</code>を使って、型がFactorになったことが確認できます。</p>
+##  $ black_factor: Factor w/ 2 levels &quot;0&quot;,&quot;1&quot;: 2 1 1 1 1 1 1 1 2 1 ...
+##  - attr(*, &quot;time.stamp&quot;)= chr &quot;25 Jun 2011 23:03&quot;</code></pre>
+<p>ここでは、<code>mutate</code>を使って、新たな変数<code>black_factor</code>を作成してみました。
+<code>str()</code>を使って、型がFactorになったことが確認できます。</p>
 <p>カテゴリ変数として扱いたい変数はすべて<code>as_factor</code>を使ってカテゴリ変数にしておきましょう。</p>
 <p>また、文字列型(chr, character)の変数はこのままでは分析に使用できないので、必ず<code>as_factor</code>を実行しておきましょう。</p>
 <p>★練習問題</p>
@@ -373,18 +443,21 @@ data_gyakuten</code></pre></div>
 <li>家族人数<code>size</code>をカテゴリ変数に変換したデータフレームを作成してください。</li>
 </ul>
 </div>
-<div id="ダミー変数の作成" class="section level3">
+<div id="ダミー変数の作成" class="section level3" number="8.3.3">
 <h3><span class="header-section-number">8.3.3</span> ダミー変数の作成</h3>
-<p>ある変数から、別のダミー変数を作成したいことはよくあります。 ここでは、教育年数のデータを12年を基準に「高卒以上」「高卒未満」の2つに区分してみましょう。 2つの場合分けの際には、<code>if_else</code>関数を使うと便利です。 <code>if_else()</code>は<code>if_else(条件, 条件が成りたつ場合の値, 条件が成り立たない場合の値)</code>と書いて使用します。</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">table</span>(saving<span class="op">$</span>educ) <span class="co">#教育年数の度数分布</span></code></pre></div>
+<p>ある変数から、別のダミー変数を作成したいことはよくあります。
+ここでは、教育年数のデータを12年を基準に「高卒以上」「高卒未満」の2つに区分してみましょう。
+2つの場合分けの際には、<code>if_else</code>関数を使うと便利です。
+<code>if_else()</code>は<code>if_else(条件, 条件が成りたつ場合の値, 条件が成り立たない場合の値)</code>と書いて使用します。</p>
+<div class="sourceCode" id="cb69"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb69-1"><a href="DataHandling.html#cb69-1" aria-hidden="true" tabindex="-1"></a><span class="fu">table</span>(saving<span class="sc">$</span>educ) <span class="co">#教育年数の度数分布</span></span></code></pre></div>
 <pre><code>## 
 ##  2  3  4  6  7  8  9 10 11 12 13 14 15 16 17 18 19 20 
 ##  1  1  1  1  4 10 11  9  4 32  2  4  1  9  6  2  1  1</code></pre>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">saving_with_hsdummy &lt;-
-<span class="st">  </span>saving <span class="op">%&gt;%</span>
-<span class="st">    </span><span class="kw">mutate</span>(<span class="dt">highschool =</span> <span class="kw">if_else</span>(educ <span class="op">&gt;=</span><span class="st"> </span><span class="dv">12</span>, <span class="dv">1</span>, <span class="dv">0</span>))
-
-<span class="kw">head</span>(saving_with_hsdummy)</code></pre></div>
+<div class="sourceCode" id="cb71"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb71-1"><a href="DataHandling.html#cb71-1" aria-hidden="true" tabindex="-1"></a>saving_with_hsdummy <span class="ot">&lt;-</span></span>
+<span id="cb71-2"><a href="DataHandling.html#cb71-2" aria-hidden="true" tabindex="-1"></a>  saving <span class="sc">%&gt;%</span></span>
+<span id="cb71-3"><a href="DataHandling.html#cb71-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">mutate</span>(<span class="at">highschool =</span> <span class="fu">if_else</span>(educ <span class="sc">&gt;=</span> <span class="dv">12</span>, <span class="dv">1</span>, <span class="dv">0</span>))</span>
+<span id="cb71-4"><a href="DataHandling.html#cb71-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb71-5"><a href="DataHandling.html#cb71-5" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(saving_with_hsdummy)</span></code></pre></div>
 <pre><code>##    sav   inc size educ age black  cons highschool
 ## 1   30  1920    4    2  40     1  1890          0
 ## 2  874 12403    4    9  33     0 11529          0
@@ -392,17 +465,18 @@ data_gyakuten</code></pre></div>
 ## 4 1200  7005    3    9  50     0  5805          0
 ## 5  275  6990    4   12  28     0  6715          1
 ## 6 1400  6500    4   13  33     0  5100          1</code></pre>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">table</span>(saving_with_hsdummy<span class="op">$</span>highschool) <span class="co">#作成したダミー変数の度数分布</span></code></pre></div>
+<div class="sourceCode" id="cb73"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb73-1"><a href="DataHandling.html#cb73-1" aria-hidden="true" tabindex="-1"></a><span class="fu">table</span>(saving_with_hsdummy<span class="sc">$</span>highschool) <span class="co">#作成したダミー変数の度数分布</span></span></code></pre></div>
 <pre><code>## 
 ##  0  1 
 ## 42 58</code></pre>
-<p><code>highschool</code>という教育年数が12年以上であれば1、教育年数が12年未満であれば0を示すダミー変数を作成することができました。 なお、ここで作成した変数は連続変数として扱われているので、必要に応じて<code>as_factor()</code>も行っておきましょう。</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">saving_with_hsdummy &lt;-
-<span class="st">  </span>saving <span class="op">%&gt;%</span>
-<span class="st">    </span><span class="kw">mutate</span>(<span class="dt">highschool =</span> <span class="kw">if_else</span>(educ <span class="op">&gt;=</span><span class="st"> </span><span class="dv">12</span>, <span class="dv">1</span>, <span class="dv">0</span>),
-           <span class="dt">highschool =</span> <span class="kw">as_factor</span>(highschool)) <span class="co">#highschoolをfactor型として上書き</span>
-
-<span class="kw">head</span>(saving_with_hsdummy)</code></pre></div>
+<p><code>highschool</code>という教育年数が12年以上であれば1、教育年数が12年未満であれば0を示すダミー変数を作成することができました。
+なお、ここで作成した変数は連続変数として扱われているので、必要に応じて<code>as_factor()</code>も行っておきましょう。</p>
+<div class="sourceCode" id="cb75"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb75-1"><a href="DataHandling.html#cb75-1" aria-hidden="true" tabindex="-1"></a>saving_with_hsdummy <span class="ot">&lt;-</span></span>
+<span id="cb75-2"><a href="DataHandling.html#cb75-2" aria-hidden="true" tabindex="-1"></a>  saving <span class="sc">%&gt;%</span></span>
+<span id="cb75-3"><a href="DataHandling.html#cb75-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">mutate</span>(<span class="at">highschool =</span> <span class="fu">if_else</span>(educ <span class="sc">&gt;=</span> <span class="dv">12</span>, <span class="dv">1</span>, <span class="dv">0</span>),</span>
+<span id="cb75-4"><a href="DataHandling.html#cb75-4" aria-hidden="true" tabindex="-1"></a>           <span class="at">highschool =</span> <span class="fu">as_factor</span>(highschool)) <span class="co">#highschoolをfactor型として上書き</span></span>
+<span id="cb75-5"><a href="DataHandling.html#cb75-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb75-6"><a href="DataHandling.html#cb75-6" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(saving_with_hsdummy)</span></code></pre></div>
 <pre><code>##    sav   inc size educ age black  cons highschool
 ## 1   30  1920    4    2  40     1  1890          0
 ## 2  874 12403    4    9  33     0 11529          0
@@ -415,22 +489,24 @@ data_gyakuten</code></pre></div>
 <li>「年齢が40代以上」を表すダミー変数<code>over40</code>を加えたデータフレームを作成してください。</li>
 </ul>
 </div>
-<div id="カテゴリ変数の作成" class="section level3">
+<div id="カテゴリ変数の作成" class="section level3" number="8.3.4">
 <h3><span class="header-section-number">8.3.4</span> カテゴリ変数の作成</h3>
-<p>2つのカテゴリにしたい場合は上記の<code>if_else</code>が良いですが、3つ以上にしたい場合は<code>case_when</code>が便利です。 例えば年齢<code>age</code>を年代別のカテゴリ変数にしてみましょう。 <code>case_when</code>は<code>case_when(条件A ~ 条件が成り立つ場合の値, 条件B ~ 条件が成り立つ場合の値...</code>と書いていきます。</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">summary</span>(saving<span class="op">$</span>age) <span class="co">#年齢の記述統計の確認</span></code></pre></div>
+<p>2つのカテゴリにしたい場合は上記の<code>if_else</code>が良いですが、3つ以上にしたい場合は<code>case_when</code>が便利です。
+例えば年齢<code>age</code>を年代別のカテゴリ変数にしてみましょう。
+<code>case_when</code>は<code>case_when(条件A ~ 条件が成り立つ場合の値, 条件B ~ 条件が成り立つ場合の値...</code>と書いていきます。</p>
+<div class="sourceCode" id="cb77"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb77-1"><a href="DataHandling.html#cb77-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(saving<span class="sc">$</span>age) <span class="co">#年齢の記述統計の確認</span></span></code></pre></div>
 <pre><code>##    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
 ##   26.00   33.00   38.50   38.77   44.00   54.00</code></pre>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">saving_with_age_category &lt;-
-<span class="st">  </span>saving <span class="op">%&gt;%</span>
-<span class="st">    </span><span class="kw">mutate</span>(<span class="dt">age_category =</span> <span class="kw">case_when</span>(age <span class="op">&lt;</span><span class="st"> </span><span class="dv">30</span> <span class="op">~</span><span class="st"> &quot;20s&quot;</span>,
-                                    age <span class="op">&gt;=</span><span class="st"> </span><span class="dv">30</span> <span class="op">&amp;</span><span class="st"> </span>age <span class="op">&lt;</span><span class="st"> </span><span class="dv">40</span> <span class="op">~</span><span class="st"> &quot;30s&quot;</span>,
-                                    age <span class="op">&gt;=</span><span class="st"> </span><span class="dv">40</span> <span class="op">&amp;</span><span class="st"> </span>age <span class="op">&lt;</span><span class="st"> </span><span class="dv">50</span> <span class="op">~</span><span class="st"> &quot;40s&quot;</span>,
-                                    age <span class="op">&gt;=</span><span class="st"> </span><span class="dv">50</span> <span class="op">~</span><span class="st"> &quot;50s&quot;</span>
-                                    )
-          )
-
-<span class="kw">head</span>(saving_with_age_category)</code></pre></div>
+<div class="sourceCode" id="cb79"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb79-1"><a href="DataHandling.html#cb79-1" aria-hidden="true" tabindex="-1"></a>saving_with_age_category <span class="ot">&lt;-</span></span>
+<span id="cb79-2"><a href="DataHandling.html#cb79-2" aria-hidden="true" tabindex="-1"></a>  saving <span class="sc">%&gt;%</span></span>
+<span id="cb79-3"><a href="DataHandling.html#cb79-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">mutate</span>(<span class="at">age_category =</span> <span class="fu">case_when</span>(age <span class="sc">&lt;</span> <span class="dv">30</span> <span class="sc">~</span> <span class="st">&quot;20s&quot;</span>,</span>
+<span id="cb79-4"><a href="DataHandling.html#cb79-4" aria-hidden="true" tabindex="-1"></a>                                    age <span class="sc">&gt;=</span> <span class="dv">30</span> <span class="sc">&amp;</span> age <span class="sc">&lt;</span> <span class="dv">40</span> <span class="sc">~</span> <span class="st">&quot;30s&quot;</span>,</span>
+<span id="cb79-5"><a href="DataHandling.html#cb79-5" aria-hidden="true" tabindex="-1"></a>                                    age <span class="sc">&gt;=</span> <span class="dv">40</span> <span class="sc">&amp;</span> age <span class="sc">&lt;</span> <span class="dv">50</span> <span class="sc">~</span> <span class="st">&quot;40s&quot;</span>,</span>
+<span id="cb79-6"><a href="DataHandling.html#cb79-6" aria-hidden="true" tabindex="-1"></a>                                    age <span class="sc">&gt;=</span> <span class="dv">50</span> <span class="sc">~</span> <span class="st">&quot;50s&quot;</span></span>
+<span id="cb79-7"><a href="DataHandling.html#cb79-7" aria-hidden="true" tabindex="-1"></a>                                    )</span>
+<span id="cb79-8"><a href="DataHandling.html#cb79-8" aria-hidden="true" tabindex="-1"></a>          )</span>
+<span id="cb79-9"><a href="DataHandling.html#cb79-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb79-10"><a href="DataHandling.html#cb79-10" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(saving_with_age_category)</span></code></pre></div>
 <pre><code>##    sav   inc size educ age black  cons age_category
 ## 1   30  1920    4    2  40     1  1890          40s
 ## 2  874 12403    4    9  33     0 11529          30s
@@ -438,21 +514,24 @@ data_gyakuten</code></pre></div>
 ## 4 1200  7005    3    9  50     0  5805          50s
 ## 5  275  6990    4   12  28     0  6715          20s
 ## 6 1400  6500    4   13  33     0  5100          30s</code></pre>
-<p>少し長くなってしまいましたが、年齢の条件別に年代別の文字列を割り当てました。 ここで生成した変数はchr(character)型になっているので、分析に使う場合は<code>as_factor</code>を行っておきましょう。</p>
+<p>少し長くなってしまいましたが、年齢の条件別に年代別の文字列を割り当てました。
+ここで生成した変数はchr(character)型になっているので、分析に使う場合は<code>as_factor</code>を行っておきましょう。</p>
 <p>★練習問題</p>
 <ul>
-<li>年収6000ドル未満を&quot;poor&quot;、年収6000ドル以上12000ドル未満を&quot;middle&quot;、 年収12000ドル以上を&quot;rich&quot;、とするカテゴリ変数<code>inc_category</code>を追加したデータフレームを作成しなさい。</li>
+<li>年収6000ドル未満を“poor”、年収6000ドル以上12000ドル未満を“middle”、 年収12000ドル以上を“rich”、とするカテゴリ変数<code>inc_category</code>を追加したデータフレームを作成しなさい。</li>
 </ul>
 </div>
 </div>
-<div id="変数の選択" class="section level2">
+<div id="変数の選択" class="section level2" number="8.4">
 <h2><span class="header-section-number">8.4</span> 変数の選択</h2>
-<p>インポートしたデータの中に不要な変数が含まれていたり、前処理の結果不要になった変数が出てくることはよくあります。 <code>dplyr</code>の関数<code>select()</code>を用いると、データフレームの変数を選択したり、削除したりすることができます。 まずは<code>saving</code>から収入<code>inc</code>と年齢<code>age</code>を取り出してみましょう。</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">saving_selected &lt;-
-<span class="st">  </span>saving <span class="op">%&gt;%</span>
-<span class="st">    </span><span class="kw">select</span>(inc, age)
-
-<span class="kw">head</span>(saving_selected)</code></pre></div>
+<p>インポートしたデータの中に不要な変数が含まれていたり、前処理の結果不要になった変数が出てくることはよくあります。
+<code>dplyr</code>の関数<code>select()</code>を用いると、データフレームの変数を選択したり、削除したりすることができます。
+まずは<code>saving</code>から収入<code>inc</code>と年齢<code>age</code>を取り出してみましょう。</p>
+<div class="sourceCode" id="cb81"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb81-1"><a href="DataHandling.html#cb81-1" aria-hidden="true" tabindex="-1"></a>saving_selected <span class="ot">&lt;-</span></span>
+<span id="cb81-2"><a href="DataHandling.html#cb81-2" aria-hidden="true" tabindex="-1"></a>  saving <span class="sc">%&gt;%</span></span>
+<span id="cb81-3"><a href="DataHandling.html#cb81-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">select</span>(inc, age)</span>
+<span id="cb81-4"><a href="DataHandling.html#cb81-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb81-5"><a href="DataHandling.html#cb81-5" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(saving_selected)</span></code></pre></div>
 <pre><code>##     inc age
 ## 1  1920  40
 ## 2 12403  33
@@ -461,12 +540,13 @@ data_gyakuten</code></pre></div>
 ## 5  6990  28
 ## 6  6500  33</code></pre>
 <p>2つの変数のみのデータフレームになりました。</p>
-<p>ハイフン<code>-</code>を使うと、該当する変数を削除し、残りの変数はそのままとすることができます。 <code>saving</code>から消費<code>cons</code>を取り除いてみましょう。</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">saving_deleted &lt;-
-<span class="st">  </span>saving <span class="op">%&gt;%</span>
-<span class="st">    </span><span class="kw">select</span>(<span class="op">-</span>cons)
-
-<span class="kw">head</span>(saving_deleted)</code></pre></div>
+<p>ハイフン<code>-</code>を使うと、該当する変数を削除し、残りの変数はそのままとすることができます。
+<code>saving</code>から消費<code>cons</code>を取り除いてみましょう。</p>
+<div class="sourceCode" id="cb83"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb83-1"><a href="DataHandling.html#cb83-1" aria-hidden="true" tabindex="-1"></a>saving_deleted <span class="ot">&lt;-</span></span>
+<span id="cb83-2"><a href="DataHandling.html#cb83-2" aria-hidden="true" tabindex="-1"></a>  saving <span class="sc">%&gt;%</span></span>
+<span id="cb83-3"><a href="DataHandling.html#cb83-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">select</span>(<span class="sc">-</span>cons)</span>
+<span id="cb83-4"><a href="DataHandling.html#cb83-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb83-5"><a href="DataHandling.html#cb83-5" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(saving_deleted)</span></code></pre></div>
 <pre><code>##    sav   inc size educ age black
 ## 1   30  1920    4    2  40     1
 ## 2  874 12403    4    9  33     0
@@ -480,14 +560,16 @@ data_gyakuten</code></pre></div>
 <li>教育年数<code>educ</code>、年齢<code>age</code>を取り除いたデータを作成してください。</li>
 </ul>
 </div>
-<div id="変数の並び替え" class="section level2">
+<div id="変数の並び替え" class="section level2" number="8.5">
 <h2><span class="header-section-number">8.5</span> 変数の並び替え</h2>
-<p>データを確認する際に、ある変数をもとに並べ替えたい場合があります。 データを並べ替える<code>dplyr</code>の関数が<code>arrange()</code>です。 ここでは、<code>saving</code>を収入<code>inc</code>で並び替えてみましょう。</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">saving_arranged &lt;-
-<span class="st">  </span>saving <span class="op">%&gt;%</span>
-<span class="st">    </span><span class="kw">arrange</span>(inc)
-
-<span class="kw">head</span>(saving_arranged)</code></pre></div>
+<p>データを確認する際に、ある変数をもとに並べ替えたい場合があります。
+データを並べ替える<code>dplyr</code>の関数が<code>arrange()</code>です。
+ここでは、<code>saving</code>を収入<code>inc</code>で並び替えてみましょう。</p>
+<div class="sourceCode" id="cb85"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb85-1"><a href="DataHandling.html#cb85-1" aria-hidden="true" tabindex="-1"></a>saving_arranged <span class="ot">&lt;-</span></span>
+<span id="cb85-2"><a href="DataHandling.html#cb85-2" aria-hidden="true" tabindex="-1"></a>  saving <span class="sc">%&gt;%</span></span>
+<span id="cb85-3"><a href="DataHandling.html#cb85-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">arrange</span>(inc)</span>
+<span id="cb85-4"><a href="DataHandling.html#cb85-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb85-5"><a href="DataHandling.html#cb85-5" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(saving_arranged)</span></code></pre></div>
 <pre><code>##    sav  inc size educ age black cons
 ## 1    0  750    2    4  49     0  750
 ## 2   30 1920    4    2  40     1 1890
@@ -495,12 +577,13 @@ data_gyakuten</code></pre></div>
 ## 4 -112 2936    7   10  39     0 3048
 ## 5 2575 3941    4    9  34     0 1366
 ## 6 2483 4091    6    8  44     0 1608</code></pre>
-<p>値が小さいものが上、値が大きいものが下となる昇順で並び替えられます。 逆に降順にしたい場合は、<code>desc()</code>を利用します。</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">saving_arranged_desc &lt;-
-<span class="st">  </span>saving <span class="op">%&gt;%</span>
-<span class="st">    </span><span class="kw">arrange</span>(<span class="kw">desc</span>(inc))
-
-<span class="kw">head</span>(saving_arranged_desc)</code></pre></div>
+<p>値が小さいものが上、値が大きいものが下となる昇順で並び替えられます。
+逆に降順にしたい場合は、<code>desc()</code>を利用します。</p>
+<div class="sourceCode" id="cb87"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb87-1"><a href="DataHandling.html#cb87-1" aria-hidden="true" tabindex="-1"></a>saving_arranged_desc <span class="ot">&lt;-</span></span>
+<span id="cb87-2"><a href="DataHandling.html#cb87-2" aria-hidden="true" tabindex="-1"></a>  saving <span class="sc">%&gt;%</span></span>
+<span id="cb87-3"><a href="DataHandling.html#cb87-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">arrange</span>(<span class="fu">desc</span>(inc))</span>
+<span id="cb87-4"><a href="DataHandling.html#cb87-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb87-5"><a href="DataHandling.html#cb87-5" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(saving_arranged_desc)</span></code></pre></div>
 <pre><code>##     sav   inc size educ age black  cons
 ## 1  1800 32080    2   16  54     0 30280
 ## 2 10668 30996    4   12  41     0 20328
@@ -509,21 +592,23 @@ data_gyakuten</code></pre></div>
 ## 5 -2749 24226    5   17  44     0 26975
 ## 6  5082 19362    3   11  48     0 14280</code></pre>
 </div>
-<div id="すべての作業をパイプでつなげる" class="section level2">
+<div id="すべての作業をパイプでつなげる" class="section level2" number="8.6">
 <h2><span class="header-section-number">8.6</span> すべての作業をパイプでつなげる</h2>
-<p>これまで行ってきた一連の作業は、すべてパイプ<code>%&gt;%</code>でつなげることができます。 パイプでつなげることで作業の流れがわかりやすくなり、不要なオブジェクトを生成する必要もなくなります。 ここでは、以下の作業をまとめて行ってみましょう。</p>
+<p>これまで行ってきた一連の作業は、すべてパイプ<code>%&gt;%</code>でつなげることができます。
+パイプでつなげることで作業の流れがわかりやすくなり、不要なオブジェクトを生成する必要もなくなります。
+ここでは、以下の作業をまとめて行ってみましょう。</p>
 <ul>
 <li>貯蓄率<code>saving_rate</code>の作成</li>
 <li>家族人数<code>size</code>の削除</li>
 <li>収入<code>inc</code>で並び替え（降順）</li>
 </ul>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">saving_handled &lt;-
-<span class="st">  </span>saving <span class="op">%&gt;%</span>
-<span class="st">    </span><span class="kw">mutate</span>(<span class="dt">saving_rate =</span> sav <span class="op">/</span><span class="st"> </span>inc) <span class="op">%&gt;%</span>
-<span class="st">    </span><span class="kw">select</span>(<span class="op">-</span>size) <span class="op">%&gt;%</span>
-<span class="st">    </span><span class="kw">arrange</span>(<span class="kw">desc</span>(inc))
-
-<span class="kw">head</span>(saving_handled)</code></pre></div>
+<div class="sourceCode" id="cb89"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb89-1"><a href="DataHandling.html#cb89-1" aria-hidden="true" tabindex="-1"></a>saving_handled <span class="ot">&lt;-</span></span>
+<span id="cb89-2"><a href="DataHandling.html#cb89-2" aria-hidden="true" tabindex="-1"></a>  saving <span class="sc">%&gt;%</span></span>
+<span id="cb89-3"><a href="DataHandling.html#cb89-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">mutate</span>(<span class="at">saving_rate =</span> sav <span class="sc">/</span> inc) <span class="sc">%&gt;%</span></span>
+<span id="cb89-4"><a href="DataHandling.html#cb89-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">select</span>(<span class="sc">-</span>size) <span class="sc">%&gt;%</span></span>
+<span id="cb89-5"><a href="DataHandling.html#cb89-5" aria-hidden="true" tabindex="-1"></a>    <span class="fu">arrange</span>(<span class="fu">desc</span>(inc))</span>
+<span id="cb89-6"><a href="DataHandling.html#cb89-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb89-7"><a href="DataHandling.html#cb89-7" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(saving_handled)</span></code></pre></div>
 <pre><code>##     sav   inc educ age black  cons saving_rate
 ## 1  1800 32080   16  54     0 30280  0.05610973
 ## 2 10668 30996   12  41     0 20328  0.34417344
@@ -532,11 +617,11 @@ data_gyakuten</code></pre></div>
 ## 5 -2749 24226   17  44     0 26975 -0.11347313
 ## 6  5082 19362   11  48     0 14280  0.26247289</code></pre>
 <p>コードが長くなるため、適宜<code>#</code>を使ってコメントを加えておくと良いでしょう。</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">saving_handled
-  saving <span class="op">%&gt;%</span>
-<span class="st">    </span><span class="kw">mutate</span>(<span class="dt">saving_rate =</span> sav <span class="op">/</span><span class="st"> </span>inc) <span class="op">%&gt;%</span><span class="st"> </span><span class="co">#貯蓄率の作成</span>
-<span class="st">    </span><span class="kw">select</span>(<span class="op">-</span>size) <span class="op">%&gt;%</span><span class="st"> </span><span class="co">#家族人数の削除</span>
-<span class="st">    </span><span class="kw">arrange</span>(<span class="kw">desc</span>(inc)) <span class="co">#収入で並び替え（高いものが上）</span></code></pre></div>
+<div class="sourceCode" id="cb91"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb91-1"><a href="DataHandling.html#cb91-1" aria-hidden="true" tabindex="-1"></a>saving_handled</span>
+<span id="cb91-2"><a href="DataHandling.html#cb91-2" aria-hidden="true" tabindex="-1"></a>  saving <span class="sc">%&gt;%</span></span>
+<span id="cb91-3"><a href="DataHandling.html#cb91-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">mutate</span>(<span class="at">saving_rate =</span> sav <span class="sc">/</span> inc) <span class="sc">%&gt;%</span> <span class="co">#貯蓄率の作成</span></span>
+<span id="cb91-4"><a href="DataHandling.html#cb91-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">select</span>(<span class="sc">-</span>size) <span class="sc">%&gt;%</span> <span class="co">#家族人数の削除</span></span>
+<span id="cb91-5"><a href="DataHandling.html#cb91-5" aria-hidden="true" tabindex="-1"></a>    <span class="fu">arrange</span>(<span class="fu">desc</span>(inc)) <span class="co">#収入で並び替え（高いものが上）</span></span></code></pre></div>
 
 </div>
 </div>
@@ -550,7 +635,6 @@ data_gyakuten</code></pre></div>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
-<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
 <script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
 <script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
 <script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
@@ -569,6 +653,7 @@ gitbook.start({
 "weibo": false,
 "instapaper": false,
 "vk": false,
+"whatsapp": false,
 "all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
 },
 "fontsettings": {
@@ -589,6 +674,10 @@ gitbook.start({
 "text": null
 },
 "download": ["RforGradThesis.pdf", "RforGradThesis.epub"],
+"search": {
+"engine": "fuse",
+"options": null
+},
 "toc": {
 "collapse": "subsection"
 }
@@ -601,7 +690,7 @@ gitbook.start({
   (function () {
     var script = document.createElement("script");
     script.type = "text/javascript";
-    var src = "";
+    var src = "true";
     if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
     if (location.protocol !== "file:")
       if (/^https?:/.test(src))

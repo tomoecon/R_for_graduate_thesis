@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>Chapter 10 データの可視化 | 卒業論文のためのR入門</title>
   <meta name="description" content="この文書は、卒業論文を書くためのRの使い方をできるだけコンパクトにまとめたものです。" />
-  <meta name="generator" content="bookdown 0.20 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.24 and GitBook 2.6.7" />
 
   <meta property="og:title" content="Chapter 10 データの可視化 | 卒業論文のためのR入門" />
   <meta property="og:type" content="book" />
@@ -32,7 +32,9 @@
   
 <link rel="prev" href="SummaryStat.html"/>
 <link rel="next" href="Ttest.html"/>
-<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<script src="libs/header-attrs-2.10/header-attrs.js"></script>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
@@ -48,46 +50,75 @@
 
 
 
-
+<link href="libs/anchor-sections-1.0.1/anchor-sections.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.0.1/anchor-sections.js"></script>
 
 
 <style type="text/css">
-div.sourceCode { overflow-x: auto; }
-table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
-  margin: 0; padding: 0; vertical-align: baseline; border: none; }
-table.sourceCode { width: 100%; line-height: 100%; }
-td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; color: #aaaaaa; border-right: 1px solid #aaaaaa; }
-td.sourceCode { padding-left: 5px; }
-code > span.kw { color: #007020; font-weight: bold; } /* Keyword */
-code > span.dt { color: #902000; } /* DataType */
-code > span.dv { color: #40a070; } /* DecVal */
-code > span.bn { color: #40a070; } /* BaseN */
-code > span.fl { color: #40a070; } /* Float */
-code > span.ch { color: #4070a0; } /* Char */
-code > span.st { color: #4070a0; } /* String */
-code > span.co { color: #60a0b0; font-style: italic; } /* Comment */
-code > span.ot { color: #007020; } /* Other */
-code > span.al { color: #ff0000; font-weight: bold; } /* Alert */
-code > span.fu { color: #06287e; } /* Function */
-code > span.er { color: #ff0000; font-weight: bold; } /* Error */
-code > span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
-code > span.cn { color: #880000; } /* Constant */
-code > span.sc { color: #4070a0; } /* SpecialChar */
-code > span.vs { color: #4070a0; } /* VerbatimString */
-code > span.ss { color: #bb6688; } /* SpecialString */
-code > span.im { } /* Import */
-code > span.va { color: #19177c; } /* Variable */
-code > span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
-code > span.op { color: #666666; } /* Operator */
-code > span.bu { } /* BuiltIn */
-code > span.ex { } /* Extension */
-code > span.pp { color: #bc7a00; } /* Preprocessor */
-code > span.at { color: #7d9029; } /* Attribute */
-code > span.do { color: #ba2121; font-style: italic; } /* Documentation */
-code > span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
-code > span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
-code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
 </style>
+
 
 <link rel="stylesheet" href="style.css" type="text/css" />
 </head>
@@ -105,12 +136,15 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li><a href="./">卒業論文のためのR入門</a></li>
 
 <li class="divider"></li>
-<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> はじめに</a><ul>
+<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> はじめに</a>
+<ul>
 <li class="chapter" data-level="1.1" data-path="index.html"><a href="index.html#この文書で学ぶこと"><i class="fa fa-check"></i><b>1.1</b> この文書で学ぶこと</a></li>
-<li class="chapter" data-level="1.2" data-path="index.html"><a href="index.html#この文書の作成目的"><i class="fa fa-check"></i><b>1.2</b> この文書の作成目的</a></li>
+<li class="chapter" data-level="1.2" data-path="index.html"><a href="index.html#更新履歴"><i class="fa fa-check"></i><b>1.2</b> 更新履歴</a></li>
+<li class="chapter" data-level="1.3" data-path="index.html"><a href="index.html#この文書の作成目的"><i class="fa fa-check"></i><b>1.3</b> この文書の作成目的</a></li>
 </ul></li>
 <li class="chapter" data-level="2" data-path="InstallR.html"><a href="InstallR.html"><i class="fa fa-check"></i><b>2</b> R(Studio)のインストール</a></li>
-<li class="chapter" data-level="3" data-path="RStudio.html"><a href="RStudio.html"><i class="fa fa-check"></i><b>3</b> RStudioの使い方</a><ul>
+<li class="chapter" data-level="3" data-path="RStudio.html"><a href="RStudio.html"><i class="fa fa-check"></i><b>3</b> RStudioの使い方</a>
+<ul>
 <li class="chapter" data-level="3.1" data-path="RStudio.html"><a href="RStudio.html#rstudioの起動"><i class="fa fa-check"></i><b>3.1</b> RStudioの起動</a></li>
 <li class="chapter" data-level="3.2" data-path="RStudio.html"><a href="RStudio.html#rstudioの画面"><i class="fa fa-check"></i><b>3.2</b> RStudioの画面</a></li>
 <li class="chapter" data-level="3.3" data-path="RStudio.html"><a href="RStudio.html#rstudioの操作"><i class="fa fa-check"></i><b>3.3</b> RStudioの操作</a></li>
@@ -118,37 +152,45 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="3.5" data-path="RStudio.html"><a href="RStudio.html#プロジェクトの作成"><i class="fa fa-check"></i><b>3.5</b> プロジェクトの作成</a></li>
 </ul></li>
 <li class="chapter" data-level="4" data-path="Packages.html"><a href="Packages.html"><i class="fa fa-check"></i><b>4</b> パッケージのインストール</a></li>
-<li class="chapter" data-level="5" data-path="Rbasics.html"><a href="Rbasics.html"><i class="fa fa-check"></i><b>5</b> Rの基本操作</a><ul>
+<li class="chapter" data-level="5" data-path="Rbasics.html"><a href="Rbasics.html"><i class="fa fa-check"></i><b>5</b> Rの基本操作</a>
+<ul>
 <li class="chapter" data-level="5.1" data-path="Rbasics.html"><a href="Rbasics.html#オブジェクト"><i class="fa fa-check"></i><b>5.1</b> オブジェクト</a></li>
 <li class="chapter" data-level="5.2" data-path="Rbasics.html"><a href="Rbasics.html#簡単な計算"><i class="fa fa-check"></i><b>5.2</b> 簡単な計算</a></li>
-<li class="chapter" data-level="5.3" data-path="Rbasics.html"><a href="Rbasics.html#関数"><i class="fa fa-check"></i><b>5.3</b> 関数</a><ul>
+<li class="chapter" data-level="5.3" data-path="Rbasics.html"><a href="Rbasics.html#関数"><i class="fa fa-check"></i><b>5.3</b> 関数</a>
+<ul>
 <li class="chapter" data-level="5.3.1" data-path="Rbasics.html"><a href="Rbasics.html#数値に対する関数"><i class="fa fa-check"></i><b>5.3.1</b> 数値に対する関数</a></li>
 <li class="chapter" data-level="5.3.2" data-path="Rbasics.html"><a href="Rbasics.html#ベクトルに対する関数"><i class="fa fa-check"></i><b>5.3.2</b> ベクトルに対する関数</a></li>
 </ul></li>
 <li class="chapter" data-level="5.4" data-path="Rbasics.html"><a href="Rbasics.html#データフレーム"><i class="fa fa-check"></i><b>5.4</b> データフレーム</a></li>
 </ul></li>
-<li class="chapter" data-level="6" data-path="ImportData.html"><a href="ImportData.html"><i class="fa fa-check"></i><b>6</b> データのインポート</a><ul>
+<li class="chapter" data-level="6" data-path="ImportData.html"><a href="ImportData.html"><i class="fa fa-check"></i><b>6</b> データのインポート</a>
+<ul>
 <li class="chapter" data-level="6.1" data-path="ImportData.html"><a href="ImportData.html#インポートの準備"><i class="fa fa-check"></i><b>6.1</b> インポートの準備</a></li>
-<li class="chapter" data-level="6.2" data-path="ImportData.html"><a href="ImportData.html#ファイル形式別のインポート方法"><i class="fa fa-check"></i><b>6.2</b> ファイル形式別のインポート方法</a><ul>
+<li class="chapter" data-level="6.2" data-path="ImportData.html"><a href="ImportData.html#ファイル形式別のインポート方法"><i class="fa fa-check"></i><b>6.2</b> ファイル形式別のインポート方法</a>
+<ul>
 <li class="chapter" data-level="6.2.1" data-path="ImportData.html"><a href="ImportData.html#csvファイルの場合.csv"><i class="fa fa-check"></i><b>6.2.1</b> CSVファイルの場合（.csv）</a></li>
 <li class="chapter" data-level="6.2.2" data-path="ImportData.html"><a href="ImportData.html#excelファイルの場合.xlsx"><i class="fa fa-check"></i><b>6.2.2</b> Excelファイルの場合（.xlsx）</a></li>
 <li class="chapter" data-level="6.2.3" data-path="ImportData.html"><a href="ImportData.html#qualtricsのデータの場合"><i class="fa fa-check"></i><b>6.2.3</b> Qualtricsのデータの場合</a></li>
 </ul></li>
 <li class="chapter" data-level="6.3" data-path="ImportData.html"><a href="ImportData.html#インポートしたデータの確認"><i class="fa fa-check"></i><b>6.3</b> インポートしたデータの確認</a></li>
 </ul></li>
-<li class="chapter" data-level="7" data-path="Hypotheses.html"><a href="Hypotheses.html"><i class="fa fa-check"></i><b>7</b> 仮説とデータの具体例</a><ul>
+<li class="chapter" data-level="7" data-path="Hypotheses.html"><a href="Hypotheses.html"><i class="fa fa-check"></i><b>7</b> 仮説とデータの具体例</a>
+<ul>
 <li class="chapter" data-level="7.1" data-path="Hypotheses.html"><a href="Hypotheses.html#仮説の確認"><i class="fa fa-check"></i><b>7.1</b> 仮説の確認</a></li>
 <li class="chapter" data-level="7.2" data-path="Hypotheses.html"><a href="Hypotheses.html#変数の確認"><i class="fa fa-check"></i><b>7.2</b> 変数の確認</a></li>
 <li class="chapter" data-level="7.3" data-path="Hypotheses.html"><a href="Hypotheses.html#データの具体例"><i class="fa fa-check"></i><b>7.3</b> データの具体例</a></li>
 </ul></li>
-<li class="chapter" data-level="8" data-path="DataHandling.html"><a href="DataHandling.html"><i class="fa fa-check"></i><b>8</b> データ前処理</a><ul>
+<li class="chapter" data-level="8" data-path="DataHandling.html"><a href="DataHandling.html"><i class="fa fa-check"></i><b>8</b> データ前処理</a>
+<ul>
 <li class="chapter" data-level="8.1" data-path="DataHandling.html"><a href="DataHandling.html#パイプによる処理"><i class="fa fa-check"></i><b>8.1</b> パイプ（%&gt;%）による処理</a></li>
-<li class="chapter" data-level="8.2" data-path="DataHandling.html"><a href="DataHandling.html#変数の作成及び置換"><i class="fa fa-check"></i><b>8.2</b> 変数の作成（及び置換）</a><ul>
+<li class="chapter" data-level="8.2" data-path="DataHandling.html"><a href="DataHandling.html#変数の作成及び置換"><i class="fa fa-check"></i><b>8.2</b> 変数の作成（及び置換）</a>
+<ul>
 <li class="chapter" data-level="8.2.1" data-path="DataHandling.html"><a href="DataHandling.html#変数の新規作成"><i class="fa fa-check"></i><b>8.2.1</b> 変数の新規作成</a></li>
 <li class="chapter" data-level="8.2.2" data-path="DataHandling.html"><a href="DataHandling.html#逆転項目の処理"><i class="fa fa-check"></i><b>8.2.2</b> 逆転項目の処理</a></li>
 <li class="chapter" data-level="8.2.3" data-path="DataHandling.html"><a href="DataHandling.html#変数の標準化"><i class="fa fa-check"></i><b>8.2.3</b> 変数の標準化</a></li>
 </ul></li>
-<li class="chapter" data-level="8.3" data-path="DataHandling.html"><a href="DataHandling.html#カテゴリ変数の処理"><i class="fa fa-check"></i><b>8.3</b> カテゴリ変数の処理</a><ul>
+<li class="chapter" data-level="8.3" data-path="DataHandling.html"><a href="DataHandling.html#カテゴリ変数の処理"><i class="fa fa-check"></i><b>8.3</b> カテゴリ変数の処理</a>
+<ul>
 <li class="chapter" data-level="8.3.1" data-path="DataHandling.html"><a href="DataHandling.html#変数の型"><i class="fa fa-check"></i><b>8.3.1</b> 変数の型</a></li>
 <li class="chapter" data-level="8.3.2" data-path="DataHandling.html"><a href="DataHandling.html#カテゴリ変数への変換"><i class="fa fa-check"></i><b>8.3.2</b> カテゴリ変数への変換</a></li>
 <li class="chapter" data-level="8.3.3" data-path="DataHandling.html"><a href="DataHandling.html#ダミー変数の作成"><i class="fa fa-check"></i><b>8.3.3</b> ダミー変数の作成</a></li>
@@ -158,23 +200,28 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="8.5" data-path="DataHandling.html"><a href="DataHandling.html#変数の並び替え"><i class="fa fa-check"></i><b>8.5</b> 変数の並び替え</a></li>
 <li class="chapter" data-level="8.6" data-path="DataHandling.html"><a href="DataHandling.html#すべての作業をパイプでつなげる"><i class="fa fa-check"></i><b>8.6</b> すべての作業をパイプでつなげる</a></li>
 </ul></li>
-<li class="chapter" data-level="9" data-path="SummaryStat.html"><a href="SummaryStat.html"><i class="fa fa-check"></i><b>9</b> 記述統計表の作成</a><ul>
+<li class="chapter" data-level="9" data-path="SummaryStat.html"><a href="SummaryStat.html"><i class="fa fa-check"></i><b>9</b> 記述統計表の作成</a>
+<ul>
 <li class="chapter" data-level="9.1" data-path="SummaryStat.html"><a href="SummaryStat.html#数値の記述統計表の作成"><i class="fa fa-check"></i><b>9.1</b> 数値の記述統計表の作成</a></li>
 <li class="chapter" data-level="9.2" data-path="SummaryStat.html"><a href="SummaryStat.html#カテゴリ変数の記述統計表の作成"><i class="fa fa-check"></i><b>9.2</b> カテゴリ変数の記述統計表の作成</a></li>
 </ul></li>
-<li class="chapter" data-level="10" data-path="Visualization.html"><a href="Visualization.html"><i class="fa fa-check"></i><b>10</b> データの可視化</a><ul>
-<li class="chapter" data-level="10.1" data-path="Visualization.html"><a href="Visualization.html#変数の可視化"><i class="fa fa-check"></i><b>10.1</b> 1変数の可視化</a><ul>
+<li class="chapter" data-level="10" data-path="Visualization.html"><a href="Visualization.html"><i class="fa fa-check"></i><b>10</b> データの可視化</a>
+<ul>
+<li class="chapter" data-level="10.1" data-path="Visualization.html"><a href="Visualization.html#変数の可視化"><i class="fa fa-check"></i><b>10.1</b> 1変数の可視化</a>
+<ul>
 <li class="chapter" data-level="10.1.1" data-path="Visualization.html"><a href="Visualization.html#棒グラフ"><i class="fa fa-check"></i><b>10.1.1</b> 棒グラフ</a></li>
 <li class="chapter" data-level="10.1.2" data-path="Visualization.html"><a href="Visualization.html#ヒストグラム"><i class="fa fa-check"></i><b>10.1.2</b> ヒストグラム</a></li>
 </ul></li>
-<li class="chapter" data-level="10.2" data-path="Visualization.html"><a href="Visualization.html#変数の可視化-1"><i class="fa fa-check"></i><b>10.2</b> 2変数の可視化</a><ul>
+<li class="chapter" data-level="10.2" data-path="Visualization.html"><a href="Visualization.html#変数の可視化-1"><i class="fa fa-check"></i><b>10.2</b> 2変数の可視化</a>
+<ul>
 <li class="chapter" data-level="10.2.1" data-path="Visualization.html"><a href="Visualization.html#散布図"><i class="fa fa-check"></i><b>10.2.1</b> 散布図</a></li>
 <li class="chapter" data-level="10.2.2" data-path="Visualization.html"><a href="Visualization.html#棒グラフ-1"><i class="fa fa-check"></i><b>10.2.2</b> 棒グラフ</a></li>
 <li class="chapter" data-level="10.2.3" data-path="Visualization.html"><a href="Visualization.html#箱ひげ図"><i class="fa fa-check"></i><b>10.2.3</b> 箱ひげ図</a></li>
 </ul></li>
 </ul></li>
 <li class="chapter" data-level="11" data-path="Ttest.html"><a href="Ttest.html"><i class="fa fa-check"></i><b>11</b> t検定</a></li>
-<li class="chapter" data-level="12" data-path="Regression.html"><a href="Regression.html"><i class="fa fa-check"></i><b>12</b> 回帰分析</a><ul>
+<li class="chapter" data-level="12" data-path="Regression.html"><a href="Regression.html"><i class="fa fa-check"></i><b>12</b> 回帰分析</a>
+<ul>
 <li class="chapter" data-level="12.1" data-path="Regression.html"><a href="Regression.html#線形回帰とは"><i class="fa fa-check"></i><b>12.1</b> 線形回帰とは</a></li>
 <li class="chapter" data-level="12.2" data-path="Regression.html"><a href="Regression.html#rでの線形回帰"><i class="fa fa-check"></i><b>12.2</b> Rでの線形回帰</a></li>
 <li class="chapter" data-level="12.3" data-path="Regression.html"><a href="Regression.html#重回帰分析"><i class="fa fa-check"></i><b>12.3</b> 重回帰分析</a></li>
@@ -183,7 +230,8 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="12.6" data-path="Regression.html"><a href="Regression.html#交互作用の導入"><i class="fa fa-check"></i><b>12.6</b> 交互作用の導入</a></li>
 <li class="chapter" data-level="12.7" data-path="Regression.html"><a href="Regression.html#回帰分析の表をまとめる"><i class="fa fa-check"></i><b>12.7</b> 回帰分析の表をまとめる</a></li>
 </ul></li>
-<li class="chapter" data-level="13" data-path="Word.html"><a href="Word.html"><i class="fa fa-check"></i><b>13</b> Wordファイルへの貼り付け</a><ul>
+<li class="chapter" data-level="13" data-path="Word.html"><a href="Word.html"><i class="fa fa-check"></i><b>13</b> Wordファイルへの貼り付け</a>
+<ul>
 <li class="chapter" data-level="13.1" data-path="Word.html"><a href="Word.html#表の貼り付け"><i class="fa fa-check"></i><b>13.1</b> 表の貼り付け</a></li>
 </ul></li>
 <li class="divider"></li>
@@ -206,14 +254,16 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="Visualization" class="section level1">
+<div id="Visualization" class="section level1" number="10">
 <h1><span class="header-section-number">Chapter 10</span> データの可視化</h1>
-<p>データをグラフによって目に見える形でわかりやすく整理する「可視化」は論文においてとても重要です。 卒業論文では、データや結果を適切に伝えられるよう、グラフを作成していきましょう。</p>
-<p>Rでは<code>ggplot2</code>というパッケージで見やすいグラフを作成することができます。 <code>ggplot2</code>は<code>tidyverse</code>に含まれています。</p>
+<p>データをグラフによって目に見える形でわかりやすく整理する「可視化」は論文においてとても重要です。
+卒業論文では、データや結果を適切に伝えられるよう、グラフを作成していきましょう。</p>
+<p>Rでは<code>ggplot2</code>というパッケージで見やすいグラフを作成することができます。
+<code>ggplot2</code>は<code>tidyverse</code>に含まれています。</p>
 <p>まずは<code>ggplot2</code>の基本的な書き方について説明します。<code>ggplot2</code>は以下のように記述します。</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">使用するデータフレーム <span class="op">%&gt;%</span>
-<span class="st">  </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x =</span> x軸の変数名, <span class="dt">y =</span> y軸の変数名)) <span class="op">+</span>
-<span class="st">  </span>geom_グラフの名前()</code></pre></div>
+<div class="sourceCode" id="cb102"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb102-1"><a href="Visualization.html#cb102-1" aria-hidden="true" tabindex="-1"></a>使用するデータフレーム <span class="sc">%&gt;%</span></span>
+<span id="cb102-2"><a href="Visualization.html#cb102-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> x軸の変数名, <span class="at">y =</span> y軸の変数名)) <span class="sc">+</span></span>
+<span id="cb102-3"><a href="Visualization.html#cb102-3" aria-hidden="true" tabindex="-1"></a>  geom_グラフの名前()</span></code></pre></div>
 <ul>
 <li>1行目で使用するデータフレームを宣言し、パイプでつなげます。</li>
 <li>2行目でグラフに各変数を宣言し、+でつなげます。
@@ -229,97 +279,121 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li><code>geom_smooth</code>: 回帰直線</li>
 </ul></li>
 </ul>
-<div id="変数の可視化" class="section level2">
+<div id="変数の可視化" class="section level2" number="10.1">
 <h2><span class="header-section-number">10.1</span> 1変数の可視化</h2>
-<p>まずは、主要な変数がどのように分布しているかを可視化してみましょう。 1変数の可視化は、変数がどのような変数かによって使うグラフが異なります。 ここでは、カテゴリ変数に対する棒グラフ、連続変数に対するヒストグラムを説明します。</p>
-<div id="棒グラフ" class="section level3">
+<p>まずは、主要な変数がどのように分布しているかを可視化してみましょう。
+1変数の可視化は、変数がどのような変数かによって使うグラフが異なります。
+ここでは、カテゴリ変数に対する棒グラフ、連続変数に対するヒストグラムを説明します。</p>
+<div id="棒グラフ" class="section level3" number="10.1.1">
 <h3><span class="header-section-number">10.1.1</span> 棒グラフ</h3>
-<p>ここでは、1つのカテゴリ変数の分布を示すための棒グラフについて説明します。 例として、<code>saving</code>に含まれる世帯人数<code>size</code>がどのように分布しているかをみてみましょう。</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">saving <span class="op">%&gt;%</span>
-<span class="st">  </span><span class="kw">mutate</span>(<span class="dt">size =</span> <span class="kw">as_factor</span>(size)) <span class="op">%&gt;%</span><span class="st"> </span><span class="co">#sizeをカテゴリ変数に変換して上書き</span>
-<span class="st">  </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x =</span> size)) <span class="op">+</span>
-<span class="st">  </span><span class="kw">geom_bar</span>()</code></pre></div>
+<p>ここでは、1つのカテゴリ変数の分布を示すための棒グラフについて説明します。
+例として、<code>saving</code>に含まれる世帯人数<code>size</code>がどのように分布しているかをみてみましょう。</p>
+<div class="sourceCode" id="cb103"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb103-1"><a href="Visualization.html#cb103-1" aria-hidden="true" tabindex="-1"></a>saving <span class="sc">%&gt;%</span></span>
+<span id="cb103-2"><a href="Visualization.html#cb103-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">size =</span> <span class="fu">as_factor</span>(size)) <span class="sc">%&gt;%</span> <span class="co">#sizeをカテゴリ変数に変換して上書き</span></span>
+<span id="cb103-3"><a href="Visualization.html#cb103-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> size)) <span class="sc">+</span></span>
+<span id="cb103-4"><a href="Visualization.html#cb103-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_bar</span>()</span></code></pre></div>
 <p><img src="RforGradThesis_files/figure-html/one%20variable%20barplot-1.png" width="384" style="display: block; margin: auto;" /></p>
-<p>1変数の分布を示す関数は<code>x</code>のみを指定すれば良いです（<code>y</code>は不要です）。 <code>geom_bar()</code>は何も指定しなければ縦軸を観測数（count）にしてくれます。 ここでは家族の人数が4人が最も多く、以下5人、3人…の順に多いことがわかります。</p>
+<p>1変数の分布を示す関数は<code>x</code>のみを指定すれば良いです（<code>y</code>は不要です）。
+<code>geom_bar()</code>は何も指定しなければ縦軸を観測数（count）にしてくれます。
+ここでは家族の人数が4人が最も多く、以下5人、3人…の順に多いことがわかります。</p>
 </div>
-<div id="ヒストグラム" class="section level3">
+<div id="ヒストグラム" class="section level3" number="10.1.2">
 <h3><span class="header-section-number">10.1.2</span> ヒストグラム</h3>
-<p>ここでは、1つの連続変数の分布を示すヒストグラムについて説明します。 例として、<code>saving</code>に含まれる年間収入<code>inc</code>をヒストグラムにしてみましょう。</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">saving <span class="op">%&gt;%</span>
-<span class="st">  </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x =</span> inc)) <span class="op">+</span>
-<span class="st">  </span><span class="kw">geom_histogram</span>()</code></pre></div>
+<p>ここでは、1つの連続変数の分布を示すヒストグラムについて説明します。
+例として、<code>saving</code>に含まれる年間収入<code>inc</code>をヒストグラムにしてみましょう。</p>
+<div class="sourceCode" id="cb104"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb104-1"><a href="Visualization.html#cb104-1" aria-hidden="true" tabindex="-1"></a>saving <span class="sc">%&gt;%</span></span>
+<span id="cb104-2"><a href="Visualization.html#cb104-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> inc)) <span class="sc">+</span></span>
+<span id="cb104-3"><a href="Visualization.html#cb104-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_histogram</span>()</span></code></pre></div>
 <p><img src="RforGradThesis_files/figure-html/one%20variable%20histogram-1.png" width="384" style="display: block; margin: auto;" /></p>
-<p>棒グラフと同じく<code>x</code>のみを指定すれば良く、縦軸は観測数になっています。 ヒストグラムで重要なのは、ビン（棒のことです）の数や幅です。 <code>geom_histogram</code>はデフォルトでビンの数<code>bins</code>を30としていますが、見づらい場合は変えてみましょう。 例えば、ビンの数<code>bins</code>を15に減らしてみます。</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">saving <span class="op">%&gt;%</span>
-<span class="st">  </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x =</span> inc)) <span class="op">+</span>
-<span class="st">  </span><span class="kw">geom_histogram</span>(<span class="dt">bins =</span> <span class="dv">15</span>) <span class="co">#ビンの数を15に指定</span></code></pre></div>
+<p>棒グラフと同じく<code>x</code>のみを指定すれば良く、縦軸は観測数になっています。
+ヒストグラムで重要なのは、ビン（棒のことです）の数や幅です。
+<code>geom_histogram</code>はデフォルトでビンの数<code>bins</code>を30としていますが、見づらい場合は変えてみましょう。
+例えば、ビンの数<code>bins</code>を15に減らしてみます。</p>
+<div class="sourceCode" id="cb105"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb105-1"><a href="Visualization.html#cb105-1" aria-hidden="true" tabindex="-1"></a>saving <span class="sc">%&gt;%</span></span>
+<span id="cb105-2"><a href="Visualization.html#cb105-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> inc)) <span class="sc">+</span></span>
+<span id="cb105-3"><a href="Visualization.html#cb105-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_histogram</span>(<span class="at">bins =</span> <span class="dv">15</span>) <span class="co">#ビンの数を15に指定</span></span></code></pre></div>
 <p><img src="RforGradThesis_files/figure-html/one%20variable%20histogram%20bins-1.png" width="384" style="display: block; margin: auto;" /></p>
-<p>ビンの数が少なくなり分布が滑らかになりましたが、細かい情報が見えづらくなり一長一短です。 工夫したい方は、ビンの幅を定める<code>binwidth</code>や位置を定める<code>center</code>や<code>boundary</code>も活用してください。</p>
+<p>ビンの数が少なくなり分布が滑らかになりましたが、細かい情報が見えづらくなり一長一短です。
+工夫したい方は、ビンの幅を定める<code>binwidth</code>や位置を定める<code>center</code>や<code>boundary</code>も活用してください。</p>
 </div>
 </div>
-<div id="変数の可視化-1" class="section level2">
+<div id="変数の可視化-1" class="section level2" number="10.2">
 <h2><span class="header-section-number">10.2</span> 2変数の可視化</h2>
-<p>変数と変数の関係の可視化は、研究結果を示すのに重要です。 2変数の場合、それぞれの変数の種類によって適切な図が異なります。</p>
+<p>変数と変数の関係の可視化は、研究結果を示すのに重要です。
+2変数の場合、それぞれの変数の種類によって適切な図が異なります。</p>
 <ul>
 <li>連続変数と連続変数：散布図</li>
 <li>連続変数とカテゴリ変数：散布図・棒グラフ・箱ひげ図</li>
 <li>カテゴリ変数とカテゴリ変数：棒グラフ</li>
 </ul>
-<div id="散布図" class="section level3">
+<div id="散布図" class="section level3" number="10.2.1">
 <h3><span class="header-section-number">10.2.1</span> 散布図</h3>
-<p>連続変数と連続変数の関係を示すには、散布図が良いです。 散布図を描く関数が<code>geom_point()</code>です。 ここでは、年齢<code>age</code>と年間貯蓄<code>inc</code>の関係を見てみましょう。</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">saving <span class="op">%&gt;%</span>
-<span class="st">  </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x =</span> age, <span class="dt">y =</span> inc)) <span class="op">+</span>
-<span class="st">  </span><span class="kw">geom_point</span>()</code></pre></div>
+<p>連続変数と連続変数の関係を示すには、散布図が良いです。
+散布図を描く関数が<code>geom_point()</code>です。
+ここでは、年齢<code>age</code>と年間貯蓄<code>inc</code>の関係を見てみましょう。</p>
+<div class="sourceCode" id="cb106"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb106-1"><a href="Visualization.html#cb106-1" aria-hidden="true" tabindex="-1"></a>saving <span class="sc">%&gt;%</span></span>
+<span id="cb106-2"><a href="Visualization.html#cb106-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> age, <span class="at">y =</span> inc)) <span class="sc">+</span></span>
+<span id="cb106-3"><a href="Visualization.html#cb106-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>()</span></code></pre></div>
 <p><img src="RforGradThesis_files/figure-html/geom_point-1.png" width="384" style="display: block; margin: auto;" /></p>
-<p>2変数なので、<code>x</code>と<code>y</code>を指定します。<code>x</code>が横軸、<code>y</code>が縦軸になり、通常は<code>x</code>が独立変数、<code>y</code>が従属変数となります。 散布図ではそれぞれの点が観測値となっています。 このデータでは、年齢と年間収入にはそこまで関係がないように見えます。</p>
-<p>散布図に回帰分析で推定される回帰直線を足してみましょう。 回帰直線を描くコマンドは<code>geom_smooth</code>です。</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">saving <span class="op">%&gt;%</span>
-<span class="st">  </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x =</span> age, <span class="dt">y =</span> inc)) <span class="op">+</span>
-<span class="st">  </span><span class="kw">geom_point</span>() <span class="op">+</span>
-<span class="st">  </span><span class="kw">geom_smooth</span>(<span class="dt">method =</span> <span class="st">&quot;lm&quot;</span>, <span class="dt">se =</span> <span class="ot">FALSE</span>)</code></pre></div>
+<p>2変数なので、<code>x</code>と<code>y</code>を指定します。<code>x</code>が横軸、<code>y</code>が縦軸になり、通常は<code>x</code>が独立変数、<code>y</code>が従属変数となります。
+散布図ではそれぞれの点が観測値となっています。
+このデータでは、年齢と年間収入にはそこまで関係がないように見えます。</p>
+<p>散布図に回帰分析で推定される回帰直線を足してみましょう。
+回帰直線を描くコマンドは<code>geom_smooth</code>です。</p>
+<div class="sourceCode" id="cb107"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb107-1"><a href="Visualization.html#cb107-1" aria-hidden="true" tabindex="-1"></a>saving <span class="sc">%&gt;%</span></span>
+<span id="cb107-2"><a href="Visualization.html#cb107-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> age, <span class="at">y =</span> inc)) <span class="sc">+</span></span>
+<span id="cb107-3"><a href="Visualization.html#cb107-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb107-4"><a href="Visualization.html#cb107-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">&quot;lm&quot;</span>, <span class="at">se =</span> <span class="cn">FALSE</span>)</span></code></pre></div>
+<pre><code>## `geom_smooth()` using formula &#39;y ~ x&#39;</code></pre>
 <p><img src="RforGradThesis_files/figure-html/add%20geom_smooth-1.png" width="384" style="display: block; margin: auto;" /></p>
-<p>ggplotはグラフを+でつなげて重ねることができます。ここでは、<code>geom_point()</code>で散布図を描き、その上に<code>geom_smooth()</code>で回帰直線を重ねています。 <code>geom_smooth()</code>の引数<code>method</code>では、どのような線を描くのかを指定します。lmは線形モデル（linear model）を指定しています。（指定しないと別の線になります） <code>se</code>は標準偏差を見せる引数ですが、これをFALSEにして見せないようにしています。</p>
-<p>カテゴリ変数と連続変数の関係を示すのにも、散布図を使うことができますが、弱点があります。 ここでは、教育年数<code>educ</code>から高卒以上のダミー変数<code>highschool</code>を作成した上で、年間収入<code>inc</code>の違いを見ていきましょう。</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">saving <span class="op">%&gt;%</span>
-<span class="st">  </span><span class="kw">mutate</span>(<span class="dt">highschool =</span> <span class="kw">if_else</span>(educ <span class="op">&gt;=</span><span class="st"> </span><span class="dv">12</span>, <span class="dv">1</span>, <span class="dv">0</span>),
-         <span class="dt">highschool =</span> <span class="kw">as_factor</span>(highschool)) <span class="op">%&gt;%</span>
-<span class="st">  </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x =</span> highschool, <span class="dt">y =</span> inc)) <span class="op">+</span>
-<span class="st">  </span><span class="kw">geom_point</span>()</code></pre></div>
+<p>ggplotはグラフを+でつなげて重ねることができます。ここでは、<code>geom_point()</code>で散布図を描き、その上に<code>geom_smooth()</code>で回帰直線を重ねています。
+<code>geom_smooth()</code>の引数<code>method</code>では、どのような線を描くのかを指定します。lmは線形モデル（linear model）を指定しています。（指定しないと別の線になります）
+<code>se</code>は標準偏差を見せる引数ですが、これをFALSEにして見せないようにしています。</p>
+<p>カテゴリ変数と連続変数の関係を示すのにも、散布図を使うことができますが、弱点があります。
+ここでは、教育年数<code>educ</code>から高卒以上のダミー変数<code>highschool</code>を作成した上で、年間収入<code>inc</code>の違いを見ていきましょう。</p>
+<div class="sourceCode" id="cb109"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb109-1"><a href="Visualization.html#cb109-1" aria-hidden="true" tabindex="-1"></a>saving <span class="sc">%&gt;%</span></span>
+<span id="cb109-2"><a href="Visualization.html#cb109-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">highschool =</span> <span class="fu">if_else</span>(educ <span class="sc">&gt;=</span> <span class="dv">12</span>, <span class="dv">1</span>, <span class="dv">0</span>),</span>
+<span id="cb109-3"><a href="Visualization.html#cb109-3" aria-hidden="true" tabindex="-1"></a>         <span class="at">highschool =</span> <span class="fu">as_factor</span>(highschool)) <span class="sc">%&gt;%</span></span>
+<span id="cb109-4"><a href="Visualization.html#cb109-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> highschool, <span class="at">y =</span> inc)) <span class="sc">+</span></span>
+<span id="cb109-5"><a href="Visualization.html#cb109-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>()</span></code></pre></div>
 <p><img src="RforGradThesis_files/figure-html/geom_point%20category%20variable-1.png" width="384" style="display: block; margin: auto;" /></p>
-<p>散布図が書けました。しかし、点が固まってしまって見づらい図になってしまっています。 これを解決するには以下の方法があります。</p>
+<p>散布図が書けました。しかし、点が固まってしまって見づらい図になってしまっています。
+これを解決するには以下の方法があります。</p>
 <ul>
 <li><code>geom_point()</code>の代わりに<code>geom_jitter()</code>を使う</li>
 <li>散布図ではなく、棒グラフまたは箱ひげ図で代表値を図示する</li>
 </ul>
 <p><code>geom_jitter()</code>は散布図の点をランダムに「散らして」表示する関数です。実際に見てみましょう。</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">saving <span class="op">%&gt;%</span>
-<span class="st">  </span><span class="kw">mutate</span>(<span class="dt">highschool =</span> <span class="kw">if_else</span>(educ <span class="op">&gt;=</span><span class="st"> </span><span class="dv">12</span>, <span class="dv">1</span>, <span class="dv">0</span>),
-         <span class="dt">highschool =</span> <span class="kw">as_factor</span>(highschool)) <span class="op">%&gt;%</span>
-<span class="st">  </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x =</span> highschool, <span class="dt">y =</span> inc)) <span class="op">+</span>
-<span class="st">  </span><span class="kw">geom_jitter</span>(<span class="dt">width =</span> <span class="fl">0.2</span>)</code></pre></div>
+<div class="sourceCode" id="cb110"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb110-1"><a href="Visualization.html#cb110-1" aria-hidden="true" tabindex="-1"></a>saving <span class="sc">%&gt;%</span></span>
+<span id="cb110-2"><a href="Visualization.html#cb110-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">highschool =</span> <span class="fu">if_else</span>(educ <span class="sc">&gt;=</span> <span class="dv">12</span>, <span class="dv">1</span>, <span class="dv">0</span>),</span>
+<span id="cb110-3"><a href="Visualization.html#cb110-3" aria-hidden="true" tabindex="-1"></a>         <span class="at">highschool =</span> <span class="fu">as_factor</span>(highschool)) <span class="sc">%&gt;%</span></span>
+<span id="cb110-4"><a href="Visualization.html#cb110-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> highschool, <span class="at">y =</span> inc)) <span class="sc">+</span></span>
+<span id="cb110-5"><a href="Visualization.html#cb110-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_jitter</span>(<span class="at">width =</span> <span class="fl">0.2</span>)</span></code></pre></div>
 <p><img src="RforGradThesis_files/figure-html/geom_jitter%20category%20variable-1.png" width="384" style="display: block; margin: auto;" /></p>
 <p>これで多少見やすくなりました。<code>width = 0.2</code>では、散らす幅を指定しています。</p>
 </div>
-<div id="棒グラフ-1" class="section level3">
+<div id="棒グラフ-1" class="section level3" number="10.2.2">
 <h3><span class="header-section-number">10.2.2</span> 棒グラフ</h3>
-<p>棒グラフでカテゴリごとの代表値を示したい場合は、<code>geom_bar()</code>ではなく<code>stat_summary()</code>を使います。 <code>stat_summary()</code>の<code>fun.y</code>で使用したい代表値を（ここでは平均mean）、<code>geom</code>で表示方法ここでは棒グラフ<code>bar</code>を指定します。</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">saving <span class="op">%&gt;%</span>
-<span class="st">  </span><span class="kw">mutate</span>(<span class="dt">highschool =</span> <span class="kw">if_else</span>(educ <span class="op">&gt;=</span><span class="st"> </span><span class="dv">12</span>, <span class="dv">1</span>, <span class="dv">0</span>),
-         <span class="dt">highschool =</span> <span class="kw">as_factor</span>(highschool)) <span class="op">%&gt;%</span>
-<span class="st">  </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x =</span> highschool, <span class="dt">y =</span> inc)) <span class="op">+</span>
-<span class="st">  </span><span class="kw">stat_summary</span>(<span class="dt">fun.y =</span> <span class="st">&quot;mean&quot;</span>, <span class="dt">geom =</span> <span class="st">&quot;bar&quot;</span>)</code></pre></div>
+<p>棒グラフでカテゴリごとの代表値を示したい場合は、<code>geom_bar()</code>ではなく<code>stat_summary()</code>を使います。
+<code>stat_summary()</code>の<code>fun.y</code>で使用したい代表値を（ここでは平均mean）、<code>geom</code>で表示方法ここでは棒グラフ<code>bar</code>を指定します。</p>
+<div class="sourceCode" id="cb111"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb111-1"><a href="Visualization.html#cb111-1" aria-hidden="true" tabindex="-1"></a>saving <span class="sc">%&gt;%</span></span>
+<span id="cb111-2"><a href="Visualization.html#cb111-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">highschool =</span> <span class="fu">if_else</span>(educ <span class="sc">&gt;=</span> <span class="dv">12</span>, <span class="dv">1</span>, <span class="dv">0</span>),</span>
+<span id="cb111-3"><a href="Visualization.html#cb111-3" aria-hidden="true" tabindex="-1"></a>         <span class="at">highschool =</span> <span class="fu">as_factor</span>(highschool)) <span class="sc">%&gt;%</span></span>
+<span id="cb111-4"><a href="Visualization.html#cb111-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> highschool, <span class="at">y =</span> inc)) <span class="sc">+</span></span>
+<span id="cb111-5"><a href="Visualization.html#cb111-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">stat_summary</span>(<span class="at">fun.y =</span> <span class="st">&quot;mean&quot;</span>, <span class="at">geom =</span> <span class="st">&quot;bar&quot;</span>)</span></code></pre></div>
+<pre><code>## Warning: `fun.y` is deprecated. Use `fun` instead.</code></pre>
 <p><img src="RforGradThesis_files/figure-html/stat_summary-1.png" width="384" style="display: block; margin: auto;" /></p>
 <p>これでカテゴリ別の平均値を棒グラフで示すことができました。</p>
 </div>
-<div id="箱ひげ図" class="section level3">
+<div id="箱ひげ図" class="section level3" number="10.2.3">
 <h3><span class="header-section-number">10.2.3</span> 箱ひげ図</h3>
-<p>箱ひげ図でカテゴリごとの代表値を示すこともできます。 箱ひげ図を描くには<code>geom_boxplot</code>を用います。</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">saving <span class="op">%&gt;%</span>
-<span class="st">  </span><span class="kw">mutate</span>(<span class="dt">highschool =</span> <span class="kw">if_else</span>(educ <span class="op">&gt;=</span><span class="st"> </span><span class="dv">12</span>, <span class="dv">1</span>, <span class="dv">0</span>),
-         <span class="dt">highschool =</span> <span class="kw">as_factor</span>(highschool)) <span class="op">%&gt;%</span>
-<span class="st">  </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x =</span> highschool, <span class="dt">y =</span> inc)) <span class="op">+</span>
-<span class="st">  </span><span class="kw">geom_boxplot</span>()</code></pre></div>
+<p>箱ひげ図でカテゴリごとの代表値を示すこともできます。
+箱ひげ図を描くには<code>geom_boxplot</code>を用います。</p>
+<div class="sourceCode" id="cb113"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb113-1"><a href="Visualization.html#cb113-1" aria-hidden="true" tabindex="-1"></a>saving <span class="sc">%&gt;%</span></span>
+<span id="cb113-2"><a href="Visualization.html#cb113-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">highschool =</span> <span class="fu">if_else</span>(educ <span class="sc">&gt;=</span> <span class="dv">12</span>, <span class="dv">1</span>, <span class="dv">0</span>),</span>
+<span id="cb113-3"><a href="Visualization.html#cb113-3" aria-hidden="true" tabindex="-1"></a>         <span class="at">highschool =</span> <span class="fu">as_factor</span>(highschool)) <span class="sc">%&gt;%</span></span>
+<span id="cb113-4"><a href="Visualization.html#cb113-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> highschool, <span class="at">y =</span> inc)) <span class="sc">+</span></span>
+<span id="cb113-5"><a href="Visualization.html#cb113-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>()</span></code></pre></div>
 <p><img src="RforGradThesis_files/figure-html/geom_boxplot-1.png" width="384" style="display: block; margin: auto;" /></p>
 <p>箱ひげ図は以下のように読み取ります。</p>
 <ul>
@@ -329,13 +403,15 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li>箱の出ている線の長さ：1.5×IQR（第三四分位 - 第一四分位）</li>
 <li>線の外側にある点：外れ値</li>
 </ul>
-<p>なお、図を組み合わせることによりわかりやすくなるかもしれません。 <code>geom_jitter()</code>による散布図と箱ひげ図を組み合わせてみましょう。 <code>ggplot2</code>では、<code>geom_xxxx</code>を+でつなげることで、図を重ねることができます。</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">saving <span class="op">%&gt;%</span>
-<span class="st">  </span><span class="kw">mutate</span>(<span class="dt">highschool =</span> <span class="kw">if_else</span>(educ <span class="op">&gt;=</span><span class="st"> </span><span class="dv">12</span>, <span class="dv">1</span>, <span class="dv">0</span>),
-         <span class="dt">highschool =</span> <span class="kw">as_factor</span>(highschool)) <span class="op">%&gt;%</span>
-<span class="st">  </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x =</span> highschool, <span class="dt">y =</span> inc)) <span class="op">+</span>
-<span class="st">  </span><span class="kw">geom_boxplot</span>(<span class="dt">outlier.shape =</span> <span class="ot">NA</span>) <span class="op">+</span><span class="st"> </span><span class="co">#外れ値を表示しないようオプションを設定</span>
-<span class="st">  </span><span class="kw">geom_jitter</span>(<span class="dt">width =</span> <span class="fl">0.2</span>)</code></pre></div>
+<p>なお、図を組み合わせることによりわかりやすくなるかもしれません。
+<code>geom_jitter()</code>による散布図と箱ひげ図を組み合わせてみましょう。
+<code>ggplot2</code>では、<code>geom_xxxx</code>を+でつなげることで、図を重ねることができます。</p>
+<div class="sourceCode" id="cb114"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb114-1"><a href="Visualization.html#cb114-1" aria-hidden="true" tabindex="-1"></a>saving <span class="sc">%&gt;%</span></span>
+<span id="cb114-2"><a href="Visualization.html#cb114-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">highschool =</span> <span class="fu">if_else</span>(educ <span class="sc">&gt;=</span> <span class="dv">12</span>, <span class="dv">1</span>, <span class="dv">0</span>),</span>
+<span id="cb114-3"><a href="Visualization.html#cb114-3" aria-hidden="true" tabindex="-1"></a>         <span class="at">highschool =</span> <span class="fu">as_factor</span>(highschool)) <span class="sc">%&gt;%</span></span>
+<span id="cb114-4"><a href="Visualization.html#cb114-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> highschool, <span class="at">y =</span> inc)) <span class="sc">+</span></span>
+<span id="cb114-5"><a href="Visualization.html#cb114-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>(<span class="at">outlier.shape =</span> <span class="cn">NA</span>) <span class="sc">+</span> <span class="co">#外れ値を表示しないようオプションを設定</span></span>
+<span id="cb114-6"><a href="Visualization.html#cb114-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_jitter</span>(<span class="at">width =</span> <span class="fl">0.2</span>)</span></code></pre></div>
 <p><img src="RforGradThesis_files/figure-html/geom_point%20and%20geom_boxplot-1.png" width="384" style="display: block; margin: auto;" /></p>
 <p>これでデータの全貌がわかりやすくなったでしょうか？</p>
 
@@ -352,7 +428,6 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
-<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
 <script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
 <script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
 <script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
@@ -371,6 +446,7 @@ gitbook.start({
 "weibo": false,
 "instapaper": false,
 "vk": false,
+"whatsapp": false,
 "all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
 },
 "fontsettings": {
@@ -391,6 +467,10 @@ gitbook.start({
 "text": null
 },
 "download": ["RforGradThesis.pdf", "RforGradThesis.epub"],
+"search": {
+"engine": "fuse",
+"options": null
+},
 "toc": {
 "collapse": "subsection"
 }
@@ -403,7 +483,7 @@ gitbook.start({
   (function () {
     var script = document.createElement("script");
     script.type = "text/javascript";
-    var src = "";
+    var src = "true";
     if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
     if (location.protocol !== "file:")
       if (/^https?:/.test(src))
