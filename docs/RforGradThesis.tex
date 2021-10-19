@@ -109,6 +109,22 @@
   \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
 \setcounter{secnumdepth}{5}
 \usepackage{booktabs}
+\usepackage{booktabs}
+\usepackage{longtable}
+\usepackage{array}
+\usepackage{multirow}
+\usepackage{wrapfig}
+\usepackage{float}
+\usepackage{colortbl}
+\usepackage{pdflscape}
+\usepackage{tabu}
+\usepackage{threeparttable}
+\usepackage{threeparttablex}
+\usepackage[normalem]{ulem}
+\usepackage{makecell}
+\usepackage{xcolor}
+\usepackage{siunitx}
+\newcolumntype{d}{S[input-symbols = ()]}
 \ifluatex
   \usepackage{selnolig}  % disable illegal ligatures
 \fi
@@ -194,7 +210,7 @@ Rには様々な機能やパッケージがあり、日々進化しています�
 \begin{itemize}
 \tightlist
 \item
-  2021/10/19　YouTube動画へのリンクを作成
+  2021/10/19　回帰分析の表の作成をアップデート（\ref{modelsummary}）、YouTube動画へのリンクを作成
 \item
   2020/09/03　サイト公開
 \end{itemize}
@@ -2248,6 +2264,28 @@ t検定の結果はあまり見やすい形式にはなっていません。
 \hypertarget{movieTtest}{%
 \section{関連動画}\label{movieTtest}}
 
+\begin{verbatim}
+## 
+##  次のパッケージを付け加えます: 'kableExtra'
+\end{verbatim}
+
+\begin{verbatim}
+##  以下のオブジェクトは 'package:dplyr' からマスクされています: 
+## 
+##      group_rows
+\end{verbatim}
+
+\begin{verbatim}
+## 
+##  次のパッケージを付け加えます: 'gt'
+\end{verbatim}
+
+\begin{verbatim}
+##  以下のオブジェクトは 'package:modelsummary' からマスクされています: 
+## 
+##      escape_latex
+\end{verbatim}
+
 \hypertarget{Regression}{%
 \chapter{回帰分析}\label{Regression}}
 
@@ -2615,13 +2653,169 @@ Rの回帰式では、交互作用は2つの変数を\texttt{:}でつなげる�
   収入\texttt{inc}と年齢\texttt{age}の関係が黒人ダミーによって異なるかどうか、交互作用を含めた回帰分析を行い、その結果を解釈しなさい。
 \end{itemize}
 
-\hypertarget{ux56deux5e30ux5206ux6790ux306eux8868ux3092ux307eux3068ux3081ux308b}{%
-\section{回帰分析の表をまとめる}\label{ux56deux5e30ux5206ux6790ux306eux8868ux3092ux307eux3068ux3081ux308b}}
+\hypertarget{modelsummary}{%
+\section{回帰分析の表をまとめる（modelsummary）}\label{modelsummary}}
 
 ここまでは、回帰分析の結果は\texttt{tidy()}を用いて整理し、卒業論文に貼り付ける想定で話を進めてきました。
 回帰分析の数が少ない場合は、この方法でも十分でしょう。
 
 しかし、実施した回帰分析が多い場合、同じような表が続き冗長になります。
+ここでは、\texttt{modelsummary}パッケージを用いて、複数の回帰分析の結果をまとめた表を作成してみる方法を説明します。
+
+\texttt{modelsummary}の説明には、以下のページを参考にさせていただきました。詳しい情報を知りたい方は、こちらもご覧ください。
+
+\url{https://keita43a.hatenablog.com/entry/2020/05/29/210250}
+
+まずはパッケージをインストールし、呼び出しておきましょう。以降の操作で\texttt{kableExtra}や\texttt{gt}といった他のパッケージのインストールを要求されたら同様にインストールしておきましょう。
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{install.packages}\NormalTok{(}\StringTok{"modelsummary"}\NormalTok{)}
+\FunctionTok{library}\NormalTok{(modelsummary)}
+\end{Highlighting}
+\end{Shaded}
+
+１つの回帰分析を表にする方法から説明します。
+まず被説明変数を収入\texttt{inc}、説明変数を教育年数\texttt{educ}とする単回帰分析の結果をオブジェクト（ここでは\texttt{reg1}）として保存します。
+そのオブジェクトを引数として、\texttt{msummary()}を実行すると、表が出力されます。
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{reg1 }\OtherTok{\textless{}{-}} \FunctionTok{lm}\NormalTok{(inc }\SpecialCharTok{\textasciitilde{}}\NormalTok{ educ, }\AttributeTok{data =}\NormalTok{ saving)}
+\FunctionTok{msummary}\NormalTok{(reg1)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{table}
+\centering
+\begin{tabular}[t]{lc}
+\toprule
+  & Model 1\\
+\midrule
+(Intercept) & \num{1342.745}\\
+ & (\num{1763.546})\\
+educ & \num{742.530}\\
+ & (\num{146.062})\\
+\midrule
+Num.Obs. & \num{100}\\
+R2 & \num{0.209}\\
+R2 Adj. & \num{0.201}\\
+AIC & \num{1990.9}\\
+BIC & \num{1998.7}\\
+Log.Lik. & \num{-992.455}\\
+F & \num{25.844}\\
+\bottomrule
+\end{tabular}
+\end{table}
+
+デフォルトで表示されるのは係数と標準誤差（かっこ内）です。
+統計量としては、\texttt{Num.Obs.}が観測数、\texttt{R2}が決定係数、\texttt{R2\ Adj.}が調整済み決定係数を表します。（その他の説明は省略）
+
+表はさまざまな形式で出力できます。例えばWord形式で保存したい場合は、以下のようにオプションを加えます。
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{msummary}\NormalTok{(reg1, }\StringTok{\textquotesingle{}result.docx\textquotesingle{}}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+デフォルトではさまざまな統計量が表示されますが、論文に書くにはやや冗長です。
+gof\_omitオプションを使ってAIC, BIC, Log Likelihood, F値を落としてみましょう。
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{msummary}\NormalTok{(reg1, }\AttributeTok{gof\_omit =} \StringTok{\textquotesingle{}AIC|BIC|Log.Lik.|F\textquotesingle{}}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{table}
+\centering
+\begin{tabular}[t]{lc}
+\toprule
+  & Model 1\\
+\midrule
+(Intercept) & \num{1342.745}\\
+ & (\num{1763.546})\\
+educ & \num{742.530}\\
+ & (\num{146.062})\\
+\midrule
+Num.Obs. & \num{100}\\
+R2 & \num{0.209}\\
+R2 Adj. & \num{0.201}\\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\texttt{statistic}オプションを使うと、統計的推測に使用する統計量（デフォルトは標準誤差）を指定できます。
+たとえば95\%信頼区間を使用したい場合は以下のように指定します。
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{msummary}\NormalTok{(reg1, }\AttributeTok{statistic =} \StringTok{\textquotesingle{}conf.int\textquotesingle{}}\NormalTok{, }\AttributeTok{conf\_level =}\NormalTok{ .}\DecValTok{95}\NormalTok{, }\AttributeTok{gof\_omit =} \StringTok{\textquotesingle{}AIC|BIC|Log.Lik.|F\textquotesingle{}}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{table}
+\centering
+\begin{tabular}[t]{lc}
+\toprule
+  & Model 1\\
+\midrule
+(Intercept) & \num{1342.745}\\
+ & {}[\num{-2156.954}, \num{4842.445}]\\
+educ & \num{742.530}\\
+ & {}[\num{452.674}, \num{1032.385}]\\
+\midrule
+Num.Obs. & \num{100}\\
+R2 & \num{0.209}\\
+R2 Adj. & \num{0.201}\\
+\bottomrule
+\end{tabular}
+\end{table}
+
+今はあまりおすすめしませんが、有意水準を示すアスタリスク（*）を示したい場合は、\texttt{estimate}オプションを\texttt{estimate\ =\ "\{estimate\}\{stars\}"}と書くと表示できます。
+
+２つ以上の回帰分析の結果をまとめるには、結果をlist形式にまとめて保存し、そのオブジェクトを引数に指定します。
+被説明変数を収入\texttt{inc}、説明変数を教育年数\texttt{educ}と年齢\texttt{age}とする重回帰分析を加えて実行してみましょう。
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{regs }\OtherTok{\textless{}{-}}
+  \FunctionTok{list}\NormalTok{(}
+    \StringTok{"model1"} \OtherTok{=} \FunctionTok{lm}\NormalTok{(inc }\SpecialCharTok{\textasciitilde{}}\NormalTok{ educ, }\AttributeTok{data =}\NormalTok{ saving),}
+    \StringTok{"model2"} \OtherTok{=} \FunctionTok{lm}\NormalTok{(inc }\SpecialCharTok{\textasciitilde{}}\NormalTok{ educ }\SpecialCharTok{+}\NormalTok{ age, }\AttributeTok{data =}\NormalTok{ saving)}
+\NormalTok{  )}
+\FunctionTok{msummary}\NormalTok{(regs, }\AttributeTok{gof\_omit =} \StringTok{\textquotesingle{}AIC|BIC|Log.Lik.|F\textquotesingle{}}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{table}
+\centering
+\begin{tabular}[t]{lcc}
+\toprule
+  & model1 & model2\\
+\midrule
+(Intercept) & \num{1342.745} & \num{-10858.405}\\
+ & (\num{1763.546}) & (\num{3250.631})\\
+educ & \num{742.530} & \num{869.852}\\
+ & (\num{146.062}) & (\num{137.566})\\
+age &  & \num{276.677}\\
+ &  & (\num{63.872})\\
+\midrule
+Num.Obs. & \num{100} & \num{100}\\
+R2 & \num{0.209} & \num{0.337}\\
+R2 Adj. & \num{0.201} & \num{0.323}\\
+\bottomrule
+\end{tabular}
+\end{table}
+
+２つの回帰分析の結果が並べて表示されました。
+
+\hypertarget{ux56deux5e30ux5206ux6790ux306eux8868ux3092ux307eux3068ux3081ux308bstargazer}{%
+\section{回帰分析の表をまとめる（stargazer）}\label{ux56deux5e30ux5206ux6790ux306eux8868ux3092ux307eux3068ux3081ux308bstargazer}}
+
+【注意】以前のバージョンでは\texttt{stargazer}パッケージを用いた方法を紹介していましたが、パッケージの更新が止まっているようです。前節で紹介した\texttt{modlsummary}パッケージを用いる方法を推奨しますが、\texttt{stargazer}の記述も記録のために残しておきます。（将来的に削除する可能性もあります。
+
 ここでは、\texttt{stargazer}パッケージを用いて、複数の回帰分析の結果をまとめた表を作成してみる方法を説明します。
 
 以下の2つの回帰分析をまとめて表にしてみましょう。
@@ -2635,7 +2829,7 @@ Rの回帰式では、交互作用は2つの変数を\texttt{:}でつなげる�
   被説明変数を収入\texttt{inc}、説明変数を教育年数\texttt{educ}と年齢\texttt{age}とする重回帰分析
 \end{enumerate}
 
-\texttt{stargazer()}では、回帰分析結果を保存したオブジェクト
+\texttt{stargazer()}では、回帰分析結果を保存したオブジェクトを引数とします。
 
 \begin{Shaded}
 \begin{Highlighting}[]

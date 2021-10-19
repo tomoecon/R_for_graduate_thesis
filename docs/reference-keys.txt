@@ -67,7 +67,8 @@ rでの線形回帰
 ダミー変数の利用
 カテゴリ変数の利用
 交互作用の導入
-回帰分析の表をまとめる
+modelsummary
+回帰分析の表をまとめるstargazer
 movieRegression
 Word
 表の貼り付け

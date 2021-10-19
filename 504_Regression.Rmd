@@ -3,6 +3,9 @@ library(tidyverse)
 library(broom)
 library(wooldridge)
 library(stargazer)
+library(modelsummary)
+library(kableExtra)
+library(gt)
 data("saving")
 ```
 
@@ -220,12 +223,76 @@ lm(inc ~ educ*black, data = saving) %>%
 - 収入`inc`と年齢`age`の関係が黒人ダミーによって異なるかどうか、交互作用を含めた回帰分析を行い、その結果を解釈しなさい。
 
 
-## 回帰分析の表をまとめる
+## 回帰分析の表をまとめる（modelsummary） {#modelsummary}
 
 ここまでは、回帰分析の結果は`tidy()`を用いて整理し、卒業論文に貼り付ける想定で話を進めてきました。
 回帰分析の数が少ない場合は、この方法でも十分でしょう。
 
 しかし、実施した回帰分析が多い場合、同じような表が続き冗長になります。
+ここでは、`modelsummary`パッケージを用いて、複数の回帰分析の結果をまとめた表を作成してみる方法を説明します。
+
+`modelsummary`の説明には、以下のページを参考にさせていただきました。詳しい情報を知りたい方は、こちらもご覧ください。
+
+https://keita43a.hatenablog.com/entry/2020/05/29/210250
+
+まずはパッケージをインストールし、呼び出しておきましょう。以降の操作で`kableExtra`や`gt`といった他のパッケージのインストールを要求されたら同様にインストールしておきましょう。
+
+```{r install modelsummary, eval = FALSE}
+install.packages("modelsummary")
+library(modelsummary)
+```
+
+１つの回帰分析を表にする方法から説明します。
+まず被説明変数を収入`inc`、説明変数を教育年数`educ`とする単回帰分析の結果をオブジェクト（ここでは`reg1`）として保存します。
+そのオブジェクトを引数として、`msummary()`を実行すると、表が出力されます。
+
+```{r msummary}
+reg1 <- lm(inc ~ educ, data = saving)
+msummary(reg1)
+```
+デフォルトで表示されるのは係数と標準誤差（かっこ内）です。
+統計量としては、`Num.Obs.`が観測数、`R2`が決定係数、`R2 Adj.`が調整済み決定係数を表します。（その他の説明は省略）
+
+表はさまざまな形式で出力できます。例えばWord形式で保存したい場合は、以下のようにオプションを加えます。
+
+```{r msummary doc, eval=FALSE}
+msummary(reg1, 'result.docx')
+```
+
+デフォルトではさまざまな統計量が表示されますが、論文に書くにはやや冗長です。
+gof_omitオプションを使ってAIC, BIC, Log Likelihood, F値を落としてみましょう。
+
+```{r msummary gofomit}
+msummary(reg1, gof_omit = 'AIC|BIC|Log.Lik.|F')
+```
+
+`statistic`オプションを使うと、統計的推測に使用する統計量（デフォルトは標準誤差）を指定できます。
+たとえば95%信頼区間を使用したい場合は以下のように指定します。
+
+```{r msummary ci}
+msummary(reg1, statistic = 'conf.int', conf_level = .95, gof_omit = 'AIC|BIC|Log.Lik.|F')
+```
+
+今はあまりおすすめしませんが、有意水準を示すアスタリスク（*）を示したい場合は、`estimate`オプションを`estimate = "{estimate}{stars}"`と書くと表示できます。
+
+２つ以上の回帰分析の結果をまとめるには、結果をlist形式にまとめて保存し、そのオブジェクトを引数に指定します。
+被説明変数を収入`inc`、説明変数を教育年数`educ`と年齢`age`とする重回帰分析を加えて実行してみましょう。
+
+```{r msummary list}
+regs <-
+  list(
+    "model1" = lm(inc ~ educ, data = saving),
+    "model2" = lm(inc ~ educ + age, data = saving)
+  )
+msummary(regs, gof_omit = 'AIC|BIC|Log.Lik.|F')
+```
+
+２つの回帰分析の結果が並べて表示されました。
+
+## 回帰分析の表をまとめる（stargazer）
+
+【注意】以前のバージョンでは`stargazer`パッケージを用いた方法を紹介していましたが、パッケージの更新が止まっているようです。前節で紹介した`modlsummary`パッケージを用いる方法を推奨しますが、`stargazer`の記述も記録のために残しておきます。（将来的に削除する可能性もあります。
+
 ここでは、`stargazer`パッケージを用いて、複数の回帰分析の結果をまとめた表を作成してみる方法を説明します。
 
 以下の2つの回帰分析をまとめて表にしてみましょう。
@@ -233,7 +300,7 @@ lm(inc ~ educ*black, data = saving) %>%
 1. 被説明変数を収入`inc`、説明変数を教育年数`educ`とする単回帰分析
 2. 被説明変数を収入`inc`、説明変数を教育年数`educ`と年齢`age`とする重回帰分析
 
-`stargazer()`では、回帰分析結果を保存したオブジェクト
+`stargazer()`では、回帰分析結果を保存したオブジェクトを引数とします。
 
 ```{r stargazer, results = "asis"}
 regression1 <- lm(inc ~ educ, data = saving) #単回帰分析の結果をオブジェクトに保存

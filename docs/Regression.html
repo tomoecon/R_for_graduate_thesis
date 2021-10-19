@@ -52,6 +52,8 @@
 
 <link href="libs/anchor-sections-1.0.1/anchor-sections.css" rel="stylesheet" />
 <script src="libs/anchor-sections-1.0.1/anchor-sections.js"></script>
+<script src="libs/kePrint-0.0.1/kePrint.js"></script>
+<link href="libs/lightable-0.0.1/lightable.css" rel="stylesheet" />
 
 
 <style type="text/css">
@@ -236,8 +238,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="12.4" data-path="Regression.html"><a href="Regression.html#ダミー変数の利用"><i class="fa fa-check"></i><b>12.4</b> ダミー変数の利用</a></li>
 <li class="chapter" data-level="12.5" data-path="Regression.html"><a href="Regression.html#カテゴリ変数の利用"><i class="fa fa-check"></i><b>12.5</b> カテゴリ変数の利用</a></li>
 <li class="chapter" data-level="12.6" data-path="Regression.html"><a href="Regression.html#交互作用の導入"><i class="fa fa-check"></i><b>12.6</b> 交互作用の導入</a></li>
-<li class="chapter" data-level="12.7" data-path="Regression.html"><a href="Regression.html#回帰分析の表をまとめる"><i class="fa fa-check"></i><b>12.7</b> 回帰分析の表をまとめる</a></li>
-<li class="chapter" data-level="12.8" data-path="Regression.html"><a href="Regression.html#movieRegression"><i class="fa fa-check"></i><b>12.8</b> 関連動画</a></li>
+<li class="chapter" data-level="12.7" data-path="Regression.html"><a href="Regression.html#modelsummary"><i class="fa fa-check"></i><b>12.7</b> 回帰分析の表をまとめる（modelsummary）</a></li>
+<li class="chapter" data-level="12.8" data-path="Regression.html"><a href="Regression.html#回帰分析の表をまとめるstargazer"><i class="fa fa-check"></i><b>12.8</b> 回帰分析の表をまとめる（stargazer）</a></li>
+<li class="chapter" data-level="12.9" data-path="Regression.html"><a href="Regression.html#movieRegression"><i class="fa fa-check"></i><b>12.9</b> 関連動画</a></li>
 </ul></li>
 <li class="chapter" data-level="13" data-path="Word.html"><a href="Word.html"><i class="fa fa-check"></i><b>13</b> Wordファイルへの貼り付け</a>
 <ul>
@@ -265,7 +268,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
             <section class="normal" id="section-">
 <div id="Regression" class="section level1" number="12">
 <h1><span class="header-section-number">Chapter 12</span> 回帰分析</h1>
-<p>【Section <a href="Regression.html#movieRegression">12.8</a>に関連動画を紹介しています。】</p>
+<p>【Section <a href="Regression.html#movieRegression">12.9</a>に関連動画を紹介しています。】</p>
 <p>回帰分析とは、従属変数と独立変数の関係を数式（モデル）で表し、そのパラメータを推定する分析方法です。
 ここでは、もっとも基本的な回帰分析である線形回帰（Linear Regression）を扱います。</p>
 <div id="線形回帰とは" class="section level2" number="12.1">
@@ -288,10 +291,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h2><span class="header-section-number">12.2</span> Rでの線形回帰</h2>
 <p>Rでは回帰式を<code>y ~ x</code>と表記します。（ここはChapter <a href="Ttest.html#Ttest">11</a>で学んだとt検定同じ表記です）
 線形回帰を行う関数が<code>lm()</code>で（lmはlinear modelの略）、以下のように表記します。</p>
-<div class="sourceCode" id="cb121"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb121-1"><a href="Regression.html#cb121-1" aria-hidden="true" tabindex="-1"></a><span class="fu">lm</span>(回帰式, <span class="at">data =</span> データフレーム)</span></code></pre></div>
+<div class="sourceCode" id="cb125"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb125-1"><a href="Regression.html#cb125-1" aria-hidden="true" tabindex="-1"></a><span class="fu">lm</span>(回帰式, <span class="at">data =</span> データフレーム)</span></code></pre></div>
 <p>例として、従属変数を年収<code>inc</code>、独立変数を教育年数<code>educ</code>とした線形回帰分析を行ってみましょう。
 回帰式は <span class="math inline">\(inc = \alpha + \beta educ\)</span> です。</p>
-<div class="sourceCode" id="cb122"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb122-1"><a href="Regression.html#cb122-1" aria-hidden="true" tabindex="-1"></a><span class="fu">lm</span>(inc <span class="sc">~</span> educ, <span class="at">data =</span> saving)</span></code></pre></div>
+<div class="sourceCode" id="cb126"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb126-1"><a href="Regression.html#cb126-1" aria-hidden="true" tabindex="-1"></a><span class="fu">lm</span>(inc <span class="sc">~</span> educ, <span class="at">data =</span> saving)</span></code></pre></div>
 <pre><code>## 
 ## Call:
 ## lm(formula = inc ~ educ, data = saving)
@@ -303,8 +306,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span class="math inline">\(\beta\)</span>を見ると、教育年数が1年高いと年収が742.5ドル高くなっていることがわかります。</p>
 <p><code>lm()</code>を実施すると、以上のように係数の推定値を得ることができますが、統計的推測のための数値（t値、p値）がわかりません。
 <code>lm()</code>の結果を<code>summary()</code>に渡すと、詳細を見ることができます。</p>
-<div class="sourceCode" id="cb124"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb124-1"><a href="Regression.html#cb124-1" aria-hidden="true" tabindex="-1"></a><span class="fu">lm</span>(inc <span class="sc">~</span> educ, <span class="at">data =</span> saving) <span class="sc">%&gt;%</span></span>
-<span id="cb124-2"><a href="Regression.html#cb124-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summary</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb128"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb128-1"><a href="Regression.html#cb128-1" aria-hidden="true" tabindex="-1"></a><span class="fu">lm</span>(inc <span class="sc">~</span> educ, <span class="at">data =</span> saving) <span class="sc">%&gt;%</span></span>
+<span id="cb128-2"><a href="Regression.html#cb128-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summary</span>()</span></code></pre></div>
 <pre><code>## 
 ## Call:
 ## lm(formula = inc ~ educ, data = saving)
@@ -337,8 +340,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>他にも、決定係数 <span class="math inline">\(R^2\)</span> などの数値も記載されています。</p>
 <p><code>summary()</code>で詳細を見ることができますが、やや見づらい印象があります。
 表形式にするため、Chapter <a href="Ttest.html#Ttest">11</a>と同じく<code>broom</code>パッケージの関数<code>tidy()</code>を使ってみましょう。</p>
-<div class="sourceCode" id="cb126"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb126-1"><a href="Regression.html#cb126-1" aria-hidden="true" tabindex="-1"></a><span class="fu">lm</span>(inc <span class="sc">~</span> educ, <span class="at">data =</span> saving) <span class="sc">%&gt;%</span></span>
-<span id="cb126-2"><a href="Regression.html#cb126-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tidy</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb130"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb130-1"><a href="Regression.html#cb130-1" aria-hidden="true" tabindex="-1"></a><span class="fu">lm</span>(inc <span class="sc">~</span> educ, <span class="at">data =</span> saving) <span class="sc">%&gt;%</span></span>
+<span id="cb130-2"><a href="Regression.html#cb130-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tidy</span>()</span></code></pre></div>
 <pre><code>## # A tibble: 2 × 5
 ##   term        estimate std.error statistic    p.value
 ##   &lt;chr&gt;          &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;      &lt;dbl&gt;
@@ -362,8 +365,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p><br></p>
 <p>Rでの回帰式の表記は、<code>y ~ x1 + x2</code>と、説明変数を<code>+</code>でつなげます。
 ここでは、収入<code>inc</code>を教育年数<code>educ</code>と世帯人数<code>size</code>に回帰してみましょう。</p>
-<div class="sourceCode" id="cb128"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb128-1"><a href="Regression.html#cb128-1" aria-hidden="true" tabindex="-1"></a><span class="fu">lm</span>(inc <span class="sc">~</span> educ <span class="sc">+</span> size, <span class="at">data =</span> saving) <span class="sc">%&gt;%</span></span>
-<span id="cb128-2"><a href="Regression.html#cb128-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tidy</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb132"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb132-1"><a href="Regression.html#cb132-1" aria-hidden="true" tabindex="-1"></a><span class="fu">lm</span>(inc <span class="sc">~</span> educ <span class="sc">+</span> size, <span class="at">data =</span> saving) <span class="sc">%&gt;%</span></span>
+<span id="cb132-2"><a href="Regression.html#cb132-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tidy</span>()</span></code></pre></div>
 <pre><code>## # A tibble: 3 × 5
 ##   term        estimate std.error statistic    p.value
 ##   &lt;chr&gt;          &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;      &lt;dbl&gt;
@@ -375,9 +378,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>説明変数はさらに3つ、4つ…と増やすことができ、Rでは<code>y ~ x1 + x2 + x3 + x4 + ...</code>と<code>+</code>でつなげていきます。
 説明変数が多く回帰式が長くなる場合は、回帰式を一旦オブジェクトとして保存しておくとコードが読みやすくなります。</p>
 <p>例えば、上記の回帰分析にさらに年齢<code>age</code>、黒人ダミー<code>black</code>を加えてみましょう。</p>
-<div class="sourceCode" id="cb130"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb130-1"><a href="Regression.html#cb130-1" aria-hidden="true" tabindex="-1"></a>equation <span class="ot">&lt;-</span> inc <span class="sc">~</span> educ <span class="sc">+</span> size <span class="sc">+</span> age <span class="sc">+</span> black</span>
-<span id="cb130-2"><a href="Regression.html#cb130-2" aria-hidden="true" tabindex="-1"></a><span class="fu">lm</span>(equation, <span class="at">data =</span> saving) <span class="sc">%&gt;%</span></span>
-<span id="cb130-3"><a href="Regression.html#cb130-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tidy</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb134"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb134-1"><a href="Regression.html#cb134-1" aria-hidden="true" tabindex="-1"></a>equation <span class="ot">&lt;-</span> inc <span class="sc">~</span> educ <span class="sc">+</span> size <span class="sc">+</span> age <span class="sc">+</span> black</span>
+<span id="cb134-2"><a href="Regression.html#cb134-2" aria-hidden="true" tabindex="-1"></a><span class="fu">lm</span>(equation, <span class="at">data =</span> saving) <span class="sc">%&gt;%</span></span>
+<span id="cb134-3"><a href="Regression.html#cb134-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tidy</span>()</span></code></pre></div>
 <pre><code>## # A tibble: 5 × 5
 ##   term        estimate std.error statistic      p.value
 ##   &lt;chr&gt;          &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;        &lt;dbl&gt;
@@ -398,7 +401,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ただし、解釈には注意が必要です。
 ダミー変数の係数の解釈は、「条件を満たすグループは満たさないグループと比べて、被説明変数が（係数）大きい」となります。</p>
 <p>ここでは、収入<code>inc</code>を黒人ダミー<code>black</code>に回帰してみましょう。</p>
-<div class="sourceCode" id="cb132"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb132-1"><a href="Regression.html#cb132-1" aria-hidden="true" tabindex="-1"></a><span class="fu">lm</span>(inc <span class="sc">~</span> black, <span class="at">data =</span> saving)</span></code></pre></div>
+<div class="sourceCode" id="cb136"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb136-1"><a href="Regression.html#cb136-1" aria-hidden="true" tabindex="-1"></a><span class="fu">lm</span>(inc <span class="sc">~</span> black, <span class="at">data =</span> saving)</span></code></pre></div>
 <pre><code>## 
 ## Call:
 ## lm(formula = inc ~ black, data = saving)
@@ -426,16 +429,16 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>カテゴリBとカテゴリCを比べたい場合は、双方の係数を比較してください。</p>
 <p>Rではカテゴリ変数がfactor型になっていれば、<strong>自動的にダミー変数を作成して</strong>回帰分析に入れてくれます。（もちろん、自分で作成しても構いませんし、そのほうが良い場合もあります）</p>
 <p>ここでは、年齢のカテゴリ変数<code>age_category</code>を作成し、年収<code>inc</code>に対する回帰分析に組み込んでみましょう。</p>
-<div class="sourceCode" id="cb134"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb134-1"><a href="Regression.html#cb134-1" aria-hidden="true" tabindex="-1"></a>saving_with_age_category <span class="ot">&lt;-</span></span>
-<span id="cb134-2"><a href="Regression.html#cb134-2" aria-hidden="true" tabindex="-1"></a>  saving <span class="sc">%&gt;%</span></span>
-<span id="cb134-3"><a href="Regression.html#cb134-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">mutate</span>(<span class="at">age_category =</span> <span class="fu">case_when</span>(age <span class="sc">&lt;</span> <span class="dv">30</span> <span class="sc">~</span> <span class="st">&quot;20s&quot;</span>,</span>
-<span id="cb134-4"><a href="Regression.html#cb134-4" aria-hidden="true" tabindex="-1"></a>                                    age <span class="sc">&gt;=</span> <span class="dv">30</span> <span class="sc">&amp;</span> age <span class="sc">&lt;</span> <span class="dv">40</span> <span class="sc">~</span> <span class="st">&quot;30s&quot;</span>,</span>
-<span id="cb134-5"><a href="Regression.html#cb134-5" aria-hidden="true" tabindex="-1"></a>                                    age <span class="sc">&gt;=</span> <span class="dv">40</span> <span class="sc">&amp;</span> age <span class="sc">&lt;</span> <span class="dv">50</span> <span class="sc">~</span> <span class="st">&quot;40s&quot;</span>,</span>
-<span id="cb134-6"><a href="Regression.html#cb134-6" aria-hidden="true" tabindex="-1"></a>                                    age <span class="sc">&gt;=</span> <span class="dv">50</span> <span class="sc">~</span> <span class="st">&quot;50s&quot;</span></span>
-<span id="cb134-7"><a href="Regression.html#cb134-7" aria-hidden="true" tabindex="-1"></a>                                    )</span>
-<span id="cb134-8"><a href="Regression.html#cb134-8" aria-hidden="true" tabindex="-1"></a>          )</span>
-<span id="cb134-9"><a href="Regression.html#cb134-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb134-10"><a href="Regression.html#cb134-10" aria-hidden="true" tabindex="-1"></a><span class="fu">lm</span>(inc <span class="sc">~</span> age_category, <span class="at">data =</span> saving_with_age_category)</span></code></pre></div>
+<div class="sourceCode" id="cb138"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb138-1"><a href="Regression.html#cb138-1" aria-hidden="true" tabindex="-1"></a>saving_with_age_category <span class="ot">&lt;-</span></span>
+<span id="cb138-2"><a href="Regression.html#cb138-2" aria-hidden="true" tabindex="-1"></a>  saving <span class="sc">%&gt;%</span></span>
+<span id="cb138-3"><a href="Regression.html#cb138-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">mutate</span>(<span class="at">age_category =</span> <span class="fu">case_when</span>(age <span class="sc">&lt;</span> <span class="dv">30</span> <span class="sc">~</span> <span class="st">&quot;20s&quot;</span>,</span>
+<span id="cb138-4"><a href="Regression.html#cb138-4" aria-hidden="true" tabindex="-1"></a>                                    age <span class="sc">&gt;=</span> <span class="dv">30</span> <span class="sc">&amp;</span> age <span class="sc">&lt;</span> <span class="dv">40</span> <span class="sc">~</span> <span class="st">&quot;30s&quot;</span>,</span>
+<span id="cb138-5"><a href="Regression.html#cb138-5" aria-hidden="true" tabindex="-1"></a>                                    age <span class="sc">&gt;=</span> <span class="dv">40</span> <span class="sc">&amp;</span> age <span class="sc">&lt;</span> <span class="dv">50</span> <span class="sc">~</span> <span class="st">&quot;40s&quot;</span>,</span>
+<span id="cb138-6"><a href="Regression.html#cb138-6" aria-hidden="true" tabindex="-1"></a>                                    age <span class="sc">&gt;=</span> <span class="dv">50</span> <span class="sc">~</span> <span class="st">&quot;50s&quot;</span></span>
+<span id="cb138-7"><a href="Regression.html#cb138-7" aria-hidden="true" tabindex="-1"></a>                                    )</span>
+<span id="cb138-8"><a href="Regression.html#cb138-8" aria-hidden="true" tabindex="-1"></a>          )</span>
+<span id="cb138-9"><a href="Regression.html#cb138-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb138-10"><a href="Regression.html#cb138-10" aria-hidden="true" tabindex="-1"></a><span class="fu">lm</span>(inc <span class="sc">~</span> age_category, <span class="at">data =</span> saving_with_age_category)</span></code></pre></div>
 <pre><code>## 
 ## Call:
 ## lm(formula = inc ~ age_category, data = saving_with_age_category)
@@ -459,8 +462,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 例えば、収入と教育年数の関係が黒人ダミーによって異なる、といった場合です。
 Rの回帰式では、交互作用は2つの変数を<code>:</code>でつなげることで表現できます。
 上記の例をRで実施してみましょう。</p>
-<div class="sourceCode" id="cb136"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb136-1"><a href="Regression.html#cb136-1" aria-hidden="true" tabindex="-1"></a><span class="fu">lm</span>(inc <span class="sc">~</span> educ <span class="sc">+</span> black <span class="sc">+</span> educ<span class="sc">:</span>black, <span class="at">data =</span> saving) <span class="sc">%&gt;%</span></span>
-<span id="cb136-2"><a href="Regression.html#cb136-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tidy</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb140"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb140-1"><a href="Regression.html#cb140-1" aria-hidden="true" tabindex="-1"></a><span class="fu">lm</span>(inc <span class="sc">~</span> educ <span class="sc">+</span> black <span class="sc">+</span> educ<span class="sc">:</span>black, <span class="at">data =</span> saving) <span class="sc">%&gt;%</span></span>
+<span id="cb140-2"><a href="Regression.html#cb140-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tidy</span>()</span></code></pre></div>
 <pre><code>## # A tibble: 4 × 5
 ##   term        estimate std.error statistic   p.value
 ##   &lt;chr&gt;          &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;
@@ -477,8 +480,8 @@ Rの回帰式では、交互作用は2つの変数を<code>:</code>でつなげ�
 すなわち、「黒人とそれ以外では教育年数と収入の関係が同じ」という仮説は棄却できていません。</p>
 <p>交互作用の分析の際は、交互作用に使用した変数単体も必ず回帰式に含めるようにしてください。
 <code>*</code>を使用すると、単体・相互作用をすべて自動的に作成・分析してくれます。</p>
-<div class="sourceCode" id="cb138"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb138-1"><a href="Regression.html#cb138-1" aria-hidden="true" tabindex="-1"></a><span class="fu">lm</span>(inc <span class="sc">~</span> educ<span class="sc">*</span>black, <span class="at">data =</span> saving) <span class="sc">%&gt;%</span></span>
-<span id="cb138-2"><a href="Regression.html#cb138-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tidy</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb142"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb142-1"><a href="Regression.html#cb142-1" aria-hidden="true" tabindex="-1"></a><span class="fu">lm</span>(inc <span class="sc">~</span> educ<span class="sc">*</span>black, <span class="at">data =</span> saving) <span class="sc">%&gt;%</span></span>
+<span id="cb142-2"><a href="Regression.html#cb142-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tidy</span>()</span></code></pre></div>
 <pre><code>## # A tibble: 4 × 5
 ##   term        estimate std.error statistic   p.value
 ##   &lt;chr&gt;          &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;
@@ -492,21 +495,399 @@ Rの回帰式では、交互作用は2つの変数を<code>:</code>でつなげ�
 <li>収入<code>inc</code>と年齢<code>age</code>の関係が黒人ダミーによって異なるかどうか、交互作用を含めた回帰分析を行い、その結果を解釈しなさい。</li>
 </ul>
 </div>
-<div id="回帰分析の表をまとめる" class="section level2" number="12.7">
-<h2><span class="header-section-number">12.7</span> 回帰分析の表をまとめる</h2>
+<div id="modelsummary" class="section level2" number="12.7">
+<h2><span class="header-section-number">12.7</span> 回帰分析の表をまとめる（modelsummary）</h2>
 <p>ここまでは、回帰分析の結果は<code>tidy()</code>を用いて整理し、卒業論文に貼り付ける想定で話を進めてきました。
 回帰分析の数が少ない場合は、この方法でも十分でしょう。</p>
 <p>しかし、実施した回帰分析が多い場合、同じような表が続き冗長になります。
-ここでは、<code>stargazer</code>パッケージを用いて、複数の回帰分析の結果をまとめた表を作成してみる方法を説明します。</p>
+ここでは、<code>modelsummary</code>パッケージを用いて、複数の回帰分析の結果をまとめた表を作成してみる方法を説明します。</p>
+<p><code>modelsummary</code>の説明には、以下のページを参考にさせていただきました。詳しい情報を知りたい方は、こちらもご覧ください。</p>
+<p><a href="https://keita43a.hatenablog.com/entry/2020/05/29/210250" class="uri">https://keita43a.hatenablog.com/entry/2020/05/29/210250</a></p>
+<p>まずはパッケージをインストールし、呼び出しておきましょう。以降の操作で<code>kableExtra</code>や<code>gt</code>といった他のパッケージのインストールを要求されたら同様にインストールしておきましょう。</p>
+<div class="sourceCode" id="cb144"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb144-1"><a href="Regression.html#cb144-1" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">&quot;modelsummary&quot;</span>)</span>
+<span id="cb144-2"><a href="Regression.html#cb144-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(modelsummary)</span></code></pre></div>
+<p>１つの回帰分析を表にする方法から説明します。
+まず被説明変数を収入<code>inc</code>、説明変数を教育年数<code>educ</code>とする単回帰分析の結果をオブジェクト（ここでは<code>reg1</code>）として保存します。
+そのオブジェクトを引数として、<code>msummary()</code>を実行すると、表が出力されます。</p>
+<div class="sourceCode" id="cb145"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb145-1"><a href="Regression.html#cb145-1" aria-hidden="true" tabindex="-1"></a>reg1 <span class="ot">&lt;-</span> <span class="fu">lm</span>(inc <span class="sc">~</span> educ, <span class="at">data =</span> saving)</span>
+<span id="cb145-2"><a href="Regression.html#cb145-2" aria-hidden="true" tabindex="-1"></a><span class="fu">msummary</span>(reg1)</span></code></pre></div>
+<table class="table" style="width: auto !important; margin-left: auto; margin-right: auto;">
+<thead>
+<tr>
+<th style="text-align:left;">
+</th>
+<th style="text-align:center;">
+Model 1
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+(Intercept)
+</td>
+<td style="text-align:center;">
+1342.745
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+</td>
+<td style="text-align:center;">
+(1763.546)
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+educ
+</td>
+<td style="text-align:center;">
+742.530
+</td>
+</tr>
+<tr>
+<td style="text-align:left;box-shadow: 0px 1px">
+</td>
+<td style="text-align:center;box-shadow: 0px 1px">
+(146.062)
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Num.Obs.
+</td>
+<td style="text-align:center;">
+100
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+R2
+</td>
+<td style="text-align:center;">
+0.209
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+R2 Adj.
+</td>
+<td style="text-align:center;">
+0.201
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+AIC
+</td>
+<td style="text-align:center;">
+1990.9
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+BIC
+</td>
+<td style="text-align:center;">
+1998.7
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Log.Lik.
+</td>
+<td style="text-align:center;">
+−992.455
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+F
+</td>
+<td style="text-align:center;">
+25.844
+</td>
+</tr>
+</tbody>
+</table>
+<p>デフォルトで表示されるのは係数と標準誤差（かっこ内）です。
+統計量としては、<code>Num.Obs.</code>が観測数、<code>R2</code>が決定係数、<code>R2 Adj.</code>が調整済み決定係数を表します。（その他の説明は省略）</p>
+<p>表はさまざまな形式で出力できます。例えばWord形式で保存したい場合は、以下のようにオプションを加えます。</p>
+<div class="sourceCode" id="cb146"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb146-1"><a href="Regression.html#cb146-1" aria-hidden="true" tabindex="-1"></a><span class="fu">msummary</span>(reg1, <span class="st">&#39;result.docx&#39;</span>)</span></code></pre></div>
+<p>デフォルトではさまざまな統計量が表示されますが、論文に書くにはやや冗長です。
+gof_omitオプションを使ってAIC, BIC, Log Likelihood, F値を落としてみましょう。</p>
+<div class="sourceCode" id="cb147"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb147-1"><a href="Regression.html#cb147-1" aria-hidden="true" tabindex="-1"></a><span class="fu">msummary</span>(reg1, <span class="at">gof_omit =</span> <span class="st">&#39;AIC|BIC|Log.Lik.|F&#39;</span>)</span></code></pre></div>
+<table class="table" style="width: auto !important; margin-left: auto; margin-right: auto;">
+<thead>
+<tr>
+<th style="text-align:left;">
+</th>
+<th style="text-align:center;">
+Model 1
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+(Intercept)
+</td>
+<td style="text-align:center;">
+1342.745
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+</td>
+<td style="text-align:center;">
+(1763.546)
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+educ
+</td>
+<td style="text-align:center;">
+742.530
+</td>
+</tr>
+<tr>
+<td style="text-align:left;box-shadow: 0px 1px">
+</td>
+<td style="text-align:center;box-shadow: 0px 1px">
+(146.062)
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Num.Obs.
+</td>
+<td style="text-align:center;">
+100
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+R2
+</td>
+<td style="text-align:center;">
+0.209
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+R2 Adj.
+</td>
+<td style="text-align:center;">
+0.201
+</td>
+</tr>
+</tbody>
+</table>
+<p><code>statistic</code>オプションを使うと、統計的推測に使用する統計量（デフォルトは標準誤差）を指定できます。
+たとえば95%信頼区間を使用したい場合は以下のように指定します。</p>
+<div class="sourceCode" id="cb148"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb148-1"><a href="Regression.html#cb148-1" aria-hidden="true" tabindex="-1"></a><span class="fu">msummary</span>(reg1, <span class="at">statistic =</span> <span class="st">&#39;conf.int&#39;</span>, <span class="at">conf_level =</span> .<span class="dv">95</span>, <span class="at">gof_omit =</span> <span class="st">&#39;AIC|BIC|Log.Lik.|F&#39;</span>)</span></code></pre></div>
+<table class="table" style="width: auto !important; margin-left: auto; margin-right: auto;">
+<thead>
+<tr>
+<th style="text-align:left;">
+</th>
+<th style="text-align:center;">
+Model 1
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+(Intercept)
+</td>
+<td style="text-align:center;">
+1342.745
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+</td>
+<td style="text-align:center;">
+[−2156.954, 4842.445]
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+educ
+</td>
+<td style="text-align:center;">
+742.530
+</td>
+</tr>
+<tr>
+<td style="text-align:left;box-shadow: 0px 1px">
+</td>
+<td style="text-align:center;box-shadow: 0px 1px">
+[452.674, 1032.385]
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Num.Obs.
+</td>
+<td style="text-align:center;">
+100
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+R2
+</td>
+<td style="text-align:center;">
+0.209
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+R2 Adj.
+</td>
+<td style="text-align:center;">
+0.201
+</td>
+</tr>
+</tbody>
+</table>
+<p>今はあまりおすすめしませんが、有意水準を示すアスタリスク（*）を示したい場合は、<code>estimate</code>オプションを<code>estimate = "{estimate}{stars}"</code>と書くと表示できます。</p>
+<p>２つ以上の回帰分析の結果をまとめるには、結果をlist形式にまとめて保存し、そのオブジェクトを引数に指定します。
+被説明変数を収入<code>inc</code>、説明変数を教育年数<code>educ</code>と年齢<code>age</code>とする重回帰分析を加えて実行してみましょう。</p>
+<div class="sourceCode" id="cb149"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb149-1"><a href="Regression.html#cb149-1" aria-hidden="true" tabindex="-1"></a>regs <span class="ot">&lt;-</span></span>
+<span id="cb149-2"><a href="Regression.html#cb149-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">list</span>(</span>
+<span id="cb149-3"><a href="Regression.html#cb149-3" aria-hidden="true" tabindex="-1"></a>    <span class="st">&quot;model1&quot;</span> <span class="ot">=</span> <span class="fu">lm</span>(inc <span class="sc">~</span> educ, <span class="at">data =</span> saving),</span>
+<span id="cb149-4"><a href="Regression.html#cb149-4" aria-hidden="true" tabindex="-1"></a>    <span class="st">&quot;model2&quot;</span> <span class="ot">=</span> <span class="fu">lm</span>(inc <span class="sc">~</span> educ <span class="sc">+</span> age, <span class="at">data =</span> saving)</span>
+<span id="cb149-5"><a href="Regression.html#cb149-5" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb149-6"><a href="Regression.html#cb149-6" aria-hidden="true" tabindex="-1"></a><span class="fu">msummary</span>(regs, <span class="at">gof_omit =</span> <span class="st">&#39;AIC|BIC|Log.Lik.|F&#39;</span>)</span></code></pre></div>
+<table class="table" style="width: auto !important; margin-left: auto; margin-right: auto;">
+<thead>
+<tr>
+<th style="text-align:left;">
+</th>
+<th style="text-align:center;">
+model1
+</th>
+<th style="text-align:center;">
+model2
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+(Intercept)
+</td>
+<td style="text-align:center;">
+1342.745
+</td>
+<td style="text-align:center;">
+−10858.405
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+</td>
+<td style="text-align:center;">
+(1763.546)
+</td>
+<td style="text-align:center;">
+(3250.631)
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+educ
+</td>
+<td style="text-align:center;">
+742.530
+</td>
+<td style="text-align:center;">
+869.852
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+</td>
+<td style="text-align:center;">
+(146.062)
+</td>
+<td style="text-align:center;">
+(137.566)
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+age
+</td>
+<td style="text-align:center;">
+</td>
+<td style="text-align:center;">
+276.677
+</td>
+</tr>
+<tr>
+<td style="text-align:left;box-shadow: 0px 1px">
+</td>
+<td style="text-align:center;box-shadow: 0px 1px">
+</td>
+<td style="text-align:center;box-shadow: 0px 1px">
+(63.872)
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Num.Obs.
+</td>
+<td style="text-align:center;">
+100
+</td>
+<td style="text-align:center;">
+100
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+R2
+</td>
+<td style="text-align:center;">
+0.209
+</td>
+<td style="text-align:center;">
+0.337
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+R2 Adj.
+</td>
+<td style="text-align:center;">
+0.201
+</td>
+<td style="text-align:center;">
+0.323
+</td>
+</tr>
+</tbody>
+</table>
+<p>２つの回帰分析の結果が並べて表示されました。</p>
+</div>
+<div id="回帰分析の表をまとめるstargazer" class="section level2" number="12.8">
+<h2><span class="header-section-number">12.8</span> 回帰分析の表をまとめる（stargazer）</h2>
+<p>【注意】以前のバージョンでは<code>stargazer</code>パッケージを用いた方法を紹介していましたが、パッケージの更新が止まっているようです。前節で紹介した<code>modlsummary</code>パッケージを用いる方法を推奨しますが、<code>stargazer</code>の記述も記録のために残しておきます。（将来的に削除する可能性もあります。</p>
+<p>ここでは、<code>stargazer</code>パッケージを用いて、複数の回帰分析の結果をまとめた表を作成してみる方法を説明します。</p>
 <p>以下の2つの回帰分析をまとめて表にしてみましょう。</p>
 <ol style="list-style-type: decimal">
 <li>被説明変数を収入<code>inc</code>、説明変数を教育年数<code>educ</code>とする単回帰分析</li>
 <li>被説明変数を収入<code>inc</code>、説明変数を教育年数<code>educ</code>と年齢<code>age</code>とする重回帰分析</li>
 </ol>
-<p><code>stargazer()</code>では、回帰分析結果を保存したオブジェクト</p>
-<div class="sourceCode" id="cb140"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb140-1"><a href="Regression.html#cb140-1" aria-hidden="true" tabindex="-1"></a>regression1 <span class="ot">&lt;-</span> <span class="fu">lm</span>(inc <span class="sc">~</span> educ, <span class="at">data =</span> saving) <span class="co">#単回帰分析の結果をオブジェクトに保存</span></span>
-<span id="cb140-2"><a href="Regression.html#cb140-2" aria-hidden="true" tabindex="-1"></a>regression2 <span class="ot">&lt;-</span> <span class="fu">lm</span>(inc <span class="sc">~</span> educ <span class="sc">+</span> age, <span class="at">data =</span> saving) <span class="co">#重回帰分析の結果をオブジェクトに保存</span></span>
-<span id="cb140-3"><a href="Regression.html#cb140-3" aria-hidden="true" tabindex="-1"></a><span class="fu">stargazer</span>(regression1, regression2, <span class="at">type =</span> <span class="st">&quot;html&quot;</span>, <span class="at">out =</span> <span class="st">&quot;test.doc&quot;</span>)</span></code></pre></div>
+<p><code>stargazer()</code>では、回帰分析結果を保存したオブジェクトを引数とします。</p>
+<div class="sourceCode" id="cb150"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb150-1"><a href="Regression.html#cb150-1" aria-hidden="true" tabindex="-1"></a>regression1 <span class="ot">&lt;-</span> <span class="fu">lm</span>(inc <span class="sc">~</span> educ, <span class="at">data =</span> saving) <span class="co">#単回帰分析の結果をオブジェクトに保存</span></span>
+<span id="cb150-2"><a href="Regression.html#cb150-2" aria-hidden="true" tabindex="-1"></a>regression2 <span class="ot">&lt;-</span> <span class="fu">lm</span>(inc <span class="sc">~</span> educ <span class="sc">+</span> age, <span class="at">data =</span> saving) <span class="co">#重回帰分析の結果をオブジェクトに保存</span></span>
+<span id="cb150-3"><a href="Regression.html#cb150-3" aria-hidden="true" tabindex="-1"></a><span class="fu">stargazer</span>(regression1, regression2, <span class="at">type =</span> <span class="st">&quot;html&quot;</span>, <span class="at">out =</span> <span class="st">&quot;test.doc&quot;</span>)</span></code></pre></div>
 <table style="text-align:center">
 <tr>
 <td colspan="3" style="border-bottom: 1px solid black">
@@ -721,8 +1102,8 @@ F Statistic
 <li><code>F Statistic</code>: F値（F検定の結果も合わせて表示）</li>
 </ul>
 </div>
-<div id="movieRegression" class="section level2" number="12.8">
-<h2><span class="header-section-number">12.8</span> 関連動画</h2>
+<div id="movieRegression" class="section level2" number="12.9">
+<h2><span class="header-section-number">12.9</span> 関連動画</h2>
 <iframe width="560" height="315" src="https://www.youtube.com/embed/6VeJdNhah5A" frameborder="0" allow="accelerometer; autoplay; encrypted-media;
   gyroscope; picture-in-picture" allowfullscreen>
 </iframe>
