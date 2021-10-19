@@ -1,5 +1,6 @@
 Introduction
 この文書で学ぶこと
+関連動画
 更新履歴
 この文書の作成目的
 InstallR
@@ -17,6 +18,7 @@ Rbasics
 数値に対する関数
 ベクトルに対する関数
 データフレーム
+movieRbasics
 ImportData
 インポートの準備
 ファイル形式別のインポート方法
@@ -24,6 +26,7 @@ csvファイルの場合.csv
 excelファイルの場合.xlsx
 qualtricsのデータの場合
 インポートしたデータの確認
+movieImportData
 Hypotheses
 仮説の確認
 変数の確認
@@ -42,6 +45,7 @@ DataHandling
 変数の選択
 変数の並び替え
 すべての作業をパイプでつなげる
+movieDataHandling
 SummaryStat
 数値の記述統計表の作成
 カテゴリ変数の記述統計表の作成
@@ -53,7 +57,9 @@ Visualization
 散布図
 棒グラフ-1
 箱ひげ図
+movieVisualization
 Ttest
+movieTtest
 Regression
 線形回帰とは
 rでの線形回帰
@@ -62,5 +68,6 @@ rでの線形回帰
 カテゴリ変数の利用
 交互作用の導入
 回帰分析の表をまとめる
+movieRegression
 Word
 表の貼り付け

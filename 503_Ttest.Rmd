@@ -5,6 +5,9 @@ data("saving")
 ```
 
 # t検定 {#Ttest}
+
+【Section \@ref(movieTtest)に関連動画を紹介しています。】
+
 2群の平均値の差についての検定であるt検定を実施してみましょう。
 t検定を行うコマンドは`t.test()`です。`t.test()`は以下のように記述します。
 
@@ -49,3 +52,15 @@ t.test(inc ~ black, data = saving) %>%
 - `conf.low, conf.high`: 信頼区間の下限、上限
 - `method`: 使用した方法
 - `alternative`: 両側検定か片側検定か
+
+## 関連動画 {#movieTtest}
+
+```{r yt ttest, eval=knitr::is_html_output(excludes = "epub"), results = 'asis', echo = F, fig.align = 'center'}
+cat(
+'<iframe width="560" height="315" 
+  src="https://www.youtube.com/embed/zvVzUqD5a08"
+  frameborder="0" allow="accelerometer; autoplay; encrypted-media;
+  gyroscope; picture-in-picture" allowfullscreen>
+  </iframe>'
+)
+```

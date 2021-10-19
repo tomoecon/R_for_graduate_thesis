@@ -4,6 +4,8 @@ library(tidyverse)
 
 # Rの基本操作 {#Rbasics}
 
+【Section \@ref(movieRbasics)に関連動画を紹介しています。】
+
 ## オブジェクト
 
 Rで使用するあらゆる「モノ」はオブジェクト（object）と呼ばれ管理されます。
@@ -190,3 +192,25 @@ mean(first_dataframe$age)
 - オブジェクト`city`に文字列のベクトル`"ibaraki", "takatsuki", "ibaraki", "takatsuki", "takatsuki"`を代入してください。
 - `income`と`city`を合わせたデータフレーム`income_data`を作成してください。
 - `income_data`を用いて、`income`の中央値を求めてください。
+
+## 関連動画 {#movieRbasics}
+
+```{r yt object, eval=knitr::is_html_output(excludes = "epub"), results = 'asis', echo = F, fig.align = 'center'}
+cat(
+'<iframe width="560" height="315" 
+  src="https://www.youtube.com/embed/CblsIBlzqX0"
+  frameborder="0" allow="accelerometer; autoplay; encrypted-media;
+  gyroscope; picture-in-picture" allowfullscreen>
+  </iframe>'
+)
+```
+
+```{r yt func, eval=knitr::is_html_output(excludes = "epub"), results = 'asis', echo = F, fig.align = 'center'}
+cat(
+'<iframe width="560" height="315" 
+  src="https://www.youtube.com/embed/q8MI6P2hoUM"
+  frameborder="0" allow="accelerometer; autoplay; encrypted-media;
+  gyroscope; picture-in-picture" allowfullscreen>
+  </iframe>'
+)
+```

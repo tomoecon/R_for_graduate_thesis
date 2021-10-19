@@ -183,6 +183,11 @@ Rには様々な機能やパッケージがあり、日々進化しています�
   松村優哉・湯谷啓明・紀ノ定保礼・前田和寛（2018）RユーザのためのRStudio{[}実践{]}入門 −tidyverseによるモダンな分析フローの世界−
 \end{itemize}
 
+\hypertarget{ux95a2ux9023ux52d5ux753b}{%
+\section{関連動画}\label{ux95a2ux9023ux52d5ux753b}}
+
+著者の\href{https://www.youtube.com/channel/UC9s0zn65taPFwir2ekuL8Og}{YouTubeチャンネル「tomo\_econの行動経済学・統計学チャンネル」}では、Rの使い方や統計学に関する動画を公開しています。各ページにも関連動画を埋め込んでいます。ぜひご活用ください。
+
 \hypertarget{ux66f4ux65b0ux5c65ux6b74}{%
 \section{更新履歴}\label{ux66f4ux65b0ux5c65ux6b74}}
 
@@ -191,7 +196,7 @@ Rには様々な機能やパッケージがあり、日々進化しています�
 \item
   2021/10/19　YouTube動画へのリンクを作成
 \item
-  2020/09/03　公開
+  2020/09/03　サイト公開
 \end{itemize}
 
 \hypertarget{ux3053ux306eux6587ux66f8ux306eux4f5cux6210ux76eeux7684}{%
@@ -430,6 +435,8 @@ Chapter \ref{InstallR}に戻って確認しましょう。
 
 \hypertarget{Rbasics}{%
 \chapter{Rの基本操作}\label{Rbasics}}
+
+【Section \ref{movieRbasics}に関連動画を紹介しています。】
 
 \hypertarget{ux30aaux30d6ux30b8ux30a7ux30afux30c8}{%
 \section{オブジェクト}\label{ux30aaux30d6ux30b8ux30a7ux30afux30c8}}
@@ -794,8 +801,13 @@ Chapter @ref(\#ImportData)ではExcelファイルなどからデータのRにイ
   \texttt{income\_data}を用いて、\texttt{income}の中央値を求めてください。
 \end{itemize}
 
+\hypertarget{movieRbasics}{%
+\section{関連動画}\label{movieRbasics}}
+
 \hypertarget{ImportData}{%
 \chapter{データのインポート}\label{ImportData}}
+
+【Section \ref{movieImportData}に関連動画を紹介しています。】
 
 データ分析のためには、データをRStudioにインポート（読み込み）させなければなりません。インポートの方法は、持っているデータのファイル形式によって変わります。
 
@@ -892,6 +904,9 @@ QualtricsからはCSV形式でデータをエクスポートしてください�
 \item
   \texttt{str(data\_original)}で各変数の「型」（後で説明）を確認
 \end{itemize}
+
+\hypertarget{movieImportData}{%
+\section{関連動画}\label{movieImportData}}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -1035,6 +1050,8 @@ QualtricsからはCSV形式でデータをエクスポートしてください�
 
 \hypertarget{DataHandling}{%
 \chapter{データ前処理}\label{DataHandling}}
+
+【Section \ref{movieDataHandling}に関連動画を紹介しています。】
 
 データをインポートしたら、いざ分析だ！\ldots と分析してみたくなります。
 しかし、収集したデータはそのまま分析に進むことはできず、分析のために「前処理」する必要があります。
@@ -1652,6 +1669,9 @@ Rで扱う変数には「型」と呼ばれる区別があります。
 \end{Highlighting}
 \end{Shaded}
 
+\hypertarget{movieDataHandling}{%
+\section{関連動画}\label{movieDataHandling}}
+
 \hypertarget{SummaryStat}{%
 \chapter{記述統計表の作成}\label{SummaryStat}}
 
@@ -1840,6 +1860,8 @@ Rで扱う変数には「型」と呼ばれる区別があります。
 
 \hypertarget{Visualization}{%
 \chapter{データの可視化}\label{Visualization}}
+
+【Section \ref{movieVisualization}に関連動画を紹介しています。】
 
 データをグラフによって目に見える形でわかりやすく整理する「可視化」は論文においてとても重要です。
 卒業論文では、データや結果を適切に伝えられるよう、グラフを作成していきましょう。
@@ -2127,8 +2149,13 @@ ggplotはグラフを+でつなげて重ねることができます。ここで�
 
 これでデータの全貌がわかりやすくなったでしょうか？
 
+\hypertarget{movieVisualization}{%
+\section{関連動画}\label{movieVisualization}}
+
 \hypertarget{Ttest}{%
 \chapter{t検定}\label{Ttest}}
+
+【Section \ref{movieTtest}に関連動画を紹介しています。】
 
 2群の平均値の差についての検定であるt検定を実施してみましょう。
 t検定を行うコマンドは\texttt{t.test()}です。\texttt{t.test()}は以下のように記述します。
@@ -2218,8 +2245,13 @@ t検定の結果はあまり見やすい形式にはなっていません。
   \texttt{alternative}: 両側検定か片側検定か
 \end{itemize}
 
+\hypertarget{movieTtest}{%
+\section{関連動画}\label{movieTtest}}
+
 \hypertarget{Regression}{%
 \chapter{回帰分析}\label{Regression}}
+
+【Section \ref{movieRegression}に関連動画を紹介しています。】
 
 回帰分析とは、従属変数と独立変数の関係を数式（モデル）で表し、そのパラメータを推定する分析方法です。
 ここでは、もっとも基本的な回帰分析である線形回帰（Linear Regression）を扱います。
@@ -2707,6 +2739,9 @@ Note:
 \item
   \texttt{F\ Statistic}: F値（F検定の結果も合わせて表示）
 \end{itemize}
+
+\hypertarget{movieRegression}{%
+\section{関連動画}\label{movieRegression}}
 
 \hypertarget{Word}{%
 \chapter{Wordファイルへの貼り付け}\label{Word}}

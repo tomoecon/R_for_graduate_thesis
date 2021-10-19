@@ -6,8 +6,9 @@ library(stargazer)
 data("saving")
 ```
 
-
 # 回帰分析 {#Regression}
+
+【Section \@ref(movieRegression)に関連動画を紹介しています。】
 
 回帰分析とは、従属変数と独立変数の関係を数式（モデル）で表し、そのパラメータを推定する分析方法です。
 ここでは、もっとも基本的な回帰分析である線形回帰（Linear Regression）を扱います。
@@ -258,3 +259,35 @@ stargazer(regression1, regression2, type = "html", out = "test.doc")
 - `Adjusted` $R^2$: 修正済み決定係数
 - `Residual Std. Error`: 残差の標準誤差
 - `F Statistic`: F値（F検定の結果も合わせて表示）
+
+## 関連動画 {#movieRegression}
+
+```{r yt reg, eval=knitr::is_html_output(excludes = "epub"), results = 'asis', echo = F, fig.align = 'center'}
+cat(
+'<iframe width="560" height="315" 
+  src="https://www.youtube.com/embed/6VeJdNhah5A"
+  frameborder="0" allow="accelerometer; autoplay; encrypted-media;
+  gyroscope; picture-in-picture" allowfullscreen>
+  </iframe>'
+)
+```
+
+```{r yt regdum, eval=knitr::is_html_output(excludes = "epub"), results = 'asis', echo = F, fig.align = 'center'}
+cat(
+'<iframe width="560" height="315" 
+  src="https://www.youtube.com/embed/dCPxYHAvMU8"
+  frameborder="0" allow="accelerometer; autoplay; encrypted-media;
+  gyroscope; picture-in-picture" allowfullscreen>
+  </iframe>'
+)
+```
+
+```{r yt regint, eval=knitr::is_html_output(excludes = "epub"), results = 'asis', echo = F, fig.align = 'center'}
+cat(
+'<iframe width="560" height="315" 
+  src="https://www.youtube.com/embed/9phaZKUPXAI"
+  frameborder="0" allow="accelerometer; autoplay; encrypted-media;
+  gyroscope; picture-in-picture" allowfullscreen>
+  </iframe>'
+)
+```

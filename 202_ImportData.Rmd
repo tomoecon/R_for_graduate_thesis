@@ -1,5 +1,7 @@
 # データのインポート {#ImportData}
 
+【Section \@ref(movieImportData)に関連動画を紹介しています。】
+
 データ分析のためには、データをRStudioにインポート（読み込み）させなければなりません。インポートの方法は、持っているデータのファイル形式によって変わります。
 
 ## インポートの準備
@@ -68,3 +70,15 @@ data_original <- read_survey("sotsuron.csv")
     - クリックして左上のペーンに出てくるか確認
 - `head(data_original)`で先頭のデータを確認
 - `str(data_original)`で各変数の「型」（後で説明）を確認
+
+## 関連動画 {#movieImportData}
+
+```{r yt import, eval=knitr::is_html_output(excludes = "epub"), results = 'asis', echo = F, fig.align = 'center'}
+cat(
+'<iframe width="560" height="315" 
+  src="https://www.youtube.com/embed/FugazO_rL7c"
+  frameborder="0" allow="accelerometer; autoplay; encrypted-media;
+  gyroscope; picture-in-picture" allowfullscreen>
+  </iframe>'
+)
+```

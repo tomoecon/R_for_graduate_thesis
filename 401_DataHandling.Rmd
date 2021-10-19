@@ -4,8 +4,10 @@ library(wooldridge)
 data("saving")
 ```
 
-
 # データ前処理 {#DataHandling}
+
+【Section \@ref(movieDataHandling)に関連動画を紹介しています。】
+
 データをインポートしたら、いざ分析だ！…と分析してみたくなります。
 しかし、収集したデータはそのまま分析に進むことはできず、分析のために「前処理」する必要があります。
 「データ分析は前処理が8割」とも言われます。
@@ -325,4 +327,16 @@ saving_handled
     mutate(saving_rate = sav / inc) %>% #貯蓄率の作成
     select(-size) %>% #家族人数の削除
     arrange(desc(inc)) #収入で並び替え（高いものが上）
+```
+
+## 関連動画 {#movieDataHandling}
+
+```{r yt df, eval=knitr::is_html_output(excludes = "epub"), results = 'asis', echo = F, fig.align = 'center'}
+cat(
+'<iframe width="560" height="315" 
+  src="https://www.youtube.com/embed/96AZJmGNass"
+  frameborder="0" allow="accelerometer; autoplay; encrypted-media;
+  gyroscope; picture-in-picture" allowfullscreen>
+  </iframe>'
+)
 ```

@@ -5,6 +5,9 @@ data("saving")
 ```
 
 # データの可視化 {#Visualization}
+
+【Section \@ref(movieVisualization)に関連動画を紹介しています。】
+
 データをグラフによって目に見える形でわかりやすく整理する「可視化」は論文においてとても重要です。
 卒業論文では、データや結果を適切に伝えられるよう、グラフを作成していきましょう。
 
@@ -188,3 +191,25 @@ saving %>%
 ```
 
 これでデータの全貌がわかりやすくなったでしょうか？
+
+## 関連動画 {#movieVisualization}
+
+```{r yt vis1var, eval=knitr::is_html_output(excludes = "epub"), results = 'asis', echo = F, fig.align = 'center'}
+cat(
+'<iframe width="560" height="315" 
+  src="https://www.youtube.com/embed/E-Bc4idf_wU"
+  frameborder="0" allow="accelerometer; autoplay; encrypted-media;
+  gyroscope; picture-in-picture" allowfullscreen>
+  </iframe>'
+)
+```
+
+```{r yt vis2var, eval=knitr::is_html_output(excludes = "epub"), results = 'asis', echo = F, fig.align = 'center'}
+cat(
+'<iframe width="560" height="315" 
+  src="https://www.youtube.com/embed/OWkKPC0SswM"
+  frameborder="0" allow="accelerometer; autoplay; encrypted-media;
+  gyroscope; picture-in-picture" allowfullscreen>
+  </iframe>'
+)
+```
